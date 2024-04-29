@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-color-theme="Blue_Theme" class="light selected"
       data-layout="vertical" data-boxed-layout="boxed" data-card="shadow">
-
-<!-- Mirrored from bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2024 19:06:36 GMT -->
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8"/>
@@ -10,34 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Favicon icon-->
-    {{--    <link rel="shortcut icon" type="image/png"--}}
-    {{--          href="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/favicon.png"/>--}}
+        <link rel="shortcut icon" type="image/png"
+              href="{{ asset('assets/images/logos/favicon.png') }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
           rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('assets/fonts/icons/tabler-icons/tabler-icons.css')}}">
     <!-- Core Css -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
-    {{--    <link rel="stylesheet"--}}
-    {{--          href="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/css/theme.css"/>--}}
     <title>Modernize TailwindCSS HTML Admin Template</title>
-    <link rel="stylesheet"
-          href="{{ asset('vendor/carousel/carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
 </head>
-
 <body class="DEFAULT_THEME bg-white dark:bg-dark">
 
 <main>
     <!--start the project-->
     <div id="main-wrapper" class="flex">
-
-
+        <!-- Vertical Sidebar Menu -->
         @include('layouts.admin-component.sidebar-vertical')
-
-
-        <!-- </aside> -->
-
-
+        <!-- Vertical Sidebar Menu end -->
         <div class="page-wrapper w-full" role="main">
             <!--  Header Start -->
             @include('layouts.admin-component.header')
@@ -49,11 +38,23 @@
 
             <!-- Main Content -->
             <div class=" max-w-full pt-6">
-                <div class="container full-container py-5">
-                    <div class="grid grid-cols-12 gap-6">
-                        {{ $slot }}
-                    </div>
+                <div class="container full-container">
+                    <div class="p-5">
+                        @isset($title)
+                            <div>
+                                <h1 class="text-2xl">{{ $title }}</h1>
+                            </div>
+                        @endisset
 
+                            @isset($breadcrumb)
+                                <div>
+                                    <h1 class="text-2xl">{{ $title }}</h1>
+                                </div>
+                            @endisset
+
+
+                            {{ $slot }}
+                    </div>
                 </div>
             </div>
             <!-- Main Content End -->
