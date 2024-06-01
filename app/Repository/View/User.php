@@ -27,6 +27,7 @@ class User extends \App\Models\User implements View
             ['label' => 'Name', 'sort' => 'name'],
             ['label' => 'Email', 'sort' => 'email'],
             ['label' => 'Role', 'sort' => 'role'],
+            ['label' => 'Jabatan', 'sort' => 'role'],
             ['label' => 'Aksi'],
         ];
     }
@@ -35,10 +36,8 @@ class User extends \App\Models\User implements View
     {
         if ($data->role == 1) {
             $role = 'Super Admin';
-        } elseif ($data->role == 2) {
-            $role = 'Pegawai';
         } else {
-            $role = 'Pengguna';
+            $role = 'Pegawai';
         }
         //        $action = [];
         //        if ($data->role==3 or auth()->user()->role==1){
@@ -51,6 +50,8 @@ class User extends \App\Models\User implements View
             ['type' => 'string', 'data' => $data->name],
             ['type' => 'string', 'data' => $data->email],
             ['type' => 'string', 'data' => $role],
+            ['type' => 'string', 'data' => $data->position],
+            ['type' => 'string', 'data' => ''],
         ];
     }
 }

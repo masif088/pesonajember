@@ -24,7 +24,7 @@
                                             <span
                                                 class="apps-icons">
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-dd-chat.svg"
+                                                    src="{{ asset('assets/images/svgs/icon-dd-chat.svg') }}"
                                                     class="h-6 w-6">
                                             </span>
                                             <div class="">
@@ -80,7 +80,7 @@
                                 Quick Links</h5>
                             <ul>
                                 <li class="mb-4"><a
-                                        href="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/main/page-pricing.html"
+                                        href="#"
                                         class="card-title text-sm hover:text-primary">Pricing
                                         Page</a></li>
 

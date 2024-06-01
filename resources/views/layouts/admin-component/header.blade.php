@@ -12,23 +12,23 @@
                                     <a href="#"
                                        class="text-nowrap logo-img">
                                         <img
-                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo.svg"
+                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden block rtl:hidden"
                                             alt="Logo-Dark"
                                         />
                                         <img
-                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo.svg"
+                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                             alt="Logo-light"
                                         />
 
                                         <img
-                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo-rtl.svg"
+                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                             alt="Logo-Dark"
                                         />
                                         <img
-                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo-rtl.svg"
+                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                             alt="Logo-light"
                                         />
@@ -82,23 +82,23 @@
                                             <a href="#"
                                                class="text-nowrap logo-img">
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden block rtl:hidden"
                                                     alt="Logo-Dark"
                                                 />
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                                     alt="Logo-light"
                                                 />
 
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo-rtl.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                                     alt="Logo-Dark"
                                                 />
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo-rtl.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                                     alt="Logo-light"
                                                 />
@@ -175,7 +175,7 @@
                                 <a id="hs-dropdown-hover-event-profile"
                                    class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full group-hover/menu:bg-lightprimary group-hover/menu:text-primary">
                                     <img class="object-cover w-9 h-9 rounded-full"
-                                         src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/profile/user-1.jpg"
+                                         src="{{ auth()->user()->profile_photo_url }}"
                                          alt=""
                                          aria-hidden="true">
                                 </a>
@@ -191,26 +191,27 @@
                                             <div class="">
                                                 <div class="flex items-center">
                                                     <img
-                                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/profile/user-1.jpg"
+
+                                                        src="{{ auth()->user()->profile_photo_url }}"
                                                         class="h-20 w-20 rounded-full object-cover"
                                                         alt="profile">
                                                     <div class="ml-4 rtl:mr-4 rtl:ml-auto">
                                                         <h5 class="text-base">
-                                                            Mathew Anderson
+                                                            {{ auth()->user()->name }}
                                                         </h5>
                                                         <p class="text-xs font-normal text-link dark:text-darklink ">
-                                                            Designer</p>
+                                                            {{ auth()->user()->position }}</p>
                                                         <span
                                                             class="text-sm font-normal flex items-center text-link dark:text-darklink">
                                 <i class="ti ti-mail mr-2"></i>
-                                <span>info@modernize.com</span>
+                                <span>{{ auth()->user()->email }}</span>
                             </span>
                                                     </div>
                                                 </div>
 
                                                 <ul class="mt-10">
                                                     <li class="mb-5">
-                                                        <a href="#"
+                                                        <a href="{{ route('profile.show') }}"
                                                            class="flex gap-3 items-center group">
                                 <span
                                     class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">
@@ -228,52 +229,64 @@
                                                             </div>
                                                         </a>
                                                     </li>
-                                                    <li class="mb-5">
-                                                        <a href="#"
-                                                           class="flex gap-3 items-center  group">
-                                <span
-                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">
-                                    <img
-                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-inbox.svg"
-                                        class="h-6 w-6">
-                                </span>
-                                                            <div class="">
-                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">
-                                                                    My Inbox
-                                                                </h6>
-                                                                <p class="text-xs text-link dark:text-darklink font-normal">
-                                                                    Messages &amp;
-                                                                    Emails</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="mb-5">
-                                                        <a href="#"
-                                                           class="flex gap-3 items-center group ">
-                                <span
-                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">
-                                    <img
-                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-tasks.svg"
-                                        class="h-6 w-6">
-                                </span>
-                                                            <div class="">
-                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">
-                                                                    My Tasks
-                                                                </h6>
-                                                                <p class="text-xs text-link dark:text-darklink font-normal">
-                                                                    To-do and Daily
-                                                                    tasks</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
+{{--                                                    <li class="mb-5">--}}
+{{--                                                        <a href="#"--}}
+{{--                                                           class="flex gap-3 items-center  group">--}}
+{{--                                <span--}}
+{{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
+{{--                                    <img--}}
+{{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-inbox.svg"--}}
+{{--                                        class="h-6 w-6">--}}
+{{--                                </span>--}}
+{{--                                                            <div class="">--}}
+{{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
+{{--                                                                    My Inbox--}}
+{{--                                                                </h6>--}}
+{{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
+{{--                                                                    Messages &amp;--}}
+{{--                                                                    Emails</p>--}}
+{{--                                                            </div>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="mb-5">--}}
+{{--                                                        <a href="#"--}}
+{{--                                                           class="flex gap-3 items-center group ">--}}
+{{--                                <span--}}
+{{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
+{{--                                    <img--}}
+{{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-tasks.svg"--}}
+{{--                                        class="h-6 w-6">--}}
+{{--                                </span>--}}
+{{--                                                            <div class="">--}}
+{{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
+{{--                                                                    My Tasks--}}
+{{--                                                                </h6>--}}
+{{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
+{{--                                                                    To-do and Daily--}}
+{{--                                                                    tasks</p>--}}
+{{--                                                            </div>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="mt-5">
-                                            <a href="#"
-                                               class="btn btn-outline-primary block w-full">
-                                                Logout
-                                            </a>
+
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
+
+                                                <x-dropdown-link href="{{ route('logout') }}"
+                                                                 @click.prevent="$root.submit();">
+                                                    <button href="#"
+                                                            class="btn btn-outline-primary block w-full">
+                                                        Logout
+                                                    </button>
+                                                </x-dropdown-link>
+
+
+                                            </form>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -298,23 +311,23 @@
                                             <a href="#"
                                                class="text-nowrap logo-img">
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden block rtl:hidden"
                                                     alt="Logo-Dark"
                                                 />
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                                     alt="Logo-light"
                                                 />
 
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo-rtl.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                                     alt="Logo-Dark"
                                                 />
                                                 <img
-                                                    src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo-rtl.svg"
+                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                                     alt="Logo-light"
                                                 />
@@ -365,23 +378,23 @@
                                                     <a href="#"
                                                        class="text-nowrap logo-img">
                                                         <img
-                                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo.svg"
+                                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                             class="dark:hidden block rtl:hidden"
                                                             alt="Logo-Dark"
                                                         />
                                                         <img
-                                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo.svg"
+                                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                             class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                                             alt="Logo-light"
                                                         />
 
                                                         <img
-                                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/dark-logo-rtl.svg"
+                                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                             class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                                             alt="Logo-Dark"
                                                         />
                                                         <img
-                                                            src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/logos/light-logo-rtl.svg"
+                                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                             class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                                             alt="Logo-light"
                                                         />
@@ -593,7 +606,7 @@
                                         <a id="hs-dropdown-hover-event-profile"
                                            class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full group-hover/menu:bg-lightprimary group-hover/menu:text-primary">
                                             <img class="object-cover w-9 h-9 rounded-full"
-                                                 src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/profile/user-1.jpg"
+                                                 src="{{ auth()->user()->profile_photo_url }}"
                                                  alt=""
                                                  aria-hidden="true">
                                         </a>
@@ -609,19 +622,19 @@
                                                     <div class="">
                                                         <div class="flex items-center">
                                                             <img
-                                                                src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/profile/user-1.jpg"
+                                                                src="{{ auth()->user()->profile_photo_url }}"
                                                                 class="h-20 w-20 rounded-full object-cover"
                                                                 alt="profile">
                                                             <div class="ml-4 rtl:mr-4 rtl:ml-auto">
                                                                 <h5 class="text-base">
-                                                                    Mathew Anderson
+                                                                    {{ auth()->user()->name }}
                                                                 </h5>
                                                                 <p class="text-xs font-normal text-link dark:text-darklink ">
-                                                                    Designer</p>
+                                                                    {{ auth()->user()->position }}</p>
                                                                 <span
                                                                     class="text-sm font-normal flex items-center text-link dark:text-darklink">
                                 <i class="ti ti-mail mr-2"></i>
-                                <span>info@modernize.com</span>
+                                <span>{{ auth()->user()->email }}</span>
                             </span>
                                                             </div>
                                                         </div>

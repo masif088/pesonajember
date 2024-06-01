@@ -22,7 +22,7 @@ export default {
                 400: "#FDEDE8", 500: "#FA896B", 600: "#d5745b",
             }, gray: {
                 100: "#ebf1f6", 200: "#D2D2D2", 400: "#e5eaef", 500: "#5A6A85", 600: "#2a3547", 700: "#202936",
-            }, transparent: "transparent", white: "#fff",
+            }, transparent: "transparent", white: "#fff",black: "#c1c1c1",
         },
 
         fontFamily: {

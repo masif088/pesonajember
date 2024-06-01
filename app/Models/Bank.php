@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $bank_name
+ * @property string $account_number
  * @property string $account_in_name
  * @property string $note
  * @property int $status_id
@@ -19,7 +20,7 @@ class Bank extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['bank_name', 'account_in_name', 'note', 'status_id'];
+    protected $fillable = ['bank_name','account_number', 'account_in_name', 'note', 'status_id'];
 
     public function status()
     {

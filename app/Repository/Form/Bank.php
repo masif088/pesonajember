@@ -14,6 +14,7 @@ class Bank extends \App\Models\Bank implements Form
         return [
             'form.bank_name' => 'required',
             'form.account_in_name' => 'required',
+            'form.account_number' => 'required',
             'form.note' => 'nullable',
             'form.status_id' => 'required',
         ];
@@ -34,23 +35,29 @@ class Bank extends \App\Models\Bank implements Form
                 'type' => 'text',
                 'model' => 'bank_name',
                 'required' => true,
-                'class' => 'col-span-4',
+                'class' => 'col-span-6',
             ],
-            [
-                'title' => 'Atas nama / nama akun',
-                'type' => 'text',
-                'model' => 'account_in_name',
-                'required' => true,
-                'class' => 'col-span-4',
-            ],
-
             [
                 'title' => 'Status',
                 'type' => 'select',
                 'model' => 'status_id',
                 'options' => $status,
                 'required' => false,
-                'class' => 'col-span-4',
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'Atas nama / nama akun',
+                'type' => 'text',
+                'model' => 'account_in_name',
+                'required' => true,
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'Nomer Rekening',
+                'type' => 'text',
+                'model' => 'account_number',
+                'required' => true,
+                'class' => 'col-span-6',
             ],
             [
                 'title' => 'Catatan',

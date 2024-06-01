@@ -24,7 +24,6 @@ class SupplierCategory extends \App\Models\SupplierCategory implements Form
     public static function formField($params = null): array
     {
 
-        //        'title', 'note'
         $data = [
             [
                 'title' => 'Judul kategori',

@@ -10,27 +10,49 @@ class Master extends Component
     use WithPagination;
 
     public $model;
+
     public $name;
+
     public $modelId;
+
     public $dataId;
+
     public $param1;
+
     public $param2;
+
     public $param3;
+
     public $data;
+
     public $dateSearch = false;
+
     public $extras = false;
 
     public $perPage = 10;
-    public $sortField = "id";
+
+    public $sortField = 'id';
+
     public $sortAsc = false;
+
     public $search = '';
+
     protected $paginationTheme = 'tailwind';
-    protected $listeners = ["deleteItem" => "delete_item", 'delete' => 'delete'];
+
+    protected $listeners = ['deleteItem' => 'delete_item', 'delete' => 'delete',
+        'refreshTable' => 'refresh', 'reRender' => 'render',
+    ];
+
+    public function refresh($month, $year)
+    {
+        $this->param1 = $month;
+        $this->param2 = $year;
+    }
 
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
-            $this->sortAsc = !$this->sortAsc;
+            $this->sortAsc = ! $this->sortAsc;
         } else {
             $this->sortAsc = true;
         }
@@ -41,8 +63,9 @@ class Master extends Component
     public function deleteItem($id)
     {
         $this->data = $this->model::find($id);
-        if (!$this->data) {
-            $this->emit("deleteResult", ["status" => false, "message" => "Gagal menghapus data " . $this->name]);
+        if (! $this->data) {
+            $this->emit('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
+
             return;
         }
         $this->emit('swal:confirm', [
@@ -66,6 +89,7 @@ class Master extends Component
     public function render()
     {
         $data = $this->get_pagination_data();
+
         return view('livewire.table.master', $data);
     }
 
@@ -82,8 +106,8 @@ class Master extends Component
         }
 
         $return = $this->model::tableView();
-        $return["datas"] = $data;
+        $return['datas'] = $data;
+
         return $return;
     }
-
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $title
- * @property string $note
  * @property int $operation
  * @property string $created_at
  * @property string $updated_at
@@ -17,6 +16,6 @@ class MaterialMutationStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'note', 'operation'];
+    protected $fillable = ['title', 'operation'];
 
 }

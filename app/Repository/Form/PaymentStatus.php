@@ -24,8 +24,7 @@ class PaymentStatus extends \App\Models\PaymentStatus implements Form
     public static function formField($params = null): array
     {
 
-        //        'title', 'note'
-        $data = [
+        return [
             [
                 'title' => 'Judul kategori',
                 'type' => 'text',
@@ -41,7 +40,5 @@ class PaymentStatus extends \App\Models\PaymentStatus implements Form
                 'class' => 'col-span-12',
             ],
         ];
-
-        return $data;
     }
 }

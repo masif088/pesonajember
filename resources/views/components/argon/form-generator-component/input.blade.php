@@ -5,6 +5,20 @@
             {{ $repository['title'] }}
         </label>
     @endisset
+        <style>
+            .input::-webkit-input-placeholder { /* WebKit browsers */
+                color: #fdfdfd;
+            }
+            .input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color:    #fff;
+            }
+            .input::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color:    #fff;
+            }
+            .input:-ms-input-placeholder { /* Internet Explorer 10+ */
+                color:    #fff;
+            }
+        </style>
     <input
         id="data{{ $repository['model'] }}"
         type="{{ $repository['type'] }}"
@@ -15,7 +29,7 @@
 
         wire:model="{{'form.'.$repository['model']}}"
         name="{{ $repository['model'] }}"
-        class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
+        class=" input bg-gray-200 pc appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4  leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
     >
     @if($repository['type']=="file")
         <div wire:loading wire:target="{{ 'form.'.$repository['model'] }}">

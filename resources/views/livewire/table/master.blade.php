@@ -1,18 +1,23 @@
 <div>
     <div class="gap-3 p-4 lg:grid lg:grid-cols-12">
         <div class="col-span-12 lg:col-span-2 items-stretch">
-            <span>
+            <span> {{ $param1 }}
             Per Page: &nbsp;
-            <select wire:model="perPage"
+            <select wire:model="perPage" id="perPage"
                     class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full px-4 py-2 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white"
-                    style="">
-                <option>10</option>
-                <option>15</option>
-                <option>25</option>
+                    style="" onchange="onChange()">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
                 <option value="-1">all</option>
             </select>
             </span>
         </div>
+        <script>
+            function onChange() {
+                @this.set(`perPage`, $(`#perPage`).val());
+            }
+        </script>
         <div class="md:col-span-6"></div>
         @if($searchable)
             <div class="col-span-12 lg:col-span-4 items-stretch">
@@ -63,20 +68,21 @@
                         @foreach ($model::tableData($data) as $data)
                             @switch($data['type'])
                                 @case('index')
-                                    <td class="py-4 px-6"
+                                    <td class="py-4 px-6 font-extralight"
                                         style="{{ isset($data['text-align'])?'text-align:'.$data['text-align']:'' }}">{{ $index+1 + (request()->get('page')?request()->get('page')-1:0)*$perPage }}</td>
                                     @break
                                 @case('string')
-                                    <td class="py-2 px-6"
+                                    <td class="py-2 px-6 @isset($data['font-size']) @if( $data['font-size']!='' ) {{ $data['font-size'] }} @endif @else font-extralight @endisset  @isset($data['color']) {{ $data['color'] }} @endisset"
                                         style="{{ isset($data['text-align'])?'text-align:'.$data['text-align']:'' }}">{{ $data['data'] }}</td>
                                     @break
                                 @case('thousand_format')
-                                    <td class="py-2 px-6"
+                                    <td class="py-2 px-6 font-extralight"
                                         style="{{ isset($data['text-align'])?'text-align:'.$data['text-align']:'' }}">{{ thousand_format($data['data']) }}</td>
                                     @break
                                 @case('raw_html')
-                                    <td class="py-2 px-6"
-                                        style="{{ isset($data['text-align'])?'text-align:'.$data['text-align']:'' }}">{!! $data['data'] !!}</td>
+                                    <td class="py-2 px-6 font-extralight "
+                                        style="{{ isset($data['text-align'])?'text-align:'.$data['text-align']:'' }}
+                                        {{ isset($data['vertical-align'])?'vertical-align:'.$data['vertical-align']:'' }}">{!! $data['data'] !!}</td>
                                     @break
                                 @case('img')
                                     <td class="py-2 px-6"

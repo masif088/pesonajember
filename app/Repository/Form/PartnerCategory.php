@@ -7,7 +7,7 @@ use App\Repository\Form;
 
 class PartnerCategory extends \App\Models\PartnerCategory implements Form
 {
-    protected $table = 'product_categories';
+    protected $table = 'partner_categories';
 
     public static function formRules(): array
     {
