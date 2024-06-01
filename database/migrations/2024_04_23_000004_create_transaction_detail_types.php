@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('additional_costs', function (Blueprint $table) {
+        Schema::create('transaction_detail_types', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('additional_costs');
+        Schema::dropIfExists('transaction_detail_types');
     }
 };
