@@ -58,6 +58,8 @@ class MaterialMutation extends Component
             'amount' => $this->amount,
             'stock' => $lastStock,
         ]);
+
+        $this->redirect(route('material.material-stock',$this->dataId));
     }
 
     public function render()
