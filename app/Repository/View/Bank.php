@@ -35,12 +35,16 @@ class Bank extends \App\Models\Bank implements View
 
     public static function tableData($data = null): array
     {
+        $link = route('bank.edit',$data->id);
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => $data->bank_name],
             ['type' => 'raw_html', 'data' => "<div>$data->account_number</div><div style='font-size: 12px'>$data->account_in_name</div>"],
             ['type' => 'string', 'data' => $data->status->title],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' =>"
+            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            <a class='btn bg-red-600' href='#' wire:click='deleteItem($data->id)'><i class='ti ti-trash'></i></a>
+            "],
         ];
     }
 }

@@ -30,7 +30,7 @@ class CompanyAsset extends \App\Models\CompanyAsset implements View
         //        'bank_name','account_number', 'account_in_name', 'note', 'status_id'
         return [
             ['label' => '#', 'sort' => 'id', 'width' => '7%'],
-            ['label' => 'Katerina Asset'],
+            ['label' => 'Krteria Asset'],
             ['label' => 'Jenis Asset'],
 
             ['label' => 'Masa Manfaat'],

@@ -8,7 +8,7 @@
             <div class="col-span-12">
 
                 <br>
-                <livewire:material.material-form action="create" />
+                <livewire:customer.form-customer action="update" :data-id="$id" />
 
             </div>
         </div>

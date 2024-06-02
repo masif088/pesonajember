@@ -151,20 +151,20 @@
                 <td></td>
                 <td class="border-none flex flex-row gap-3" style="width: 40px">
                     <!-- Popover -->
-                    <div class="hs-tooltip inline-block [--trigger:click] [--placement:bottom] p-1">
+                    <div class="hs-tooltip inline-block  [--placement:bottom] p-1">
                         <div class="hs-tooltip-toggle block text-center">
                             <button type="button">
                                 <i class="ti ti-plus text-xl"></i>
                             </button>
                             <div
                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible hidden opacity-0 transition-opacity absolute invisible z-10 max-w-xs bg-white border text-start rounded-md shadow-lg border-wishka-400 "
-                                role="tooltip">
+                                >
                                 <div class="p-2 divide-y-2 gap-3">
                                     <div class="p-1" wire:click="productFormLayoutSet">
                                         Produk
                                     </div>
                                     <div class="p-1" wire:click="shipperFormLayoutSet">
-                                        Pengiriman
+                                        Pengirimanaa
                                     </div>
                                 </div>
                             </div>

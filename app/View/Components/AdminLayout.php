@@ -94,6 +94,7 @@ class AdminLayout extends Component
             [
                 'title' => 'General info',
                 'lists' => [
+                    ['title' => 'Rekap Konsumen', 'type' => 'link', 'route' => route('customer.index'), 'icon' => '<i class="ti ti-users  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Informasi Umum', 'type' => 'link', 'route' => route('general-info.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Ekspedisi barang', 'type' => 'link', 'route' => route('shipper.index'), 'icon' => '<i class="ti ti-truck-delivery  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Bank', 'type' => 'link', 'route' => route('bank.index'), 'icon' => '<i class="ti ti-building-bank  text-xl flex-shrink-0"></i> '],

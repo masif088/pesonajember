@@ -64,11 +64,12 @@ class Master extends Component
     {
         $this->data = $this->model::find($id);
         if (! $this->data) {
-            $this->emit('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
+            $this->dispatch('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
 
             return;
         }
-        $this->emit('swal:confirm', [
+//        $this->dispatch('swal:alert',['title'=>'asd']);
+        $this->dispatch('swal:confirm', data:[
             'icon' => 'warning',
             'title' => 'apakah anda yakin ingin menghapus data ini',
             'confirmText' => 'Hapus',
@@ -80,7 +81,7 @@ class Master extends Component
     public function delete()
     {
         $this->data->delete();
-        $this->emit('swal:alert', [
+        $this->dispatch('swal:alert', data:[
             'icon' => 'success',
             'title' => 'Berhasil menghapus data',
         ]);

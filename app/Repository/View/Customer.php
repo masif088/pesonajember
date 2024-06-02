@@ -35,12 +35,15 @@ class Customer extends \App\Models\Customer implements View
 
     public static function tableData($data = null): array
     {
+        $link = route('customer.edit',$data->id);
         return [
             ['type' => 'string','data'=>$data->uid],
             ['type' => 'raw_html', 'data' => "$data->name <br> <span class='font-sm'>$data->email</span>" ],
             ['type' => 'raw_html', 'data' => "$data->address $data->postal_code<br> <span class='font-sm'> $data->province, $data->city, $data->district</span>"],
-            ['type' => 'string', 'data' => $data->transactions->count()],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'string','text-align'=>'center', 'data' => $data->transactions->count()],
+            ['type' => 'raw_html', 'data' =>
+            "<a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>"
+            ],
         ];
     }
 }
