@@ -57,14 +57,16 @@ class JournalForm extends Component
             'journal_date' => $this->date,
         ]);
         foreach ($this->journal as $item) {
-            if ($item['account_name_id'][0] != null) {
-                AccountJournalDetail::create([
-                    'account_journal_id' => $ac->id,
-                    'account_name_id' => $item['account_name_id'][0],
-                    'debit' => $item['debit'],
-                    'credit' => $item['credit'],
-                    'note' => $item['note'],
-                ]);
+            if (isset($item['account_name_id'][0]) ) {
+                if ($item['account_name_id'][0] != null) {
+                    AccountJournalDetail::create([
+                        'account_journal_id' => $ac->id,
+                        'account_name_id' => $item['account_name_id'][0],
+                        'debit' => $item['debit'],
+                        'credit' => $item['credit'],
+                        'note' => $item['note'],
+                    ]);
+                }
             }
         }
         $this->redirect(route('finance.journal'));
