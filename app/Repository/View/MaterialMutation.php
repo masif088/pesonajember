@@ -43,7 +43,7 @@ class MaterialMutation extends \App\Models\MaterialMutation implements View
                 ['type' => 'string' ,'data' => $data->created_at],
                 ['type' => 'raw_html', 'data' => $data->reference ."<br> <span class='text-xs'>$data->note</span>"],
                 ['type' => 'string','text-align'=>'center', 'data' => ($data->amount*$data->materialMutationStatus->operation).$material->unit],
-                ['type' => 'string','text-align'=>'center', 'data' => $data->stock.$material->unit],
+                ['type' => 'string','text-align'=>'center', 'data' => round($data->stock,2).$material->unit],
             ];
         }catch (\Exception $q){
 
