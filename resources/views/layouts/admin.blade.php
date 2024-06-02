@@ -143,6 +143,7 @@
 <script src="{{ asset('assets/libs/preline/dist/components/hs-scrollspy/hs-scrollspy.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/components/hs-tabs/hs-tabs.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/components/hs-tooltip/hs-tooltip.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 @stack('custom-script')
 @livewireScripts

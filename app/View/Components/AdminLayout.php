@@ -41,7 +41,7 @@ class AdminLayout extends Component
             [
                 'title' => 'Home',
                 'lists' => [
-                    ['title' => 'Dashboard', 'type' => 'link', 'route' => '#', 'icon' => '<i class="ti ti-brand-chrome  text-2xl flex-shrink-0"></i> '],
+                    ['title' => 'Dashboard', 'type' => 'link', 'route' =>route('dashboard'), 'icon' => '<i class="ti ti-brand-chrome  text-2xl flex-shrink-0"></i> '],
                     [
                         'title' => 'Penjualan', 'type' => 'accordion',
                         'icon' => '<i class="ti ti-shopping-cart  text-2xl flex-shrink-0"></i>',

@@ -9,7 +9,7 @@
                             <div>
                                 <h3>Rp. 100.000.000</h3>
                                 <p class="mb-0">
-                                    Pendapatan Hari
+                                    Pendapatan Hari Ini
                                 </p>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div>
                             <h3>Rp. 10.000.000</h3>
                             <p class="mb-0">
-                                Pengeluaran Hari
+                                Pengeluaran Hari Ini
                             </p>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div>
                             <h3>Rp. 1.000.000</h3>
                             <p class="mb-0">
-                                Penjualan Hari
+                                Penjualan Hari Ini
                             </p>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
     <div class="col-span-10 mb-2 flex">
         <span style="width: 5%; align-items: center" class="flex text-center">:</span>
         <input type="date" style="width: 95%;"
-               wire:model="date"admin/>prepresence
+               wire:model="date"
                class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
     </div>
     <div class="col-span-2 flex mb-2" style="align-items: center;">
