@@ -44,7 +44,7 @@ class MockupForm extends Component
             $ts2->update([
                 'value' => 'Menunggu konfirmasi',
             ]);
-            $ts2->update([
+            $ts3->update([
                 'value' => $this->process,
             ]);
         } else {
