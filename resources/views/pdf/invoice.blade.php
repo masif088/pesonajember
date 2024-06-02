@@ -1,4 +1,5 @@
-<!doctype html>
+@php use App\Models\Product; @endphp
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,9 +45,10 @@
                 style="background: #465E89; margin-left: auto; color: white; display: flex; flex: fit-content; padding: 10px; width: 400px; border-radius: 10px 10px 0 0; justify-content: space-between">
                 <table style="width: 100%">
                     <tr>
-                        <td>No Invoice : asdjaskjdhjkadsh</td>
+                        <td>No Invoice : {{ $transaction->uid }}</td>
                         <td></td>
-                        <td>Tanggal :</td>
+                        <td style="text-align: right">Tanggal
+                            : {{ $transaction->created_at->format('d') .' '.month_name(intval($transaction->created_at->format('m'))) .' '.$transaction->created_at->format('Y') }}</td>
                     </tr>
                 </table>
             </div>
@@ -62,11 +64,10 @@
                         </td>
                         <td></td>
                         <td style="text-align: right">
-                            To, <br>
-                            Inot Production <br>
-                            Haris Mawardy <br>
-                            Jl. Batujajar 24, Kota Malang <br>
-                            0856-3588-826
+                            <b>Kepada,</b> <br>
+                            <b>{{ $transaction->customer->name }}</b> <br>
+                            {{ $transaction->customer->address }} <br>
+                            {{ $transaction->customer->phone }}
                         </td>
                     </tr>
                 </table>
@@ -85,61 +86,108 @@
                     </thead>
                     <tbody>
 
+                    @php($total=0)
 
-                    @for($i=0; $i<3; $i++)
-
+                    @foreach($transaction->transactionLists as $index=>$tl)
                         <tr style="border-bottom: 1px solid #C6C6C6">
-                            <td style="text-align: center">{{ $i+1 }}</td>
+                            <td style="text-align: center">{{ $index+1 }}</td>
                             <td>
-                                <b>Bag Name and Code </b> <br>
-                                Detail Product <br>
-                                Bahan Tas <br>
-                                Proses Pembuaran
+                                @if($tl['transaction_detail_type_id']==1)
+                                    <b>{{ $tl['shipper_category'] }} </b><br>
+                                    {{ Shipper::find($tl['shipper_id'])->title }} <br>
+                                @elseif($tl['transaction_detail_type_id']==2)
+                                    @php($product =Product::find($tl['product_id']) )
+                                    <b>{{ $product->title }}</b> <br>
+                                    {{ $product->productCategory->title }} <br>
+                                    {{ $product->note }}
+                                @endif
                             </td>
                             <td style="text-align: right">
-                                50 pcs
+                                @if(is_numeric($tl['amount']))
+                                    {{ thousand_format($tl['amount']) }}pcs
+                                @else
+                                    {{ $tl['amount'] }}
+                                @endif
                             </td>
                             <td style="text-align: right">
-                                Rp. 100.000
+                                @if(is_numeric($tl['amount']))
+                                    Rp. {{ thousand_format($tl['price'])  }}
+                                @else
+                                    -
+                                @endif
                             </td>
                             <td style="text-align: right">
-                                Rp. 5.000.000
+                                @if($tl['transaction_detail_type_id']==1)
+                                    @php($total+=$tl['price'])
+                                    Rp. {{ thousand_format($tl['price']) }}
+                                @elseif($tl['transaction_detail_type_id']==2)
+                                    @php($total+=$tl['price']*$tl['amount'])
+                                    Rp. {{ thousand_format($tl['price']*$tl['amount']) }}
+                                @endif
                             </td>
                         </tr>
-                    @endfor
+                    @endforeach
 
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td>Sub Total:</td>
-                        <td>Rp. 3.800.000</td>
+                        <td><b>Rp. {{ thousand_format($total) }}</b></td>
                     </tr>
+                    {{--                    <tr>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td>Total Diskon</td>--}}
+                    {{--                        <td>Rp. 800.000</td>--}}
+                    {{--                    </tr>--}}
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Total Diskon</td>
-                        <td>Rp. 800.000</td>
+                        <td class="text-center">
+                            Pajak ({{is_numeric($transaction->tax)?$transaction->tax:0}}%)
+                        </td>
+                        <td>
+                            <b>Rp. {{ thousand_format($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100) }}</b>
+                        </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Pajak:</td>
-                        <td>Rp. 80.000</td>
-                    </tr>
+                    {{--                    <tr>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td></td>--}}
+                    {{--                        <td colspan="2" style="background: #597FC1; ">--}}
+                    {{--                            <table style="width: 100%; color: white; font-weight: 900">--}}
+                    {{--                                <tr>--}}
+                    {{--                                    <td style="padding: 0">TOTAL:</td>--}}
+                    {{--                                    <td style="padding: 0;width: 30%"></td>--}}
+                    {{--                                    <td style="padding: 0">Rp.</td>--}}
+                    {{--                                    <td style="text-align: right; padding: 0">1.000.000.000</td>--}}
+                    {{--                                </tr>--}}
+                    {{--                            </table>--}}
+                    {{--                        </td>--}}
+                    {{--                    </tr>--}}
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td colspan="2" style="background: #597FC1; ">
                             <table style="width: 100%; color: white; font-weight: 900">
+
+
                                 <tr>
                                     <td style="padding: 0">TOTAL:</td>
                                     <td style="padding: 0;width: 30%"></td>
                                     <td style="padding: 0">Rp.</td>
-                                    <td style="text-align: right; padding: 0">1.000.000.000</td>
+                                    <td style="padding: 0">
+                                        Rp. {{ thousand_format(($total+($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100))) }}
+                                    </td>
+
+                                    {{--                                    @foreach(explode(':',\App\Models\PaymentModel::find($transaction->payment_model_id)->model) as $index=>$m)--}}
+                                    {{--                                    <td>Rp. {{ thousand_format(($total+($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100))*$m/100) }}</td>--}}
+                                    {{--                                        @break--}}
+                                    {{--                                    @endforeach--}}
                                 </tr>
                             </table>
                         </td>
@@ -147,7 +195,16 @@
                     </tbody>
                 </table>
             </div>
-            <br><br><br>
+            <br>
+            <br>
+
+                                                @foreach(explode(':',\App\Models\PaymentModel::find($transaction->payment_model_id)->model) as $index=>$m)
+                                                Pembayaran ke {{$index+1}} :Rp. {{ thousand_format(($total+($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100))*$m/100) }}
+                <br>
+
+                                                @endforeach
+
+            <br>
             <div>
                 <font style="color: #465E89; font-weight: 700">PAYMENT METHOD : </font><br>
                 Rek BCA 4480364029 a.n Kun Sentanawan

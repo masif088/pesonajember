@@ -41,19 +41,20 @@ class TransactionDpAccept extends Transaction implements View
     {
 
 
-//        $link2 = route('transaction.transaction.change.status', [$data->id, 3]);
-
+        $link2 = route('transaction.download', [$data->id, 3]);
+//
+//        <div>
+//<a href='#' class='py-1 px-2 bg-red-200  text-red-600 rounded-lg'>Kirim By Email</a>
+//</div>
         return [
             ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
             ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<div>
 <div class='mb-3'>
-<a href='' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'>Download</a>
+<a href='$link2' target='_blank' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'>Download</a>
 </div>
-<div>
-<a href='#' class='py-1 px-2 bg-red-200  text-red-600 rounded-lg'>Kirim By Email</a>
-</div>
+
 </div>"],
             ['type' => 'raw_html', 'data' => "
             <span class='text-xl text-wishka-500 font-black'>

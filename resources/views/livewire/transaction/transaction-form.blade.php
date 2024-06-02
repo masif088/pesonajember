@@ -116,17 +116,20 @@
                             {{ $product->note }}
                         @endif
                     </td>
-                    <td class="text-center">@if(is_numeric($list['amount']))
+                    <td class="text-center">
+                        @if(is_numeric($list['amount']))
                             {{ thousand_format($list['amount']) }}pcs
                         @else
                             {{ $list['amount'] }}
-                        @endif</td>
+                        @endif
+                    </td>
                     <td class="text-center">
                         @if(is_numeric($list['amount']))
                             Rp. {{ thousand_format($list['price'])  }}
                         @else
                             -
-                        @endif</td>
+                        @endif
+                    </td>
                     <td>
                         @if($list['transaction_detail_type_id']==1)
                             @php($total+=$list['price'])
