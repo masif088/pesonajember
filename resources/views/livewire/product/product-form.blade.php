@@ -138,7 +138,7 @@
                             </td>
 
 
-                            <td class="p-2" >
+                            <td class="p-2" wire:ignore>
                                 <input type="number" wire:model="materialList.{{$j}}.size"
                                        id="size{{$j}}"
                                        style="min-width: 120px !important;"
@@ -152,7 +152,7 @@
                                 </span>
                             </td>
 
-                            <td>
+                            <td class="p-2" wire:ignore>
                                 <input type="text" wire:model="materialList.{{$j}}.note"
                                        id="note{{$j}}"
                                        oninput="size({{$j}},'note')"
@@ -223,14 +223,14 @@
                             </td>
 
 
-                            <td class="p-2" >
+                            <td class="p-2" wire:ignore>
                                 <input type="number" wire:model="costList.{{$j}}.price"
                                        id="costListPrice{{$j}}"
                                        style="min-width: 180px !important;"
                                        oninput="cost({{$j}},'costListPrice')"
                                        class="bg-gray-200 text-center appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
-                            <td>
+                            <td class="p-2" wire:ignore>
                                 <input type="text" wire:model="costList.{{$j}}.note"
                                        id="costNote{{$j}}"
                                        oninput="cost({{$j}},'costNote')"
