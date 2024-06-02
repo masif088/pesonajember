@@ -42,17 +42,19 @@ class ProductionMockup extends Transaction implements View
     public static function tableData($data = null): array
     {
 
-        $p2='';
+        $p2 = '';
         $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status mockup')->first();
         $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
-        $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
+
         $class = 'px-2 py-1 rounded-lg';
         $process = 'Telah terkirim';
         $link = route('transaction.mockup-site-edit', $data->id);
         $edit = '';
         $download = '';
+        $progress = '';
         if ($d != null) {
-            $p2= $d2->value;
+            $p2 = $d2->value;
+            $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
             $link2 = route('transaction.mockup-site-download', $data->id);
             $download = "<a href='$link2' target='_blank' style='cursor:pointer;' title='Download surat Perintah'><i class='ti ti-download p-1'></i></a>";
             $edit = "<a href='$link' style='cursor:pointer;' title='Upload ulang'><i class='ti ti-pencil p-1'></i></a>";
