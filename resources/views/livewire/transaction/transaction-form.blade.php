@@ -164,7 +164,7 @@
                                         Produk
                                     </div>
                                     <div class="p-1" wire:click="shipperFormLayoutSet">
-                                        Pengirimanaa
+                                        Pengiriman
                                     </div>
                                 </div>
                             </div>
