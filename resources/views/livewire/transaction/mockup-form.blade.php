@@ -4,7 +4,7 @@
         <label class="block text-sm text-black dark:text-white mb-1" for="mockup">
             Proses Print/Sablon/DTF/Polosan
         </label>
-        <select wire:model=""
+        <select wire:model="process"
             class="col-span-12 text-dark bg-gray-200 appearance-none border-1 border border-gray-100 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white">
             <option value=""></option>
             <option value="Print">Print</option>
