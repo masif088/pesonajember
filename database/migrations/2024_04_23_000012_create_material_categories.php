@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('material_categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('note');
             $table->timestamps();
         });
     }
