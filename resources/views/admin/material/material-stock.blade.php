@@ -12,7 +12,9 @@
                             STOCK MATERIAL
                         </h2>
                         <br><br>
+                        <a href="{{ route('material.material-stock-mutation',$id) }}" class="btn bg-wishka-600">Mutasi Material</a>
 
+                        <br><br>
 
                         <livewire:material.material-data :data-id="$id"/>
                         <br>
