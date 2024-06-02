@@ -133,16 +133,16 @@
                                 <input type="number" wire:model="materialList.{{$j}}.amount"
                                        id="amount{{$j}}"
                                        style="min-width: 120px !important;"
-                                       oninput="size({{$j}},'amount')"
+{{--                                       oninput="size({{$j}},'amount')"--}}
                                        class="bg-gray-200 text-center appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
 
 
-                            <td class="p-2" wire:ignore>
-                                <input type="number" wire:model="materialList.{{$j}}.size"
+                            <td class="p-2" >
+                                <input type="number" wire:model.live="materialList.{{$j}}.size"
                                        id="size{{$j}}"
                                        style="min-width: 120px !important;"
-                                       oninput="size({{$j}},'size')"
+{{--                                       oninput="size({{$j}},'size')"--}}
                                        class="bg-gray-200 text-center appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
 
                                 <span style="margin-left: -70px">
@@ -152,10 +152,10 @@
                                 </span>
                             </td>
 
-                            <td class="p-2" wire:ignore>
-                                <input type="text" wire:model="materialList.{{$j}}.note"
+                            <td>
+                                <input type="text" wire:model.live="materialList.{{$j}}.note"
                                        id="note{{$j}}"
-                                       oninput="size({{$j}},'note')"
+{{--                                       oninput="size({{$j}},'note')"--}}
                                        class="bg-gray-200 text-start appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
 
@@ -215,25 +215,25 @@
                             </td>
 
                             <td class="p-2" wire:ignore>
-                                <input type="number" wire:model="costList.{{$j}}.amount"
+                                <input type="number" wire:model.live="costList.{{$j}}.amount"
                                        id="costListAmount{{$j}}"
                                        style="min-width: 120px !important;"
-                                       oninput="cost({{$j}},'costListAmount')"
+{{--                                       oninput="cost({{$j}},'costListAmount')"--}}
                                        class="bg-gray-200 text-center appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
 
 
-                            <td class="p-2" wire:ignore>
-                                <input type="number" wire:model="costList.{{$j}}.price"
+                            <td class="p-2" >
+                                <input type="number" wire:model.live="costList.{{$j}}.price"
                                        id="costListPrice{{$j}}"
                                        style="min-width: 180px !important;"
-                                       oninput="cost({{$j}},'costListPrice')"
+{{--                                       oninput="cost({{$j}},'costListPrice')"--}}
                                        class="bg-gray-200 text-center appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
-                            <td class="p-2" wire:ignore>
-                                <input type="text" wire:model="costList.{{$j}}.note"
+                            <td>
+                                <input type="text" wire:model.live="costList.{{$j}}.note"
                                        id="costNote{{$j}}"
-                                       oninput="cost({{$j}},'costNote')"
+{{--                                       oninput="cost({{$j}},'costNote')"--}}
                                        class="bg-gray-200 text-start appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
                             </td>
 
