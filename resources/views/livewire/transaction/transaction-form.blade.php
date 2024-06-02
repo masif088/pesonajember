@@ -151,7 +151,7 @@
                 <td></td>
                 <td class="border-none flex flex-row gap-3" style="width: 40px">
                     <!-- Popover -->
-                    <div class="hs-tooltip inline-block  [--placement:bottom] p-1">
+                    <div class="hs-tooltip inline-block [--placement:bottom] p-1">
                         <div class="hs-tooltip-toggle block text-center">
                             <button type="button">
                                 <i class="ti ti-plus text-xl"></i>

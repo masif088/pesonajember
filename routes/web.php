@@ -72,6 +72,10 @@ Route::middleware([
         Route::get('', [ProductController::class, 'index'])->name('index');
         Route::get('create', [ProductController::class, 'create'])->name('create');
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
+
+        Route::get('category', [ProductController::class, 'category'])->name('category');
+        Route::get('category/create', [ProductController::class, 'categoryCreate'])->name('category.create');
+        Route::get('category/edit/{id}', [ProductController::class, 'categoryEdit'])->name('category.edit');
     });
 
     Route::prefix('selling')->name('selling.')->group(function () {

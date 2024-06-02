@@ -21,4 +21,19 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('id'));
     }
 
+    public function category()
+    {
+        return view('admin.product.category');
+    }
+
+    public function categoryCreate()
+    {
+        return view('admin.product.category-create');
+    }
+
+    public function categoryEdit($id)
+    {
+        return view('admin.product.category-edit', compact('id'));
+    }
+
 }

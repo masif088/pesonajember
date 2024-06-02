@@ -5,9 +5,9 @@ namespace App\Repository\View;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class Bank extends \App\Models\Bank implements View
+class ProductCategory extends \App\Models\ProductCategory implements View
 {
-    protected $table='banks';
+    protected $table='product_categories';
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
@@ -23,27 +23,26 @@ class Bank extends \App\Models\Bank implements View
 
     public static function tableField(): array
     {
-//        'bank_name','account_number', 'account_in_name', 'note', 'status_id'
         return [
             ['label' => '#', 'sort' => 'id', 'width' => '7%'],
-            ['label' => 'Nama Bank', 'sort' => 'bank_name'],
-            ['label' => 'Nomer Rekening', 'sort' => 'account_in_name'],
-            ['label' => 'status', 'sort' => 'status_id'],
+            ['label' => 'title', 'sort' => 'title'],
+
             ['label' => 'Tindakan'],
         ];
     }
 
     public static function tableData($data = null): array
     {
-        $link = route('bank.edit',$data->id);
+
+        $link = route('production.category.edit',$data->id);
         return [
             ['type' => 'index'],
-            ['type' => 'string', 'data' => $data->bank_name],
-            ['type' => 'raw_html', 'data' => "<div>$data->account_number</div><div style='font-size: 12px'>$data->account_in_name</div>"],
-            ['type' => 'string', 'data' => $data->status->title],
+            ['type' => 'string', 'data' => $data->title],
             ['type' => 'raw_html', 'data' =>"
             <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+
             "],
+            //            <a class='btn bg-red-600' href='#' wire:click='deleteItem($data->id)'><i class='ti ti-trash'></i></a>
         ];
     }
 }
