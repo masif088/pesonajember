@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Salary;
 use App\Models\Transaction;
 use App\Models\TransactionStatus;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
+
 
 class TransactionController extends Controller
 {
@@ -96,5 +99,15 @@ class TransactionController extends Controller
     public function create()
     {
         return view('admin.transaction.create');
+    }
+
+    public function download($id)
+    {
+        $data = [
+            'transaction' => Transaction::find($id),
+        ];
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('pdf.invoice', $data);
+        return $pdf->stream();
     }
 }

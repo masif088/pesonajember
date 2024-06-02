@@ -27,7 +27,7 @@ Route::get('/', function () {
 //    //    $pdf->loadView('pdf.test', $data);
 //    //    return $pdf->stream;
 //    //    $transaction = Transaction::find(1);
-        return redirect(route('dashboard'));
+//        return redirect(route('dashboard'));
 //
 //    $data = [
 //        'salary' => \App\Models\Salary::find(1),
@@ -36,6 +36,7 @@ Route::get('/', function () {
 //    $pdf->loadView('pdf.salary', $data);
 //
 //    return $pdf->stream();
+    return view('front.index');
 });
 
 Route::middleware([
@@ -157,6 +158,8 @@ Route::middleware([
         })->name('production');
 
         Route::get('production/tab/{tab}', [TransactionController::class, 'productionTab'])->name('production.tab');
+
+        Route::get('download/{id}',[TransactionController::class,'download'])->name('download');
     });
 
     Route::prefix('general-info')->name('general-info.')->group(function () {
