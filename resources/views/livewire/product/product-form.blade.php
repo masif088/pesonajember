@@ -319,7 +319,9 @@
             <div class="col-span-12 lg:col-span-4 mb-2 ">
                 <input type="file" wire:model="thumbnail"
                        class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
+                <div wire:loading wire:target="thumbnail">Uploading...</div>
             </div>
+
             <div class="col-span-12 lg:col-span-12 mb-2 lg:grid lg:grid-cols-12">
                 <a href="{{ route('production.index') }}" class="btn btn-error col-span-12 lg:col-span-3 mb-3" style="width: 100%">Batal</a>
                 <div class=" lg:col-span-6 col-span-12"></div>
