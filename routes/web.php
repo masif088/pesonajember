@@ -195,6 +195,10 @@ Route::middleware([
         Route::get('account-names/create', [FinanceController::class, 'accountNamesCreate'])->name('account-names.create');
         Route::get('account-names/edit/{id}', [FinanceController::class, 'accountNamesEdit'])->name('account-names.edit');
 
+        Route::get('account-opening-balance', [FinanceController::class, 'accountOpeningBalance'])->name('account-opening-balance');
+        Route::get('account-opening-balance/create', [FinanceController::class, 'accountOpeningBalanceCreate'])->name('account-opening-balance.create');
+        Route::get('account-opening-balance/edit/{id}', [FinanceController::class, 'accountOpeningBalanceEdit'])->name('account-opening-balance.edit');
+
         Route::get('ledger', [FinanceController::class, 'ledger'])->name('ledger');
         Route::get('balance-sheet', [FinanceController::class, 'balanceSheet'])->name('balance-sheet');
         Route::get('worksheet', [FinanceController::class, 'worksheet'])->name('worksheet');

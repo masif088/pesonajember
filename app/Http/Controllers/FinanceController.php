@@ -56,4 +56,19 @@ class FinanceController extends Controller
     {
         return view('admin.finance.calc-profit-and-loss');
     }
+
+    public function accountOpeningBalance()
+    {
+        return view('admin.account-opening-balance.index');
+    }
+
+    public function accountOpeningBalanceCreate()
+    {
+        return view('admin.account-opening-balance.create');
+    }
+
+    public function accountOpeningBalanceEdit($id)
+    {
+        return view('admin.account-opening-balance.edit',compact('id'));
+    }
 }

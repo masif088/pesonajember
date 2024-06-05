@@ -85,6 +85,7 @@ class AdminLayout extends Component
             [
                 'title' => 'Finance',
                 'lists' => [
+                    ['title' => 'Saldo Awal Neraca', 'type' => 'link', 'route' =>route('finance.account-opening-balance'), 'icon' => '<i class="ti ti-cash-banknote  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Journal', 'type' => 'link', 'route' => route('finance.journal'), 'icon' => '<i class="ti ti-truck-delivery  text-xl flex-shrink-0"></i> '],
 //                    ['title' => 'Pembukuan Keuangan', 'type' => 'link', 'route' => route('bank.index'), 'icon' => '<i class="ti ti-building-bank  text-xl flex-shrink-0"></i> '],
 //                    ['title' => 'Kwitansi', 'type' => 'link', 'route' =>route('mutation-status.index'), 'icon' => '<i class="ti ti-arrows-right-left  text-xl flex-shrink-0"></i> '],
