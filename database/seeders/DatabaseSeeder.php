@@ -1247,28 +1247,6 @@ class DatabaseSeeder extends Seeder
             'status_id'=>1
         ]);
 
-        CompanyAssetCategory::create([
-            'title' => 'Bangunan'
-        ]);
-        CompanyAssetCategory::create([
-            'title' => 'Kendaraan'
-        ]);
-        CompanyAssetCategory::create([
-            'title' => 'Mesin'
-        ]);
-        CompanyAssetCategory::create([
-            'title' => 'Peralatan Pendukung'
-        ]);
-        CompanyAssetCategory::create([
-            'title' => 'Inventaris Kantor'
-        ]);
-
-        CompanyAssetCategory::create([
-            'title' => 'Sewa DDM'
-        ]);
-        CompanyAssetCategory::create([
-            'title' => 'Biaya DDM'
-        ]);
         GeneralInfo::create([
             'value'=>'Hai kak ...Kami kirimkan invoce untuk orderan tas custom kamu. Berikut detail transaksi pembayaran:
 

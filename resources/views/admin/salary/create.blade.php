@@ -1,12 +1,13 @@
 <x-admin-layout>
     <x-slot name="title">
-        Pembukuan Keuangan
+        Gaji Karyawan
     </x-slot>
     <div class="">
 
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
-                <livewire:finance.journal-form action="update" :data-id="$id"/>
+                <br>
+                <livewire:salary.salary-form action="create"/>
             </div>
         </div>
     </div>

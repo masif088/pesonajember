@@ -38,13 +38,22 @@ class Salary extends \App\Models\Salary implements View
     {
 //        '', '', '', '', '', '',
         $salary =  $data->basic_salary+$data->bonus+$data->overtime+$data->transportation-$data->debt_deduction-$data->employee_cooperative_deductions;
+        $link = route('salary.edit', $data->id);
+        $link2 = route('salary.download', $data->id);
         return [
             ['type' => 'index'],
-            ['type' => 'string', 'data' => $data->refrence],
+            ['type' => 'string', 'data' => $data->reference],
             ['type' => 'string', 'data' => $data->user->name],
             ['type' => 'string', 'data' => $data->created_at->format('d/M/Y')],
             ['type' => 'string', 'data' => 'Rp. '. thousand_format($salary)],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' => "
+            <div class='gap-3 flex'>
+            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            <a class='btn bg-red-600' href='#' wire:click='deleteItem($data->id)'><i class='ti ti-trash'></i></a>
+            <a class='btn bg-wishka-700' target='_blank' href='$link2'><i class='ti ti-download'></i></a>
+</div>
+
+            "],
         ];
     }
 }

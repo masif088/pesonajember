@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="title">
-        Jurnal
+        Pembukuan Keuangan
     </x-slot>
     <div class="">
 

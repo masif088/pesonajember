@@ -172,7 +172,7 @@
                                 </td>
                                 <td style="width: 150px" class="text-end">@if($acb!=null)
                                         @php($tsac+=($acb->opening_balances<0))
-                                        {{ $acb->opening_balances<0? thousand_format($acb->opening_balances): '-' }}
+                                        {{ $acb->opening_balances<0? thousand_format(abs($acb->opening_balances)): '-' }}
                                     @else
                                         -
                                     @endif</td>
@@ -188,7 +188,7 @@
                                     {{ $ns>0? thousand_format($ns):'-' }}
                                 </td>
                                 <td style="width: 150px" class="text-end">
-                                    {{ $ns<0? thousand_format($ns):'-' }}
+                                    {{ $ns<0? thousand_format(abs($ns)):'-' }}
                                 </td>
                                 <td style="width: 150px" class="text-end">
                                     @if($ag->account_type_id ==2)
@@ -199,7 +199,7 @@
                                 </td>
                                 <td style="width: 150px" class="text-end">
                                     @if($ag->account_type_id ==2)
-                                        {{ $ns<0? thousand_format($ns):'-' }}
+                                        {{ $ns<0? thousand_format(abs($ns)):'-' }}
                                     @else
                                         -
                                     @endif
@@ -213,7 +213,7 @@
                                 </td>
                                 <td style="width: 150px" class="text-end">
                                     @if($ag->account_type_id ==1)
-                                        {{ $ns<0? thousand_format($ns):'-' }}
+                                        {{ $ns<0? thousand_format(abs($ns)):'-' }}
                                     @else
                                         -
                                     @endif
@@ -225,18 +225,21 @@
                     @endforeach
                 @endforeach
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
+                    <td colspan="12"> &nbsp;</td>
+                </tr>
+                <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td></td>
                     <td></td>
                     <td class="text-end">{{ thousand_format($tsad) }}</td>
-                    <td class="text-end">{{ thousand_format($tsad) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($tsad)) }}</td>
                     <td class="text-end">{{ thousand_format($md) }}</td>
-                    <td class="text-end">{{ thousand_format($mc) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($mc)) }}</td>
                     <td class="text-end">{{ thousand_format($nsd) }}</td>
-                    <td class="text-end">{{ thousand_format($nsc) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($nsc)) }}</td>
                     <td class="text-end">{{ thousand_format($lrd) }}</td>
-                    <td class="text-end">{{ thousand_format($lrc) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($lrc)) }}</td>
                     <td class="text-end">{{ thousand_format($nad) }}</td>
-                    <td class="text-end">{{ thousand_format($nac) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($nac)) }}</td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 font-bold">
                     <td></td>
@@ -247,10 +250,10 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-end">{{ thousand_format($lrc-$lrd) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($lrc)-$lrd) }}</td>
                     <td></td>
                     <td></td>
-                    <td class="text-end">{{ thousand_format($nad-$nac) }}</td>
+                    <td class="text-end">{{ thousand_format($nad-abs($nac)) }}</td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 font-bold">
                     <td></td>
@@ -261,10 +264,10 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-end">{{ thousand_format($lrc-$lrd+$lrd) }}</td>
-                    <td class="text-end">{{ thousand_format($lrc) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($lrc)-$lrd+$lrd) }}</td>
+                    <td class="text-end">{{ thousand_format(abs($lrc)) }}</td>
                     <td class="text-end">{{ thousand_format($nad) }}</td>
-                    <td class="text-end">{{ thousand_format($nad-$nac+$nac) }}</td>
+                    <td class="text-end">{{ thousand_format($nad-abs($nac)+abs($nac)) }}</td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 font-bold">
                     <td></td>
@@ -277,7 +280,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-end">{{ thousand_format($lrc-$lrd-$nad-$nac) }}</td>
+                    <td class="text-end">{{ thousand_format($nad-abs($nac)+abs($nac) - abs($lrc)-$lrd+$lrd) }}</td>
                     <td></td>
                 </tr>
                 </tbody>

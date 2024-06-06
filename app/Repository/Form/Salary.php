@@ -63,7 +63,13 @@ class Salary extends \App\Models\Salary implements Form
                 'type' => 'number',
                 'model' => 'basic_salary',
                 'required' => true,
-                'class' => 'col-span-12',
+                'class' => 'col-span-6',
+            ],[
+                'title' => 'Uang Transportasi',
+                'type' => 'number',
+                'model' => 'transportation',
+                'required' => true,
+                'class' => 'col-span-6',
             ],
 
             [

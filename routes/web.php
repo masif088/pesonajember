@@ -22,20 +22,20 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-//
-//    //    $pdf = App::make('dompdf.wrapper');
-//    //    $pdf->loadView('pdf.test', $data);
-//    //    return $pdf->stream;
-//    //    $transaction = Transaction::find(1);
-//        return redirect(route('dashboard'));
-//
-//    $data = [
-//        'salary' => \App\Models\Salary::find(1),
-//    ];
-//    $pdf = App::make('dompdf.wrapper');
-//    $pdf->loadView('pdf.salary', $data);
-//
-//    return $pdf->stream();
+    //
+    //    //    $pdf = App::make('dompdf.wrapper');
+    //    //    $pdf->loadView('pdf.test', $data);
+    //    //    return $pdf->stream;
+    //    //    $transaction = Transaction::find(1);
+    //        return redirect(route('dashboard'));
+    //
+    //    $data = [
+    //        'salary' => \App\Models\Salary::find(1),
+    //    ];
+    //    $pdf = App::make('dompdf.wrapper');
+    //    $pdf->loadView('pdf.salary', $data);
+    //
+    //    return $pdf->stream();
     return view('front.index');
 });
 
@@ -159,7 +159,7 @@ Route::middleware([
 
         Route::get('production/tab/{tab}', [TransactionController::class, 'productionTab'])->name('production.tab');
 
-        Route::get('download/{id}',[TransactionController::class,'download'])->name('download');
+        Route::get('download/{id}', [TransactionController::class, 'download'])->name('download');
     });
 
     Route::prefix('general-info')->name('general-info.')->group(function () {
@@ -182,7 +182,11 @@ Route::middleware([
 
     Route::prefix('salary')->name('salary.')->group(function () {
 
-        Route::get('download/{id}',[SalaryController::class,'download'])->name('download');
+        Route::get('', [SalaryController::class, 'index'])->name('index');
+        Route::get('create', [SalaryController::class, 'create'])->name('create');
+        Route::get('edit/{id}', [SalaryController::class, 'edit'])->name('edit');
+
+        Route::get('download/{id}', [SalaryController::class, 'download'])->name('download');
     });
 
     Route::prefix('finance')->name('finance.')->group(function () {

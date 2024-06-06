@@ -28,6 +28,11 @@
             position: relative;
             display: inline-block;
         }
+        .swal2-title{
+            line-height: 25px;
+            font-size: 18px;
+        }
+
 
         .autocomplete-items {
             position: absolute;

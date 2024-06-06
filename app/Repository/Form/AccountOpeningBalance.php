@@ -7,7 +7,6 @@ use App\Repository\Form;
 
 class AccountOpeningBalance extends \App\Models\AccountOpeningBalance implements Form
 {
-
     //company_asset_category_id', 'title','unit', 'month_acquisition', 'year_acquisition', 'useful_life', 'last_shrinkage'
     public static function formRules(): array
     {
@@ -27,7 +26,7 @@ class AccountOpeningBalance extends \App\Models\AccountOpeningBalance implements
     public static function formField($params = null): array
     {
         //', 'title','unit', 'month_acquisition', 'year_acquisition', 'useful_life', 'last_shrinkage'
-//        '', 'month', 'year', 'opening_balances'
+        //        '', 'month', 'year', 'opening_balances'
         $month = [
             ['value' => '1', 'title' => 'Januari'],
             ['value' => '2', 'title' => 'Februari'],
