@@ -67,7 +67,7 @@
                 @php($count=1)
                 @php($parent = 'AKTIVA')
                 @php($total=0)
-                @php($total=0)
+                @php($total2=0)
                 @foreach(AccountGroup::where('account_type_id','=',1)->get() as $index=>$ag)
                     @if($parent!=$ag->parent)
                         <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -106,6 +106,7 @@
                     @php($tag2=0)
                     @foreach($ag->accountCategories as $ac)
                         @php($tac=0)
+                        @php($tac2=0)
                         @foreach($ac->accountNames as $an)
                             @php($acb =AccountOpeningBalance::where('account_name_id','=',$an->id)->where('month','=',$month)->where('year','=',$year)->first())
                             @php($acd = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month,$year){
