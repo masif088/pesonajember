@@ -54,6 +54,7 @@
                     <td></td>
                     <td></td>
                     <td>{{ $monthName[intval($month)-1] }} {{ $year }}</td>
+                    <td>{{ $monthName[intval($month2)-1] }} {{ $year2 }}</td>
                 </tr>
 
                 </thead>
@@ -67,7 +68,9 @@
                 </tr>
 
                 @php($tac=0)
+                @php($tac2=0)
                 @php($tag=0)
+                @php($tag2=0)
                 @foreach(AccountName::where('account_category_id','=',17)->get() as $an)
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         @php($acb =AccountOpeningBalance::where('account_name_id','=',$an->id)->where('month','=',$month)->where('year','=',$year)->first())
@@ -76,11 +79,20 @@
                             })->get())
                         @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$an->id)->where('month','=',$month2)->where('year','=',$year2)->first())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
+                        @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
+
                         <td></td>
                         <td></td>
                         <td>{{ $an->title }}</td>
                         <td>
                             Rp. {{ thousand_format($ns) }}
+                            Rp. {{ thousand_format($ns2) }}
                         </td>
                     </tr>
                 @endforeach
@@ -90,7 +102,9 @@
                     <td></td>
                     <td colspan="2"><b>Total Penjualan Bersih</b></td>
                     @php($tag+=$tac)
+                    @php($tag2+=$tac2)
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
 
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -113,20 +127,24 @@
 
                 @php($tac=0)
                 @php($tag=0)
+                @php($tac2=0)
+                @php($tag2=0)
                 @for($i=12;$i<15;$i++)
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         @php($acb =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month)->where('year','=',$year)->first())
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month2)->where('year','=',$year2)->first())
                         {{--                    @php($acd = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month,$year){--}}
                         {{--                            $q->whereMonth('journal_date','=',$month)->whereYear('journal_date','=',$year);--}}
                         {{--                        })->get())--}}
                         @php($ns = ($acb->opening_balances??0))
+                        @php($ns2 = ($acb2->opening_balances??0))
                         @php($tac+=$ns)
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
 
@@ -134,7 +152,9 @@
                     <td></td>
                     <td colspan="2"><b></b></td>
                     @php($tag+=$tac)
+                    @php($tag2+=$tac2)
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
 
 
@@ -153,14 +173,18 @@
                         @php($acd = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month,$year){
                                 $q->whereMonth('journal_date','=',$month)->whereYear('journal_date','=',$year);
                             })->get())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
                         @php($ns =$acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+                        @php($ns2 =$acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
 
@@ -168,12 +192,15 @@
                     <td></td>
                     <td colspan="2"><b></b></td>
                     @php($tag+=$tac)
+                    @php($tag2+=$tac2)
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td></td>
                     <td colspan="2"><b></b></td>
                     <td><b>Rp. {{ thousand_format($tag) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tag2) }}</b></td>
                 </tr>
 
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -190,6 +217,7 @@
                 </tr>
 
                 @php($tac=0)
+                @php($tac2=0)
                 @for($i=12;$i<15;$i++)
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         @php($acb =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month)->where('year','=',$year)->first())
@@ -198,18 +226,25 @@
                             })->get())
                         @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month2)->where('year','=',$year2)->first())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
+                        @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td></td>
                     <td colspan="2"><b></b></td>
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td colspan="5">&nbsp;</td>
@@ -219,6 +254,7 @@
                     <td></td>
                     <td colspan="2"><b>Beban Pokok Penjualan</b></td>
                     <td><b>Rp. {{ thousand_format($tag) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tag2) }}</b></td>
                 </tr>
 
 
@@ -226,6 +262,7 @@
                     <td colspan="5">&nbsp;</td>
                 </tr>
                 @php($tag=0)
+                @php($tag2=0)
 
                 @for($i=19;$i<21;$i++)
                     @php($accountCat=AccountCategory::find($i))
@@ -237,6 +274,7 @@
                     </tr>
 
                     @php($tac=0)
+                    @php($tac2=0)
 
                     @foreach(AccountName::where('account_category_id','=',$i)->get() as $an)
                         <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -246,18 +284,25 @@
                                 })->get())
                             @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                             @php($tac+=$ns)
+
+                            @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$an->id)->where('month','=',$month2)->where('year','=',$year2)->first())
+                            @php($acd2 = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                    $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                                })->get())
+                            @php($ns2= ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                            @php($tac2+=$ns2)
                             <td></td>
                             <td></td>
                             <td>{{ $an->title }}</td>
-                            <td>
-                                Rp. {{ thousand_format($ns) }}
-                            </td>
+                            <td>Rp. {{ thousand_format($ns) }}</td>
+                            <td>Rp. {{ thousand_format($ns2) }}</td>
                         </tr>
                     @endforeach
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         <td></td>
                         <td colspan="2"><b></b></td>
                         <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                        <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                     </tr>
 
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -275,6 +320,7 @@
                 </tr>
 
                 @php($tac=0)
+                @php($tac2=0)
                 @for($i=57;$i<59;$i++)
 
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -284,12 +330,18 @@
                             })->get())
                         @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month2)->where('year','=',$year2)->first())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$i)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
+                        @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
 
@@ -301,12 +353,18 @@
                             })->get())
                         @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month2)->where('year','=',$year2)->first())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$i)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
+                        @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
 
@@ -314,7 +372,9 @@
                     <td></td>
                     <td colspan="2"></td>
                     @php($tag+=$tac)
+                    @php($tag2+=$tac2)
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
 
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -322,6 +382,7 @@
                 </tr>
 
                 @php($tac=0)
+                @php($tac2=0)
                 @for($i=84;$i<86;$i++)
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         @php($acb =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month)->where('year','=',$year)->first())
@@ -330,12 +391,18 @@
                             })->get())
                         @php($ns = ($acb->opening_balances??0) + $acd->sum('debit') - $acd->sum('credit'))
                         @php($tac+=$ns)
+
+                        @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$i)->where('month','=',$month)->where('year','=',$year)->first())
+                        @php($acd2 = AccountJournalDetail::where('account_name_id','=',$i)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                            })->get())
+                        @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                        @php($tac2+=$ns2)
                         <td></td>
                         <td></td>
                         <td>{{ AccountName::find($i)->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endfor
 
@@ -343,13 +410,16 @@
                     <td></td>
                     <td colspan="2"></td>
                     @php($tag+=$tac)
+                    @php($tag2+=$tac2)
                     <td><b>Rp. {{ thousand_format($tac) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tac2) }}</b></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td></td>
                     <td colspan="2"></td>
 
                     <td><b>Rp. {{ thousand_format($tag) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($tag2) }}</b></td>
                 </tr>
 
 

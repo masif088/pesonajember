@@ -12,6 +12,9 @@ class CalcProfitAndLoss extends Component
     public $month;
 
     public $year;
+    public $month2;
+
+    public $year2;
 
     public $accountName;
 

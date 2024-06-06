@@ -56,6 +56,7 @@
                     <td></td>
                     <td>Ref</td>
                     <td>{{ $monthName[intval($month)-1] }} {{ $year }}</td>
+                    <td>{{ $monthName[intval($month2)-1] }} {{ $year2 }}</td>
                 </tr>
 
                 </thead>

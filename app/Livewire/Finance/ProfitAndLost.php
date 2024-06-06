@@ -12,6 +12,9 @@ class ProfitAndLost extends Component
     public $month;
 
     public $year;
+    public $month2;
+
+    public $year2;
 
     public $accountName;
 
@@ -34,7 +37,8 @@ class ProfitAndLost extends Component
         $this->accountName = AccountName::find($this->accountNameId);
         $this->month = Carbon::now()->format('m');
         $this->year = Carbon::now()->format('Y');
-
+        $this->month2=($this->month-1)==0?12:($this->month-1);
+        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
         $this->dispatch('select2dispatch');
     }
 
@@ -46,7 +50,8 @@ class ProfitAndLost extends Component
             $this->month = 1;
             $this->year += 1;
         }
-
+        $this->month2=($this->month-1)==0?12:($this->month-1);
+        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
         $this->dispatch('refreshTable', month: $this->month, year: $this->year)->to(Master::class);
     }
 
@@ -58,6 +63,8 @@ class ProfitAndLost extends Component
             $this->month = 12;
             $this->year -= 1;
         }
+        $this->month2=($this->month-1)==0?12:($this->month-1);
+        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
         $this->dispatch('refreshTable', month: $this->month, year: $this->year)->to(Master::class);
     }
 

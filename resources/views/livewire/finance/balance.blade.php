@@ -56,6 +56,7 @@
                     <td></td>
                     <td>Ref</td>
                     <td>{{ $monthName[intval($month)-1] }} {{ $year }}</td>
+                    <td>{{ $monthName[intval($month2)-1] }} {{ $year2 }}</td>
                 </tr>
 
                 </thead>
@@ -65,6 +66,7 @@
 
                 @php($count=1)
                 @php($parent = 'AKTIVA')
+                @php($total=0)
                 @php($total=0)
                 @foreach(AccountGroup::where('account_type_id','=',1)->get() as $index=>$ag)
                     @if($parent!=$ag->parent)
@@ -92,6 +94,7 @@
                         </tr>
                         @php($parent=$ag->parent)
                         @php($total=0)
+                        @php($total2=0)
                     @endif
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         <td class="text-start">{{ $ag->code }}</td>
@@ -100,6 +103,7 @@
                         <td></td>
                     </tr>
                     @php($tag=0)
+                    @php($tag2=0)
                     @foreach($ag->accountCategories as $ac)
                         @php($tac=0)
                         @foreach($ac->accountNames as $an)
@@ -111,12 +115,22 @@
                             @php($tac+=$ns)
                             @php($tag+=$ns)
                             @php($total+=$ns)
+
+                            @php($acb2 =AccountOpeningBalance::where('account_name_id','=',$an->id)->where('month','=',$month2)->where('year','=',$year2)->first())
+                            @php($acd2 = AccountJournalDetail::where('account_name_id','=',$an->id)->whereHas('accountJournal',function ($q) use($month2,$year2){
+                                    $q->whereMonth('journal_date','=',$month2)->whereYear('journal_date','=',$year2);
+                                })->get())
+                            @php($ns2 = ($acb2->opening_balances??0) + $acd2->sum('debit') - $acd2->sum('credit'))
+                            @php($tac2+=$ns2)
+                            @php($tag2+=$ns)
+                            @php($total2+=$ns2)
                         @endforeach
                         <tr class=" dark:text-white text-black border-b border-gray-200 ">
                             <td class="text-start">{{ $ac->code }}</td>
                             <td colspan="2">{{ $ac->title }}</td>
                             <td>{{ numberToRomanRepresentation($count) }}</td>
                             <td>Rp. {{ thousand_format($tac) }}</td>
+                            <td>Rp. {{ thousand_format($tac2) }}</td>
                         </tr>
                         @php($count+=1)
                     @endforeach
@@ -125,6 +139,7 @@
                         <td colspan="2"></td>
                         <td></td>
                         <td><b>Rp. {{ thousand_format($tag) }}</b></td>
+                        <td><b>Rp. {{ thousand_format($tag2) }}</b></td>
                     </tr>
                 @endforeach
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
@@ -141,6 +156,7 @@
                     <td></td>
                     <td></td>
                     <td><b>Rp. {{ thousand_format($total) }}</b></td>
+                    <td><b>Rp. {{ thousand_format($total2) }}</b></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
                     <td></td>
