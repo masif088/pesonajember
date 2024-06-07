@@ -12,6 +12,7 @@ class CalcProfitAndLoss extends Component
     public $month;
 
     public $year;
+
     public $month2;
 
     public $year2;
@@ -21,9 +22,12 @@ class CalcProfitAndLoss extends Component
     public $accountNameId = null;
 
     public $optionAccountNames;
-    public $debit=0;
-    public $credit=0;
-    public $total=0;
+
+    public $debit = 0;
+
+    public $credit = 0;
+
+    public $total = 0;
 
     public function mount()
     {
@@ -37,8 +41,8 @@ class CalcProfitAndLoss extends Component
         $this->accountName = AccountName::find($this->accountNameId);
         $this->month = Carbon::now()->format('m');
         $this->year = Carbon::now()->format('Y');
-        $this->month2=($this->month-1)==0?12:($this->month-1);
-        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
+        $this->month2 = ($this->month - 1) == 0 ? 12 : ($this->month - 1);
+        $this->year2 = ($this->month - 1) == 0 ? $this->year - 1 : $this->year;
         $this->dispatch('select2dispatch');
     }
 
@@ -50,8 +54,8 @@ class CalcProfitAndLoss extends Component
             $this->month = 1;
             $this->year += 1;
         }
-        $this->month2=($this->month-1)==0?12:($this->month-1);
-        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
+        $this->month2 = ($this->month - 1) == 0 ? 12 : ($this->month - 1);
+        $this->year2 = ($this->month - 1) == 0 ? $this->year - 1 : $this->year;
         $this->dispatch('refreshTable', month: $this->month, year: $this->year)->to(Master::class);
     }
 
@@ -63,8 +67,8 @@ class CalcProfitAndLoss extends Component
             $this->month = 12;
             $this->year -= 1;
         }
-        $this->month2=($this->month-1)==0?12:($this->month-1);
-        $this->year2=($this->month-1)==0?$this->year-1:$this->year;
+        $this->month2 = ($this->month - 1) == 0 ? 12 : ($this->month - 1);
+        $this->year2 = ($this->month - 1) == 0 ? $this->year - 1 : $this->year;
         $this->dispatch('refreshTable', month: $this->month, year: $this->year)->to(Master::class);
     }
 
@@ -74,6 +78,7 @@ class CalcProfitAndLoss extends Component
         'Juli', 'Agustus', 'September',
         'Oktober', 'November', 'Desemeber',
     ];
+
     public function render()
     {
         return view('livewire.finance.calc-profit-and-loss');

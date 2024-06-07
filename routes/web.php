@@ -203,6 +203,14 @@ Route::middleware([
         Route::get('account-opening-balance/create', [FinanceController::class, 'accountOpeningBalanceCreate'])->name('account-opening-balance.create');
         Route::get('account-opening-balance/edit/{id}', [FinanceController::class, 'accountOpeningBalanceEdit'])->name('account-opening-balance.edit');
 
+        Route::get('petty-cash', [FinanceController::class, 'pettyCash'])->name('petty-cash');
+        Route::get('petty-cash/create', [FinanceController::class, 'pettyCashCreate'])->name('petty-cash.create');
+        Route::get('petty-cash/edit/{id}', [FinanceController::class, 'pettyCashEdit'])->name('petty-cash.edit');
+
+        Route::get('big-cash', [FinanceController::class, 'bigCash'])->name('big-cash');
+        Route::get('big-cash/create', [FinanceController::class, 'bigCashCreate'])->name('big-cash.create');
+        Route::get('big-cash/edit/{id}', [FinanceController::class, 'bigCashEdit'])->name('big-cash.edit');
+
         Route::get('ledger', [FinanceController::class, 'ledger'])->name('ledger');
         Route::get('balance-sheet', [FinanceController::class, 'balanceSheet'])->name('balance-sheet');
         Route::get('worksheet', [FinanceController::class, 'worksheet'])->name('worksheet');

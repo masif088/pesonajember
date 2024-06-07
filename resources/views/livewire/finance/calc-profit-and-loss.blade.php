@@ -90,10 +90,8 @@
                         <td></td>
                         <td></td>
                         <td>{{ $an->title }}</td>
-                        <td>
-                            Rp. {{ thousand_format($ns) }}
-                            Rp. {{ thousand_format($ns2) }}
-                        </td>
+                        <td>Rp. {{ thousand_format($ns) }}</td>
+                        <td>Rp. {{ thousand_format($ns2) }}</td>
                     </tr>
                 @endforeach
 

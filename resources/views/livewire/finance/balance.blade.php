@@ -76,6 +76,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                         </tr>
                         <tr class=" dark:text-white text-black border-b border-gray-200 ">
 
@@ -84,8 +85,10 @@
                             <td></td>
                             <td></td>
                             <td><b>Rp. {{ thousand_format($total) }}</b></td>
+                            <td><b>Rp. {{ thousand_format($total2) }}</b></td>
                         </tr>
                         <tr class=" dark:text-white text-black border-b border-gray-200 ">
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -99,6 +102,7 @@
                     <tr class=" dark:text-white text-black border-b border-gray-200 ">
                         <td class="text-start">{{ $ag->code }}</td>
                         <td colspan="2">{{ $ag->title }}</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -149,6 +153,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
 
@@ -160,6 +165,7 @@
                     <td><b>Rp. {{ thousand_format($total2) }}</b></td>
                 </tr>
                 <tr class=" dark:text-white text-black border-b border-gray-200 ">
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
