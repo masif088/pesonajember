@@ -85,12 +85,12 @@ class AdminLayout extends Component
             [
                 'title' => 'Finance',
                 'lists' => [
+                    ['title' => 'Kas Kecil', 'type' => 'link', 'route' => route('finance.petty-cash'), 'icon' => '<i class="ti ti-wallet  text-xl flex-shrink-0"></i> '],
+                    ['title' => 'Kas Besar', 'type' => 'link', 'route' => route('finance.big-cash'), 'icon' => '<i class="ti ti-wallet  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Saldo Awal Neraca', 'type' => 'link', 'route' => route('finance.account-opening-balance'), 'icon' => '<i class="ti ti-cash  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Pembukuan Keuangan', 'type' => 'link', 'route' => route('finance.journal'), 'icon' => '<i class="ti ti-cash  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Nama Akun', 'type' => 'link', 'route' => route('finance.account-names'), 'icon' => '<i class="ti ti-book-2  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Gaji Karyawan', 'type' => 'link', 'route' => route('salary.index'), 'icon' => '<i class="ti ti-user-dollar  text-xl flex-shrink-0"></i> '],
-                    ['title' => 'Kas Kecil', 'type' => 'link', 'route' => route('finance.petty-cash'), 'icon' => '<i class="ti ti-wallet  text-xl flex-shrink-0"></i> '],
-                    ['title' => 'Kas Besar', 'type' => 'link', 'route' => route('finance.big-cash'), 'icon' => '<i class="ti ti-wallet  text-xl flex-shrink-0"></i> '],
                 ],
             ],
 
