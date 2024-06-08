@@ -6,18 +6,20 @@ use App\Repository\View;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
-class PettyCash extends \App\Models\PettyCash implements View
+class BigCash extends \App\Models\BigCash implements View
 {
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        $month = $params['param1'];
+        $year = $params['param2'];
+        return empty($query) ? static::query()->whereMonth('date_transaction','=',$month)->whereYear('date_transaction','=',$year)->orderBy('date_transaction') : static::query();
     }
 
     public static function tableView(): array
     {
         return [
-            'searchable' => true,
+            'searchable' => false,
         ];
     }
 
@@ -37,17 +39,21 @@ class PettyCash extends \App\Models\PettyCash implements View
 
     public static function tableData($data = null): array
     {
-        $link = route('bank.edit', $data->id);
-        $totalDebit = PettyCash::where('date_transaction','<=',Carbon::now());
+        $link = route('finance.big-cash.edit', $data->id);
+        $totalDebit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('debit');
+        $totalCredit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('credit');
+//        dd($totalDebit);
+//        dd($totalDebit);
         return [
             ['type' => 'index'],
-            ['type' => 'string', 'data' => $data->date_transaction],
+            ['type' => 'string', 'data' => Carbon::parse($data->date_transaction)->format('Y-m-d')],
             ['type' => 'string', 'data' => $data->title],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->debit)],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->credit)],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'string', 'data' => $totalDebit-$totalCredit],
 
             ['type' => 'raw_html', 'data' => "
+            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
             <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
             "],
         ];

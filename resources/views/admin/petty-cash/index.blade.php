@@ -9,7 +9,8 @@
                 <br><br>
                 <a href="{{ route('bank.create') }}" class="btn bg-wishka-600">Tambah Bank</a>
                 <br><br>
-                <livewire:table.master name="PettyCash"/>
+{{--                <livewire:table.master name="PettyCash"/>--}}
+                <livewire:finance.petty-cash/>
             </div>
         </div>
     </div>

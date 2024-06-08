@@ -37,7 +37,7 @@ class PettyCash extends \App\Models\PettyCash implements View
 
     public static function tableData($data = null): array
     {
-        $link = route('bank.edit', $data->id);
+        $link = route('finance.petty-cash.edit', $data->id);
         $totalDebit = PettyCash::where('date_transaction','<=',Carbon::now());
         return [
             ['type' => 'index'],

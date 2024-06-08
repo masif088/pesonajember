@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-//$table->unsignedBigInteger('transaction_status_id');
-//            $table->string('key');
-//            $table->text('value');
-//            $table->string('type');
-
 /**
  * @property int $id
  * @property int $transaction_status_id

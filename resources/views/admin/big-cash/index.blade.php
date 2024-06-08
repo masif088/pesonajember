@@ -9,7 +9,8 @@
                 <br><br>
                 <a href="{{ route('finance.big-cash.create') }}" class="btn bg-wishka-600">Tambah Kas Besar</a>
                 <br><br>
-                <livewire:table.master name="BigCash"/>
+
+                <livewire:finance.big-cash/>
             </div>
         </div>
     </div>

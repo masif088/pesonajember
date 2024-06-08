@@ -1,7 +1,7 @@
 <div>
     <div class="gap-3 p-4 lg:grid lg:grid-cols-12">
         <div class="col-span-12 lg:col-span-2 items-stretch">
-            <span> {{ $param1 }}
+            <span>
             Per Page: &nbsp;
             <select wire:model="perPage" id="perPage"
                     class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full px-4 py-2 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white"
