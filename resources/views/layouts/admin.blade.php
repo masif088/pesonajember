@@ -11,12 +11,12 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700&amp;display=swap"/>
-    <link rel="stylesheet" href="{{asset('assets/icons-webfont/tabler-icons.min.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('assets/icons-webfont/tabler-icons.min.css')}}">--}}
 
     <!-- Core Css -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-{{--        <link rel="stylesheet" href="{{ asset('build/assets/app-BNv0_hJj.css') }}">--}}
-{{--        <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>--}}
+        <link rel="stylesheet" href="{{ asset('build/assets/app-BNv0_hJj.css') }}">
+        <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css?2') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
