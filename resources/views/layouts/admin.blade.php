@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="{{asset('assets/icons-webfont/tabler-icons.min.css')}}">
 
     <!-- Core Css -->
-{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-        <link rel="stylesheet" href="{{ asset('build/assets/app-BNv0_hJj.css') }}">
-        <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--        <link rel="stylesheet" href="{{ asset('build/assets/app-BNv0_hJj.css') }}">--}}
+{{--        <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>--}}
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css?2') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">

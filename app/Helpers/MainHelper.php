@@ -26,6 +26,15 @@ if (!function_exists('month_name')) {
         return $monthName[$month];
     }
 }
+
+if (!function_exists('get_date_format')) {
+    function get_date_format($date)
+    {
+        return $date->format('d') . ' ' . month_name(intval($date->format('m'))) . ' ' . $date->format('Y');
+    }
+}
+
+
 if (!function_exists('numberToRomanRepresentation')) {
     function numberToRomanRepresentation($number)
     {
@@ -66,7 +75,7 @@ if (!function_exists('blank_model')) {
 }
 
 if (!function_exists('form_model')) {
-    function form_model($repository, $dataId = null,$action="create")
+    function form_model($repository, $dataId = null, $action = "create")
     {
         $array = [];
         foreach ($repository::formField($action) as $model) {
@@ -81,7 +90,7 @@ if (!function_exists('form_model')) {
                 $array[$index] = $r;
             }
         }
-        $model['name']=1;
+        $model['name'] = 1;
         return $array;
 
 

@@ -16,6 +16,7 @@ use App\Models\MaterialCategory;
 use App\Models\MaterialMutation;
 use App\Models\MaterialMutationStatus;
 use App\Models\PaymentModel;
+use App\Models\PaymentStatus;
 use App\Models\Product;
 use App\Models\ProductAdditionalCost;
 use App\Models\ProductCategory;
@@ -49,8 +50,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'admin@admin',
             'password' => bcrypt('admin'),
-            'role'=>1,
-            'position'=>'Pemilik'
+            'role' => 1,
+            'position' => 'Pemilik',
         ]);
 
         SupplierCategory::create([
@@ -498,7 +499,6 @@ class DatabaseSeeder extends Seeder
             'status_id' => 1,
         ]);
 
-
         AccountGroup::create([
             'title' => 'KEWAJIBAN JK PENDEK',
             'parent' => 'KEWAJIBAN & EKUITAS',
@@ -595,7 +595,6 @@ class DatabaseSeeder extends Seeder
             'status_id' => 1,
         ]);
 
-
         AccountGroup::create([
             'title' => 'KEWAJIBAN JK PANJANG',
             'parent' => 'KEWAJIBAN & EKUITAS',
@@ -623,7 +622,6 @@ class DatabaseSeeder extends Seeder
             'additional_cost' => 0,
             'status_id' => 1,
         ]);
-
 
         AccountGroup::create([
             'title' => 'EKUITAS',
@@ -688,7 +686,6 @@ class DatabaseSeeder extends Seeder
             'additional_cost' => 0,
             'status_id' => 1,
         ]);
-
 
         AccountGroup::create([
             'title' => 'PENDAPATAN',
@@ -1054,7 +1051,6 @@ class DatabaseSeeder extends Seeder
             'status_id' => 1,
         ]);
 
-
         AccountGroup::create([
             'title' => 'HPP',
             'parent' => 'HPP',
@@ -1092,14 +1088,14 @@ class DatabaseSeeder extends Seeder
             'status_id' => 1,
         ]);
 
-//        AccountName::create([
-//            'account_category_id' => 1,
-//            'code' => '8.0.1',
-//            'level' => 'DR',
-//            'title' => 'Bayar Penjahit Pak Sudi',
-//            'note' => '',
-//            'additional_cost' => 1,
-//        ]);
+        //        AccountName::create([
+        //            'account_category_id' => 1,
+        //            'code' => '8.0.1',
+        //            'level' => 'DR',
+        //            'title' => 'Bayar Penjahit Pak Sudi',
+        //            'note' => '',
+        //            'additional_cost' => 1,
+        //        ]);
 
         Product::create([
             'code' => 'P01',
@@ -1214,41 +1210,41 @@ class DatabaseSeeder extends Seeder
         ]);
 
         AccountOpeningBalance::create([
-            'account_name_id'=>1,
-            'month'=>5,
-            'year'=>2024,
-            'opening_balances'=>1000000
+            'account_name_id' => 1,
+            'month' => 5,
+            'year' => 2024,
+            'opening_balances' => 1000000,
         ]);
 
         PaymentModel::create([
-            'title'=>'metode 50:50',
-            'model'=>'50:50',
-            'status_id'=>1
+            'title' => 'metode 50:50',
+            'model' => '50:50',
+            'status_id' => 1,
         ]);
         PaymentModel::create([
-            'title'=>'metode 70:30',
-            'model'=>'70:30',
-            'status_id'=>1
+            'title' => 'metode 70:30',
+            'model' => '70:30',
+            'status_id' => 1,
         ]);
 
         Customer::create([
-            'uid'=>'WSHK2024001',
-            'name'=>'Mokhamad asif',
-            'phone'=>'6282132743622',
-            'email'=>'mokhamadasif@gmail.com',
-            'address'=>'Jalan Kahyangan',
-            'province'=>'Jawa Timur',
-            'city'=>'Malang',
-            'district'=>'Sukun',
-            'village'=>'Mulyorejo',
-            'postal_code'=>'671231',
-            'npwp'=>null,
-            'register'=>Carbon::now(),
-            'status_id'=>1
+            'uid' => 'WSHK2024001',
+            'name' => 'Mokhamad asif',
+            'phone' => '6282132743622',
+            'email' => 'mokhamadasif@gmail.com',
+            'address' => 'Jalan Kahyangan',
+            'province' => 'Jawa Timur',
+            'city' => 'Malang',
+            'district' => 'Sukun',
+            'village' => 'Mulyorejo',
+            'postal_code' => '671231',
+            'npwp' => null,
+            'register' => Carbon::now(),
+            'status_id' => 1,
         ]);
 
         GeneralInfo::create([
-            'value'=>'Hai kak ...Kami kirimkan invoce untuk orderan tas custom kamu. Berikut detail transaksi pembayaran:
+            'value' => 'Hai kak ...Kami kirimkan invoce untuk orderan tas custom kamu. Berikut detail transaksi pembayaran:
 
 Nama : [CUSTOMER_NAME]
 No invoice : [NO_INVOICE]
@@ -1262,29 +1258,39 @@ BCA 4480364029
 atas nama Kun Sentanawan
 
 Salam sayang,
-@wishka_','key'=>'penagihan_termin_1'
+@wishka_', 'key' => 'penagihan_termin_1',
         ]);
 
         CompanyAssetCategory::create([
-            'title'=>'Bangunan'
+            'title' => 'Bangunan',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Kendaraan'
+            'title' => 'Kendaraan',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Mesin'
+            'title' => 'Mesin',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Peralatan Pendukung'
+            'title' => 'Peralatan Pendukung',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Inventaris Kantor'
+            'title' => 'Inventaris Kantor',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Sewa DDM'
+            'title' => 'Sewa DDM',
         ]);
         CompanyAssetCategory::create([
-            'title'=>'Biaya DDM'
+            'title' => 'Biaya DDM',
+        ]);
+
+        PaymentStatus::create([
+            'title' => 'Diterima',
+        ]);
+        PaymentStatus::create([
+            'title' => 'Disesuaikan',
+        ]);
+        PaymentStatus::create([
+            'title' => 'Ditolak',
         ]);
 
     }

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->dateTime('payment_at');
             $table->string('schema');
-            $table->decimal('amount',16,2);
-            $table->decimal('amount_confirmation',16,2);
+            $table->decimal('amount', 16, 2);
+            $table->decimal('amount_confirmation', 16, 2);
             $table->text('note');
             $table->timestamps();
 
@@ -39,8 +39,6 @@ return new class extends Migration
                 ->references('id')
                 ->restrictOnDelete()
                 ->restrictOnUpdate();
-
-
 
         });
     }

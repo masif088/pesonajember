@@ -17,7 +17,14 @@ class PicForm extends Component
 
     public function mount()
     {
-        $this->form = '';
+        $transaction = Transaction::find($this->dataId);
+
+        $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+        if ($ts != null) {
+            $this->form = $ts->value;
+        }else{
+            $this->form = '';
+        }
         //        $this->form = form_model(model::class,$this->dataId);
     }
 

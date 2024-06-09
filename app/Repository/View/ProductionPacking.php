@@ -43,12 +43,12 @@ class ProductionPacking extends Transaction implements View
         $progress = '';
 
         $shipperWeight = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
-        $shipper = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
+//        $shipper = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
 
         $linkQc = route('transaction.shipper-edit', $data->id);
         $weight = "<a href='$linkQc' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input Berat</a>";
-        if ($shipper != null) {
-            $weight = "$shipperWeight->value ($shipper->value)";
+        if ($shipperWeight != null) {
+            $weight = "$shipperWeight->value";
         }
 
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();

@@ -23,7 +23,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['uid','customer_id', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note','tax', 'transaction_status_id'];
+    protected $fillable = ['uid', 'customer_id', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id'];
 
     public function customer(): BelongsTo
     {
@@ -47,11 +47,16 @@ class Transaction extends Model
 
     public function transactionStatus(): BelongsTo
     {
-        return $this->belongsTo(TransactionStatus::class,'transaction_status_id');
+        return $this->belongsTo(TransactionStatus::class, 'transaction_status_id');
     }
 
     public function transactionStatuses(): HasMany
     {
-        return $this->hasMany(TransactionStatus::class,'transaction_id');
+        return $this->hasMany(TransactionStatus::class, 'transaction_id');
+    }
+
+    public function transactionPayments(): HasMany
+    {
+        return $this->hasMany(TransactionPayment::class, 'transaction_id');
     }
 }

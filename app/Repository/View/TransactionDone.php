@@ -16,7 +16,7 @@ class TransactionDone extends Transaction implements View
 //        dd("asd");
 
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
-            $q->where('transaction_status_type_id','>=',2)->where('transaction_status_type_id','<=',14);
+            $q->where('transaction_status_type_id','>=',15)->where('transaction_status_type_id','<=',17);
         }) : static::query();
     }
 
@@ -40,11 +40,12 @@ class TransactionDone extends Transaction implements View
 
     public static function tableData($data = null): array
     {
+
         return [
             ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
             ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
-            ['type' => 'raw_html', 'text-align' => 'center', 'data' => 'Telah Lunas'],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transactionStatus->transactionStatusType->title],
             ['type' => 'raw_html', 'data' => "
             <span class='text-xl text-wishka-500 font-black'>
             <i class='ti ti-eye p-1'></i>

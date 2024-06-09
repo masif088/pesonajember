@@ -63,6 +63,10 @@ class TransactionController extends Controller
     {
         return view('admin.transaction.qc-edit', compact('id'));
     }
+    public function weightEdit($id)
+    {
+        return view('admin.transaction.weight-edit', compact('id'));
+    }
     public function shipperEdit($id)
     {
         return view('admin.transaction.shipper-edit', compact('id'));

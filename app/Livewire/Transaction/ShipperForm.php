@@ -42,7 +42,7 @@ class ShipperForm extends Component
         $transaction = Transaction::find($this->dataId);
 
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
-        $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
+        $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first();
         if ($ts != null) {
             $ts->update([
                 'value' => $this->form,
@@ -59,7 +59,7 @@ class ShipperForm extends Component
             ]);
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
-                'key' => 'berat pengiriman',
+                'key' => 'resi pengiriman',
                 'value' => $this->form2,
                 'type' => 'string',
             ]);
@@ -77,6 +77,7 @@ class ShipperForm extends Component
     //        model::find($this->dataId)->update($this->form);
     //        $this->redirect(route('bank.index'));
     //    }
+
     public function render()
     {
         return view('livewire.transaction.shipper-form');

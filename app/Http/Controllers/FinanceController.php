@@ -108,4 +108,29 @@ class FinanceController extends Controller
     {
         return view('admin.petty-cash.index', compact('id'));
     }
+
+    public function transaction()
+    {
+        return view('admin.finance.transaction');
+    }
+
+    public function transactionHistory()
+    {
+        return view('admin.finance.transaction-history');
+    }
+
+    public function transactionPayment($id)
+    {
+        return view('admin.finance.transaction-payment', compact('id'));
+    }
+
+    public function transactionPaymentDetail($id)
+    {
+        return view('admin.finance.transaction-payment-detail',compact('id'));
+    }
+    //    public function transactionPaymentEdit($id)
+    //    {
+    //        return view('admin.finance.transaction-payment',compact('id'));
+    //    }
+
 }

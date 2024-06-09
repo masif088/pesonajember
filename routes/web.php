@@ -146,6 +146,7 @@ Route::middleware([
 
         Route::get('pic/{id}', [TransactionController::class, 'picEdit'])->name('pic-edit');
         Route::get('qc/{id}', [TransactionController::class, 'qcEdit'])->name('qc-edit');
+        Route::get('weight/{id}', [TransactionController::class, 'weightEdit'])->name('weight-edit');
         Route::get('shipper/{id}', [TransactionController::class, 'shipperEdit'])->name('shipper-edit');
 
         Route::get('pattern-site', [TransactionController::class, 'patternSite'])->name('pattern-site');
@@ -210,6 +211,11 @@ Route::middleware([
         Route::get('big-cash', [FinanceController::class, 'bigCash'])->name('big-cash');
         Route::get('big-cash/create', [FinanceController::class, 'bigCashCreate'])->name('big-cash.create');
         Route::get('big-cash/edit/{id}', [FinanceController::class, 'bigCashEdit'])->name('big-cash.edit');
+
+        Route::get('transaction', [FinanceController::class, 'transaction'])->name('transaction');
+        Route::get('transaction-history', [FinanceController::class, 'transactionHistory'])->name('transaction-history');
+        Route::get('transaction/payment/{id}', [FinanceController::class, 'transactionPayment'])->name('transaction.payment');
+        Route::get('transaction/payment/detail/{id}', [FinanceController::class, 'transactionPaymentDetail'])->name('transaction.payment.detail');
 
         Route::get('ledger', [FinanceController::class, 'ledger'])->name('ledger');
         Route::get('balance-sheet', [FinanceController::class, 'balanceSheet'])->name('balance-sheet');
