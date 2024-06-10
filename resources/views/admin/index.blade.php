@@ -12,16 +12,17 @@
             </div>
 {{--            <br>--}}
             <div class="col-span-12 ">
-                <livewire:dasbhboard.dashboard-card/>
+                <livewire:dashboard.dashboard-card/>
             </div>
-            <div class="col-span-12 ">
-
-
-                <livewire:dasbhboard.dashboard-report/>
+            <div class="col-span-6 ">
+                <livewire:dashboard.dashboard-goals/>
             </div>
-            <div class="col-span-4">
-                <livewire:dasbhboard.dashboard-product/>
+            <div class="col-span-6 ">
+                <livewire:dashboard.dashboard-revenue/>
             </div>
+{{--            <div class="col-span-4">--}}
+{{--                <livewire:dasbhboard.dashboard-product/>--}}
+{{--            </div>--}}
         </div>
     </div>
 </x-admin-layout>

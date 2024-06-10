@@ -5,7 +5,7 @@
                 <div class="flex flex-col h-full items-start ">
                     <div class="text-start">
                         <h5 class="card-title">
-                            REPORT HASIL USAHA
+                            REPORT PRODUKSI
                         </h5>
                         <span class="card-subtitle">
                             Mei
