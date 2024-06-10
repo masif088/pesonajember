@@ -5,6 +5,7 @@ namespace App\Livewire\Transaction;
 //use App\Repository\Form\Bank as model;
 use App\Models\Transaction;
 use App\Models\TransactionStatusAttachment;
+use App\Models\User;
 use Livewire\Component;
 
 class PicForm extends Component
@@ -14,18 +15,18 @@ class PicForm extends Component
     public $action;
 
     public $dataId;
+    public $optionUser;
 
     public function mount()
     {
         $transaction = Transaction::find($this->dataId);
-
+        $this->optionUser = eloquent_to_options(User::orderBy('name')->get(),'id','name');
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
             $this->form = $ts->value;
-        }else{
+        } else {
             $this->form = '';
         }
-        //        $this->form = form_model(model::class,$this->dataId);
     }
 
     public function getRules()
@@ -53,7 +54,7 @@ class PicForm extends Component
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'key' => 'pic',
                 'value' => $this->form,
-                'type' => 'string',
+                'type' => 'App\Models\User',
             ]);
         }
 

@@ -41,7 +41,7 @@ class ProductionDone extends Transaction implements View
     public static function tableData($data = null): array
     {
         //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status document')->first()->value;
-        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+
         $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
         $name = 'No Product (invalid transaction)';
         $amount = 0;
@@ -49,10 +49,21 @@ class ProductionDone extends Transaction implements View
             $name = $product->product->title;
             $amount = $product->amount;
         }
-        $pic = '<div class="px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center">Input PIC</div>';
-        if ($status!=null){
-            $pic=$status->value;
+
+        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+
+        $link3 = route('transaction.pic-edit', $data->id);
+        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
+        if ($status != null) {
+            if ($status->type == 'string') {
+                $pic = $status->value;
+            }
+            if ($status->type != 'string') {
+                $pic = new $status->type();
+                $pic = $pic->find($status->value)->name;
+            }
         }
+
 
         $mockup =  $data->transactionStatuses->where('transaction_status_type_id','=',3)->first();
         if ($mockup!=null){

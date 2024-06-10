@@ -62,10 +62,18 @@ class ProductionQc extends Transaction implements View
         }
 
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+
         $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
         if ($status != null) {
-            $pic = $status->value;
+            if ($status->type == 'string') {
+                $pic = $status->value;
+            }
+            if ($status->type != 'string') {
+                $pic = new $status->type();
+                $pic = $pic->find($status->value)->name;
+            }
+
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>

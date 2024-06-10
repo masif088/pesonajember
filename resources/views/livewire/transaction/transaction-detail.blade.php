@@ -207,7 +207,16 @@
                                     <p class="">
                                         {{ $ts->transactionStatusType->title }} <br>
                                         @foreach($ts->transactionStatusAttachments as $tsa)
-                                            <font class="capitalize">{{ $tsa->key }}</font> : {{ $tsa->value }} <br>
+                                            <font class="capitalize">{{ $tsa->key }}</font> :
+                                            @if($tsa->type == 'string')
+                                                {{ $tsa->value }}
+                                            @elseif($tsa->type == 'image')
+                                                <img src="{{ asset(str_replace('public','storage',$tsa->value)) }}" alt="" style="width: 250px">
+                                            @else
+                                                @php($model = new $status->type())
+                                                {{ $model->find($status->value)->name }}
+                                            @endif
+                                            <br>
                                         @endforeach
                                     </p>
                                 </div>

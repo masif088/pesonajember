@@ -51,17 +51,26 @@ class ProductionPacking extends Transaction implements View
             $weight = "$shipperWeight->value";
         }
 
+
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+
         $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
         if ($status != null) {
-            $pic = $status->value;
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>
 <option value='12'>Produksi Selesai</option>
 </select>";
+            if ($status->type == 'string') {
+                $pic = $status->value;
+            }
+            if ($status->type != 'string') {
+                $pic = new $status->type();
+                $pic = $pic->find($status->value)->name;
+            }
         }
+
 
         $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
         $name = 'No Product (invalid transaction)';

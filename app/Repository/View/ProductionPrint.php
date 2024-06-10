@@ -46,10 +46,16 @@ class ProductionPrint extends Transaction implements View
 
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
 
-        $link3=route('transaction.pic-edit',$data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        $link3 = route('transaction.pic-edit', $data->id);
+        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
         if ($status != null) {
-            $pic = $status->value;
+            if ($status->type == 'string') {
+                $pic = $status->value;
+            }
+            if ($status->type != 'string') {
+                $pic = new $status->type();
+                $pic = $pic->find($status->value)->name;
+            }
         }
 
         $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
