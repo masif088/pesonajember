@@ -16,9 +16,7 @@
                 Pesan
             </div>
             <div class="">
-                <div
-                    class="max-w-full px-3 sm:w-full sm-max:w-full md:w-full sm-max:mt-1  sm:flex-none xl:mb-0  bg-gray-200 rounded py-2">
-                    @php
+                @php
                     $content =\App\Models\GeneralInfo::where('key','=','penagihan_termin_1')->first()->value;
                     $content= str_replace('[CUSTOMER_NAME]',$user->name,$content);
                     $content= str_replace('[PAYMENT_MODEL_1]',$paymentModel[0],$content);
@@ -29,12 +27,24 @@
 
                     $wac = str_replace(' ','%20',$content);
                     $wac = str_replace('<br>','%0a',$content);
-                    @endphp
-                    {!! $content !!}
+                    $wac = preg_replace("/[\n\r]/","%0a", $content);
 
-                </div>
+//                    $conte.replace(/(\r\n|\n|\r)/gm, '&#13;&#10;');
+                @endphp
+                <div style="  white-space: pre-wrap;"
+                    class="max-w-full px-3 sm:w-full sm-max:w-full md:w-full sm-max:mt-1  sm:flex-none xl:mb-0  bg-gray-200 rounded py-2" >{{ $content }}</div>
                 <br>
+{{--                <script>--}}
+{{--                    document.addEventListener("DOMContentLoaded", function () {--}}
+{{--                        var boxText = `{{ $content }}`--}}
+{{--                        boxText = boxText.replace(/<br\s?\/?>/g,"\n");--}}
+{{--                        console.log(boxText)--}}
+{{--                        document.getElementById('wa_button').href = `https://wa.me/{{ $this->waNumber }}?text=${boxText}`;--}}
+{{--                        document.getElementById('wa_button').innerHTML="asdasd";--}}
+{{--                    });--}}
+{{--                </script>--}}
                 <a target="_blank"
+                   id="wa_button"
                     wire:click="sendMessage"
                     href="https://wa.me/{{ $this->waNumber }}?text={{ $wac }}"
                    class="btn bg-wishka-600">
