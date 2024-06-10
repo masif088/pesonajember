@@ -35,11 +35,13 @@ class GeneralInfo extends \App\Models\GeneralInfo implements View
 
     public static function tableData($data = null): array
     {
+        $link = route('general-info.edit',$data->id);
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => $data->key],
             ['type' => 'raw_html', 'data' => $data->value],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' =>
+            "<a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>"],
         ];
     }
 }
