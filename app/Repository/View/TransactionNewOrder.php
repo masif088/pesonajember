@@ -55,7 +55,8 @@ class TransactionNewOrder extends Transaction implements View
         }
         $total += ($total * $data->tax / 100);
         $link = route('transaction.billing-page', $data->id);
-        $link2 = route('transaction.transaction.change.status', [$data->id, 2]);
+        $link3 = route('transaction.download', $data->id);
+        $link4 = route('finance.transaction.payment.detail', $data->id);
 
         return [
             ['type' => 'string', 'data' => $data->uid],
@@ -63,13 +64,15 @@ class TransactionNewOrder extends Transaction implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<a href='$link' class=' $c text-white px-2 py-2 rounded-lg w-full'>$d</a>"],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($total)],
             ['type' => 'raw_html', 'data' => "
-            <span class='text-xl text-wishka-500 font-black'>
-            <i class='ti ti-eye p-1'></i>
-            <a wire:click='changeProduction($data->id,2)' href='#' class='p-1'><i class='ti ti-check'></i></a>
-            <i class='ti ti-edit p-1'></i>
-            <i class='ti ti-trash p-1'></i>
-            </span>
+            <div class='text-xl flex gap-1'>
+            <a wire:click='changeProduction($data->id,2)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
+            <a href='$link3' target='_blank' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-download'></i></a>
+            <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+            <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg' ><i class='ti ti-trash'></i></a>
+            </div>
             "],
+            //            <i class='ti ti-edit p-1'></i>
+
         ];
     }
 }

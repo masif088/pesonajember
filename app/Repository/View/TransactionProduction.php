@@ -42,17 +42,20 @@ class TransactionProduction extends Transaction implements View
     {
 
         $process = $data->transactionStatus->transactionStatusType->title;
-//        $link2 = route('transaction.transaction.change.status', [$data->id, 2]);
-
+//        $link3 = route('transaction.download', $data->id);
+        $link4 = route('finance.transaction.payment.detail', $data->id);
         return [
             ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
             ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $process],
             ['type' => 'raw_html', 'data' => "
-            <span class='text-xl text-wishka-500 font-black'>
-            <i class='ti ti-eye p-1'></i>
-</span>
+            <div class='text-xl flex gap-1 justify-center'>
+
+
+            <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+
+            </div>
             "],
         ];
     }

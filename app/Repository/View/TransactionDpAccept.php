@@ -46,6 +46,7 @@ class TransactionDpAccept extends Transaction implements View
 //        <div>
 //<a href='#' class='py-1 px-2 bg-red-200  text-red-600 rounded-lg'>Kirim By Email</a>
 //</div>
+        $link4 = route('finance.transaction.payment.detail', $data->id);
         return [
             ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
@@ -57,11 +58,10 @@ class TransactionDpAccept extends Transaction implements View
 
 </div>"],
             ['type' => 'raw_html', 'data' => "
-            <span class='text-xl text-wishka-500 font-black'>
-            <i class='ti ti-eye p-1'></i>
-            <a href='#' wire:click='changeProduction($data->id,3)' class='p-1'><i class='ti ti-check'></i></a>
-            <i class='ti ti-edit p-1'></i>
-</span>
+            <div class='text-xl flex gap-1'>
+            <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+            <a wire:click='changeProduction($data->id,3)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
+            </div>
             "],
         ];
     }

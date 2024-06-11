@@ -26,6 +26,7 @@ class MockupForm extends Component
     {
         return [
             'mockup' => 'required|image|max:5120',
+            'process' => 'required',
         ];
     }
 
