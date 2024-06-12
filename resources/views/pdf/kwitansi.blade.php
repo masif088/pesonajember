@@ -38,7 +38,7 @@
     </style>
 </head>
 <body style=" ">
-<img src="{{ public_path('front/background-pdf-kwitansi.png.jpg') }}" alt="" style="position: absolute; width: 100%">
+<img src="{{ public_path('front/background-pdf-kwitansi.png') }}" alt="" style="position: absolute; width: 100%">
 <div style="position: absolute; z-index: 2; width: 100%; padding: 170px 8%;">
     <div style="width: 84% ">
         <div>
