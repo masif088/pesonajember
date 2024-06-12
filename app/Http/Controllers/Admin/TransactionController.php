@@ -114,4 +114,11 @@ class TransactionController extends Controller
         $pdf->loadView('pdf.invoice', $data);
         return $pdf->stream();
     }
+    public function downloadNewOrder($id)
+    {
+        $data = ['transaction' => Transaction::find($id)];
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('pdf.invoice-0', $data);
+        return $pdf->stream();
+    }
 }

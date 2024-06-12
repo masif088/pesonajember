@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\CompanyAssetController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -161,6 +162,7 @@ Route::middleware([
         Route::get('production/tab/{tab}', [TransactionController::class, 'productionTab'])->name('production.tab');
 
         Route::get('download/{id}', [TransactionController::class, 'download'])->name('download');
+        Route::get('download/{id}/new-order', [TransactionController::class, 'downloadNewOrder'])->name('download-new-order');
     });
 
     Route::prefix('general-info')->name('general-info.')->group(function () {
@@ -188,6 +190,16 @@ Route::middleware([
         Route::get('edit/{id}', [SalaryController::class, 'edit'])->name('edit');
 
         Route::get('download/{id}', [SalaryController::class, 'download'])->name('download');
+    });
+
+    Route::prefix('attendance')->name('attendance.')->group(function () {
+        Route::get('', [AttendanceController::class, 'index'])->name('index');
+        Route::get('create', [AttendanceController::class, 'create'])->name('create');
+        Route::get('edit/{id}', [AttendanceController::class, 'edit'])->name('edit');
+        Route::get('show/{id}', [AttendanceController::class, 'show'])->name('show');
+        Route::get('show/{id}/create', [AttendanceController::class, 'createAttendance'])->name('create-attendance');
+        Route::get('show/{id}/edit/{attendanceId}', [AttendanceController::class, 'editAttendance'])->name('edit-attendance');
+        Route::get('show/user-attendance/{user}', [AttendanceController::class, 'userAttendance'])->name('user-attendance');
     });
 
     Route::prefix('finance')->name('finance.')->group(function () {

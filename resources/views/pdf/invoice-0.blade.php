@@ -182,7 +182,7 @@
                                     <td style="padding: 0;width: 25%"></td>
                                     <td style="padding: 0">Rp.</td>
                                     <td style="padding: 0; text-align: right; padding-right: 5px">
-                                        {{ thousand_format(\App\Models\TransactionPayment::where('transaction_id','=',$transaction->id)->sum('amount_confirmation')) }}
+                                        0
                                     </td>
                                 </tr>
                             </table>
@@ -199,7 +199,7 @@
                                     <td style="padding: 0;width: 25%"></td>
                                     <td style="padding: 0">Rp.</td>
                                     <td style="padding: 0; text-align: right; padding-right: 5px">
-                                        {{ thousand_format(($total+($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100))-(\App\Models\TransactionPayment::where('transaction_id','=',$transaction->id)->sum('amount_confirmation'))) }}
+                                        {{ thousand_format(($total+($total*(is_numeric($transaction->tax)?$transaction->tax:0)/100))) }}
                                     </td>
                                 </tr>
                             </table>

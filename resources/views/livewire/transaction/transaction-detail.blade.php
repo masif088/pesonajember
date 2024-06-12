@@ -16,6 +16,13 @@
         }
 
     </style>
+
+    <div class="flex gap-2 mb-2">
+        <a href="{{ route('transaction.download-new-order',$transaction->id) }}" class="btn bg-wishka-600" target="_blank">Download Invoice Pesanan Baru</a>
+        <a href="{{ route('transaction.download',$transaction->id) }}" class="btn bg-wishka-600" target="_blank">Download Invoice Pelunasan</a>
+    </div>
+
+
     <div class="text-md md:w-12/12 lg:w-6/12 p-3 flex flex-fill text-white ml-auto bg-wishka-500 justify-between"
          style="border-radius: 10px 10px 0 0;">
         <table style="width: 100%">

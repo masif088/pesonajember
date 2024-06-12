@@ -3,7 +3,6 @@
 namespace App\Repository\View;
 
 use App\Models\Transaction;
-use App\Models\TransactionStatusAttachment;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -43,7 +42,6 @@ class ProductionPrint extends Transaction implements View
     public static function tableData($data = null): array
     {
 
-
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
 
         $link3 = route('transaction.pic-edit', $data->id);
@@ -66,12 +64,11 @@ class ProductionPrint extends Transaction implements View
             $amount = $product->amount;
         }
 
-
         $mockup = $data->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
 
         $p2 = '';
         if ($mockup != null) {
-            $p2= $mockup->transactionStatusAttachments->where('key','=','process')->first()->value;
+            $p2 = $mockup->transactionStatusAttachments->where('key', '=', 'process')->first()->value;
 
             $link2 = route('transaction.mockup-site-download', $data->id);
             $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Lihat Mockup</a>";
