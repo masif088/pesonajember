@@ -163,6 +163,7 @@ Route::middleware([
 
         Route::get('download/{id}', [TransactionController::class, 'download'])->name('download');
         Route::get('download/{id}/new-order', [TransactionController::class, 'downloadNewOrder'])->name('download-new-order');
+        Route::get('download/{id}/kwitansi', [TransactionController::class, 'downloadKwitansi'])->name('download-kwitansi');
     });
 
     Route::prefix('general-info')->name('general-info.')->group(function () {

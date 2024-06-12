@@ -41,7 +41,7 @@ class TransactionDpAccept extends Transaction implements View
     {
 
 
-        $link2 = route('transaction.download', [$data->id, 3]);
+        $link2 = route('transaction.download-kwitansi', $data->id);
 //
 //        <div>
 //<a href='#' class='py-1 px-2 bg-red-200  text-red-600 rounded-lg'>Kirim By Email</a>
