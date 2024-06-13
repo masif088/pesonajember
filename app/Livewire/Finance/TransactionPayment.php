@@ -31,6 +31,7 @@ class TransactionPayment extends Component
         $this->resetErrorBag();
 
         $this->form['amount_confirmation'] = $this->form['amount'];
+        $this->form['payment_status_id'] = 1;
 
         model::create($this->form);
 

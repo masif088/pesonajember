@@ -14,7 +14,7 @@ class TransactionPayment extends \App\Models\TransactionPayment implements Form
         return [
             'form.transaction_id' => 'required',
             'form.bank_id' => 'required',
-            'form.payment_status_id' => 'required',
+//            'form.payment_status_id' => 'required',
             'form.title' => 'required',
             'form.payment_at' => 'required',
             'form.schema' => 'nullable',
@@ -52,14 +52,14 @@ class TransactionPayment extends \App\Models\TransactionPayment implements Form
                 'required' => true,
                 'class' => 'col-span-6',
             ],
-            [
-                'title' => 'Status',
-                'type' => 'select',
-                'model' => 'payment_status_id',
-                'options' => $paymentStatus,
-                'required' => false,
-                'class' => 'col-span-6',
-            ],
+//            [
+//                'title' => 'Status',
+//                'type' => 'select',
+//                'model' => 'payment_status_id',
+//                'options' => $paymentStatus,
+//                'required' => false,
+//                'class' => 'col-span-6',
+//            ],
             [
                 'title' => 'Keterangan',
                 'type' => 'text',
