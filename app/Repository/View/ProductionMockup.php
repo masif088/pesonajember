@@ -49,8 +49,10 @@ class ProductionMockup extends Transaction implements View
         $class = 'px-2 py-1 rounded-lg';
         $process = 'Telah terkirim';
         $link = route('transaction.mockup-site-edit', $data->id);
+        $link3 = route('finance.transaction.payment.detail', $data->id);
         $edit = '';
         $download = '';
+        $eye = '';
         $progress = '';
         if ($d != null) {
             $p2 = $d2->value;
@@ -60,7 +62,8 @@ class ProductionMockup extends Transaction implements View
             //            <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
             $download="<a href='$link2' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
 //            $edit = "<a href='$link' style='cursor:pointer;' title='Upload ulang'><i class='ti ti-pencil p-1'></i></a>";
-            $edit = "<a href='$link' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>";
+            $edit = "<a href='$link' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-edit'></i></a>";
+            $eye = "<a href='$link3' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>";
             $tag = $d->value;
             if ($tag == 'Revisi') {
                 $class .= ' bg-red-200 text-red-600 ';
@@ -89,6 +92,7 @@ class ProductionMockup extends Transaction implements View
             <div class='text-xl flex gap-1'>
                         $edit
             $download
+            $eye
             </div>
 
             "],
