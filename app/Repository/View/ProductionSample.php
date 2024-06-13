@@ -47,7 +47,7 @@ class ProductionSample extends Transaction implements View
         $process ='Telah dikirim';
         if ($d==null){
             $tag = 'Belum Input';
-            $link = route('transaction.mockup-site-edit',$data->id);
+            $link = route('transaction.shipper-edit',$data->id);
             $process = "<a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>";
         }else{
             $tag = $d->value;
