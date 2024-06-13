@@ -1,4 +1,5 @@
 @php use App\Models\Product; @endphp
+@php use App\Models\Shipper; @endphp
 @php use Carbon\Carbon; @endphp
 <div>
     <style>
