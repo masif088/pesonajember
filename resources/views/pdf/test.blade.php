@@ -78,6 +78,7 @@
     @if($mockup!=null)
         @php($mockup2=$mockup->transactionStatusAttachments->where('key','=','photo mockup')->first())
         @if($mockup2!=null)
+            {{ public_path(str_replace('public','storage',$mockup2->value)) }}
             <img src="{{ public_path(str_replace('public','storage',$mockup2->value)) }}"
                  style="max-width: 100%;max-height: 400px" alt="">
         @else
