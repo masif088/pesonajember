@@ -106,19 +106,19 @@ Route::middleware([
     Route::prefix('shipper')->name('shipper.')->group(function () {
         Route::get('', [ShipperController::class, 'index'])->name('index');
         Route::get('create', [ShipperController::class, 'create'])->name('create');
-        Route::get('edit', [ShipperController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [ShipperController::class, 'edit'])->name('edit');
     });
 
     Route::prefix('mutation-status')->name('mutation-status.')->group(function () {
         Route::get('', [MutationStatusController::class, 'index'])->name('index');
         Route::get('create', [MutationStatusController::class, 'create'])->name('create');
-        Route::get('edit', [MutationStatusController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [MutationStatusController::class, 'edit'])->name('edit');
     });
 
     Route::prefix('partner')->name('partner.')->group(function () {
         Route::get('', [PartnerController::class, 'index'])->name('index');
         Route::get('create', [PartnerController::class, 'create'])->name('create');
-        Route::get('edit', [PartnerController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [PartnerController::class, 'edit'])->name('edit');
         Route::get('category', [PartnerController::class, 'category'])->name('category');
         Route::get('category/create', [PartnerController::class, 'categoryCreate'])->name('category.create');
         Route::get('category/edit/{id}', [PartnerController::class, 'categoryEdit'])->name('category.edit');
@@ -127,7 +127,7 @@ Route::middleware([
     Route::prefix('supplier')->name('supplier.')->group(function () {
         Route::get('', [SupplierController::class, 'index'])->name('index');
         Route::get('create', [SupplierController::class, 'create'])->name('create');
-        Route::get('edit', [SupplierController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [SupplierController::class, 'edit'])->name('edit');
         Route::get('category', [SupplierController::class, 'category'])->name('category');
         Route::get('category/create', [SupplierController::class, 'categoryCreate'])->name('category.create');
         Route::get('category/edit/{id}', [SupplierController::class, 'categoryEdit'])->name('category.edit');
