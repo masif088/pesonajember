@@ -19,6 +19,14 @@ if (!function_exists('eloquent_to_options')) {
         return $arr;
     }
 }
+if (!function_exists('quickRandom')) {
+    function quickRandom($length = 16)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
+}
 if (!function_exists('month_name')) {
     function month_name($month)
     {

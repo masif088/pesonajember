@@ -34,77 +34,139 @@ class Material extends \App\Models\Material implements Form
 
     public static function formField($params = null): array
     {
+
+        //        dd($params);
+
         $status = eloquent_to_options(Status::get());
         $supplier = eloquent_to_options(Supplier::get());
         $category = eloquent_to_options(MaterialCategory::get());
-        return [
-            [
-                'title' => 'Nama barang/material/bahan',
-                'type' => 'text',
-                'model' => 'title',
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Code barang/material/bahan',
-                'type' => 'text',
-                'model' => 'code',
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Stock',
-                'type' => 'number',
-                'model' => 'stock',
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Batas ambang bawah Stock',
-                'type' => 'number',
-                'model' => 'minimum_stock',
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Satuan',
-                'type' => 'text',
-                'model' => 'unit',
-                'required' => true,
-                'class' => 'col-span-6',
-                'placeholder' => 'satuan penggunaan dalam produksi',
-            ],
-            [
-                'title' => 'Nilai Material',
-                'type' => 'number',
-                'model' => 'value',
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Supplier',
-                'type' => 'select',
-                'model' => 'supplier_id',
-                'required' => true,
-                'class' => 'col-span-6',
-                'options' => $supplier,
-            ],
-            [
-                'title' => 'Material Category',
-                'type' => 'select',
-                'model' => 'material_category_id',
-                'options' => $category,
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-            [
-                'title' => 'Status',
-                'type' => 'select',
-                'model' => 'status_id',
-                'options' => $status,
-                'required' => true,
-                'class' => 'col-span-6',
-            ],
-        ];
+        if ($params == 'create') {
+            return [
+                [
+                    'title' => 'Nama barang/material/bahan',
+                    'type' => 'text',
+                    'model' => 'title',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Code barang/material/bahan',
+                    'type' => 'text',
+                    'model' => 'code',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Stock',
+                    'type' => 'number',
+                    'model' => 'stock',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Batas ambang bawah Stock',
+                    'type' => 'number',
+                    'model' => 'minimum_stock',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Satuan',
+                    'type' => 'text',
+                    'model' => 'unit',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                    'placeholder' => 'satuan penggunaan dalam produksi',
+                ],
+                [
+                    'title' => 'Nilai Material',
+                    'type' => 'number',
+                    'model' => 'value',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Supplier',
+                    'type' => 'select',
+                    'model' => 'supplier_id',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                    'options' => $supplier,
+                ],
+                [
+                    'title' => 'Material Category',
+                    'type' => 'select',
+                    'model' => 'material_category_id',
+                    'options' => $category,
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Status',
+                    'type' => 'select',
+                    'model' => 'status_id',
+                    'options' => $status,
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+            ];
+        } else {
+            return [
+                [
+                    'title' => 'Nama barang/material/bahan',
+                    'type' => 'text',
+                    'model' => 'title',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Code barang/material/bahan',
+                    'type' => 'text',
+                    'model' => 'code',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Batas ambang bawah Stock',
+                    'type' => 'number',
+                    'model' => 'minimum_stock',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Satuan',
+                    'type' => 'text',
+                    'model' => 'unit',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                    'placeholder' => 'satuan penggunaan dalam produksi',
+                ],
+                [
+                    'title' => 'Supplier',
+                    'type' => 'select',
+                    'model' => 'supplier_id',
+                    'required' => true,
+                    'class' => 'col-span-6',
+                    'options' => $supplier,
+                ],
+                [
+                    'title' => 'Material Category',
+                    'type' => 'select',
+                    'model' => 'material_category_id',
+                    'options' => $category,
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+                [
+                    'title' => 'Status',
+                    'type' => 'select',
+                    'model' => 'status_id',
+                    'options' => $status,
+                    'required' => true,
+                    'class' => 'col-span-6',
+                ],
+            ];
+        }
+
     }
 }

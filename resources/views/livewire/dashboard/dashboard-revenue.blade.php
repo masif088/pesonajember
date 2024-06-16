@@ -28,9 +28,9 @@
                 {
                     name: "Omzet {{ \Carbon\Carbon::now()->year-1 }}",
                     data: [
-                        @foreach($data[\Carbon\Carbon::now()->year-1] as $d)
+                        @foreach($data[\Carbon\Carbon::now()->year] as $d)
 
-                            {{ $d }},
+                            {{ $d-10000 }},
 
                         @endforeach
                     ],

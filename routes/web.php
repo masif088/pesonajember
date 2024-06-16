@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ShipperController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Customer\CustomerSiteController;
 use App\Http\Controllers\FinanceController;
 use App\Models\Transaction;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -23,22 +24,24 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    //
-    //    //    $pdf = App::make('dompdf.wrapper');
-    //    //    $pdf->loadView('pdf.test', $data);
-    //    //    return $pdf->stream;
-    //    //    $transaction = Transaction::find(1);
-    //        return redirect(route('dashboard'));
-    //
-    //    $data = [
-    //        'salary' => \App\Models\Salary::find(1),
-    //    ];
-    //    $pdf = App::make('dompdf.wrapper');
-    //    $pdf->loadView('pdf.salary', $data);
-    //
-    //    return $pdf->stream();
     return view('front.index');
 });
+
+Route::prefix('customer')->name('customer.')->group(function (){
+    Route::get('/{hash_id}',[CustomerSiteController::class,'customerDashboard'])->name('customer-dashboard');
+
+    Route::get('/{hash_id}/transaction/{transaction_id}/production',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
+
+    Route::get('/{hash_id}/transaction/{transaction_id}/mockup',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
+    Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
+
+    Route::get('/{hash_id}/transaction/{transaction_id}/sample',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
+    Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
+
+    Route::get('/{hash_id}/transaction/{transaction_id}/delivery',[CustomerSiteController::class,'customerTransactionDelivery'])->name('customer-transaction-delivery');
+});
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -53,7 +56,7 @@ Route::middleware([
     Route::prefix('material')->name('material.')->group(function () {
         Route::get('index', [MaterialController::class, 'index'])->name('index');
         Route::get('create', [MaterialController::class, 'create'])->name('create');
-        Route::get('edit', [MaterialController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [MaterialController::class, 'edit'])->name('edit');
 
         Route::get('material-stock/{id}', [MaterialController::class, 'materialStock'])->name('material-stock');
         Route::get('material-stock/{id}/mutation', [MaterialController::class, 'materialStockMutation'])->name('material-stock-mutation');

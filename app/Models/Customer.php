@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int $user_id
+ * @property int $hash_id
  * @property string $uid
  * @property string $name
  * @property string $phone
@@ -30,7 +31,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'uid', 'name', 'phone', 'email', 'address', 'province', 'city', 'district', 'village', 'postal_code', 'npwp', 'register', 'status_id'];
+    protected $fillable = ['user_id', 'uid','hash_id', 'name', 'phone', 'email', 'address', 'province', 'city', 'district', 'village', 'postal_code', 'npwp', 'register', 'status_id'];
 
     public function user(): BelongsTo
     {
