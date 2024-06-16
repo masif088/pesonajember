@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="title">
-        Bank
+        Karyawan
     </x-slot>
     <div class="">
 
