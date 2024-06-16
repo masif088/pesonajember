@@ -17,6 +17,7 @@ class PortofolioWishka extends Component
         foreach (ProductCategory::get() as $cat){
             $this->categories[]=['key'=>$cat->id,'value'=>$cat->title];
         }
+        $this->products=[];
         foreach (Product::where('product_category_id','=',1)->take(8)->get() as $cat){
             $this->products[]=$cat;
         }
