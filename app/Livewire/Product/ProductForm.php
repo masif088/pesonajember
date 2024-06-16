@@ -125,9 +125,7 @@ class ProductForm extends Component
         if ($this->thumbnail != null) {
             $this->form['photo_product'] = $this->thumbnail->store(path: 'public/photos');
         }
-
         $product = Product::create($this->form);
-
         foreach ($this->tagsSelected as $tag) {
             ProductProcesses::create([
                 'product_id' => $product->id,
@@ -155,10 +153,8 @@ class ProductForm extends Component
                     'account_name_id' => $list['account_name_id'][0],
                 ]);
             }
-
         }
         $this->redirect(route('production.index'));
-
     }
 
     public function render()
