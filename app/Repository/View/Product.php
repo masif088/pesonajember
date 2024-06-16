@@ -70,7 +70,12 @@ HPP : Rp. $cost <br>
             ],
             ['type' => 'raw_html', 'data' => '<a href="#" class="btn bg-wishka-200 text-black">Lihat</a>'],
             ['type' => 'string', 'text-align' => 'center', 'data' => $stock],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
+            "],
         ];
     }
 }

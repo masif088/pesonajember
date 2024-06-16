@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -19,18 +20,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Supplier extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $fillable = ['supplier_category_id', 'title', 'name', 'email', 'phone'];
 
     public function supplierCategory(): BelongsTo
     {
-        return $this->belongsTo(SupplierCategory::class, 'supplier_category_id');
+        return $this->belongsTo(SupplierCategory::class, 'supplier_category_id')->withTrashed();
     }
 
 
     public function materials(): HasMany
     {
-        return $this->hasMany(Material::class, 'supplier_id');
+        return $this->hasMany(Material::class, 'supplier_id')->withTrashed();
     }
 }

@@ -43,7 +43,10 @@ class AccountOpeningBalance extends \App\Models\AccountOpeningBalance implements
             ['type' => 'string', 'data' => month_name($data->month).' '.$data->year],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->opening_balances)],
             ['type' => 'raw_html', 'data' => "
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            <div class='text-xl flex gap-1'>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

@@ -38,12 +38,12 @@ class TransactionList extends Model
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id')->withTrashed();
     }
 
     public function shipper(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'shipper_id');
+        return $this->belongsTo(Product::class, 'shipper_id')->withTrashed();
     }
 
     public function transactionList(): BelongsTo

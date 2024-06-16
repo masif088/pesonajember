@@ -65,7 +65,6 @@ class Master extends Component
         $this->data = $this->model::find($id);
         if (! $this->data) {
             $this->dispatch('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
-
             return;
         }
 //        $this->dispatch('swal:alert',['title'=>'asd']);
@@ -80,6 +79,7 @@ class Master extends Component
 
     public function delete()
     {
+
         $this->data->delete();
         $this->dispatch('swal:alert', data:[
             'icon' => 'success',

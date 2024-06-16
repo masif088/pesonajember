@@ -41,8 +41,11 @@ class Bank extends \App\Models\Bank implements View
             ['type' => 'string', 'data' => $data->bank_name],
             ['type' => 'raw_html', 'data' => "<div>$data->account_number</div><div style='font-size: 12px'>$data->account_in_name</div>"],
             ['type' => 'string', 'data' => $data->status->title],
-            ['type' => 'raw_html', 'data' =>"
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

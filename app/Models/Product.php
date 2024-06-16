@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -22,9 +23,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $status_id
  * @property string $created_at
  * @property string $updated_at
+ * @property string $deleted_at
+
  */
 class Product extends Model
 {
+    use SoftDeletes;
     use HasFactory;
     protected $fillable=['code', 'title', 'size', 'price','stock', 'note','product_category_id','status_id','display_status','photo_product','custom_status'];
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -27,7 +28,7 @@ class Transaction extends Model
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();
     }
 
     public function paymentModel(): BelongsTo
@@ -37,7 +38,7 @@ class Transaction extends Model
 
     public function shipper(): BelongsTo
     {
-        return $this->belongsTo(Shipper::class);
+        return $this->belongsTo(Shipper::class)->withTrashed();
     }
 
     public function transactionLists(): HasMany

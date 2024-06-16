@@ -66,6 +66,7 @@ class Material extends \App\Models\Material implements View
             <div class='text-xl flex gap-1'>
                 <a href='$linkStock' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-box'></i></a>
                 <a href='$linkStockEdit' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                 <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
             </div>
             "],
         ];

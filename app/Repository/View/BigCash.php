@@ -42,8 +42,7 @@ class BigCash extends \App\Models\BigCash implements View
         $link = route('finance.big-cash.edit', $data->id);
         $totalDebit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('debit');
         $totalCredit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('credit');
-//        dd($totalDebit);
-//        dd($totalDebit);
+
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => Carbon::parse($data->date_transaction)->format('Y-m-d')],
@@ -51,10 +50,11 @@ class BigCash extends \App\Models\BigCash implements View
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->debit)],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->credit)],
             ['type' => 'string', 'data' => $totalDebit-$totalCredit],
-
             ['type' => 'raw_html', 'data' => "
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            <div class='text-xl flex gap-1'>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

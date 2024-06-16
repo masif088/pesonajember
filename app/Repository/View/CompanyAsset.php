@@ -51,7 +51,7 @@ class CompanyAsset extends \App\Models\CompanyAsset implements View
         $cadv = CompanyAssetDecreaseValue::where('company_asset_id','=',$data->id)->where('year',$now->year)->where('month',$now->month)->first();
         $last_shrinkage="";
         if ($cadv==null){
-            $last_shrinkage= "<button class='btn bg-wishka-400 text-nowrap' wire:click='shrinkageNow($data->id)'> <i class='ti ti-arrows-minimize'></i> Penyusutan Bulan Ini</button><br><br>";
+            $last_shrinkage= "<button class='py-1 px-2 bg-warning text-white rounded-lg text-nowrap' wire:click='shrinkageNow($data->id)'><i class='ti ti-arrows-minimize'></i> </button>";
         }
 
 
@@ -65,10 +65,14 @@ class CompanyAsset extends \App\Models\CompanyAsset implements View
             ['type' => 'raw_html', 'data' => "<font style='text-wrap: nowrap'>Rp. ".thousand_format($data->value).'</font>'],
             ['type' => 'raw_html', 'data' => "<font style='text-wrap: nowrap'>Rp. ".thousand_format($data->value_now).'</font>'],
             ['type' => 'raw_html', 'data' => "<font style='text-wrap: nowrap'>Rp. ".thousand_format($data->last_shrinkage).'</font>'],
+
             ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
             $last_shrinkage
-            <a href='$linkShow' class='text-nowrap btn bg-wishka-400'> <i class='ti ti-eye'></i> Lihat penyusutan keseluruhan</a> <br><br>
-            <a href='$linkEdit' class='text-nowrap btn bg-wishka-400'> <i class='ti ti-pencil'></i> Ubah</a>
+                <a href='$linkShow' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+                <a href='$linkEdit' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

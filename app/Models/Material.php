@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -20,9 +21,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $minimum_stock
  * @property string $created_at
  * @property string $updated_at
+ * @property string $deleted_at
  */
 class Material extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $fillable = ['title', 'code','note', 'stock', 'unit','value', 'supplier_id', 'status_id','material_category_id','minimum_stock'];

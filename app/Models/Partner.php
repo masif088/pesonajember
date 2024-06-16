@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -20,12 +21,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Partner extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $fillable = ['partner_category_id', 'name', 'phone', 'email', 'address', 'note'];
 
     public function partnerCategory(): BelongsTo
     {
-        return $this->belongsTo(PartnerCategory::class, 'partner_category_id');
+        return $this->belongsTo(PartnerCategory::class, 'partner_category_id')->withTrashed();
     }
 }

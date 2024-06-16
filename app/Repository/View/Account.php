@@ -35,14 +35,19 @@ class Account extends \App\Models\AccountName implements View
 
     public static function tableData($data = null): array
     {
+        $link = route('finance.account-names.edit');
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => $data->code],
             ['type' => 'string', 'data' => $data->title],
             ['type' => 'string', 'data' => $data->level],
             ['type' => 'string', 'data' => $data->status->title],
-//            ['type' => 'string', 'data' => $data->additional_cost==1?'true':'false'],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
+            "],
         ];
     }
 }

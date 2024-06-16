@@ -47,12 +47,11 @@ class Salary extends \App\Models\Salary implements View
             ['type' => 'string', 'data' => $data->created_at->format('d/M/Y')],
             ['type' => 'string', 'data' => 'Rp. '. thousand_format($salary)],
             ['type' => 'raw_html', 'data' => "
-            <div class='gap-3 flex'>
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
-            <a class='btn bg-red-600' href='#' wire:click='deleteItem($data->id)'><i class='ti ti-trash'></i></a>
-            <a class='btn bg-wishka-700' target='_blank' href='$link2'><i class='ti ti-download'></i></a>
-</div>
-
+            <div class='text-xl flex gap-1'>
+                <a href='$link2' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-download'></i></a>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

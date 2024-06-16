@@ -34,9 +34,6 @@ class Material extends \App\Models\Material implements Form
 
     public static function formField($params = null): array
     {
-
-        //        dd($params);
-
         $status = eloquent_to_options(Status::get());
         $supplier = eloquent_to_options(Supplier::get());
         $category = eloquent_to_options(MaterialCategory::get());
@@ -167,6 +164,5 @@ class Material extends \App\Models\Material implements Form
                 ],
             ];
         }
-
     }
 }

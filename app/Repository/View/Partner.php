@@ -38,6 +38,7 @@ class Partner extends \App\Models\Partner implements View
 
     public static function tableData($data = null): array
     {
+        $linkEdit = route('partner.edit',$data->id);
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => $data->partnerCategory->title],
@@ -46,7 +47,12 @@ class Partner extends \App\Models\Partner implements View
             ['type' => 'string', 'data' => $data->email],
             ['type' => 'string', 'data' => $data->address],
             ['type' => 'string', 'data' => $data->note],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+                <a href='$linkEdit' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
+            "],
         ];
     }
 }

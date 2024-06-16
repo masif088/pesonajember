@@ -23,7 +23,7 @@ class ProductMaterial extends Model
 
     public function material(): BelongsTo
     {
-        return $this->belongsTo(Material::class,'material_id');
+        return $this->belongsTo(Material::class,'material_id')->withTrashed();
     }
 //$table->unsignedBigInteger('material_id');
 //$table->decimal('size');
