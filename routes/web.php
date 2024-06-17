@@ -47,6 +47,7 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard');
 
+
     Route::prefix('material')->name('material.')->group(function () {
         Route::get('index', [MaterialController::class, 'index'])->name('index');
         Route::get('create', [MaterialController::class, 'create'])->name('create');

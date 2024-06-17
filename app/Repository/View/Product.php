@@ -44,7 +44,12 @@ class Product extends \App\Models\Product implements View
             $cost += ($c->material->value / $c->material->stock) * $c->amount * $c->size;
         }
         $margin = thousand_format($data->price - $cost);
-        $marginPercentage = thousand_format((($data->price - $cost) / $cost) * 100);
+        if ($cost!=0){
+            $marginPercentage = thousand_format((($data->price - $cost) / $cost) * 100);
+        }else{
+            $marginPercentage = '-';
+        }
+
         $cost = thousand_format($cost);
         $price = thousand_format($data->price);
         if ($data->custom_status == 1) {
