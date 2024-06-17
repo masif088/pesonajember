@@ -51,6 +51,9 @@
                                 if ($ts->transaction_status_type_id == 14){
                                     $resi  = $ts->transactionStatusAttachments->where('key','resi pengiriman')->first();
                                     $shipper  = $ts->transactionStatusAttachments->where('key','ekpedisi pengiriman')->first();
+                                    if ($resi!=null && $shipper!=null){
+                                        $this->getTrack($ts->id);
+                                    }
                                     $tracking  = $ts->transactionStatusAttachments->where('key','traking pengiriman')->first();
 //                                    dd(json_decode($tracking->value));
                                 }
@@ -72,7 +75,7 @@
                                         </div>
                                         <div class="w-1/4 grow pt-0.5 pb-6">
                                             <p class="">
-                                                {{ $history->status }} <br>
+                                                {{ $history->status }} {{ $ts->id }} <br>
                                                 {{ $history->note }} <br>
                                             </p>
                                         </div>
