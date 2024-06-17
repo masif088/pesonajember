@@ -10,18 +10,20 @@ use Livewire\Component;
 class ShipperForm extends Component
 {
     public $form;
+
     public $form2;
 
     public $action;
 
     public $dataId;
+
     public $sample;
 
     public $option;
 
     public function mount()
     {
-        $this->option = eloquent_to_options(Shipper::get(),'title','title');
+        $this->option = eloquent_to_options(Shipper::get(), 'title', 'title');
         $this->form = $this->option[0]['title'];
         $this->form2 = '';
         //        $this->form = form_model(model::class,$this->dataId);
@@ -41,10 +43,10 @@ class ShipperForm extends Component
         $this->resetErrorBag();
 
         $transaction = Transaction::find($this->dataId);
-
+        $tsa = $transaction->transactionStatus->transaction_status_type_id;
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first();
-        if ($this->sample==1){
+        if ($tsa != 14) {
             $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         }
         if ($ts != null) {
@@ -54,7 +56,7 @@ class ShipperForm extends Component
             $ts2->update([
                 'value' => $this->form2,
             ]);
-            if ($this->sample==1){
+            if ($this->sample == 1) {
                 $ts3->update([
                     'value' => 'Menunggu konfirmasi',
                 ]);
@@ -72,7 +74,7 @@ class ShipperForm extends Component
                 'value' => $this->form2,
                 'type' => 'string',
             ]);
-            if ($this->sample==1){
+            if ($tsa != 14) {
                 TransactionStatusAttachment::create([
                     'transaction_status_id' => $transaction->transaction_status_id,
                     'type' => 'string',
@@ -82,9 +84,9 @@ class ShipperForm extends Component
             }
         }
 
-        if ($this->sample==1){
+        if ($tsa != 14) {
             $this->redirect(route('transaction.sample-site'));
-        }else{
+        } else {
             $this->redirect(route('transaction.production'));
         }
 

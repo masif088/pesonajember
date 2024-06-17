@@ -38,7 +38,8 @@
                             <i class="ti ti-progress-down text-3xl text-wishka-600"></i>
                         </div>
                         <div class="text-end">
-                            <h5 class="card-title">{{ $customer->transactions->count() }}</h5>
+                            <h5 class="card-title">{{ $customer->transactions->where(function ($q){$q->where('transactionStatus.transaction_status_type_id','<>',15)->orWhere('transactionStatus.transaction_status_type_id','<>',17);})->count() }}</h5>
+{{--                            ->whereHas('transactionStatus',function ($q){$q->where('transaction_status_type_id','<>',15)->orWhere('transaction_status_type_id','<>',17);})--}}
                             <p class="font-medium">Pesanan Berjalan</p>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
                             <i class="ti ti-checklist text-3xl text-wishka-600"></i>
                         </div>
                         <div class="text-end">
-                            <h5 class="card-title">{{ $customer->transactions->count() }}</h5>
+                            <h5 class="card-title">{{ $customer->transactions->where('transactionStatus.transaction_status_type_id','=',15)->count() }}</h5>
                             <p class="font-medium">Pesanan Selesai</p>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
                             <i class="ti ti-basket-cancel text-3xl text-wishka-600"></i>
                         </div>
                         <div class="text-end">
-                            <h5 class="card-title">{{ $customer->transactions->count() }}</h5>
+                            <h5 class="card-title">{{ $customer->transactions->where('transactionStatus.transaction_status_type_id','=',17)->count() }}</h5>
                             <p class="font-medium">Pesanan Dibatalkan</p>
                         </div>
                     </div>
