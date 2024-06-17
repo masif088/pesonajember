@@ -86,6 +86,10 @@ class TransactionController extends Controller
     {
         return view('admin.transaction.production.sample-site-resi', compact('id'));
     }
+    public function sampleSiteImage($id)
+    {
+        return view('admin.transaction.production.sample-site-image', compact('id'));
+    }
 
     public function transactionChangeStatus($id, $status)
     {
