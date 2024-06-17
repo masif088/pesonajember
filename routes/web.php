@@ -18,30 +18,19 @@ use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Customer\CustomerSiteController;
 use App\Http\Controllers\FinanceController;
-use App\Models\Transaction;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('front.index');
+})->name('frontpage');
+
+Route::prefix('customer')->name('customer.')->group(function () {
+    Route::get('/{hash_id}', [CustomerSiteController::class, 'customerDashboard'])->name('customer-dashboard');
+
+    Route::get('/{hash_id}/transaction/{transaction_id}/production', [CustomerSiteController::class, 'customerTransactionProduction'])->name('customer-transaction-production');
+    Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision', [CustomerSiteController::class, 'customerTransactionMockupRevision'])->name('customer-transaction-mockup-revision');
+    Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision', [CustomerSiteController::class, 'customerTransactionSampleRevision'])->name('customer-transaction-sample-revision');
 });
-
-Route::prefix('customer')->name('customer.')->group(function (){
-    Route::get('/{hash_id}',[CustomerSiteController::class,'customerDashboard'])->name('customer-dashboard');
-
-    Route::get('/{hash_id}/transaction/{transaction_id}/production',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
-
-    Route::get('/{hash_id}/transaction/{transaction_id}/mockup',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
-    Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
-
-    Route::get('/{hash_id}/transaction/{transaction_id}/sample',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
-    Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision',[CustomerSiteController::class,'customerTransaction'])->name('customer-transaction');
-
-    Route::get('/{hash_id}/transaction/{transaction_id}/delivery',[CustomerSiteController::class,'customerTransactionDelivery'])->name('customer-transaction-delivery');
-});
-
-
 
 Route::middleware([
     'auth:sanctum',
@@ -77,6 +66,7 @@ Route::middleware([
         Route::get('', [ProductController::class, 'index'])->name('index');
         Route::get('create', [ProductController::class, 'create'])->name('create');
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
+        Route::get('show/{id}', [ProductController::class, 'show'])->name('show');
 
         Route::get('category', [ProductController::class, 'category'])->name('category');
         Route::get('category/create', [ProductController::class, 'categoryCreate'])->name('category.create');

@@ -20,6 +20,10 @@ class ProductController extends Controller
     {
         return view('admin.product.edit', compact('id'));
     }
+    public function show($id)
+    {
+        return view('admin.product.show', compact('id'));
+    }
 
     public function category()
     {

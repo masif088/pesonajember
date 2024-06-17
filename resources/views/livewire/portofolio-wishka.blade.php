@@ -14,14 +14,7 @@
     <div class="flex content-center items-center justify-center gap-2  mt-5" style="margin: 0 100px">
         <div class="grid grid-cols-12 gap-2">
             @foreach($products as $product)
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
-                <img src="{{ $product['photo_product']?asset('storage/'.$product['photo_product']):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
+                <img src="{{ $product['photo_product']?asset('storage/'.str_replace('public','',$product['photo_product'])):asset('storage/mockup/img.png') }}" alt="" class="lg:col-span-3 col-span-6">
             @endforeach
         </div>
 

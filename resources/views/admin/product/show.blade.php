@@ -6,8 +6,7 @@
 
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
-                <br>
-                <livewire:product.product-form :data-id="$id" action="update"/>
+                <livewire:product.product-detail :data-id="$id"/>
             </div>
         </div>
     </div>

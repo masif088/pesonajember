@@ -40,7 +40,9 @@ class Master extends Component
     protected $paginationTheme = 'tailwind';
 
     protected $listeners = ['deleteItem' => 'delete_item', 'delete' => 'delete',
-        'refreshTable' => 'refresh', 'reRender' => 'render',
+        'refreshTable' => 'refresh',
+        'reRender' => 'render',
+        'alert' => 'alert',
     ];
 
     public function refresh($month, $year)
@@ -65,10 +67,11 @@ class Master extends Component
         $this->data = $this->model::find($id);
         if (! $this->data) {
             $this->dispatch('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
+
             return;
         }
-//        $this->dispatch('swal:alert',['title'=>'asd']);
-        $this->dispatch('swal:confirm', data:[
+        //        $this->dispatch('swal:alert',['title'=>'asd']);
+        $this->dispatch('swal:confirm', data: [
             'icon' => 'warning',
             'title' => 'apakah anda yakin ingin menghapus data ini',
             'confirmText' => 'Hapus',
@@ -81,9 +84,17 @@ class Master extends Component
     {
 
         $this->data->delete();
-        $this->dispatch('swal:alert', data:[
+        $this->dispatch('swal:alert', data: [
             'icon' => 'success',
             'title' => 'Berhasil menghapus data',
+        ]);
+    }
+
+    public function alert($title, $icon = 'success')
+    {
+        $this->dispatch('swal:alert', data: [
+            'icon' => $icon,
+            'title' => $title,
         ]);
     }
 

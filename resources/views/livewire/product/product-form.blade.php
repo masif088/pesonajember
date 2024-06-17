@@ -1,4 +1,4 @@
-<form wire:submit.prevent="create">
+<form wire:submit.prevent="{{ $action }}">
     <div class="rounded-xl border shadow-lg p-5">
         <h2 class="text-xl">
             Tambah Produk

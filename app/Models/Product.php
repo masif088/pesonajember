@@ -45,4 +45,9 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class,'product_category_id');
     }
+
+    public function productProcesses(): HasMany
+    {
+        return $this->hasMany(ProductProcesses::class, 'product_id');
+    }
 }

@@ -36,6 +36,7 @@ class Customer extends \App\Models\Customer implements View
     public static function tableData($data = null): array
     {
         $link = route('customer.edit',$data->id);
+        $link2 = route('customer.customer-dashboard',$data->hash_id);
         return [
             ['type' => 'string','data'=>$data->uid],
             ['type' => 'raw_html', 'data' => "$data->name <br> <span class='font-sm'>$data->email</span>" ],
@@ -44,8 +45,14 @@ class Customer extends \App\Models\Customer implements View
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
                 <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' onclick='clipboard()' wire:click='alert(`link customer berhasil dicopy di clipboard`)' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-link'></i></a>
                 <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
             </div>
+            <script>
+    function clipboard() {
+        navigator.clipboard.writeText('$link2');
+    }
+</script>
             "],
         ];
     }

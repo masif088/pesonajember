@@ -84,7 +84,8 @@
                                 <b>{{ $tl['shipper_category'] }} </b><br>
                                 {{ Shipper::find($tl['shipper_id'])->title }} <br>
                             @elseif($tl['transaction_detail_type_id']==2)
-                                @php($product =Product::find($tl['product_id']) )
+
+                                @php($product =$tl->product )
                                 <b>{{ $product->title }}</b> <br>
                                 {{ $product->productCategory->title }} <br>
                                 {{ $product->note }}
@@ -189,25 +190,20 @@
                     <h5 class="card-title">
                         Detail Transaksi
                     </h5>
-{{--                    <p class="card-subtitle">--}}
-{{--                        How to Secure Recent Transactions--}}
-{{--                    </p>--}}
 
                     <div class="mt-6">
                         @foreach($transaction->transactionStatuses->sortByDesc('id') as $index=>$ts)
-                            {{--                        {{ dd($loop->count) }}--}}
+
                             <!-- Item -->
                             <div class="flex gap-x-3">
                                 <div class="w-1/4 text-end">
                                     <div class="font-bold">{{ get_date_format($ts->created_at) }}</div>
                                     <div class="">{{ $ts->created_at->format('H:i') }}</div>
                                 </div>
-                                {{--                        <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px]  ">--}}
                                 <div
                                     class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] @if($index != 0) after:bg-border dark:after:bg-darkborder @endif">
                                     <div class="relative z-10 w-7 h-7 flex justify-center items-center">
-                                        <div
-                                            class="h-3 w-3 rounded-full border-2 @if($loop->count != $index+1  ) border-success bg-transparent @else  @if($ts->transactionStatusType->title == 'Selesai') border-success bg-success @else border-warning bg-warning @endif  @endif">
+                                        <div class="h-3 w-3 rounded-full border-2 @if($loop->count != $index+1  ) border-success bg-transparent @else  @if($ts->transactionStatusType->title == 'Selesai') border-success bg-success @else border-warning bg-warning @endif  @endif">
                                         </div>
                                     </div>
                                 </div>
@@ -221,8 +217,7 @@
                                             @elseif($tsa->type == 'image')
                                                 <img src="{{ asset(str_replace('public','storage',$tsa->value)) }}" alt="" style="width: 250px">
                                             @else
-                                                @php($model = new $status->type())
-                                                {{ $model->find($status->value)->name }}
+                                                {{ $tsa->type::withTrashed()->find($tsa->value)->name??'' }}
                                             @endif
                                             <br>
                                         @endforeach

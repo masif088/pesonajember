@@ -30,7 +30,7 @@
                     data: [
                         @foreach($data[\Carbon\Carbon::now()->year] as $d)
 
-                            {{ $d-10000 }},
+                            {{ $d }},
 
                         @endforeach
                     ],
