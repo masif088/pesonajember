@@ -37,7 +37,7 @@ return new class extends Migration
                 ->restrictOnUpdate();
 
             $table->foreign('status_id')
-                ->on('transactions')
+                ->on('statuses')
                 ->references('id')
                 ->restrictOnDelete()
                 ->restrictOnUpdate();

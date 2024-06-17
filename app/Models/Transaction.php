@@ -33,7 +33,7 @@ class Transaction extends Model
 
     public function paymentModel(): BelongsTo
     {
-        return $this->belongsTo(PaymentModel::class, 'customer_id');
+        return $this->belongsTo(PaymentModel::class, 'payment_model_id');
     }
 
     public function shipper(): BelongsTo

@@ -31,7 +31,7 @@ class AccountNameForm extends Component
 
         model::create($this->form);
 
-        $this->redirect(route('bank.index'));
+        $this->redirect(route('finance.account-names'));
     }
 
     public function update()
@@ -41,7 +41,7 @@ class AccountNameForm extends Component
         $this->resetErrorBag();
 
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('bank.index'));
+        $this->redirect(route('finance.account-names'));
     }
 
     public function render()
