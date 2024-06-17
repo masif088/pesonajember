@@ -2,7 +2,6 @@
 
 namespace App\Repository\Form;
 
-use App\Models\Status;
 use App\Repository\Form;
 
 class Shipper extends \App\Models\Shipper implements Form
@@ -26,11 +25,35 @@ class Shipper extends \App\Models\Shipper implements Form
 
     public static function formField($params = null): array
     {
+        $shipper = [
+            ['value' => 'anteraja', 'title' => 'anteraja'],
+            ['value' => 'borzo', 'title' => 'borzo'],
+            ['value' => 'deliveree', 'title' => 'deliveree'],
+            ['value' => 'gojek', 'title' => 'gojek'],
+            ['value' => 'grab', 'title' => 'grab'],
+            ['value' => 'idexpress', 'title' => 'idexpress'],
+            ['value' => 'jdl', 'title' => 'jdl'],
+            ['value' => 'jne', 'title' => 'jne'],
+            ['value' => 'jnt', 'title' => 'jnt'],
+            ['value' => 'lalamove', 'title' => 'lalamove'],
+            ['value' => 'lion', 'title' => 'lion'],
+            ['value' => 'mrspeedy', 'title' => 'mrspeedy'],
+            ['value' => 'ninja', 'title' => 'ninja'],
+            ['value' => 'paxel', 'title' => 'paxel'],
+            ['value' => 'pos', 'title' => 'pos'],
+            ['value' => 'rara', 'title' => 'rara'],
+            ['value' => 'rpx', 'title' => 'rpx'],
+            ['value' => 'sap', 'title' => 'sap'],
+            ['value' => 'sicepat', 'title' => 'sicepat'],
+            ['value' => 'tiki', 'title' => 'tiki'],
+            ['value' => 'wahana', 'title' => 'wahana'],
+        ];
         $data = [
             [
                 'title' => 'Nama ekspedisi',
-                'type' => 'text',
+                'type' => 'select',
                 'model' => 'title',
+                'options' => $shipper,
                 'required' => true,
                 'class' => 'col-span-6',
             ],
