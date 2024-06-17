@@ -36,13 +36,13 @@ class MaterialMutation extends \App\Models\MaterialMutation implements View
     public static function tableData($data = null): array
     {
 
-        $material = \App\Models\Material::find($data->material_id);
+//        $material = \App\Models\Material::find($data->material_id);
         $linkStock = route('material.material-stock', $data->id);
         return [
             ['type' => 'string', 'data' => $data->created_at],
             ['type' => 'raw_html', 'data' => $data->reference . "<br> <span class='text-xs'>$data->note</span>"],
-            ['type' => 'string', 'text-align' => 'center', 'data' => ($data->amount * $data->materialMutationStatus->operation) . $material->unit],
-            ['type' => 'string', 'text-align' => 'center', 'data' => round($data->stock, 2) . $material->unit],
+            ['type' => 'string', 'text-align' => 'center', 'data' => ($data->amount * $data->materialMutationStatus->operation) . $data->material->unit??''],
+            ['type' => 'string', 'text-align' => 'center', 'data' => round($data->stock, 2) . $data->material->unit??''],
         ];
 
     }
