@@ -116,7 +116,7 @@
                         </td>
 
                         <td class="py-2 px-2 font-extralight " style="width: 150px">
-                            {{ $c->transactionStatus->transactionStatusType->title??'' }}
+                            {{ $c->transactionStatus->transactionStatusType->title??'Belum proses' }}
                         </td>
 
                         <td class="py-2 px-2 font-extralight text-center">
