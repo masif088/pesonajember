@@ -11,7 +11,10 @@ class Salary extends \App\Models\Salary implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()->whereHas('user',function (Builder $q) use ($query) {
+                $q->where('name', 'like', "%$query%");
+            });
     }
 
     public static function tableView(): array
@@ -36,7 +39,6 @@ class Salary extends \App\Models\Salary implements View
 
     public static function tableData($data = null): array
     {
-//        '', '', '', '', '', '',
         $salary =  $data->basic_salary+$data->bonus+$data->overtime+$data->transportation-$data->debt_deduction-$data->employee_cooperative_deductions;
         $link = route('salary.edit', $data->id);
         $link2 = route('salary.download', $data->id);

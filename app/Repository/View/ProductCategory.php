@@ -11,7 +11,7 @@ class ProductCategory extends \App\Models\ProductCategory implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() : static::query()->where('name', 'like', "%$query%");
     }
 
     public static function tableView(): array

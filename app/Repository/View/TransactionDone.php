@@ -23,7 +23,7 @@ class TransactionDone extends Transaction implements View
     public static function tableView(): array
     {
         return [
-            'searchable' => true,
+            'searchable' => false,
         ];
     }
 
@@ -41,15 +41,16 @@ class TransactionDone extends Transaction implements View
     public static function tableData($data = null): array
     {
 
+        $link = route('finance.transaction.payment.detail',$data->id);
         return [
             ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
             ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transactionStatus->transactionStatusType->title],
             ['type' => 'raw_html', 'data' => "
-            <span class='text-xl text-wishka-500 font-black'>
-            <i class='ti ti-eye p-1'></i>
-            </span>"],
+            <div class='flex gap-1'>
+                    <a href='$link' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+                </div>"],
         ];
     }
 }

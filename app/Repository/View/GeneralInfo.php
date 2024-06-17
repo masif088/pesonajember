@@ -13,7 +13,10 @@ class GeneralInfo extends \App\Models\GeneralInfo implements View
     {
         $query = $params['query'];
 
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()->where('key','like',"%$query%")
+                ->where('value','like',"%$query%")
+                ;
     }
 
     public static function tableView(): array

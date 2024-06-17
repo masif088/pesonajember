@@ -11,7 +11,9 @@ class Bank extends \App\Models\Bank implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() : static::query()
+            ->where('bank_name', 'like', "%$query%")
+            ->orWhere('account_in_name', 'like', "%$query%");
     }
 
     public static function tableView(): array

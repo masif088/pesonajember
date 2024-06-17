@@ -13,7 +13,15 @@ class BigCash extends \App\Models\BigCash implements View
         $query = $params['query'];
         $month = $params['param1'];
         $year = $params['param2'];
-        return empty($query) ? static::query()->whereMonth('date_transaction','=',$month)->whereYear('date_transaction','=',$year)->orderBy('date_transaction') : static::query();
+        return empty($query) ? static::query()
+            ->whereMonth('date_transaction', '=', $month)
+            ->whereYear('date_transaction', '=', $year)
+            ->orderBy('date_transaction') :
+            static::query()->whereMonth('date_transaction', '=', $month)
+                ->whereYear('date_transaction', '=', $year)
+                ->orderBy('date_transaction')->where(function (Builder $query) {
+                    $query->where('title', 'like', "%$query%");
+                });
     }
 
     public static function tableView(): array
@@ -40,16 +48,16 @@ class BigCash extends \App\Models\BigCash implements View
     public static function tableData($data = null): array
     {
         $link = route('finance.big-cash.edit', $data->id);
-        $totalDebit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('debit');
-        $totalCredit = BigCash::where('date_transaction','<=',$data->date_transaction)->sum('credit');
+        $totalDebit = BigCash::where('date_transaction', '<=', $data->date_transaction)->sum('debit');
+        $totalCredit = BigCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
 
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => Carbon::parse($data->date_transaction)->format('Y-m-d')],
             ['type' => 'string', 'data' => $data->title],
-            ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->debit)],
-            ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->credit)],
-            ['type' => 'string', 'data' => $totalDebit-$totalCredit],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($data->debit)],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($data->credit)],
+            ['type' => 'string', 'data' => $totalDebit - $totalCredit],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
                 <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>

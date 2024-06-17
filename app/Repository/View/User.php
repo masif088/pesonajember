@@ -10,7 +10,8 @@ class User extends \App\Models\User implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query();
     }
 
     public static function tableView(): array

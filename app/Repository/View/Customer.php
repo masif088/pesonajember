@@ -11,7 +11,12 @@ class Customer extends \App\Models\Customer implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()
+                ->where('name','like',"%$query%")
+                ->where('address','like',"%$query%")
+                ->where('uid','like',"%$query%")
+            ;
     }
 
     public static function tableView(): array

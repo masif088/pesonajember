@@ -28,6 +28,8 @@ Route::prefix('customer')->name('customer.')->group(function () {
     Route::get('/{hash_id}', [CustomerSiteController::class, 'customerDashboard'])->name('customer-dashboard');
 
     Route::get('/{hash_id}/transaction/{transaction_id}/production', [CustomerSiteController::class, 'customerTransactionProduction'])->name('customer-transaction-production');
+    Route::get('/{hash_id}/transaction/{transaction_id}/confirm', [CustomerSiteController::class, 'customerTransactionConfirm'])->name('customer-transaction-confirm');
+
     Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision', [CustomerSiteController::class, 'customerTransactionMockupRevision'])->name('customer-transaction-mockup-revision');
     Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision', [CustomerSiteController::class, 'customerTransactionSampleRevision'])->name('customer-transaction-sample-revision');
 });

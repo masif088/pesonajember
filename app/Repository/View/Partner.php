@@ -11,7 +11,13 @@ class Partner extends \App\Models\Partner implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()
+                ->where('name', 'like', "%$query%")
+                ->orWhere('phone', 'like', "%$query%")
+                ->orWhere('email', 'like', "%$query%")
+                ->orWhere('address', 'like', "%$query%")
+                ->orWhere('note', 'like', "%$query%");
     }
 
     public static function tableView(): array

@@ -11,7 +11,13 @@ class Shipper extends \App\Models\Shipper implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()
+                ->where('title', 'like', "%$query%")
+                ->orWhere('location', 'like', "%$query%")
+                ->orWhere('phone', 'like', "%$query%")
+                ->orWhere('note', 'like', "%$query%")
+            ;
     }
 
     public static function tableView(): array

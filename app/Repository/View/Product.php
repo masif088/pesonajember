@@ -11,7 +11,8 @@ class Product extends \App\Models\Product implements View
     {
         $query = $params['query'];
 
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() :
+            static::query()->where('title', 'like', "%$query%");
     }
 
     public static function tableView(): array

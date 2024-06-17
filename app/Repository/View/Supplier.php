@@ -11,7 +11,10 @@ class Supplier extends \App\Models\Supplier implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() : static::query()->where('title', 'like', "%$query%")
+            ->orWhere('email', 'like', "%$query%")
+            ->orWhere('phone', 'like', "%$query%")
+            ->orWhere('note', 'like', "%$query%");
     }
 
     public static function tableView(): array

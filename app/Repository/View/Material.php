@@ -11,7 +11,15 @@ class Material extends \App\Models\Material implements View
     {
         $query = $params['query'];
 
-        return empty($query) ? static::query()->orderBy('status_id') : static::query();
+        return empty($query) ? static::query()->orderBy('status_id') :
+            static::query()->orderBy('status_id')
+                ->where('title', 'like', "%$query%")
+                ->orWhere('code', 'like', "%$query%")
+                ->orWhereHas('materialCategory', function (Builder $q) use ($query) {
+                    $q->where('title', 'like', "%$query%");
+                })->orWhereHas('supplier', function (Builder $q) use ($query) {
+                    $q->where('name', 'like', "%$query%");
+                });
     }
 
     public static function tableView(): array
@@ -58,9 +66,9 @@ class Material extends \App\Models\Material implements View
             ['type' => 'string', 'data' => $data->code],
             ['type' => 'string', 'data' => $data->materialCategory ? $data->materialCategory->title : ''],
             ['type' => 'string', 'data' => $data->title],
-            ['type' => 'string', 'data' => thousand_format($data->stock).$data->unit],
-            ['type' => 'string', 'data' => 'Rp. '.thousand_format($value)],
-            ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->value)],
+            ['type' => 'string', 'data' => thousand_format($data->stock) . $data->unit],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($value)],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($data->value)],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $status],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
             <div class='text-xl flex gap-1'>

@@ -22,7 +22,7 @@ class ProductionMockup extends Transaction implements View
     public static function tableView(): array
     {
         return [
-            'searchable' => true,
+            'searchable' => false,
         ];
     }
 

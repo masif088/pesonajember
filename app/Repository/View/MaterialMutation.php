@@ -19,7 +19,7 @@ class MaterialMutation extends \App\Models\MaterialMutation implements View
     public static function tableView(): array
     {
         return [
-            'searchable' => true,
+            'searchable' => false,
         ];
     }
 

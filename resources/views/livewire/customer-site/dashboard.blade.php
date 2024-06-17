@@ -3,12 +3,15 @@
         <h2 class='text-2xl mb-3'>Selamat Datang,</h2>
         <h2 class='text-2xl'>{{ $customer->name??"User tidak diketahui" }}</h2>
     </div>
-    <div class="col-span-6 text-white mb-3">
+
+    @foreach($transactionMockups as $mockup)
+    <div class="col-span-8 text-white mb-3">
         <div class="bg-primary px-5 py-3 rounded-md lg:flex justify-between align-middle">
-            <div class="py-1">Hai kak {{ $customer->name }} ada mockup yang perlu anda setujui</div>
-            <a href="" class="px-2 py-1 rounded-md bg-success text-nowrap">Klik disini</a>
+            <div class="py-1">Hai kak {{ $customer->name }} ada mockup/sample yang perlu anda setujui (Invoice : {{$mockup->uid}}) </div>
+            <a href="{{ route('customer.customer-transaction-confirm',[$hash,$mockup->id]) }}" class="px-2 py-1 rounded-md bg-success text-nowrap">Klik disini</a>
         </div>
     </div>
+    @endforeach
     <div class="col-span-12  lg:grid grid-cols-12 gap-3  ">
 
         <div class="col-span-3 mb-3">

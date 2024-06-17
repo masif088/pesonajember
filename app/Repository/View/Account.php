@@ -11,7 +11,11 @@ class Account extends \App\Models\AccountName implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query() : static::query()
+            ->where('title','like',"%$query%")
+            ->orWhere('code','like',"%$query%")
+            ->orWhere('level','like',"%$query%")
+            ;
     }
 
     public static function tableView(): array
@@ -29,7 +33,7 @@ class Account extends \App\Models\AccountName implements View
             ['label' => 'Nama Account', 'sort' => 'title'],
             ['label' => 'level', 'sort' => 'level'],
             ['label' => 'Status', 'sort' => 'status_id'],
-            ['label' => 'Eksternal cost', 'sort' => 'status_id'],
+            ['label' => 'Eksternal cost', 'sort' => 'additional_cost'],
             ['label' => 'Tindakan'],
         ];
     }

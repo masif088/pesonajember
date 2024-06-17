@@ -15,7 +15,10 @@ class CompanyAsset extends \App\Models\CompanyAsset implements View
     {
         $query = $params['query'];
 
-        return empty($query) ? static::query() : static::query();
+        return empty($query) ? static::query():
+            static::query()->whereHas('companyAssetCategory',function (Builder $q) use ($query) {
+                $q->where('title','like',"%$query%");
+            })->orWhere('title','like',"%$query%");
     }
 
     public static function tableView(): array
@@ -32,7 +35,6 @@ class CompanyAsset extends \App\Models\CompanyAsset implements View
             ['label' => '#', 'sort' => 'id', 'width' => '7%'],
             ['label' => 'Krteria Asset'],
             ['label' => 'Jenis Asset'],
-
             ['label' => 'Masa Manfaat'],
             ['label' => 'Tahun Perolehan'],
             ['label' => 'Nilai Perolehan'],

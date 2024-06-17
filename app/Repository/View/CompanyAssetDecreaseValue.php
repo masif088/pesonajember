@@ -22,7 +22,7 @@ class CompanyAssetDecreaseValue extends \App\Models\CompanyAssetDecreaseValue im
     public static function tableView(): array
     {
         return [
-            'searchable' => true,
+            'searchable' => false,
         ];
     }
 
