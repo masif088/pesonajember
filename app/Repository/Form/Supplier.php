@@ -13,8 +13,8 @@ class Supplier extends \App\Models\Supplier implements Form
 
         return [
             'form.title' => 'required|max:255',
-            'form.name' => 'required|max:255',
             'form.supplier_category_id' => 'required',
+            'form.name' => 'nullable|max:255',
             'form.email' => 'nullable',
             'form.phone' => 'nullable',
             'form.note' => 'nullable',
@@ -43,11 +43,11 @@ class Supplier extends \App\Models\Supplier implements Form
                 'title' => 'PIC',
                 'type' => 'text',
                 'model' => 'name',
-                'required' => true,
+                'required' => false,
                 'class' => 'col-span-6',
             ],
             [
-                'title' => 'Email',
+                'title' => 'Link',
                 'type' => 'text',
                 'model' => 'email',
                 'required' => false,

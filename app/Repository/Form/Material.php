@@ -37,6 +37,7 @@ class Material extends \App\Models\Material implements Form
         $status = eloquent_to_options(Status::get());
         $supplier = eloquent_to_options(Supplier::get());
         $category = eloquent_to_options(MaterialCategory::get());
+
         if ($params == 'create') {
             return [
                 [
@@ -59,6 +60,7 @@ class Material extends \App\Models\Material implements Form
                     'model' => 'stock',
                     'required' => true,
                     'class' => 'col-span-6',
+                    'live'=>true,
                 ],
                 [
                     'title' => 'Batas ambang bawah Stock',
@@ -76,11 +78,12 @@ class Material extends \App\Models\Material implements Form
                     'placeholder' => 'satuan penggunaan dalam produksi',
                 ],
                 [
-                    'title' => 'Nilai Material',
+                    'title' => 'Harga beli keseluruhan',
                     'type' => 'number',
                     'model' => 'value',
                     'required' => true,
                     'class' => 'col-span-6',
+                    'live'=>true,
                 ],
                 [
                     'title' => 'Supplier',

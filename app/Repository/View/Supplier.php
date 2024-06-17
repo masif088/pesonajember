@@ -28,7 +28,7 @@ class Supplier extends \App\Models\Supplier implements View
             ['label' => 'Kategori', 'sort' => 'supplier_category_id'],
             ['label' => 'Supplier', 'sort' => 'title'],
             ['label' => 'No HP', 'sort' => 'phone'],
-            ['label' => 'Email', 'sort' => 'email'],
+            ['label' => 'Link', 'sort' => 'email'],
             ['label' => 'Tindakan'],
         ];
     }

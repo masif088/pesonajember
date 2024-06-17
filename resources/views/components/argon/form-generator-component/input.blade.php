@@ -27,7 +27,11 @@
         @isset($repository['step']) step="{{ $repository['step'] }}" @else step="any" @endisset
         @isset($repository['accept']) accept="{{ $repository['accept'] }}" @endisset
 
-        wire:model="{{'form.'.$repository['model']}}"
+        @isset($repository['live'])
+        wire:model.live="{{'form.'.$repository['model']}}"
+        @else
+            wire:model="{{'form.'.$repository['model']}}"
+        @endisset
         name="{{ $repository['model'] }}"
         class=" input bg-gray-200 pc appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4  leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
     >

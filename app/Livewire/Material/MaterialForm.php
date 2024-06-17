@@ -12,7 +12,8 @@ class MaterialForm extends Component
     public $dataId;
     public function mount ()
     {
-        $this->form=form_model(model::class,$this->dataId,'update');
+        $this->form=form_model(model::class,$this->dataId,$this->action);
+
     }
     public function getRules()
     {
