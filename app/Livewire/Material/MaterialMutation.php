@@ -11,10 +11,17 @@ use Livewire\Component;
 class MaterialMutation extends Component
 {
     public $dataId;
+
     public $date;
+
     public $note;
-    public $mutation_status=1;
+
+    public $value;
+
+    public $mutation_status = 1;
+
     public $amount;
+
     public $optionMutationStatus;
 
     public function mount()
@@ -29,7 +36,7 @@ class MaterialMutation extends Component
                 $operator = '-';
             }
             $this->optionMutationStatus[] = [
-                'value' => $item->id, 'title' => $item->title . " ($operator)"
+                'value' => $item->id, 'title' => $item->title." ($operator)",
             ];
         }
     }
@@ -39,27 +46,33 @@ class MaterialMutation extends Component
 
         $material = Material::find($this->dataId);
         $operator = MaterialMutationStatus::find($this->mutation_status);
-//dd()
         $lastStock = $material->stock + ($operator->operation * $this->amount);
-//        dd(($material->value / $material->stock)*$lastStock);
-//dd($material->value + ($lastStock * ()),$lastStock);
         if ($material != null) {
-            $material->update([
-                'stock' => $lastStock,
-                'value' => $material->value + (($operator->operation * $this->amount) * ($material->value / $material->stock)),
-            ]);
+            if ($this->mutation_status==2){
+                $material->update([
+                    'stock' => $lastStock,
+                    'value' => $material->value + $this->value,
+                ]);
+            }else{
+                $material->update([
+                    'stock' => $lastStock,
+                    'value' => $material->value + (($operator->operation * $this->amount) * ($material->value / $material->stock)),
+                ]);
+            }
+
         }
 
         model::create([
             'material_id' => $this->dataId,
             'material_mutation_status_id' => $this->mutation_status,
-            'reference' => $operator->title ." pada tanggal ".$this->date ,
+            'reference' => $operator->title.' pada tanggal '.$this->date,
             'note' => $this->note,
             'amount' => $this->amount,
+            'value' => $this->value ?? null,
             'stock' => $lastStock,
         ]);
 
-        $this->redirect(route('material.material-stock',$this->dataId));
+        $this->redirect(route('material.material-stock', $this->dataId));
     }
 
     public function render()

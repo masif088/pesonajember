@@ -26,7 +26,7 @@
 
     <div class="col-span-10 mb-2 flex">
         <span style="width: 5%; align-items: center" class="flex text-center">:</span>
-        <select style="width: 30%;" wire:model="mutation_status"
+        <select style="width: 30%;" wire:model.live="mutation_status"
                 class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
             @foreach($optionMutationStatus as $option)
                 <option value="{{ $option['value'] }}">{{ $option['title'] }}</option>
@@ -38,6 +38,18 @@
         <input type="text" style="width: 63%;" wire:model="amount"
                class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
     </div>
+    @if($mutation_status==2)
+        <div class="col-span-2 flex mb-2" style="align-items: center;">
+            Harga
+        </div>
+
+        <div class="col-span-10 mb-2 flex">
+            <span style="width: 5%; align-items: center" class="flex text-center">:</span>
+            <input type="text" style="width: 95%;" wire:model="value"
+                   class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white"
+                   required>
+        </div>
+    @endif
     <div class="col-span-9"></div>
     <button class="btn bg-wishka-600 col-span-3 float-right mt-4">Tambah Material</button>
 </form>
