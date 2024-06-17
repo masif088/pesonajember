@@ -28,8 +28,8 @@ class Material extends \App\Models\Material implements View
             ['label' => 'jenis', 'sort' => 'material_category_id'],
             ['label' => 'Nama', 'sort' => 'title'],
             ['label' => 'Stock', 'sort' => 'stock'],
-            ['label' => '∑Harga'],
-            ['label' => 'Nilai Material', 'sort' => 'value'],
+            ['label' => 'Harga Satuan'],
+            ['label' => 'Harga beli keseluruhan', 'sort' => 'value'],
             ['label' => 'Status', 'text-align' => 'center'],
             ['label' => 'Tindakan', 'text-align' => 'center'],
         ];
