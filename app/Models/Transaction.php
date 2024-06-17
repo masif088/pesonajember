@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Transaction extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $fillable = ['uid', 'customer_id', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id'];
