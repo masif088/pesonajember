@@ -20,7 +20,7 @@ class Dashboard extends Component
         }
 
         foreach ($this->customer->transactions as $transaction){
-           $tsa = $transaction->transactionStatus->transactionStatusAttachments->where('value','=','Menunggu konfirmasi')->first();
+           $tsa = $transaction->transactionStatus->transactionStatusAttachments->where('value','=','Menunggu konfirmasi')->first()??null;
            if ($tsa!=null){
 
                $this->transactionMockups[] = $transaction;
