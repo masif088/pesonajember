@@ -11,6 +11,7 @@ use Livewire\Component;
 class PicForm extends Component
 {
     public $form;
+    public $redirect;
 
     public $action;
 
@@ -61,7 +62,19 @@ class PicForm extends Component
             ]);
         }
 
-        $this->redirect(route('transaction.production'));
+        $tsId = $transaction->transactionStatus->transaction_status_type_id;
+        switch ($tsId){
+            case 14:
+                $this->redirect(route('transaction.index','Pengiriman'));
+                break;
+            case 14:
+                $this->redirect(route('transaction.index','Pengiriman'));
+                break;
+            default:
+                $this->redirect(route('transaction.production'));
+        }
+
+
     }
 
     //    public function update()

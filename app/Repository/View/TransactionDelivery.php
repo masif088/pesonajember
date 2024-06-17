@@ -56,6 +56,7 @@ class TransactionDelivery extends Transaction implements View
         $status = "Menunggu dikirim";
         $shipper = $data->transactionStatuses->where('transaction_status_type_id',14)->first();
         if ($shipper!=null){
+
             if ($shipper->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first()!=null){
                 $shipperResi=$shipper->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first()->value??'';
                 $shipper=$shipper->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first()->value??'';
@@ -79,9 +80,12 @@ class TransactionDelivery extends Transaction implements View
 //            $weight = "$shipperWeight->value ($shipper->value)";
 //        }
 
-        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-        $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first()->value;
+        if ($pic==null){
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
+
 
 
         $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
