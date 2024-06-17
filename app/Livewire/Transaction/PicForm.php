@@ -21,23 +21,26 @@ class PicForm extends Component
     {
         $transaction = Transaction::find($this->dataId);
         $this->optionUser = eloquent_to_options(User::orderBy('name')->get(),'id','name');
+
+//        dd($this->form);
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
             $this->form = $ts->value;
         } else {
-            $this->form = '';
+            $this->form = $this->optionUser[0]['value'];
         }
     }
 
     public function getRules()
     {
         return [
-            'form' => 'required|max:255',
+            'form' => 'required',
         ];
     }
 
     public function create()
     {
+
 
         $this->validate();
         $this->resetErrorBag();
