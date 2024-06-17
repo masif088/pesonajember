@@ -97,7 +97,7 @@
                                     <b>{{ $tl['shipper_category'] }} </b><br>
                                     {{ \App\Models\Shipper::find($tl['shipper_id'])->title }} <br>
                                 @elseif($tl['transaction_detail_type_id']==2)
-                                    @php($product =Product::find($tl['product_id']) )
+                                    @php($product =$tl->product )
                                     <b>{{ $product->title }}</b> <br>
                                     {{ $product->productCategory->title }} <br>
                                     {{ $product->note }}
