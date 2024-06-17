@@ -14,6 +14,7 @@ class MockupForm extends Component
     public $dataId;
 
     public $mockup;
+    public $sample;
     public $process;
 
     public function mount()
@@ -36,7 +37,7 @@ class MockupForm extends Component
         $transaction = Transaction::find($this->dataId);
 
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'photo mockup')->first();
-        $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status mockup')->first();
+        $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
         if ($ts != null) {
             $ts->update([
@@ -58,7 +59,7 @@ class MockupForm extends Component
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'type' => 'string',
-                'key' => 'status mockup',
+                'key' => 'status',
                 'value' => 'Menunggu konfirmasi',
             ]);
             TransactionStatusAttachment::create([
@@ -69,7 +70,12 @@ class MockupForm extends Component
             ]);
 
         }
-        $this->redirect(route('transaction.mockup-site'));
+        if ($this->sample==1){
+            $this->redirect(route('transaction.sample-site'));
+        }else{
+
+            $this->redirect(route('transaction.mockup-site'));
+        }
 
     }
 

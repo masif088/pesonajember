@@ -15,6 +15,7 @@ class ShipperForm extends Component
     public $action;
 
     public $dataId;
+    public $sample;
 
     public $option;
 
@@ -43,6 +44,9 @@ class ShipperForm extends Component
 
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first();
+        if ($this->sample==1){
+            $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
+        }
         if ($ts != null) {
             $ts->update([
                 'value' => $this->form,
@@ -50,6 +54,11 @@ class ShipperForm extends Component
             $ts2->update([
                 'value' => $this->form2,
             ]);
+            if ($this->sample==1){
+                $ts3->update([
+                    'value' => 'Menunggu konfirmasi',
+                ]);
+            }
         } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
@@ -63,9 +72,22 @@ class ShipperForm extends Component
                 'value' => $this->form2,
                 'type' => 'string',
             ]);
+            if ($this->sample==1){
+                TransactionStatusAttachment::create([
+                    'transaction_status_id' => $transaction->transaction_status_id,
+                    'type' => 'string',
+                    'key' => 'status',
+                    'value' => 'Menunggu konfirmasi',
+                ]);
+            }
         }
 
-        $this->redirect(route('transaction.production'));
+        if ($this->sample==1){
+            $this->redirect(route('transaction.sample-site'));
+        }else{
+            $this->redirect(route('transaction.production'));
+        }
+
     }
 
     //    public function update()

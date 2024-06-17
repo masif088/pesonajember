@@ -43,11 +43,11 @@ class ProductionMockup extends Transaction implements View
     {
 
         $p2 = '';
-        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status mockup')->first();
+        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
 
         $class = 'px-2 py-1 rounded-lg';
-        $process = 'Telah terkirim';
+        $process = 'Telah disetujui';
         $link = route('transaction.mockup-site-edit', $data->id);
         $link3 = route('finance.transaction.payment.detail', $data->id);
         $edit = '';

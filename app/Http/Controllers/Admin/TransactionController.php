@@ -69,7 +69,7 @@ class TransactionController extends Controller
     }
     public function shipperEdit($id)
     {
-        return view('admin.transaction.shipper-edit', compact('id'));
+        return view('admin.transaction.production.sample-site-resi', compact('id'));
     }
 
     public function patternSite()
@@ -89,6 +89,12 @@ class TransactionController extends Controller
     public function sampleSiteImage($id)
     {
         return view('admin.transaction.production.sample-site-image', compact('id'));
+    }
+    public function sampleSiteImageDownload($id)
+    {
+        $transactionStatus = TransactionStatus::find($id);
+        $file = $transactionStatus->transactionStatusAttachments->where('key','photo mockup')->first();
+        return response()->download(storage_path('/app/'. $file->value));
     }
 
     public function transactionChangeStatus($id, $status)

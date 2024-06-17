@@ -151,6 +151,7 @@ Route::middleware([
         Route::get('sample-site', [TransactionController::class, 'sampleSite'])->name('sample-site');
         Route::get('sample-site/resi/{id}', [TransactionController::class, 'sampleSiteResi'])->name('sample-site.resi');
         Route::get('sample-site/image/{id}', [TransactionController::class, 'sampleSiteImage'])->name('sample-site.image');
+        Route::get('sample-site/image/{id}/download', [TransactionController::class, 'sampleSiteImageDownload'])->name('sample-site.image.download');
 
         Route::get('/production', function () {
             return redirect(\route('transaction.production.tab', 'Potong'));

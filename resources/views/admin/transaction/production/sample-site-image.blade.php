@@ -7,7 +7,7 @@
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
                 <br>
-                <livewire:transaction.mockup-form :data-id="$id"/>
+                <livewire:transaction.mockup-form :data-id="$id" sample="1"/>
             </div>
         </div>
     </div>

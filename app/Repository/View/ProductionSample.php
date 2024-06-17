@@ -48,10 +48,17 @@ class ProductionSample extends Transaction implements View
     public static function tableData($data = null): array
     {
         $progress='';
-
+        $download='';
 //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'no resi')->first();
-        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status mockup')->first();
-        $process ='Telah disetujui';
+        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
+        $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'photo mockup')->first();
+        $process ='Sample telah dikirim';
+        if ($d2!=null){
+            $link3 = route('transaction.sample-site.image.download',$data->transactionStatus->id);
+
+            $process ='Sample telah diajukan';
+            $download="<a href='$link3' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
+        }
         if ($d==null){
             $tag = 'Belum Input';
             $link = route('transaction.shipper-edit',$data->id);
@@ -78,6 +85,7 @@ class ProductionSample extends Transaction implements View
 ";
         }
         if ($tag=="Disetujui"){
+            $process ='Telah disetujui';
             $class .= " bg-wishka-200 text-wishka-400";
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
@@ -99,6 +107,8 @@ class ProductionSample extends Transaction implements View
 
 
 
+
+
 $link4= route('finance.transaction.payment.detail',$data->id);
 
 
@@ -113,6 +123,9 @@ $link4= route('finance.transaction.payment.detail',$data->id);
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
             <div class='text-xl flex gap-1'>
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
+            $download
+
+
             </div>"],
         ];
     }
