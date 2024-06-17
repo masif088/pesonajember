@@ -49,7 +49,7 @@ class TransactionDelivery extends Transaction implements View
         $weight ='';
         $shipperWeight = $data->transactionStatuses->where('transaction_status_type_id', 11)->first();
         if ($shipperWeight != null) {
-            $weight = $shipperWeight->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first()->value;
+            $weight = $shipperWeight->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first()->value??'';
         }
 //        dd($shipperWeight);
 //
