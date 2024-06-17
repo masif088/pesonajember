@@ -56,7 +56,7 @@ class ShipperForm extends Component
             $ts2->update([
                 'value' => $this->form2,
             ]);
-            if ($this->sample == 1) {
+            if ($tsa != 14) {
                 $ts3->update([
                     'value' => 'Menunggu konfirmasi',
                 ]);
