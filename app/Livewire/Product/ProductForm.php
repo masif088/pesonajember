@@ -50,7 +50,7 @@ class ProductForm extends Component
 
     public $material;
 
-    public $tagsSelected;
+    public $tagsSelected=[];
 
     public function mount()
     {
