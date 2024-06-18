@@ -85,7 +85,7 @@ $shipper ($weight) -  $shipperResi  <br>
         //            $weight = "$shipperWeight->value ($shipper->value)";
         //        }
 
-        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first()->value;
+        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first()->value??'';
         if ($pic == null) {
             $link3 = route('transaction.pic-edit', $data->id);
             $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
