@@ -2,9 +2,13 @@
 
     <x-argon.form-generator repositories="Material" action="{{ $action }}"/>
     @if($action=="create")
-        <div class="col-span-3">
-            Harga Satuan
-{{--            {{ $form['value']/$form['stock']??'-' }}--}}
+        <div class="col-span-12">
+            <br>
+            Harga beli keseluruhan :
+
+                Rp. {{ thousand_format($form['valueUnit']*$form['stock']) }}
+
+
         </div>
     @endif
     <div class="col-span-9"></div>

@@ -25,6 +25,7 @@ class MaterialForm extends Component
 //        dd($this->form);
         $this->validate();
         $this->resetErrorBag();
+        $this->form['value']=$this->form['stock']*$this->form['valueUnit'];
         model::create($this->form);
         $this->redirect(route('material.index'));
     }

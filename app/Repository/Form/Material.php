@@ -55,7 +55,7 @@ class Material extends \App\Models\Material implements Form
                     'class' => 'col-span-6',
                 ],
                 [
-                    'title' => 'Stock',
+                    'title' => 'Stock/Jumlah pembelian awal',
                     'type' => 'number',
                     'model' => 'stock',
                     'required' => true,
@@ -78,9 +78,9 @@ class Material extends \App\Models\Material implements Form
                     'placeholder' => 'satuan penggunaan dalam produksi',
                 ],
                 [
-                    'title' => 'Harga beli keseluruhan',
+                    'title' => 'Harga Satuan',
                     'type' => 'number',
-                    'model' => 'value',
+                    'model' => 'valueUnit',
                     'required' => true,
                     'class' => 'col-span-6',
                     'live'=>true,
