@@ -5,7 +5,9 @@
     @endif
     @if(Carbon::now()->format('H:i') < "16:00" and $statusEntrance==1)
         <div class="bg-secondary p-4 py-2 rounded-md text-white w-fit">Anda telah melakukan presensi
-            pada {{ Carbon::parse(($check->entrance_attendance_by_web))->format('H:i') }}</div>
+            pada
+{{--            {{ Carbon::parse(($check->entrance_attendance_by_web))->format('H:i') }}--}}
+        </div>
     @endif
 
     @if(Carbon::now()->format('H:i') > "10:00" and $statusEntrance==0)
@@ -19,7 +21,9 @@
     @endif
     @if(Carbon::now()->format('H:i') > "16:00" and $statusDischarge==0)
         <div class="bg-secondary p-4 py-2 rounded-md text-white w-fit">Anda telah melakukan presensi pulang
-            pada {{ Carbon::parse(($check->entrance_attendance_by_web))->format('H:i') }}</div>
+            pada
+{{--            {{ Carbon::parse(($check->entrance_attendance_by_web))->format('H:i') }}--}}
+        </div>
     @endif
 
 </div>
