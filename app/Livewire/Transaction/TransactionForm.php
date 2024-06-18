@@ -99,7 +99,7 @@ class TransactionForm extends Component
                     'amount' => $tl['amount'],
                     'price' => $tl['price'],
                     'transaction_id' => $transaction->id,
-                    'transaction_list_id' => null,
+
                     'status_id' => 1,
                 ]);
                 $total += ($tl['price']);
@@ -112,7 +112,7 @@ class TransactionForm extends Component
                     'amount' => $tl['amount'],
                     'price' => $tl['price'],
                     'transaction_id' => $transaction->id,
-                    'transaction_list_id' => null,
+
                     'status_id' => 1,
                 ]);
                 $total += ($tl['price'] * $tl['amount']);
