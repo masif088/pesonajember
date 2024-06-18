@@ -56,7 +56,7 @@ class User extends \App\Models\User implements Form
             [
                 'title' => 'Nomor Induk Pegawai',
                 'type' => 'text',
-                'model' => 'name',
+                'model' => 'nip',
                 'required' => true,
                 'class' => 'col-span-6',
             ],
