@@ -6,7 +6,9 @@
             <br>
             Harga beli keseluruhan :
 
+            @if( is_int($form['valueUnit']) and is_int($form['stock']))
                 Rp. {{ thousand_format($form['valueUnit']*$form['stock']) }}
+            @endif
 
 
         </div>
