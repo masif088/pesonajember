@@ -40,7 +40,7 @@
     </div>
     @if($mutation_status==2)
         <div class="col-span-2 flex mb-2" style="align-items: center;">
-            Harga
+            Harga satuan
         </div>
 
         <div class="col-span-10 mb-2 flex">

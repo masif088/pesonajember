@@ -51,7 +51,7 @@ class MaterialMutation extends Component
             if ($this->mutation_status==2){
                 $material->update([
                     'stock' => $lastStock,
-                    'value' => $material->value + $this->value,
+                    'value' => $material->value + ($this->value*$this->amount),
                 ]);
             }else{
                 $material->update([
