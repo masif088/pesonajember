@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\CompanyAssetController;
+use App\Http\Controllers\Admin\CooperativeController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\GeneralInfoController;
@@ -89,6 +90,18 @@ Route::middleware([
         Route::get('', [BankController::class, 'index'])->name('index');
         Route::get('create', [BankController::class, 'create'])->name('create');
         Route::get('edit/{id}', [BankController::class, 'edit'])->name('edit');
+    });
+
+    Route::prefix('cooperative')->name('cooperative.')->group(function () {
+        Route::get('', [CooperativeController::class, 'index'])->name('index');
+        Route::get('create', [CooperativeController::class, 'create'])->name('create');
+        Route::get('edit/{id}', [CooperativeController::class, 'edit'])->name('edit');
+
+        Route::get('credit-employee', [CooperativeController::class, 'creditEmployee'])->name('credit-employee');
+        Route::get('credit-employee/create', [CooperativeController::class, 'creditEmployeeCreate'])->name('credit-employee-create');
+        Route::get('credit-employee/edit/{id}', [CooperativeController::class, 'creditEmployeeEdit'])->name('credit-employee-edit');
+
+        Route::get('credit-employee/detail/{user}', [CooperativeController::class, 'creditEmployeeDetail'])->name('credit-employee-detail');
     });
 
     Route::prefix('company-asset')->name('company-asset.')->group(function () {
