@@ -27,9 +27,9 @@ class AttendanceController extends Controller
     {
         return view('admin.attendance.create-attendance',compact('id'));
     }
-    public function editAttendance($id)
+    public function editAttendance($id,$attendanceId)
     {
-        return view('admin.attendance.edit-attendance',compact('id'));
+        return view('admin.attendance.edit-attendance',compact('id','attendanceId'));
     }
     public function userAttendance($user)
     {

@@ -9,6 +9,7 @@
                 <td class="py-2 px-2" rowspan="2">NIP</td>
                 <td class="py-2 px-2" rowspan="2">NAMA</td>
                 <td class="py-2 px-2" rowspan="2">Bagian</td>
+                <td class="py-2 px-2" rowspan="2">Kehadiran</td>
                 <td class="py-2 px-2" colspan="2">Berangkat</td>
                 <td class="py-2 px-2" colspan="2">Pulang</td>
                 <td class="py-2 px-2" rowspan="2">Tindakan</td>
@@ -26,12 +27,9 @@
                     <td>
                         {{ $attendance->user->nip }}
                     </td>
-                    <td>
-                        {{ $attendance->user->name }}
-                    </td>
-                    <td>
-                        {{ $attendance->user->position }}
-                    </td>
+                    <td>{{ $attendance->user->name }}</td>
+                    <td>{{ $attendance->user->position }}</td>
+                    <td>{{ $attendance->status->title }}</td>
                     <td>
                         @if($attendance->entrance_attendance_by_web)
                             @if(Carbon::parse(($attendance->entrance_attendance_by_web))->format('H:i')>(\App\Models\GeneralInfo::where('key','=','jam_masuk')->first()->value??'08:00'))

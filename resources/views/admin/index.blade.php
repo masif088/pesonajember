@@ -7,9 +7,11 @@
 
         <div class="grid grid-cols-12 gap-3" style="padding-bottom: 50px">
 
+            <br>
             <div class="col-span-12 ">
-{{--            <livewire:transaction.transaction-detail data-id="1" />--}}
+            <livewire:attendance.dashboard-attendance />
             </div>
+            <br>
 {{--            <br>--}}
             <div class="col-span-12 ">
                 <livewire:dashboard.dashboard-card/>

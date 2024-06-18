@@ -31,7 +31,7 @@ class AttendanceMaster extends \App\Models\AttendanceMaster implements View
             ['label' => 'Tanggal', ],
             ['label' => 'Masuk', 'text-align'=>'center'],
             ['label' => 'Terlambat', 'text-align'=>'center'],
-            ['label' => 'masuk', 'text-align'=>'center'],
+            ['label' => 'Absen', 'text-align'=>'center'],
             ['label' => 'Tindakan'],
         ];
     }
@@ -44,7 +44,7 @@ class AttendanceMaster extends \App\Models\AttendanceMaster implements View
             ['type' => 'string', 'data' => $data->attendance_date],
             ['type' => 'string', 'text-align'=>'center','data' => $data->attendances->where('attendance_status_id',1)->count()+$data->attendances->where('attendance_status_id',6)->count()],
             ['type' => 'string', 'text-align'=>'center', 'data' => $data->attendances->where('attendance_status_id',6)->count()],
-            ['type' => 'string',  'text-align'=>'center','data' => $data->attendances->whereIn('attendance_status_id',[2,3,4,5])->count()],
+            ['type' => 'string',  'text-align'=>'center','data' => $data->attendances->where('attendance_status_id',7)->count()],
 
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
