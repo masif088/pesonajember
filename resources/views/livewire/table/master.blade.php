@@ -3,7 +3,7 @@
         <div class="col-span-12 lg:col-span-2 items-stretch">
             <span>
             Per Page: &nbsp;
-            <select wire:model="perPage" id="perPage"
+            <select wire:model.live="perPage" id="perPage"
                     class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full px-4 py-2 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white"
                     style="" onchange="onChange()">
                 <option value="10">10</option>
@@ -23,7 +23,7 @@
             <div class="col-span-12 lg:col-span-4 items-stretch">
                 <span class="w-full">
                     Pencarian
-                    <input wire:model="search"
+                    <input wire:model.live="search"
                            class="text-dark bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white"
                            type="text" placeholder="Pencarian...">
                 </span>
