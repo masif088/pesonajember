@@ -65,7 +65,7 @@ class WeightForm extends Component
             ]);
         }
 
-        $this->redirect(route('transaction.production'));
+        $this->redirect(route('transaction.production.tab','Packing'));
     }
 
     //    public function update()

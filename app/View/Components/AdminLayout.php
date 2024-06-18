@@ -45,7 +45,8 @@ class AdminLayout extends Component
 
         ];
 
-        $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count FROM `transactions` JOIN transaction_statuses ON transaction_statuses.id = transactions.transaction_status_id where transactions.deleted_at=null group by transaction_statuses.transaction_status_type_id';
+        $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count FROM `transactions` JOIN transaction_statuses ON transaction_statuses.id = transactions.transaction_status_id where transactions.deleted_at is NULL group by transaction_statuses.transaction_status_type_id';
+
         $order = DB::select($query);
         $count = [];
         $count['production'] = 0;

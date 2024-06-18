@@ -42,6 +42,7 @@ class TransactionRepayment extends Transaction implements View
     {
         $status = $data->transactionStatus->transactionStatusType->title;
         $statusChange = $data->transactionStatus->transaction_status_type_id+1;
+        $link4 = route('finance.transaction.payment.detail', $data->id);
         $icon = 'ti ti-check';
         if ($statusChange==14){
             $icon= 'ti ti-truck-delivery';
@@ -53,7 +54,7 @@ class TransactionRepayment extends Transaction implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $status],
             ['type' => 'raw_html', 'data' => "
             <span class='text-xl text-wishka-500 font-black'>
-            <i class='ti ti-eye p-1'></i>
+            <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
             <a href='#' wire:click='changeProduction($data->id,$statusChange)' class='p-1'><i class='$icon'></i></a>
 
 </span>

@@ -6,8 +6,8 @@
 
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
-                <br><br>
-                <a href="{{ route('attendance.create') }}" class="btn bg-wishka-600">Tambah Tanggal Kehadiran</a>
+{{--                <br><br>--}}
+{{--                <a href="{{ route('attendance.create') }}" class="btn bg-wishka-600">Tambah Tanggal Kehadiran</a>--}}
                 <br><br>
                 <livewire:attendance.attendance-show :attendance-id="$id"/>
             </div>
