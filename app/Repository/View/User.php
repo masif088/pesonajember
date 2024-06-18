@@ -45,7 +45,7 @@ class User extends \App\Models\User implements View
 
         $linkEdit = route('employee.edit',$data->id);
         return [
-            ['type' => 'index'],
+            ['type' => 'string', 'data' => $data->nip],
             ['type' => 'string', 'data' => $data->name],
             ['type' => 'string', 'data' => $data->email],
             ['type' => 'string', 'data' => $role],

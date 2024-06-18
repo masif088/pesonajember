@@ -7,7 +7,7 @@ use App\Repository\Form;
 
 class AttendanceMaster extends \App\Models\AttendanceMaster implements Form
 {
-    protected $table = 'banks';
+
 
     public static function formRules(): array
     {
@@ -43,7 +43,7 @@ class AttendanceMaster extends \App\Models\AttendanceMaster implements Form
             [
                 'title' => 'Status',
                 'type' => 'select',
-                'model' => 'status_id',
+                'model' => 'status',
                 'options' => $status,
                 'required' => true,
                 'class' => 'col-span-12',

@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="title">
-        Kehadiran
+        Kehadiran {{ \App\Models\AttendanceMaster::find($id)->attendance_date }}
     </x-slot>
     <div class="">
 
@@ -9,7 +9,7 @@
                 <br><br>
                 <a href="{{ route('attendance.create') }}" class="btn bg-wishka-600">Tambah Tanggal Kehadiran</a>
                 <br><br>
-                <livewire:table.master name="AttendanceMaster"/>
+                <livewire:attendance.attendance-show :attendance-id="$id"/>
             </div>
         </div>
     </div>

@@ -25,13 +25,14 @@ class AttendanceMaster extends Component
 
     public function create()
     {
+//        dd($this->form);
 
         $this->validate();
         $this->resetErrorBag();
 
         model::create($this->form);
 
-        $this->redirect(route('bank.index'));
+        $this->redirect(route('attendance.index'));
     }
 
     public function update()
@@ -41,7 +42,7 @@ class AttendanceMaster extends Component
         $this->resetErrorBag();
 
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('bank.index'));
+        $this->redirect(route('attendance.index'));
     }
     public function render()
     {

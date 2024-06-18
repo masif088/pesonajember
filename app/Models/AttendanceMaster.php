@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property int id
  * @property string attendance_date
@@ -17,4 +19,10 @@ class AttendanceMaster extends Model
 //$table->string('status');
     use HasFactory;
     protected $fillable=['attendance_date', 'status'];
+
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class,'master_id');
+    }
+
 }

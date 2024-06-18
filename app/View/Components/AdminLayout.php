@@ -177,6 +177,7 @@ class AdminLayout extends Component
                 'title' => 'Karyawan Info',
                 'lists' => [
                     ['title' => 'List Karyawan', 'type' => 'link', 'route' => route('employee.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
+                    ['title' => 'Kehadiran', 'type' => 'link', 'route' => route('attendance.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
                     //                    ['title' => 'Ekspedisi barang', 'type' => 'link', 'route' => route('shipper.index'), 'icon' => '<i class="ti ti-truck-delivery  text-xl flex-shrink-0"></i> '],
                     //                    ['title' => 'Bank', 'type' => 'link', 'route' => route('bank.index'), 'icon' => '<i class="ti ti-building-bank  text-xl flex-shrink-0"></i> '],
                     //

@@ -15,10 +15,12 @@ class User extends \App\Models\User implements Form
     {
         return [
             "form.name" => 'required',
+            "form.nip" => 'required',
             'form.email' => 'required|email',
 //            'form.no_phone' => 'required',
             'form.role' => 'required',
             'form.password' => 'required',
+            'form.position' => 'required',
 //            'form.address' => 'required',
         ];
     }
@@ -32,24 +34,31 @@ class User extends \App\Models\User implements Form
     public static function formField($params = null): array
     {
 //        if (auth()->user()->role==1){
-            $role=[
-                ['value' => 1, 'title' => 'Admin'],
-                ['value' => 2, 'title' => 'Pegawai'],
+        $role = [
+            ['value' => 1, 'title' => 'Admin'],
+            ['value' => 2, 'title' => 'Pegawai'],
 //                ['value' => 3, 'title' => 'Pengguna'],
-            ];
+        ];
 //        }else{
 //            $role=[
 //                ['value' => 3, 'title' => 'Pengguna'],
 //            ];
 //        }
 //        $active=eloquent_to_options(UserStatus::get());
-        $data=[
+        $data = [
             [
                 'title' => 'Nama Lengkap',
                 'type' => 'text',
                 'model' => 'name',
                 'required' => true,
-                'class' => 'col-span-12',
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'Nomor Induk Pegawai',
+                'type' => 'text',
+                'model' => 'name',
+                'required' => true,
+                'class' => 'col-span-6',
             ],
             [
                 'title' => 'Email',
@@ -58,12 +67,7 @@ class User extends \App\Models\User implements Form
                 'required' => true,
                 'class' => 'col-span-12',
             ],
-//            [
-//                'title' => 'No HP',
-//                'type' => 'string',
-//                'model' => 'no_phone',
-//                'required' => true,
-//            ],
+
             [
                 'title' => 'Password',
                 'type' => 'text',
@@ -72,18 +76,18 @@ class User extends \App\Models\User implements Form
                 'placeholder' => '',
                 'class' => 'col-span-12',
             ],
-                            [
-                    'title' => 'Sebagai',
-                    'type' => 'select',
-                    'model' => 'role',
-                    'options' => $role,
-                    'required' => false,
-                                'class' => 'col-span-6',
-                ],
             [
-                'title' => 'Nama Lengkap',
+                'title' => 'Sebagai',
+                'type' => 'select',
+                'model' => 'role',
+                'options' => $role,
+                'required' => false,
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'Posisi',
                 'type' => 'text',
-                'model' => 'name',
+                'model' => 'position',
                 'required' => true,
                 'class' => 'col-span-6',
             ],

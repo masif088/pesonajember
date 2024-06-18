@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Models\GeneralInfo;
 use App\Models\Transaction;
 use App\Models\TransactionPayment;
 use Carbon\Carbon;
@@ -14,16 +15,20 @@ class DashboardGoals extends Component
 
     public $production2 = 0;
 
-    public $productionGoals = 25;
+    public $productionGoals = 2500;
 
     public $revenue = 0;
 
     public $revenue2 = 0;
 
-    public $revenueGoals = 10000;
+    public $revenueGoals = 1000000;
 
     public function mount()
     {
+        $target1 = GeneralInfo::where('key','=','target_omzet')->first();
+        $target2 = GeneralInfo::where('key','=','target_produksi')->first();
+        $this->productionGoals = $target2->value??2500;
+        $this->revenueGoals = $target1->value??10000000;
         $this->revenue = TransactionPayment::whereMonth('payment_at', '=', \Carbon\Carbon::now()->month)->sum('amount');
         $this->revenue2 = TransactionPayment::whereMonth('payment_at', '=', \Carbon\Carbon::now()->subMonth()->month)->sum('amount');
         $totalProduction = 0;

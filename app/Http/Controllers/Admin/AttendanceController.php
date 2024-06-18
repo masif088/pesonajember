@@ -33,6 +33,6 @@ class AttendanceController extends Controller
     }
     public function userAttendance($user)
     {
-        return view('admin.attendance.user-attendance',compact('id'));
+        return view('admin.attendance.user-attendance',compact('user'));
     }
 }
