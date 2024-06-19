@@ -78,6 +78,7 @@ Route::middleware([
         Route::get('role-create', [SpatieController::class, 'roleCreate'])->name('role-create');
         Route::get('permission-create', [SpatieController::class, 'permissionCreate'])->name('permission-create');
         Route::get('role-set-permission', [SpatieController::class, 'roleSetPermission'])->name('role-set-permission');
+        Route::get('user-set-role', [SpatieController::class, 'userSetRole'])->name('user-set-role');
     });
 
     Route::prefix('production')->name('production.')->group(function () {

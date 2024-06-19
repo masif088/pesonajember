@@ -23,5 +23,9 @@ class SpatieController extends Controller
     {
         return view('admin.spatie.role-set-permission');
     }
+    public function userSetRole()
+    {
+        return view('admin.spatie.user-set-role');
+    }
 
 }

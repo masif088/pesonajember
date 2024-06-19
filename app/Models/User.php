@@ -36,6 +36,9 @@ class User extends Authenticatable
         'position',
         'nip'
     ];
+    public function guardName(){
+        return "sanctum";
+    }
 
     /**
      * The attributes that should be hidden for serialization.

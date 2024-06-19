@@ -12,8 +12,10 @@
 
                 {{--                <br><br>--}}
                 {{--                <livewire:table.master name="Bank"/>--}}
-                <a href="{{ route('spatie.role-set-permission') }}" class="btn bg-wishka-600">Tambah Set role ke
-                    izin</a><br><br>
+                <a href="{{ route('spatie.role-set-permission') }}" class="btn bg-wishka-600">Tambah Set role ke izin</a>
+                <br><br>
+                <a href="{{ route('spatie.user-set-role') }}" class="btn bg-wishka-600">Tambah set user ke  role</a>
+                <br><br>
                 <br><br>
                 <a href="{{ route('spatie.role-create') }}" class="btn bg-wishka-600">Tambah Akses</a><br><br>
                 <div class="lg:col-span-12 md:col-span-12 sm:col-span-12 col-span-12">
