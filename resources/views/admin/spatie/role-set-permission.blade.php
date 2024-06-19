@@ -1,13 +1,13 @@
 <x-admin-layout>
     <x-slot name="title">
-        Spatie tambah izin
+        Role set izin
     </x-slot>
     <div class="">
 
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
                 <br>
-                <livewire:spatie.permission-form action="create"/>
+                <livewire:spatie.role-set-permission action="create"/>
             </div>
         </div>
     </div>

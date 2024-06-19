@@ -23,7 +23,7 @@ class Permission extends Model implements Form
     {
         return [
             [
-                'title' => 'Nama Role',
+                'title' => 'Nama Izin',
                 'type' => 'text',
                 'model' => 'permission',
                 'required' => true,

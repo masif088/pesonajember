@@ -181,6 +181,7 @@ class AdminLayout extends Component
                     ['title' => 'Kehadiran', 'type' => 'link', 'route' => route('attendance.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Koperasi', 'type' => 'link', 'route' => route('cooperative.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
                     ['title' => 'Hutang Koperasi', 'type' => 'link', 'route' => route('cooperative.credit-employee'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '],
+                    ['title' => 'Role & Izin', 'type' => 'link', 'route' => route('spatie.index'), 'icon' => '<i class="ti ti-key  text-xl flex-shrink-0"></i> '],
                     //                    ['title' => 'Ekspedisi barang', 'type' => 'link', 'route' => route('shipper.index'), 'icon' => '<i class="ti ti-truck-delivery  text-xl flex-shrink-0"></i> '],
                     //                    ['title' => 'Bank', 'type' => 'link', 'route' => route('bank.index'), 'icon' => '<i class="ti ti-building-bank  text-xl flex-shrink-0"></i> '],
                     //

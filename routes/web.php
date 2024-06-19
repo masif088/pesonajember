@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SellingController;
 use App\Http\Controllers\Admin\ShipperController;
+use App\Http\Controllers\Admin\SpatieController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -70,6 +71,13 @@ Route::middleware([
         Route::get('create', [SubmissionController::class, 'create'])->name('create');
         Route::get('edit/{id}', [SubmissionController::class, 'edit'])->name('edit');
         Route::get('show/{id}', [SubmissionController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('spatie')->name('spatie.')->group(function () {
+        Route::get('', [SpatieController::class, 'index'])->name('index');
+        Route::get('role-create', [SpatieController::class, 'roleCreate'])->name('role-create');
+        Route::get('permission-create', [SpatieController::class, 'permissionCreate'])->name('permission-create');
+        Route::get('role-set-permission', [SpatieController::class, 'roleSetPermission'])->name('role-set-permission');
     });
 
     Route::prefix('production')->name('production.')->group(function () {
