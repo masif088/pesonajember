@@ -22,6 +22,10 @@ use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+        $clientIP = request()->ip();
+        dd($clientIP);
+
+
     return view('front.index');
 })->name('frontpage');
 
@@ -47,7 +51,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('admin.index');
     })->name('dashboard');
-
 
     Route::prefix('material')->name('material.')->group(function () {
         Route::get('index', [MaterialController::class, 'index'])->name('index');
