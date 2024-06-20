@@ -140,9 +140,13 @@
                         @endif
                     </td>
 
-                    <td class="border-none flex flex-row gap-3" style="width: 40px">
-                        <div class="flex-1 text-end p-1"><i class="ti ti-pencil text-xl"></i></div>
-                        <div class="flex-1 text-end p-1"><i class="ti ti-trash text-xl"></i></div>
+                    <td class="border-none flex flex-row gap-1" style="width: 40px">
+{{--                        <div class="flex-1 text-end px-2 py-1 bg-wishka-400 rounded-md">--}}
+{{--                            <i class="ti ti-pencil text-xl text-white"></i>--}}
+{{--                        </div>--}}
+                        <div class="flex-1 text-end px-2 py-1 bg-error rounded-md" wire:click="removeList({{$index}})">
+                            <i class="ti ti-trash text-xl text-white"></i>
+                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -156,12 +160,10 @@
                     <!-- Popover -->
                     <div class="hs-tooltip inline-block [--placement:bottom] p-1">
                         <div class="hs-tooltip-toggle block text-center">
-                            <button type="button">
-                                <i class="ti ti-plus text-xl"></i>
+                            <button type="button" class="flex-1 text-end px-2 py-1 bg-wishka-400 rounded-md">
+                                <i class="ti ti-plus text-xl text-white"></i>
                             </button>
-                            <div
-                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible hidden opacity-0 transition-opacity absolute invisible z-10 max-w-xs bg-white border text-start rounded-md shadow-lg border-wishka-400 "
-                                >
+                            <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible hidden opacity-0 transition-opacity absolute invisible z-10 max-w-xs bg-white border text-start rounded-md shadow-lg border-wishka-400 ">
                                 <div class="p-2 divide-y-2 gap-3">
                                     <div class="p-1" wire:click="productFormLayoutSet">
                                         Produk

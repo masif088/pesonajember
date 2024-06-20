@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                         @foreach(\Spatie\Permission\Models\Permission::all() as $index=>$role)
-                            <tr class="">
+                            <tr class=" {{ $index%2==0?'bg-gray-100':'' }} py-2">
                                 <td class="text-center">{{ $index+1 }}</td>
                                 <td>{{ $role['name'] }}</td>
                                 <td></td>

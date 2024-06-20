@@ -11,8 +11,11 @@ use Livewire\Component;
 class DashboardAttendance extends Component
 {
     public $statusEntrance = 0;
+
     public $statusDischarge = 0;
+
     public $check;
+
     public $holiday = 0;
 
     public function mount()
@@ -44,15 +47,28 @@ class DashboardAttendance extends Component
         if ($check != null) {
             $check->update([
                 'attendance_status_id' => $attendanceStatus,
-                'entrance_attendance_by_web' => Carbon::now()
+                'entrance_attendance_by_web' => Carbon::now(),
             ]);
         } else {
             Attendance::create([
                 'user_id' => auth()->id(),
                 'master_id' => \App\Models\AttendanceMaster::where('attendance_date', '=', Carbon::now()->format('Y-m-d'))->first()->id,
                 'attendance_status_id' => $attendanceStatus,
-                'entrance_attendance_by_web' => Carbon::now()
+                'entrance_attendance_by_web' => Carbon::now(),
             ]);
+        }
+
+        $check = Attendance::where('user_id', '=', auth()->id())->whereHas('master', function (Builder $q) {
+            $q->where('attendance_date', '=', Carbon::now()->format('Y-m-d'));
+        })->first();
+        if ($check != null) {
+            if ($check->entrance_attendance_by_web != null) {
+                $this->statusEntrance = 1;
+            }
+            if ($check->discharge_attendance_by_web != null) {
+                $this->statusDischarge = 1;
+            }
+            $this->check = $check;
         }
         $this->render();
     }
@@ -69,16 +85,30 @@ class DashboardAttendance extends Component
         if ($check != null) {
             $check->update([
                 'attendance_status_id' => $attendanceStatus,
-                'entrance_attendance_by_web' => Carbon::now()
+                'entrance_attendance_by_web' => Carbon::now(),
             ]);
         } else {
             Attendance::create([
                 'user_id' => auth()->id(),
                 'master_id' => \App\Models\AttendanceMaster::where('attendance_date', '=', Carbon::now()->format('Y-m-d'))->first()->id,
                 'attendance_status_id' => $attendanceStatus,
-                'entrance_attendance_by_web' => Carbon::now()
+                'entrance_attendance_by_web' => Carbon::now(),
             ]);
         }
+
+        $check = Attendance::where('user_id', '=', auth()->id())->whereHas('master', function (Builder $q) {
+            $q->where('attendance_date', '=', Carbon::now()->format('Y-m-d'));
+        })->first();
+        if ($check != null) {
+            if ($check->entrance_attendance_by_web != null) {
+                $this->statusEntrance = 1;
+            }
+            if ($check->discharge_attendance_by_web != null) {
+                $this->statusDischarge = 1;
+            }
+            $this->check = $check;
+        }
+
         $this->render();
     }
 

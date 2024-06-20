@@ -186,6 +186,11 @@ class TransactionForm extends Component
         unset($this->transactionLists[$index]);
     }
 
+    public function deleteItem($index)
+    {
+
+    }
+
     public function render()
     {
         return view('livewire.transaction.transaction-form');
