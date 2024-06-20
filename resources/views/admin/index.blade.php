@@ -42,7 +42,6 @@
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
                 </div>
-
             @endif
 
 
