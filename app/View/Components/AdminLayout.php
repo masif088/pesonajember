@@ -224,6 +224,9 @@ class AdminLayout extends Component
             ];
         }
 
+        if (auth()->user()->hasPermissionTo('lihat-hanya-produksi', 'sanctum')) {
+            $this->sidebar[2]['lists'][] = ['title' => 'Produksi', 'route' => route('transaction.process-production'), 'icon' => ($count['production'] != 0) ? $this->setValue($count['production']) : ''];
+        }
         if (auth()->user()->hasPermissionTo('lihat-penjualan', 'sanctum')) {
             $this->sidebar[0]['lists'][] = [
                 'title' => 'Penjualan', 'type' => 'accordion',

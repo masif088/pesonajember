@@ -28,6 +28,11 @@ class TransactionController extends Controller
         return view('admin.transaction.edit', compact('id'));
     }
 
+    public function processProduction()
+    {
+        return view('admin.transaction.process-production');
+    }
+
     public function billingPage($id)
     {
         return view('admin.transaction.billing-page', compact('id'));
