@@ -201,6 +201,29 @@ class AdminLayout extends Component
         ];
 
 
+        if (auth()->user()->hasPermissionTo('produks', 'sanctum')) {
+            $this->sidebar[0]['lists'][] = [
+                'title' => 'Produk', 'type' => 'accordion',
+                'icon' => '<i class="ti ti-box  text-2xl flex-shrink-0"></i>',
+                'lists' => [
+                    ['title' => 'Produk', 'route' => route('production.index'), 'icon' => ""],
+                    ['title' => 'Kategori Produk', 'route' => route('production.category'), 'icon' => ''],
+                ],
+            ];
+        }
+        if (auth()->user()->hasPermissionTo('aset', 'sanctum')) {
+            $this->sidebar[0]['lists'][] =[
+                        'title' => 'Stock/Aset', 'type' => 'accordion',
+                        'icon' => '<i class="ti ti-box  text-2xl flex-shrink-0"></i>',
+                        'lists' => [
+                            ['title' => 'Stock Material Bahan Baku', 'route' => route('material.index'), 'icon' => '<i class="ti ti-circle  text-xs flex-shrink-0"></i>'],
+                            ['title' => 'Kategori Material', 'route' => route('material.category'), 'icon' => '<i class="ti ti-circle  text-xs flex-shrink-0"></i>'],
+                            //                            ['title' => 'Pengajuan Stock', 'route' => route('submission.index'), 'icon' => '<span class="rounded-2xl border bg-error text-white border-none flex-shrink-0" style="margin:0;padding: 0;font-size: 10px; width: 20px; height: 20px; text-align: center" >2</span>'],
+                            ['title' => 'Aset Perusahaan', 'route' => route('company-asset.index'), 'icon' => '<i class="ti ti-circle  text-xs flex-shrink-0"></i>'],
+                        ],
+                    ];
+        }
+
         if (auth()->user()->hasPermissionTo('lihat-penjualan', 'sanctum')) {
             $this->sidebar[0]['lists'][] = [
                 'title' => 'Penjualan', 'type' => 'accordion',
