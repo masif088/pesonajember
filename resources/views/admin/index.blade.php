@@ -18,6 +18,10 @@
                     <livewire:dashboard.dashboard-card/>
                 </div>
                 <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-attendance/>
+                </div>
+
+                <div class="col-span-6 ">
                     <livewire:dashboard.dashboard-goals/>
                 </div>
                 <div class="col-span-6 ">
@@ -28,7 +32,15 @@
                     <livewire:dashboard.dashboard-card/>
                 </div>
                 <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-attendance/>
+                </div>
+
+                <div class="col-span-6 ">
                     <livewire:dashboard.dashboard-goals/>
+                </div>
+            @else
+                <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-attendance/>
                 </div>
 
             @endif
