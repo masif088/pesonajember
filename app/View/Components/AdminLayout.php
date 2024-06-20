@@ -200,6 +200,38 @@ class AdminLayout extends Component
             ],
         ];
 
+
+        if (auth()->user()->hasPermissionTo('lihat-penjualan', 'sanctum')) {
+            $this->sidebar[0]['lists'][] = [
+                'title' => 'Penjualan', 'type' => 'accordion',
+                'icon' => '<i class="ti ti-shopping-cart  text-2xl flex-shrink-0"></i>',
+                'lists' => [
+                    ['title' => 'Pesanan Baru', 'route' => route('transaction.index', 'Penagihan'), 'icon' => isset($count[1]) ? $this->setValue($count[1]) : ''],
+                    ['title' => 'Dp Diterima', 'route' => route('transaction.index', 'DP-diterima'), 'icon' => isset($count[2]) ? $this->setValue($count[2]) : ''],
+                    ['title' => 'Produksi', 'route' => route('transaction.index', 'Proses-Produksi'), 'icon' => ($count['production'] != 0) ? $this->setValue($count['production']) : ''],
+                    ['title' => 'Pelunasan', 'route' => route('transaction.index', 'Pelunasan'), 'icon' => ($count['repayment'] != 0) ? $this->setValue($count['repayment']) : ''],
+                    ['title' => 'Pengiriman', 'route' => route('transaction.index', 'Pengiriman'), 'icon' => isset($count[14]) ? $this->setValue($count[14]) : ''],
+                    ['title' => 'Selesai', 'route' => route('transaction.index', 'Selesai'), 'icon' => isset($count[15]) ? $this->setValue($count[15]) : ''],
+                    ['title' => 'Perubahan Transaksi', 'route' => route('transaction.index', 'Perubahan-Transaksi'), 'icon' => ''],
+                ],
+            ];
+        }
+        if (auth()->user()->hasPermissionTo('lihat-penjualan', 'sanctum')) {
+            $this->sidebar[0]['lists'][] =
+                [
+                    'title' => 'Produksi', 'type' => 'accordion',
+                    'icon' => '<i class="ti ti-settings  text-2xl flex-shrink-0"></i>',
+                    'lists' => [
+
+                        ['title' => 'Mockup', 'route' => route('transaction.mockup-site'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
+                        ['title' => 'Pola', 'route' => route('transaction.pattern-site'), 'icon' => isset($count[4]) ? $this->setValue($count[4]) : ''],
+                        ['title' => 'Sampel', 'route' => route('transaction.sample-site'), 'icon' => isset($count[5]) ? $this->setValue($count[5]) : ''],
+                        ['title' => 'Proses Produksi', 'route' => route('transaction.production.tab', 'Potong'), 'icon' => ($count['product'] != 0) ? $this->setValue($count['product']) : ''],
+                        //                            ['title' => 'Stock Bahan', 'route' => '#', 'icon' => '<span class="rounded-2xl border bg-error text-white border-none flex-shrink-0" style="margin:0;padding: 0;font-size: 10px; width: 20px; height: 20px; text-align: center" >2</span>'],
+
+                    ],
+                ];
+        }
         if (auth()->user()->hasPermissionTo('rekap-konsumen', 'sanctum')) {
             $this->sidebar[2]['lists'][] = ['title' => 'Rekap Konsumen', 'type' => 'link', 'route' => route('customer.index'), 'icon' => '<i class="ti ti-users  text-xl flex-shrink-0"></i> '];
         }
