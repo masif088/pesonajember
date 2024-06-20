@@ -1,10 +1,10 @@
 @php use Illuminate\Database\Eloquent\Builder; @endphp
-<div class="flex lg:grid grid-cols-8 gap-5 bg">
+<div class="grid grid-cols-8 gap-5 bg">
 
     @foreach($cardsTitle as $index=>$title)
 
 
-        <div class="col-span-2">
+        <div class="lg:col-span-2 col-span-8">
             <div class="card">
                 <div class="card-body p-2">
                     <div class="flex justify-between">
