@@ -161,7 +161,7 @@ Route::middleware([
         Route::get('selling/{tab}', [TransactionController::class, 'index'])->name('index');
         Route::get('create', [TransactionController::class, 'create'])->name('create');
         Route::get('edit', [TransactionController::class, 'edit'])->name('edit');
-        Route::get('process-production', [TransactionController::class, 'processProduction'])->name('transaction.process-production');
+        Route::get('process-production', [TransactionController::class, 'processProduction'])->name('process-production');
 
         Route::get('billing-page/{id}', [TransactionController::class, 'billingPage'])->name('billing-page');
         Route::get('transaction/change/{id}/status/{status}/', [TransactionController::class, 'transactionChangeStatus'])->name('transaction.change.status');
