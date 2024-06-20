@@ -239,7 +239,7 @@ class AdminLayout extends Component
                 ],
             ];
         }
-        if (auth()->user()->hasPermissionTo('lihat-penjualan', 'sanctum')) {
+        if (auth()->user()->hasPermissionTo('lihat-produksi', 'sanctum')) {
             $this->sidebar[0]['lists'][] =
                 [
                     'title' => 'Produksi', 'type' => 'accordion',
