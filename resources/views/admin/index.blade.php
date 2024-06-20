@@ -13,7 +13,7 @@
             </div>
             <br>
 {{--            <br>--}}
-            @if(auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum'))
+            @if(auth()->user()->hasRole('Owner', 'sanctum'))
                 <div class="col-span-12 ">
                     <livewire:dashboard.dashboard-card/>
                 </div>
@@ -27,17 +27,17 @@
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-revenue/>
                 </div>
-            @elseif(auth()->user()->hasPermissionTo('dashboard-produksi', 'sanctum'))
-                <div class="col-span-12 ">
-                    <livewire:dashboard.dashboard-card/>
-                </div>
-                <div class="lg:col-span-6 col-span-12">
-                    <livewire:dashboard.dashboard-attendance/>
-                </div>
+{{--            @elseif(auth()->user()->hasPermissionTo('dashboard-produksi', 'sanctum'))--}}
+{{--                <div class="col-span-12 ">--}}
+{{--                    <livewire:dashboard.dashboard-card/>--}}
+{{--                </div>--}}
+{{--                <div class="lg:col-span-6 col-span-12">--}}
+{{--                    <livewire:dashboard.dashboard-attendance/>--}}
+{{--                </div>--}}
 
-                <div class="lg:col-span-6 col-span-12">
-                    <livewire:dashboard.dashboard-goals/>
-                </div>
+{{--                <div class="lg:col-span-6 col-span-12">--}}
+{{--                    <livewire:dashboard.dashboard-goals/>--}}
+{{--                </div>--}}
             @else
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
