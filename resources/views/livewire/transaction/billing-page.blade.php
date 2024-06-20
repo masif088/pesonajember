@@ -20,7 +20,7 @@
                     $content =\App\Models\GeneralInfo::where('key','=','penagihan_termin_1')->first()->value;
                     $content= str_replace('[CUSTOMER_NAME]',$user->name,$content);
                     $content= str_replace('[PAYMENT_MODEL_1]',$paymentModel[0],$content);
-                    $content= str_replace('[TOTAL_TRANSACTION]',$paymentModel[0],$content);
+                    $content= str_replace('[TOTAL_TRANSACTION]',$transaction->total_money,$content);
                     $content= str_replace('[TOTAL]','Rp. '.thousand_format($paymentModel[0]*$transaction->total_money/100),$content);
                     $content= str_replace('[NO_INVOICE]',$transaction->uid,$content);
                     $content= str_replace('[DATE]',$transaction->created_at->format('d/m/Y'),$content);
