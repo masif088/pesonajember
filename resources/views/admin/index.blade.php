@@ -13,15 +13,27 @@
             </div>
             <br>
 {{--            <br>--}}
-            <div class="col-span-12 ">
-                <livewire:dashboard.dashboard-card/>
-            </div>
-            <div class="col-span-6 ">
-                <livewire:dashboard.dashboard-goals/>
-            </div>
-            <div class="col-span-6 ">
-                <livewire:dashboard.dashboard-revenue/>
-            </div>
+            @if(auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum'))
+                <div class="col-span-12 ">
+                    <livewire:dashboard.dashboard-card/>
+                </div>
+                <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-goals/>
+                </div>
+                <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-revenue/>
+                </div>
+            @elseif(auth()->user()->hasPermissionTo('dashboard-produksi', 'sanctum'))
+                <div class="col-span-12 ">
+                    <livewire:dashboard.dashboard-card/>
+                </div>
+                <div class="col-span-6 ">
+                    <livewire:dashboard.dashboard-goals/>
+                </div>
+
+            @endif
+
+
 {{--            <div class="col-span-4">--}}
 {{--                <livewire:dasbhboard.dashboard-product/>--}}
 {{--            </div>--}}

@@ -32,26 +32,45 @@ class DashboardCard extends Component
                 }
             }
         }
-        $this->cardsTitle = [
-            'Pendapatan Hari Ini',
-            'Pengeluaran Hari Ini',
-            'Produksi Hari Ini',
-            'Transaksi Berjalan',
-        ];
-        $this->cardsIcon = [
-            'ti ti-wallet',
-            'ti ti-cash',
-            'ti ti-assembly',
-            'ti ti-progress-down',
-        ];
-        $this->cardsValue = [
-            'Rp. ' . thousand_format(TransactionPayment::whereDate('payment_at', '=', today())->sum('amount')),
-            'Rp. ' . thousand_format(PettyCash::whereDate('date_transaction', '=', today())->sum('credit')),
-            $totalProduction . 'pcs',
-            Transaction::whereHas('transactionStatus', function (Builder $q) {
-                $q->whereNotIn('transaction_status_type_id', [15, 17]);
-            })->count() . ' Transaksi',
-        ];
+        if(auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum')){
+            $this->cardsTitle = [
+                'Pendapatan Hari Ini',
+                'Pengeluaran Hari Ini',
+                'Produksi Hari Ini',
+                'Transaksi Berjalan',
+            ];
+            $this->cardsIcon = [
+                'ti ti-wallet',
+                'ti ti-cash',
+                'ti ti-assembly',
+                'ti ti-progress-down',
+            ];
+            $this->cardsValue = [
+                'Rp. ' . thousand_format(TransactionPayment::whereDate('payment_at', '=', today())->sum('amount')),
+                'Rp. ' . thousand_format(PettyCash::whereDate('date_transaction', '=', today())->sum('credit')),
+                $totalProduction . 'pcs',
+                Transaction::whereHas('transactionStatus', function (Builder $q) {
+                    $q->whereNotIn('transaction_status_type_id', [15, 17]);
+                })->count() . ' Transaksi',
+            ];
+        }else{
+            $this->cardsTitle = [
+                'Produksi Hari Ini',
+                'Transaksi Berjalan',
+            ];
+            $this->cardsIcon = [
+
+                'ti ti-assembly',
+                'ti ti-progress-down',
+            ];
+            $this->cardsValue = [
+                $totalProduction . 'pcs',
+                Transaction::whereHas('transactionStatus', function (Builder $q) {
+                    $q->whereNotIn('transaction_status_type_id', [15, 17]);
+                })->count() . ' Transaksi',
+            ];
+        }
+
 
     }
 
