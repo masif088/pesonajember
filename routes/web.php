@@ -23,8 +23,8 @@ use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-        $clientIP = request()->ip();
-        dd($clientIP);
+//        $clientIP = request()->ip();
+//        dd($clientIP);
 
 
     return view('front.index');
