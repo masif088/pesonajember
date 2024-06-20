@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Builder;
 class UserAttendance extends \App\Models\Attendance implements View
 {
     protected $table = 'attendances';
+
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
         $user = $params['param1'];
-        return static::query()->where('user_id',$user)->whereHas('master',function ($q){
-            $q->where('status','Hari Kerja');
+
+        return static::query()->where('user_id', $user)->whereHas('master', function ($q) {
+            $q->where('status', 'Hari Kerja');
         })->orderByDesc('id')->take(7);
     }
 
@@ -22,7 +24,7 @@ class UserAttendance extends \App\Models\Attendance implements View
     {
         return [
             'searchable' => false,
-            'paginate'=>false
+            'paginate' => false,
         ];
     }
 
@@ -42,8 +44,8 @@ class UserAttendance extends \App\Models\Attendance implements View
         return [
             ['type' => 'string', 'data' => $data->master->attendance_date],
             ['type' => 'string', 'data' => $data->status->title],
-            ['type' => 'string', 'data' => Carbon::parse(($data->entrance_attendance_by_web))->format('H:i')],
-            ['type' => 'string', 'data' => Carbon::parse(($data->discharge_attendance_by_web))->format('H:i')],
+            ['type' => 'string', 'data' => $data->entrance_attendance_by_web != null ? Carbon::parse(($data->entrance_attendance_by_web))->format('H:i') : '-'],
+            ['type' => 'string', 'data' => $data->discharge_attendance_by_web != null ? Carbon::parse(($data->discharge_attendance_by_web))->format('H:i') : '-'],
         ];
     }
 }
