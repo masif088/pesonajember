@@ -12,11 +12,14 @@ use Livewire\Component;
 class TransactionDelivery extends Component
 {
     public $transaction;
+
     public $transactionId;
+
     public function mount()
     {
         $this->transaction = Transaction::find($this->transactionId);
     }
+
     public function getTrack($ts)
     {
         $transaction = TransactionStatus::find($ts);
@@ -24,14 +27,13 @@ class TransactionDelivery extends Component
         $transactionResi = $transaction->transactionStatusAttachments->where('key', 'resi pengiriman')->first();
         $transactionTracking = $transaction->transactionStatusAttachments->where('key', 'traking pengiriman')->first();
         if ($transactionTracking != null) {
-            if (json_decode($transactionTracking->value)->status=="delivered"){
+            if (json_decode($transactionTracking->value)->status == 'delivered') {
                 return;
             }
             if (Carbon::now()->subHour()->lessThan($transactionTracking->updated_at)) {
                 return;
             }
         }
-
 
         $headers = [
             'content-type' => 'application/json',
@@ -48,7 +50,7 @@ class TransactionDelivery extends Component
                 TransactionStatusAttachment::create([
                     'value' => json_encode($response->json()),
                     'key' => 'traking pengiriman',
-                    'type' => 'string',
+                    'type' => 'tracking',
                     'transaction_status_id' => $ts,
                 ]);
             }
@@ -56,6 +58,7 @@ class TransactionDelivery extends Component
 
         $this->render();
     }
+
     public function render()
     {
         return view('livewire.customer-site.transaction-delivery');

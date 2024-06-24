@@ -3,19 +3,20 @@
 namespace App\Repository\View;
 
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductionDone extends Transaction implements View
+class ProductionDone extends TransactionList implements View
 {
-    protected $table = 'transactions';
+    protected $table = 'transaction_lists';
 
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
 
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
-            $q->where('transaction_status_type_id', '=', 6);
+            $q->where('transaction_status_type_id', '=', 12);
         }) : static::query();
     }
 
@@ -32,8 +33,7 @@ class ProductionDone extends Transaction implements View
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
-            ['label' => 'Mockup', 'sort' => 'code'],
-            ['label' => 'PIC', 'sort' => 'code'],
+            ['label' => 'Status', 'sort' => 'code'],
             ['label' => 'Tindakan'],
         ];
     }
@@ -42,7 +42,7 @@ class ProductionDone extends Transaction implements View
     {
         //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status document')->first()->value;
 
-        $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
+        $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
         if ($product != null) {
@@ -74,24 +74,14 @@ class ProductionDone extends Transaction implements View
         $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>
-<option value='3'>Mockup</option>
-<option value='4'>Pola</option>
-<option value='5'>Sampel</option>
-<option value='6'>Potong</option>
-<option value='7'>Print</option>
-<option value='8'>Pasang Label</option>
-<option value='9'>Jahit</option>
-<option value='10'>Quality Control</option>
-<option value='11'>Packing</option>
-<option value='12'>Menunggu Pembayaran</option>
+<option value='13'>Pengiriman</option>
 </select>";
 
         return [
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'center', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
-            ['type' => 'raw_html', 'data' => $mockupButton],
-            ['type' => 'raw_html', 'data' => $pic],
+            ['type' => 'raw_html', 'data' => "Menunggu pembayaran"],
             ['type' => 'raw_html', 'data' => $progress],
         ];
     }

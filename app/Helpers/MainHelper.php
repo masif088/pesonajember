@@ -19,6 +19,35 @@ if (!function_exists('eloquent_to_options')) {
         return $arr;
     }
 }
+if (!function_exists('redirect_production')) {
+    function redirect_production($tsId)
+    {
+        switch ($tsId) {
+            case 4:
+                return redirect(route('transaction.pattern-site'));
+            case 5:
+                return redirect(route('transaction.sample-site'));
+            case 6:
+                return redirect(route('transaction.production.tab', 'Potong'));
+            case 7:
+                return redirect(route('transaction.production.tab', 'Print'));
+            case 8:
+                return redirect(route('transaction.production.tab', 'Pasang-Label'));
+            case 9:
+                return redirect(route('transaction.production.tab', 'Jahit'));
+            case 10:
+                return redirect(route('transaction.production.tab', 'Quality-Control'));
+            case 11:
+                return redirect(route('transaction.production.tab', 'Packing'));
+            case 12:
+                return redirect(route('transaction.index', 'Pengiriman'));
+            case 13:
+                return redirect(route('transaction.index', 'Pengiriman'));
+            default:
+                return redirect(route('transaction.production'));
+        }
+    }
+}
 if (!function_exists('quickRandom')) {
     function quickRandom($length = 16)
     {

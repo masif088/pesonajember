@@ -19,13 +19,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $total_money
  * @property int $tax
  * @property string $note
+ * @property string $edit_count
  */
 class Transaction extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = ['uid', 'customer_id', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id'];
+    protected $fillable = ['uid', 'customer_id', 'edit_count', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id'];
 
     public function customer(): BelongsTo
     {

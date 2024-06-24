@@ -230,7 +230,7 @@
         <div class="grid grid-cols-12">
             <button class="btn bg-error col-span-1">Batal</button>
             <span class="col-span-8"></span>
-            <button class="btn bg-wishka-600 col-span-3" wire:click="create">Tambah Transaksi</button>
+            <button class="btn bg-wishka-600 col-span-3" wire:click="{{ $action }}">Tambah Transaksi</button>
         </div>
     </div>
 

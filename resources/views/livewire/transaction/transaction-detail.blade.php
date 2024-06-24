@@ -59,9 +59,10 @@
 
 
         <div class="lg:col-span-12 md:col-span-12 sm:col-span-12 col-span-12">
-
-
-            <h2 class="text-xl font-bold text-wishka-600 mb-2">Detail Pembelian</h2>
+            <h2 class="text-xl font-bold text-wishka-600 mb-2 flex justify-between align-bottom">
+                <font>Detail Pembelian</font>
+                <a href="#" class="text-sm underline" style="align-self: flex-end"><i class="ti ti-history"></i>Riwayat perubahan</a>
+            </h2>
             <table class="invoice-table w-full">
                 <thead>
                 <tr class="bg-wishka-600 text-center text-white">
@@ -76,9 +77,9 @@
 
                 @php($total=0)
 
-                @foreach($transaction->transactionLists as $index=>$tl)
+                @foreach($transaction->transactionLists->where('edit_count',$transaction->edit_count) as $tl)
                     <tr style="border-bottom: 1px solid #C6C6C6">
-                        <td style="text-align: center">{{ $index+1 }}</td>
+                        <td style="text-align: center">{{ $loop->index+1 }}</td>
                         <td>
                             @if($tl['transaction_detail_type_id']==1)
                                 <b>{{ $tl['shipper_category'] }} </b><br>
@@ -156,6 +157,8 @@
             </table>
 
         </div>
+
+
 
 
         <div class="lg:col-span-12 md:col-span-12 sm:col-span-12 col-span-12">

@@ -3,13 +3,14 @@
 namespace App\Repository\View;
 
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductionLabel extends Transaction implements View
+class ProductionLabel extends TransactionList implements View
 {
-    protected $table = 'transactions';
+    protected $table = 'transaction_lists';
 
     public static function tableSearch($params = null): Builder
     {
@@ -56,7 +57,7 @@ class ProductionLabel extends Transaction implements View
         }
 
 
-        $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
+        $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
         if ($product != null) {
@@ -93,7 +94,7 @@ class ProductionLabel extends Transaction implements View
 </select>";
 
         return [
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'start', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
             ['type' => 'raw_html', 'data' => $mockupButton],

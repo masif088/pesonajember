@@ -16,7 +16,7 @@ class TransactionProduction extends Transaction implements View
 //        dd("asd");
 
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
-            $q->where('transaction_status_type_id','>=',2)->where('transaction_status_type_id','<=',14);
+            $q->where('transaction_status_type_id','=',14);
         }) : static::query();
     }
 
@@ -32,7 +32,6 @@ class TransactionProduction extends Transaction implements View
         return [
             ['label' => 'Tanggal', 'sort' => 'id', 'width' => '7%'],
             ['label' => 'Nama Customer', 'sort' => 'code'],
-            ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Proses', 'text-align' => 'center', 'sort' => 'title'],
             ['label' => 'Tindakan'],
         ];
@@ -41,14 +40,21 @@ class TransactionProduction extends Transaction implements View
     public static function tableData($data = null): array
     {
 
-        $process = $data->transactionStatus->transactionStatusType->title;
+        $process = "Status";
+        $list = "<br>";
+        $listProcess = "<br>";
+        foreach ($data->transactionLists as $tl ){
+            $list.="$tl->uid <br>";
+            $listProcess.="<b>$tl->uid</b>: ".$tl->transactionStatus->transactionStatusType->title ."<br>";
+        }
 //        $link3 = route('transaction.download', $data->id);
         $link4 = route('finance.transaction.payment.detail', $data->id);
+
         return [
-            ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
+            ['type' => 'raw_html', 'data' => $data->created_at->format('d/m/Y')."<br> $data->uid"],
             ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
-            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $process],
+
+            ['type' => 'raw_html', 'text-align' => 'left', 'data' => $process.$listProcess],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1 justify-center'>
 

@@ -37,6 +37,9 @@
         <div class="{{ $activeTab=="Packing"?'block':'hidden' }}">
             <livewire:table.production name="ProductionPacking"/>
         </div>
+        <div class="{{ $activeTab=="Selesai"?'block':'hidden' }}">
+            <livewire:table.production name="ProductionDone"/>
+        </div>
 {{--        <div class="{{ $activeTab=="Selesai"?'block':'hidden' }}">--}}
 {{--            <livewire:table.production name="ProductionDone"/>--}}
 {{--        </div>--}}

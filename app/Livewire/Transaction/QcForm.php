@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Transaction;
 
-use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use Livewire\Component;
 
@@ -35,16 +35,13 @@ class QcForm extends Component
         $this->validate();
         $this->resetErrorBag();
 
-        $transaction = Transaction::find($this->dataId);
+        $transaction = TransactionList::find($this->dataId);
 
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'qc')->first();
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'qc note')->first();
         if ($ts != null) {
             $ts->update([
                 'value' => $this->form,
-            ]);
-            $ts2->update([
-                'value' => $this->form2,
             ]);
         } else {
             TransactionStatusAttachment::create([
@@ -53,6 +50,12 @@ class QcForm extends Component
                 'value' => $this->form,
                 'type' => 'string',
             ]);
+        }
+        if ($ts2 != null) {
+            $ts2->update([
+                'value' => $this->form2,
+            ]);
+        } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'key' => 'qc note',
@@ -62,7 +65,7 @@ class QcForm extends Component
         }
 
 
-        $this->redirect(route('transaction.production'));
+        $this->redirect(route('transaction.production.tab','Quality-Control'));
     }
 
     public function render()

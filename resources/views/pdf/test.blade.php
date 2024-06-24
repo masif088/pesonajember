@@ -41,14 +41,14 @@
                 <td>
                     <b>Kode produk :</b><br>
                     <input type="text" class=""
-                           value="{{ $transaction->transactionLists->where('transaction_detail_type_id','=',2)->first()->product->uid??'Tidak ada produk di transaksi ini' }}"
+                           value="{{ $transactionList->product->uid??'Tidak ada produk di transaksi ini' }}"
                            style="background: #f0f0f0; border-radius: 5px; width: 90%;padding: 10px 20px; border: none;">
                 </td>
                 <td></td>
                 <td>
                     <b>Ukuran produk :</b><br>
                     <input type="text" class=""
-                           value="{{ $transaction->transactionLists->where('transaction_detail_type_id','=',2)->first()->product->size??'Tidak ada produk di transaksi ini' }}"
+                           value="{{ $transactionList->product->size??'Tidak ada produk di transaksi ini' }}"
                            style="background: #f0f0f0; border-radius: 5px; width: 90%;padding: 10px 20px; border: none">
                 </td>
             </tr>
@@ -59,14 +59,14 @@
                 <td>
                     <b>Nama produk :</b><br>
                     <input type="text" class=""
-                           value="{{ $transaction->transactionLists->where('transaction_detail_type_id','=',2)->first()->product->title??'Tidak ada produk di transaksi ini' }}"
+                           value="{{ $transactionList->product->title??'Tidak ada produk di transaksi ini' }}"
                            style="background: #f0f0f0; border-radius: 5px; width: 90%;padding: 10px 20px; border: none">
                 </td>
                 <td></td>
                 <td>
                     <b>Jumlah produk :</b><br>
                     <input type="text" class=""
-                           value="{{ $transaction->transactionLists->where('transaction_detail_type_id','=',2)->first()->amount??'Tidak ada produk di transaksi ini' }}"
+                           value="{{ $transactionList->amount??'Tidak ada produk di transaksi ini' }}"
                            style="background: #f0f0f0; border-radius: 5px; width: 90%;padding: 10px 20px; border: none">
                 </td>
             </tr>
@@ -74,7 +74,7 @@
     </div>
 
     <h2>Sampel pesanan</h2>
-    @php($mockup=$transaction->transactionStatuses->where('transaction_status_type_id','=',3)->first())
+    @php($mockup=$transactionList->transactionStatuses->where('transaction_status_type_id','=',3)->first())
     @if($mockup!=null)
         @php($mockup2=$mockup->transactionStatusAttachments->where('key','=','photo mockup')->first())
         @if($mockup2!=null)
@@ -96,7 +96,7 @@
     <br>
     <br>
     <table style="width: 100%; font-size: 12px">
-        @php($product = $transaction->transactionLists->where('transaction_detail_type_id','=',2)->first()->product)
+        @php($product = $transactionList->product)
         <tr>
             <td style="width: 30% !important; vertical-align: top">
                 <table class="table" style="width: 100%">

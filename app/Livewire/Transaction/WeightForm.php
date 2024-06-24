@@ -4,6 +4,7 @@ namespace App\Livewire\Transaction;
 
 use App\Models\Shipper;
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use Livewire\Component;
 
@@ -22,7 +23,7 @@ class WeightForm extends Component
     {
         $this->option = eloquent_to_options(Shipper::get(), 'title', 'title');
         $this->form = $this->option[0]['title'];
-        $transaction = Transaction::find($this->dataId);
+        $transaction = TransactionList::find($this->dataId);
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
         if ($ts2==null){
 
@@ -50,7 +51,7 @@ class WeightForm extends Component
         $this->validate();
         $this->resetErrorBag();
 
-        $transaction = Transaction::find($this->dataId);
+        $transaction = TransactionList::find($this->dataId);
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
         if ($ts2 != null) {
             $ts2->update([

@@ -3,12 +3,13 @@
 namespace App\Repository\View;
 
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductionPacking extends Transaction implements View
+class ProductionPacking extends TransactionList implements View
 {
-    protected $table = 'transactions';
+    protected $table = 'transaction_lists';
 
     public static function tableSearch($params = null): Builder
     {
@@ -45,7 +46,7 @@ class ProductionPacking extends Transaction implements View
         $shipperWeight = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
 //        $shipper = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
 
-        $linkQc = route('transaction.shipper-edit', $data->id);
+        $linkQc = route('transaction.weight-edit', $data->id);
         $weight = "<a href='$linkQc' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input Berat</a>";
         if ($shipperWeight != null) {
             $weight = "$shipperWeight->value";
@@ -72,7 +73,7 @@ class ProductionPacking extends Transaction implements View
         }
 
 
-        $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
+        $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
         if ($product != null) {
@@ -81,7 +82,7 @@ class ProductionPacking extends Transaction implements View
         }
 
         return [
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'center', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount . 'pcs'],
             ['type' => 'raw_html', 'data' => $pic],

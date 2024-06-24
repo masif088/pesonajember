@@ -21,6 +21,7 @@ class Production extends Component
             'Jahit',
             'Quality-Control',
             'Packing',
+            'Selesai'
         ];
     }
 

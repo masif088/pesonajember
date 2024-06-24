@@ -4,6 +4,7 @@ namespace App\Livewire\Transaction;
 
 //use App\Repository\Form\Bank as model;
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use App\Models\User;
 use Livewire\Component;
@@ -11,19 +12,21 @@ use Livewire\Component;
 class PicForm extends Component
 {
     public $form;
+
     public $redirect;
 
     public $action;
 
     public $dataId;
+
     public $optionUser;
 
     public function mount()
     {
-        $transaction = Transaction::find($this->dataId);
-        $this->optionUser = eloquent_to_options(User::orderBy('name')->get(),'id','name');
+        $transaction = TransactionList::find($this->dataId);
+        $this->optionUser = eloquent_to_options(User::orderBy('name')->get(), 'id', 'name');
 
-//        dd($this->form);
+        //        dd($this->form);
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
             $this->form = $ts->value;
@@ -42,11 +45,10 @@ class PicForm extends Component
     public function create()
     {
 
-
         $this->validate();
         $this->resetErrorBag();
 
-        $transaction = Transaction::find($this->dataId);
+        $transaction = TransactionList::find($this->dataId);
 
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
@@ -63,29 +65,8 @@ class PicForm extends Component
         }
 
         $tsId = $transaction->transactionStatus->transaction_status_type_id;
-        switch ($tsId){
-            case 14:
-                $this->redirect(route('transaction.index','Pengiriman'));
-                break;
-            case 14:
-                $this->redirect(route('transaction.index','Pengiriman'));
-                break;
-            default:
-                $this->redirect(route('transaction.production'));
-        }
-
-
+        redirect_production($tsId);
     }
-
-    //    public function update()
-    //    {
-    //
-    //        $this->validate();
-    //        $this->resetErrorBag();
-    //
-    //        model::find($this->dataId)->update($this->form);
-    //        $this->redirect(route('bank.index'));
-    //    }
 
     public function render()
     {

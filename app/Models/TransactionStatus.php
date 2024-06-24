@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int $transaction_id
+ * @property int $transaction_list_id
  * @property int $transaction_status_type_id
  * @property string note
  * @property string created_at
@@ -19,11 +20,16 @@ class TransactionStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['transaction_id', 'transaction_status_type_id', 'note'];
+    protected $fillable = ['transaction_id','transaction_list_id', 'transaction_status_type_id', 'note'];
 
     public function transaction(): BelongsTo
     {
         return $this->belongsTo(Transaction::class, 'transaction_id');
+    }
+
+    public function transactionList(): BelongsTo
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_list_id');
     }
 
     public function transactionStatusType(): BelongsTo

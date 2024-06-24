@@ -3,7 +3,7 @@
 namespace App\Livewire\Transaction;
 
 use App\Models\Shipper;
-use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use Livewire\Component;
 
@@ -42,7 +42,7 @@ class ShipperForm extends Component
         $this->validate();
         $this->resetErrorBag();
 
-        $transaction = Transaction::find($this->dataId);
+        $transaction = TransactionList::find($this->dataId);
         $tsa = $transaction->transactionStatus->transaction_status_type_id;
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first();
@@ -53,14 +53,6 @@ class ShipperForm extends Component
             $ts->update([
                 'value' => $this->form,
             ]);
-            $ts2->update([
-                'value' => $this->form2,
-            ]);
-            if ($tsa != 14) {
-                $ts3->update([
-                    'value' => 'Menunggu konfirmasi',
-                ]);
-            }
         } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
@@ -68,12 +60,26 @@ class ShipperForm extends Component
                 'value' => $this->form,
                 'type' => 'string',
             ]);
+        }
+        if ($ts2 != null) {
+            $ts2->update([
+                'value' => $this->form2,
+            ]);
+        } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'key' => 'resi pengiriman',
                 'value' => $this->form2,
                 'type' => 'string',
             ]);
+        }
+        if ($ts3 != null) {
+            if ($tsa != 14) {
+                $ts3->update([
+                    'value' => 'Menunggu konfirmasi',
+                ]);
+            }
+        } else {
             if ($tsa != 14) {
                 TransactionStatusAttachment::create([
                     'transaction_status_id' => $transaction->transaction_status_id,
@@ -84,10 +90,10 @@ class ShipperForm extends Component
             }
         }
 
-        if ($tsa != 14) {
-            $this->redirect(route('transaction.sample-site'));
+        if ($tsa == 12 or $tsa == 13) {
+            $this->redirect(route('transaction.index','Pengiriman'));
         } else {
-            $this->redirect(route('transaction.production'));
+            $this->redirect(route('transaction.sample-site'));
         }
 
     }

@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Salary;
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Models\TransactionStatus;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
-
 
 class TransactionController extends Controller
 {
@@ -50,11 +49,14 @@ class TransactionController extends Controller
 
     public function mockupSiteDownload($id)
     {
-        $transaction = Transaction::find($id);
+        $transactionList = TransactionList::find($id);
+        $transaction = $transactionList->transaction;
         $data = [
             'transaction' => $transaction,
+            'transactionList' => $transactionList,
             'product' => $transaction,
         ];
+
         $pdf = Pdf::loadView('pdf.test', $data);
 
         return $pdf->download($transaction->uid.'-'.Carbon::now()->format('d-m-y').'.pdf');
@@ -64,14 +66,17 @@ class TransactionController extends Controller
     {
         return view('admin.transaction.pic-edit', compact('id'));
     }
+
     public function qcEdit($id)
     {
         return view('admin.transaction.qc-edit', compact('id'));
     }
+
     public function weightEdit($id)
     {
         return view('admin.transaction.weight-edit', compact('id'));
     }
+
     public function shipperEdit($id)
     {
         return view('admin.transaction.production.sample-site-resi', compact('id'));
@@ -91,15 +96,18 @@ class TransactionController extends Controller
     {
         return view('admin.transaction.production.sample-site-resi', compact('id'));
     }
+
     public function sampleSiteImage($id)
     {
         return view('admin.transaction.production.sample-site-image', compact('id'));
     }
+
     public function sampleSiteImageDownload($id)
     {
         $transactionStatus = TransactionStatus::find($id);
-        $file = $transactionStatus->transactionStatusAttachments->where('key','photo mockup')->first();
-        return response()->download(storage_path('/app/'. $file->value));
+        $file = $transactionStatus->transactionStatusAttachments->where('key', 'photo mockup')->first();
+
+        return response()->download(storage_path('/app/'.$file->value));
     }
 
     public function transactionChangeStatus($id, $status)
@@ -127,19 +135,25 @@ class TransactionController extends Controller
         ];
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.invoice', $data);
+
         return $pdf->stream();
     }
+
     public function downloadNewOrder($id)
     {
         $data = ['transaction' => Transaction::find($id)];
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.invoice-0', $data);
+
         return $pdf->stream();
-    } public function downloadKwitansi($id)
+    }
+
+    public function downloadKwitansi($id)
     {
         $data = ['transaction' => Transaction::find($id)];
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.kwitansi', $data);
+
         return $pdf->stream();
     }
 }

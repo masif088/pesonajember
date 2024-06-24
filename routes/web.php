@@ -38,6 +38,8 @@ Route::prefix('customer')->name('customer.')->group(function () {
 
     Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision', [CustomerSiteController::class, 'customerTransactionMockupRevision'])->name('customer-transaction-mockup-revision');
     Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision', [CustomerSiteController::class, 'customerTransactionSampleRevision'])->name('customer-transaction-sample-revision');
+
+    Route::get('transaction/download/pdf/{path}', [CustomerSiteController::class, 'customerTransactionDownloadPdf'])->name('transaction-download-pdf');
 });
 Route::get('/dashboard', function () {
     return redirect(route('dashboard'));
@@ -160,7 +162,7 @@ Route::middleware([
         });
         Route::get('selling/{tab}', [TransactionController::class, 'index'])->name('index');
         Route::get('create', [TransactionController::class, 'create'])->name('create');
-        Route::get('edit', [TransactionController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
         Route::get('process-production', [TransactionController::class, 'processProduction'])->name('process-production');
 
         Route::get('billing-page/{id}', [TransactionController::class, 'billingPage'])->name('billing-page');

@@ -27,4 +27,10 @@ class CustomerSiteController extends Controller
     public function customerTransactionSampleRevision($hash, $transaction)
     {
     }
+
+    public function customerTransactionDownloadPdf($path)
+    {
+//        dd(storage_path('/storage/app/'.base64_decode($path)));
+        return response()->download(storage_path('/app/'.base64_decode($path)));
+    }
 }

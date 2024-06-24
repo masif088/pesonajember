@@ -19,11 +19,9 @@
         @endforeach
     </nav>
     <br>
-    <div class="rounded-xl border shadow-lg p-5" style="height: 70vh">
+    <div class="rounded-xl border shadow-lg p-5" style="min-height: 70vh">
         <div class="{{ $activeTab=="Penagihan"?'block':'hidden' }}">
-
-            <br>
-            <a href="{{ route('transaction.create') }}" class="btn bg-wishka-600">Buat Transaksi</a>
+            <a href="{{ route('transaction.create') }}" class="btn bg-wishka-600 mt-5">Buat Transaksi</a>
             <br><br>
             <livewire:table.production name="TransactionNewOrder"/>
         </div>

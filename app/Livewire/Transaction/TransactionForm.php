@@ -15,6 +15,10 @@ use Livewire\Component;
 
 class TransactionForm extends Component
 {
+    public $dataId;
+
+    public $action = 'create';
+
     public $productFormLayout = false;
 
     public $shipperFormLayout = false;
@@ -36,8 +40,10 @@ class TransactionForm extends Component
         'shipper_id' => null,
         'amount' => 0,
         'price' => 0,
-
+        'transaction_id' => null,
     ];
+
+    public $transactionListId = null;
 
     public $optionShippers;
 
@@ -46,6 +52,8 @@ class TransactionForm extends Component
     public $paymentModel;
 
     public $customer;
+
+    public $transactionListUid = [];
 
     public $optionCustomers;
 
@@ -72,6 +80,34 @@ class TransactionForm extends Component
                 'value' => $product->id, 'title' => $product->code.' - '.$product->productCategory->title.' - '.$product->title.' (Rp. '.thousand_format($product->price).')',
             ];
         }
+        if ($this->dataId != null) {
+            $transaction = Transaction::find($this->dataId);
+            $this->customer = $transaction->customer_id;
+            $this->total = $transaction->total_money;
+            $this->note = $transaction->note;
+            $this->tax = $transaction->tax;
+            $this->paymentModel = $transaction->payment_model_id;
+
+            $this->transactionLists = [];
+
+            foreach ($transaction->transactionLists->where('edit_count', $transaction->edit_count) as $tl) {
+                $this->transactionLists[] = [
+                    'product_id' => $tl->product_id ?? null,
+                    'transaction_detail_type_id' => $tl->transaction_detail_type_id,
+                    'shipper_category' => $tl->product_id ?? null,
+                    'shipper_id' => $tl->shipper_id ?? null,
+                    'amount' => $tl->amount,
+                    'price' => $tl->price,
+                    'transaction_id' => $tl->transaction_id ?? null,
+                ];
+                $this->transactionListUid[] = [
+                    'product_id' => $tl->product_id,
+                    'uid' => $tl->uid,
+                    'status' => true,
+                ];
+
+            }
+        }
         $this->dispatch('select2dispatch');
     }
 
@@ -87,6 +123,18 @@ class TransactionForm extends Component
             'tax' => $this->tax,
             'uid' => $now->format('Ymd').(str_pad(($count + 1), 4, '0', STR_PAD_LEFT)),
         ]);
+        $tsa = TransactionStatus::create([
+            'transaction_id' => $transaction->id,
+            'transaction_status_type_id' => 1,
+        ]);
+
+        TransactionStatusAttachment::create([
+            'transaction_status_id' => $tsa->id,
+            'key' => 'status document',
+            'value' => 'Lakukan penagihan',
+            'type' => 'string',
+        ]);
+
 
         $total = 0;
         foreach ($this->transactionLists as $tl) {
@@ -99,12 +147,12 @@ class TransactionForm extends Component
                     'amount' => $tl['amount'],
                     'price' => $tl['price'],
                     'transaction_id' => $transaction->id,
-                    'transaction_list_id' => null,
                     'status_id' => 1,
+                    'uid' => quickRandom(10),
                 ]);
                 $total += ($tl['price']);
             } elseif ($tl['transaction_detail_type_id'] == 2 && $tl['product_id'] != null) {
-                TransactionList::create([
+                $tl = TransactionList::create([
                     'transaction_detail_type_id' => $tl['transaction_detail_type_id'],
                     'product_id' => $tl['product_id'],
                     'shipper_id' => null,
@@ -112,27 +160,105 @@ class TransactionForm extends Component
                     'amount' => $tl['amount'],
                     'price' => $tl['price'],
                     'transaction_id' => $transaction->id,
-                    'transaction_list_id' => null,
                     'status_id' => 1,
+                    'uid' => quickRandom(10),
                 ]);
+
+                $ts = TransactionStatus::create([
+                    'transaction_status_type_id' => 3,
+                    'transaction_id' => $transaction->id,
+                    'transaction_list_id' => $tl->id,
+                ]);
+                TransactionList::find($tl->id)->update(
+                    ['transaction_status_id' => $ts->id]
+                );
+
                 $total += ($tl['price'] * $tl['amount']);
             }
         }
-        $ts = TransactionStatus::create([
-            'transaction_id' => $transaction->id,
-            'transaction_status_type_id' => 1,
-        ]);
-        TransactionStatusAttachment::create([
-            'transaction_status_id' => $ts->id,
-            'key' => 'status document',
-            'value' => 'Lakukan penagihan',
-            'type' => 'string',
-        ]);
-        Transaction::find($transaction->id)->update(['total_money' => $total, 'transaction_status_id' => $ts->id]);
+        Transaction::find($transaction->id)->update(['total_money' => $total, 'transaction_status_id' => $tsa->id]);
+
+
         $this->redirect(route('transaction.index', 'Penagihan'));
     }
 
-    public function shipperFormLayoutSet()
+    public function update(): void
+    {
+        $now = Carbon::now();
+        //        $count = Transaction::whereMonth('created_at', '=', $now->month)->get()->count();
+        //        $transaction = Transaction::create([
+        //            'customer_id' => $this->customer,
+        //            'payment_model_id' => $this->paymentModel,
+        //            'total_money' => $this->total,
+        //            'note' => $this->note,
+        //            'tax' => $this->tax,
+        //            'uid' => $now->format('Ymd').(str_pad(($count + 1), 4, '0', STR_PAD_LEFT)),
+        //        ]);
+
+        $transaction = Transaction::find($this->dataId);
+        $editCount = $transaction->edit_count + 1;
+        $total = 0;
+        foreach ($this->transactionLists as $tl) {
+
+            $uid = quickRandom(10);
+
+            $newTL = true;
+
+            foreach ($this->transactionListUid as $index => $tluid) {
+                if ($tluid['product_id'] == $tl['product_id'] && $tluid['status']) {
+                    $uid = $tluid['uid'];
+                    $this->transactionListUid[$index]['status'] = false;
+                    $newTL = false;
+                    break;
+                }
+            }
+
+            $tl = TransactionList::create([
+                'transaction_detail_type_id' => $tl['transaction_detail_type_id'],
+                'product_id' => $tl['product_id'] ?? null,
+                'shipper_id' => $tl['shipper_id'] ?? null,
+                'shipper_category' => $tl['shipper_category'] ?? null,
+                'amount' => $tl['amount'],
+                'price' => $tl['price'],
+                'transaction_id' => $transaction->id,
+                'status_id' => 1,
+                'edit_count' => $editCount,
+                'uid' => $uid,
+            ]);
+
+            if ($newTL && $tl['product_id'] != null) {
+                $ts = TransactionStatus::create([
+                    'transaction_status_type_id' => 3,
+                    'transaction_id' => $transaction->id,
+                    'transaction_list_id' => $tl->id,
+                ]);
+                TransactionList::find($tl->id)->update(
+                    ['transaction_status_id' => $ts->id]
+                );
+
+            }
+
+            if ($tl['transaction_detail_type_id'] == 1) {
+                $total += ($tl['price']);
+            } elseif ($tl['transaction_detail_type_id'] == 2) {
+                $total += ($tl['price'] * $tl['amount']);
+            }
+        }
+        //        $ts = TransactionStatus::create([
+        //            'transaction_id' => $transaction->id,
+        //            'transaction_status_type_id' => 1,
+        //        ]);
+        //        TransactionStatusAttachment::create([
+        //            'transaction_status_id' => $ts->id,
+        //            'key' => 'status document',
+        //            'value' => 'Lakukan penagihan',
+        //            'type' => 'string',
+        //        ]);
+        Transaction::find($transaction->id)->update(['total_money' => $total, 'edit_count' => $editCount]);
+        $this->redirect(route('transaction.index', 'Penagihan'));
+    }
+
+    public function shipperFormLayoutSet(): void
     {
         $this->shipperFormLayout = ! $this->shipperFormLayout;
         $this->dispatch('select2dispatch');
@@ -146,7 +272,7 @@ class TransactionForm extends Component
         ];
     }
 
-    public function productFormLayoutSet()
+    public function productFormLayoutSet(): void
     {
         $this->productFormLayout = ! $this->productFormLayout;
         $this->dispatch('select2dispatch');
@@ -160,7 +286,7 @@ class TransactionForm extends Component
         ];
     }
 
-    public function addTransactionDetail()
+    public function addTransactionDetail(): void
     {
         $this->transactionLists[] = $this->transactionList;
         $this->transactionList = [
@@ -175,20 +301,15 @@ class TransactionForm extends Component
         $this->shipperFormLayout = false;
     }
 
-    public function overlay()
+    public function overlay(): void
     {
         $this->productFormLayout = false;
         $this->shipperFormLayout = false;
     }
 
-    public function removeList($index)
+    public function removeList($index): void
     {
         unset($this->transactionLists[$index]);
-    }
-
-    public function deleteItem($index)
-    {
-
     }
 
     public function render()

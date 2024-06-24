@@ -10,21 +10,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property int $transaction_id
+ * @property string $transaction_status_id
+ * @property int $edit_count
+ * @property string $uid
  * @property int $transaction_detail_type_id
- * @property int $transaction_list_id
  * @property int $product_id
  * @property int $shipper_id
  * @property int $status_id
  * @property string $shipper_category
-
  * @property string $amount
  * @property float $price
+ *
  */
 class TransactionList extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['transaction_detail_type_id', 'product_id', 'shipper_id', 'shipper_category', 'amount', 'price', 'transaction_id', 'transaction_list_id', 'status_id'];
+    protected $fillable = ['transaction_detail_type_id','transaction_status_id','uid', 'edit_count', 'product_id', 'shipper_id', 'shipper_category', 'amount', 'price', 'transaction_id', 'status_id'];
 
     public function transaction(): BelongsTo
     {
@@ -46,18 +48,18 @@ class TransactionList extends Model
         return $this->belongsTo(Product::class, 'shipper_id')->withTrashed();
     }
 
-    public function transactionList(): BelongsTo
-    {
-        return $this->belongsTo(TransactionList::class, 'transaction_list_id');
-    }
-
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function transactionLists(): HasMany
+    public function transactionStatus(): BelongsTo
     {
-        return $this->hasMany(TransactionList::class, 'transaction_list_id');
+        return $this->belongsTo(TransactionStatus::class, 'transaction_status_id');
+    }
+
+    public function transactionStatuses(): HasMany
+    {
+        return $this->hasMany(TransactionStatus::class, 'transaction_list_id');
     }
 }

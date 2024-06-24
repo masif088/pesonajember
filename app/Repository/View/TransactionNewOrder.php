@@ -57,6 +57,7 @@ class TransactionNewOrder extends Transaction implements View
         $link = route('transaction.billing-page', $data->id);
         $link3 = route('transaction.download', $data->id);
         $link4 = route('finance.transaction.payment.detail', $data->id);
+        $link5 = route('transaction.edit', $data->id);
 
         return [
             ['type' => 'string', 'data' => $data->uid],
@@ -65,8 +66,9 @@ class TransactionNewOrder extends Transaction implements View
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($total)],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
-            <a wire:click='changeProduction($data->id,2)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
+            <a wire:click='changeTransaction($data->id,2)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
             <a href='$link3' target='_blank' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-download'></i></a>
+            <a href='$link5' target='_blank' class='py-1 px-2 bg-warning text-white rounded-lg'><i class='ti ti-pencil'></i></a>
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
             <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg' ><i class='ti ti-trash'></i></a>
             </div>

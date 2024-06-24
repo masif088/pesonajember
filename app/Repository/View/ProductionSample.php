@@ -2,13 +2,13 @@
 
 namespace App\Repository\View;
 
-use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductionSample extends Transaction implements View
+class ProductionSample extends TransactionList implements View
 {
-    protected $table = 'transactions';
+    protected $table = 'transaction_lists';
 
     public static function tableSearch($params = null): Builder
     {
@@ -47,36 +47,36 @@ class ProductionSample extends Transaction implements View
 
     public static function tableData($data = null): array
     {
-        $progress='';
-        $download='';
+        $progress = '';
+        $download = '';
 //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'no resi')->first();
         $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'photo mockup')->first();
-        $process ='Sample telah dikirim';
-        if ($d2!=null){
-            $link3 = route('transaction.sample-site.image.download',$data->transactionStatus->id);
+        $process = 'Sample telah dikirim';
+        if ($d2 != null) {
+            $link3 = route('transaction.sample-site.image.download', $data->transactionStatus->id);
 
-            $process ='Sample telah diajukan';
-            $download="<a href='$link3' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
+            $process = 'Sample telah diajukan';
+            $download = "<a href='$link3' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
         }
-        if ($d==null){
+        if ($d == null) {
             $tag = 'Belum Input';
-            $link = route('transaction.shipper-edit',$data->id);
-            $link2 = route('transaction.sample-site.image',$data->id);
+            $link = route('transaction.shipper-edit', $data->id);
+            $link2 = route('transaction.sample-site.image', $data->id);
             $process = "<div class='flex gap-3 flex-wrap'>
 <a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>
 <a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Gambar</a>
 </div>
 ";
-        }else{
+        } else {
             $tag = $d->value;
             $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
         }
 
         $class = 'px-2 py-1 rounded-lg';
-        if ($tag=="Revisi"){
-            $link = route('transaction.shipper-edit',$data->id);
-            $link2 = route('transaction.sample-site.image',$data->id);
+        if ($tag == "Revisi") {
+            $link = route('transaction.shipper-edit', $data->id);
+            $link2 = route('transaction.sample-site.image', $data->id);
             $class .= " bg-red-200 text-red-600 ";
             $process = "<div class='flex gap-3 flex-wrap'>
 <a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>
@@ -84,8 +84,8 @@ class ProductionSample extends Transaction implements View
 </div>
 ";
         }
-        if ($tag=="Disetujui"){
-            $process ='Telah disetujui';
+        if ($tag == "Disetujui") {
+            $process = 'Telah disetujui';
             $class .= " bg-wishka-200 text-wishka-400";
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
@@ -104,18 +104,12 @@ class ProductionSample extends Transaction implements View
         }
 
 
-
-
-
-
-
-$link4= route('finance.transaction.payment.detail',$data->id);
-
+        $link4 = route('finance.transaction.payment.detail', $data->transaction->id);
 
         return [
 //            ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
-            ['type' => 'raw_html', 'data' => $data->customer->name." <br> <span class='text-sm'>".$data->customer->email.'</span>'],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid . '<br>' . $data->uid],
+            ['type' => 'raw_html', 'data' => $data->transaction->customer->name . " <br> <span class='text-sm'>" . $data->transaction->customer->email . '</span>'],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $process],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<div class='$class'>$tag</div>"],
 

@@ -3,20 +3,22 @@
 namespace App\Repository\View;
 
 use App\Models\Transaction;
+use App\Models\TransactionList;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class TransactionDelivery extends Transaction implements View
+class TransactionDelivery extends TransactionList implements View
 {
-    protected $table = 'transactions';
+    protected $table = 'transaction_lists';
 
     public static function tableSearch($params = null): Builder
     {
+//        dd("asd");
         $query = $params['query'];
         //        dd("asd");
 
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
-            $q->where('transaction_status_type_id', '=', 14);
+            $q->where('transaction_status_type_id', 13);
         }) : static::query();
     }
 
@@ -54,7 +56,7 @@ class TransactionDelivery extends Transaction implements View
         //        dd($shipperWeight);
         //
         $status = 'Menunggu dikirim';
-        $shipper = $data->transactionStatuses->where('transaction_status_type_id', 14)->first();
+        $shipper = $data->transactionStatuses->where('transaction_status_type_id', 13)->first();
         if ($shipper != null) {
 
             if ($shipper->transactionStatusAttachments->where('key', '=', 'resi pengiriman')->first() != null) {
@@ -74,7 +76,7 @@ $shipper ($weight) -  $shipperResi  <br>
 
 </div>
 ";
-                $linkShow = route('finance.transaction.payment.detail',$data->id);
+                $linkShow = route('finance.transaction.payment.detail',$data->transaction->id);
                 $status = "<div class='text-nowrap'>Barang dikirim <a href='$linkShow' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a></div>  ";
 
             }
@@ -85,13 +87,17 @@ $shipper ($weight) -  $shipperResi  <br>
         //            $weight = "$shipperWeight->value ($shipper->value)";
         //        }
 
-        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first()->value??'';
-        if ($pic == null) {
-            $link3 = route('transaction.pic-edit', $data->id);
-            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
-        }
 
-        $product = $data->transactionLists->where('transaction_detail_type_id', '=', 2)->first();
+
+        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+        if ($pic==null){
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
+        }else{
+            $user = new $pic->type();
+            $pic = $user->find($pic->value)->name;
+        }
+        $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
         if ($product != null) {
@@ -100,9 +106,9 @@ $shipper ($weight) -  $shipperResi  <br>
         }
 
         return [
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->created_at->format('d/m/Y')],
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->customer->name],
-            ['type' => 'string', 'text-align' => 'center', 'data' => $data->uid],
+            ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
+            ['type' => 'string', 'text-align' => 'center', 'data' => $data->transaction->customer->name],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => $inputResi],
             ['type' => 'raw_html', 'data' => $status],
