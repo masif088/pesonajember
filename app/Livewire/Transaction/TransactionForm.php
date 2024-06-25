@@ -27,6 +27,8 @@ class TransactionForm extends Component
 
     public $tax = 0;
 
+    public $dateTransaction;
+
     public $total = 0;
 
     public $note = '';
@@ -61,6 +63,7 @@ class TransactionForm extends Component
 
     public function mount()
     {
+        $this->dateTransaction = Carbon::now()->format('Y-m-d');
         $this->optionPaymentModels = eloquent_to_options(PaymentModel::get());
         $this->optionCustomers = [];
         foreach (Customer::get() as $c) {
@@ -87,6 +90,7 @@ class TransactionForm extends Component
             $this->note = $transaction->note;
             $this->tax = $transaction->tax;
             $this->paymentModel = $transaction->payment_model_id;
+            $this->dateTransaction = $transaction->created_at->format('Y-m-d');
 
             $this->transactionLists = [];
 
@@ -122,7 +126,9 @@ class TransactionForm extends Component
             'note' => $this->note,
             'tax' => $this->tax,
             'uid' => $now->format('Ymd').(str_pad(($count + 1), 4, '0', STR_PAD_LEFT)),
+            'created_at' => $this->dateTransaction,
         ]);
+
         $tsa = TransactionStatus::create([
             'transaction_id' => $transaction->id,
             'transaction_status_type_id' => 1,
@@ -134,7 +140,6 @@ class TransactionForm extends Component
             'value' => 'Lakukan penagihan',
             'type' => 'string',
         ]);
-
 
         $total = 0;
         foreach ($this->transactionLists as $tl) {
@@ -177,7 +182,6 @@ class TransactionForm extends Component
             }
         }
         Transaction::find($transaction->id)->update(['total_money' => $total, 'transaction_status_id' => $tsa->id]);
-
 
         $this->redirect(route('transaction.index', 'Penagihan'));
     }
@@ -254,7 +258,16 @@ class TransactionForm extends Component
         //            'value' => 'Lakukan penagihan',
         //            'type' => 'string',
         //        ]);
-        Transaction::find($transaction->id)->update(['total_money' => $total, 'edit_count' => $editCount]);
+        $transaction->update(
+            [
+                'total_money' => $total,
+                'edit_count' => $editCount,
+                'created_at' => $this->dateTransaction,
+                'customer_id' => $this->customer,
+                'payment_model_id' => $this->paymentModel,
+                'note' => $this->note,
+                'tax' => $this->tax,
+            ]);
         $this->redirect(route('transaction.index', 'Penagihan'));
     }
 

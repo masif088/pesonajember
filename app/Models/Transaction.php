@@ -26,7 +26,7 @@ class Transaction extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['uid', 'customer_id', 'edit_count', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id'];
+    protected $fillable = ['uid', 'customer_id', 'edit_count', 'payment_model_id', 'shipper_id', 'shipping_receipt_number', 'total_money', 'note', 'tax', 'transaction_status_id','created_at','updated_at'];
 
     public function customer(): BelongsTo
     {

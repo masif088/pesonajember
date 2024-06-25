@@ -35,7 +35,8 @@ class ProductionPattern extends TransactionList implements View
 //            ['label' => 'Upload Mockup', 'text-align' => 'center'],
             ['label' => 'PIC', 'text-align' => 'center'],
             ['label' => 'Ubah Progress', 'text-align' => 'center'],
-            ['label' => 'Tindakan', 'text-align' => 'center'],
+            ['label' => 'Progress'],
+            ['label' => 'Tindakan'],
         ];
     }
 
@@ -58,17 +59,22 @@ class ProductionPattern extends TransactionList implements View
             $pic = $user->find($pic->value)->name;
         }
 
+        $link4 = route('transaction.image-gallery',$data->id);
+        $link5 = route('transaction.image-edit',$data->id);
 
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'raw_html', 'data' => $data->transaction->customer->name." <br> <span class='text-sm'>".$data->transaction->customer->email.'</span>'],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $pic],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
-            ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
-            <span class='text-xl font-black'>
+
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
             $edit
             $download
-            </span>
+            <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
+            <a href='$link4' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-album'></i></a>
+            </div>
             "],
         ];
     }

@@ -36,6 +36,7 @@ class ProductionPrint extends TransactionList implements View
             ['label' => 'Mockup', 'sort' => 'code'],
             ['label' => 'Print Proses', 'sort' => 'code'],
             ['label' => 'PIC', 'sort' => 'code'],
+            ['label' => 'Progress'],
             ['label' => 'Tindakan'],
         ];
     }
@@ -90,7 +91,8 @@ class ProductionPrint extends TransactionList implements View
 <option value='11'>Packing</option>
 <option value='12'>Menunggu Pembayaran</option>
 </select>";
-
+        $link4 = route('transaction.image-gallery',$data->id);
+        $link5 = route('transaction.image-edit',$data->id);
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'start', 'data' => $name],
@@ -99,6 +101,12 @@ class ProductionPrint extends TransactionList implements View
             ['type' => 'raw_html', 'data' => $p2],
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => $progress],
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+            <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
+            <a href='$link4' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-album'></i></a>
+            </div>
+            "],
         ];
     }
 }

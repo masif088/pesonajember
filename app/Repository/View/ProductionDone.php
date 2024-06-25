@@ -34,6 +34,7 @@ class ProductionDone extends TransactionList implements View
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
             ['label' => 'Status', 'sort' => 'code'],
+            ['label' => 'Progress'],
             ['label' => 'Tindakan'],
         ];
     }
@@ -76,6 +77,8 @@ class ProductionDone extends TransactionList implements View
 <option></option>
 <option value='13'>Pengiriman</option>
 </select>";
+        $link4 = route('transaction.image-gallery',$data->id);
+        $link5 = route('transaction.image-edit',$data->id);
 
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
@@ -83,6 +86,12 @@ class ProductionDone extends TransactionList implements View
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
             ['type' => 'raw_html', 'data' => "Menunggu pembayaran"],
             ['type' => 'raw_html', 'data' => $progress],
+            ['type' => 'raw_html', 'data' => "
+            <div class='text-xl flex gap-1'>
+            <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
+            <a href='$link4' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-album'></i></a>
+            </div>
+            "],
         ];
     }
 }

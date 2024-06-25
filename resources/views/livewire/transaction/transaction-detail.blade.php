@@ -31,7 +31,7 @@
                 <td>No Invoice : {{ $transaction->uid }}</td>
                 <td></td>
                 <td style="text-align: right">
-                    Tanggal : {{ get_date_format($transaction->created_at) }}</td>
+                    Tanggal : {{ get_date_format($transaction->created_at) }} </td>
             </tr>
         </table>
     </div>

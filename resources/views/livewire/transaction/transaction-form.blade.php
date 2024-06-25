@@ -34,29 +34,41 @@
 
                 </script>
             </div>
+            <br>
+            <a href="{{ route('customer.create') }}" class="col-span-4 btn bg-wishka-500">Tambah ID Konsumen Baru</a>
+            <br><br>
         </div>
-        <div class="col-span-4"></div>
-        <br>
-        <a href="{{ route('customer.create') }}" class="col-span-4 btn bg-wishka-500">Tambah ID Konsumen Baru</a>
 
-        <div class="lg:grid grid-cols-12 gap-3 col-span-12">
-            <div class="col-span-4">
+
+
+        <div class="lg:grid grid-cols-12 gap-3 col-span-7">
+            <div class="col-span-12">
+                <div class="mb-2" style="align-items: center;">
+                    Tanggal transaksi
+                </div>
+                <div class="">
+                    <input type="date" wire:model.live="dateTransaction"
+                           class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
+
+                </div>
+            </div>
+            <div class="col-span-12">
                 <div class="mb-2" style="align-items: center;">
                     Payment Model
                 </div>
                 <div class="" wire:ignore>
                     <select wire:model.live="paymentModel"
-                            class="mb-2 bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white"
+                            class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white"
                             name="">
                         <option value=""></option>
                         @foreach( $optionPaymentModels as $option)
                             <option value="{{ $option['value'] }}">{{ $option['title'] }}</option>
                         @endforeach
                     </select>
-
                 </div>
             </div>
-            <div class="col-span-4">
+
+            <div class="col-span-12">
                 <div class="mb-2" style="align-items: center;">
                     Pajak
                 </div>

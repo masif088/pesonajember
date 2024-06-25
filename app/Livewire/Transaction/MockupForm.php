@@ -15,6 +15,7 @@ class MockupForm extends Component
     public $dataId;
 
     public $mockup;
+
     public $mockupCustomer;
 
     public $sample;
@@ -47,7 +48,7 @@ class MockupForm extends Component
         $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
         $ts4 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pdf mockup')->first();
 
-        if ($this->sample!=1){
+        if ($this->sample != 1) {
             if ($ts != null) {
                 $ts->update([
                     'value' => $this->mockup->store(path: 'public/mockup'),
@@ -99,7 +100,7 @@ class MockupForm extends Component
                 'value' => $this->mockupCustomer->store(path: 'public/mockup-pdf'),
             ]);
         }
-        if ($this->sample == "1") {
+        if ($this->sample == '1') {
             $this->redirect(route('transaction.sample-site'));
         } else {
 

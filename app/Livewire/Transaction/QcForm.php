@@ -26,7 +26,7 @@ class QcForm extends Component
     {
         return [
             'form' => 'required|max:255',
-            'form2' => 'required|max:255',
+            'form2' => 'nullable|max:255',
         ];
     }
 

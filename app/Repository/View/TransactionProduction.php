@@ -43,8 +43,9 @@ class TransactionProduction extends Transaction implements View
         $process = "Status";
         $list = "<br>";
         $listProcess = "<br>";
+//        dd($data->transactionLists);
         foreach ($data->transactionLists as $tl ){
-            $list.="$tl->uid <br>";
+//            $listProcess.="$tl->uid <br>";
             $listProcess.="<b>$tl->uid</b>: ".$tl->transactionStatus->transactionStatusType->title ."<br>";
         }
 //        $link3 = route('transaction.download', $data->id);
@@ -60,7 +61,7 @@ class TransactionProduction extends Transaction implements View
 
 
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
-
+<a wire:click='changeTransaction($data->id,15)' href='#' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-check'></i></a>
             </div>
             "],
         ];
