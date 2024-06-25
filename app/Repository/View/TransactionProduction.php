@@ -46,7 +46,7 @@ class TransactionProduction extends Transaction implements View
 //        dd($data->transactionLists);
         foreach ($data->transactionLists as $tl ){
 //            $listProcess.="$tl->uid <br>";
-            $listProcess.="<b>$tl->uid</b>: ".$tl->transactionStatus->transactionStatusType->title ."<br>";
+            $listProcess.="<b>$tl->uid</b>:";
         }
 //        $link3 = route('transaction.download', $data->id);
         $link4 = route('finance.transaction.payment.detail', $data->id);
