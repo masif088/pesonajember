@@ -107,6 +107,7 @@ class TransactionForm extends Component
                 $this->transactionListUid[] = [
                     'product_id' => $tl->product_id,
                     'uid' => $tl->uid,
+                    'transaction_status_id' => $tl->transaction_status_id,
                     'status' => true,
                 ];
 
@@ -205,6 +206,7 @@ class TransactionForm extends Component
         foreach ($this->transactionLists as $tl) {
 
             $uid = quickRandom(10);
+            $transaction_status_id = null;
 
             $newTL = true;
 
@@ -212,6 +214,7 @@ class TransactionForm extends Component
                 if ($tluid['product_id'] == $tl['product_id'] && $tluid['status']) {
                     $uid = $tluid['uid'];
                     $this->transactionListUid[$index]['status'] = false;
+                    $transaction_status_id = $tluid['transaction_status_id'];
                     $newTL = false;
                     break;
                 }
@@ -228,6 +231,7 @@ class TransactionForm extends Component
                 'status_id' => 1,
                 'edit_count' => $editCount,
                 'uid' => $uid,
+                'transaction_status_id' => $transaction_status_id,
             ]);
 
             if ($newTL && $tl['product_id'] != null) {
