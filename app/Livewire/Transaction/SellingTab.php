@@ -18,7 +18,7 @@ class SellingTab extends Component
             'Penagihan',
             'DP-diterima',
             'Proses-Produksi',
-            'Pelunasan',
+//            'Pelunasan',
             'Pengiriman',
             'Selesai',
             'Cancel',

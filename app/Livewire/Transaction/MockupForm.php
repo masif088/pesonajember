@@ -32,8 +32,6 @@ class MockupForm extends Component
     public function getRules()
     {
         return [
-            'mockup' => 'nullable|image|max:5120',
-            'process' => 'nullable',
             'mockupCustomer' => 'nullable',
         ];
     }
@@ -47,33 +45,6 @@ class MockupForm extends Component
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
         $ts4 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pdf mockup')->first();
-
-        if ($this->sample != 1) {
-            if ($ts != null) {
-                $ts->update([
-                    'value' => $this->mockup->store(path: 'public/mockup'),
-                ]);
-            } else {
-                TransactionStatusAttachment::create([
-                    'transaction_status_id' => $transaction->transaction_status_id,
-                    'type' => 'image',
-                    'key' => 'photo mockup',
-                    'value' => $this->mockup->store(path: 'public/mockup'),
-                ]);
-            }
-            if ($ts3 != null) {
-                $ts3->update([
-                    'value' => $this->process,
-                ]);
-            } else {
-                TransactionStatusAttachment::create([
-                    'transaction_status_id' => $transaction->transaction_status_id,
-                    'type' => 'string',
-                    'key' => 'process',
-                    'value' => $this->process,
-                ]);
-            }
-        }
 
         if ($ts2 != null) {
             $ts2->update([
@@ -90,14 +61,14 @@ class MockupForm extends Component
 
         if ($ts4 != null) {
             $ts4->update([
-                'value' => $this->mockupCustomer->store(path: 'public/mockup-pdf'),
+                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', 'asdasd'),
             ]);
         } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'type' => 'file',
                 'key' => 'pdf mockup',
-                'value' => $this->mockupCustomer->store(path: 'public/mockup-pdf'),
+                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', ''),
             ]);
         }
         if ($this->sample == '1') {

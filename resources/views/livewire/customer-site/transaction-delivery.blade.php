@@ -6,7 +6,7 @@
         </h5>
 
         <div class="mt-6">
-            @foreach($transaction->transactionStatuses->sortByDesc('id') as $index=>$ts)
+            @foreach($transaction->transactionStatuses->sortByDesc('created_at') as $index=>$ts)
                 @php
                     $resi = '';
                     $shipper = '';
