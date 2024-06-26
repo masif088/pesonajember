@@ -127,12 +127,13 @@ class TransactionForm extends Component
             'note' => $this->note,
             'tax' => $this->tax,
             'uid' => $now->format('Ymd').(str_pad(($count + 1), 4, '0', STR_PAD_LEFT)),
-            'created_at' => $this->dateTransaction,
+            'created_at' => $this->dateTransaction.' '.Carbon::now()->format('H:i:s'),
         ]);
 
         $tsa = TransactionStatus::create([
             'transaction_id' => $transaction->id,
             'transaction_status_type_id' => 1,
+            'created_at' => $this->dateTransaction.' '.Carbon::now()->format('H:i:s'),
         ]);
 
         TransactionStatusAttachment::create([
@@ -190,15 +191,6 @@ class TransactionForm extends Component
     public function update(): void
     {
         $now = Carbon::now();
-        //        $count = Transaction::whereMonth('created_at', '=', $now->month)->get()->count();
-        //        $transaction = Transaction::create([
-        //            'customer_id' => $this->customer,
-        //            'payment_model_id' => $this->paymentModel,
-        //            'total_money' => $this->total,
-        //            'note' => $this->note,
-        //            'tax' => $this->tax,
-        //            'uid' => $now->format('Ymd').(str_pad(($count + 1), 4, '0', STR_PAD_LEFT)),
-        //        ]);
 
         $transaction = Transaction::find($this->dataId);
         $editCount = $transaction->edit_count + 1;
