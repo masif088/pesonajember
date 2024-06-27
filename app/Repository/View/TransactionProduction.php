@@ -15,6 +15,7 @@ class TransactionProduction extends Transaction implements View
         $query = $params['query'];
 //        dd("asd");
 
+//        Transaction::whereHas('transactionStatus',)
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
             $q->where('transaction_status_type_id','=',14);
         }) : static::query();

@@ -36,7 +36,6 @@ class Production extends Master
         $ts = $transaction->transactionStatuses->where('transaction_status_type_id', '=', $status)->first();
 
 
-
         if ($ts == null) {
             $ts = TransactionStatus::create([
                 'transaction_id' => $transaction->id,
@@ -45,22 +44,24 @@ class Production extends Master
             ]);
         }
 
+        $transaction->update([
+            'transaction_status_id' => $ts->id,
+        ]);
+
         if ($status==14){
             foreach ($transaction->transactionLists as $tl){
-                $ts = TransactionStatus::create([
+                $tsl = TransactionStatus::create([
                     'transaction_list_id' => $tl->id,
                     'transaction_id' => $transaction->id,
                     'transaction_status_type_id' => 4,
                 ]);
                 TransactionList::find($tl->id)->update([
-                    'transaction_status_id' => $ts->id
+                    'transaction_status_id' => $tsl->id
                 ]);
             }
         }
 
-        $transaction->update([
-            'transaction_status_id' => $ts->id,
-        ]);
+
 
         $this->dispatch('reRender');
 
