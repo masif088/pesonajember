@@ -17,8 +17,8 @@ class SellingTab extends Component
         $this->sellingTab = [
             'Penagihan',
             'DP-diterima',
+            'Mockup',
             'Proses-Produksi',
-//            'Pelunasan',
             'Pengiriman',
             'Selesai',
             'Cancel',

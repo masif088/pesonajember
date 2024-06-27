@@ -60,7 +60,7 @@ class TransactionDpAccept extends Transaction implements View
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
-            <a wire:click='changeTransaction($data->id,14)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
+            <a wire:click='changeTransaction($data->id,3)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>
             </div>
             "],
         ];

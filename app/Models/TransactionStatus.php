@@ -20,7 +20,7 @@ class TransactionStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['transaction_id','transaction_list_id', 'transaction_status_type_id', 'note','created_at'];
+    protected $fillable = ['transaction_id','transaction_list_id', 'transaction_status_type_id', 'note','created_at','updated_at'];
 
     public function transaction(): BelongsTo
     {

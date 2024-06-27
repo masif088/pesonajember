@@ -39,11 +39,9 @@ class MockupForm extends Component
     public function create()
     {
         $this->validate();
-        $transaction = TransactionList::find($this->dataId);
+        $transaction = Transaction::find($this->dataId);
 
-        $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'photo mockup')->first();
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
-        $ts3 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
         $ts4 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pdf mockup')->first();
 
         if ($ts2 != null) {
@@ -61,22 +59,18 @@ class MockupForm extends Component
 
         if ($ts4 != null) {
             $ts4->update([
-                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', 'asdasd'),
+                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', $this->mockupCustomer->getClientOriginalName()),
             ]);
         } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,
                 'type' => 'file',
                 'key' => 'pdf mockup',
-                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', ''),
+                'value' => $this->mockupCustomer->storeAs('public/mockup-pdf', $this->mockupCustomer->getClientOriginalName()),
             ]);
         }
-        if ($this->sample == '1') {
-            $this->redirect(route('transaction.sample-site'));
-        } else {
 
-            $this->redirect(route('transaction.mockup-site'));
-        }
+        $this->redirect(route('transaction.index','Mockup'));
 
     }
 

@@ -32,10 +32,10 @@ class ProductionPattern extends TransactionList implements View
         return [
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Nama Customer'],
-//            ['label' => 'Upload Mockup', 'text-align' => 'center'],
+            ['label' => 'Produk', 'text-align' => 'center'],
             ['label' => 'PIC', 'text-align' => 'center'],
             ['label' => 'Ubah Progress', 'text-align' => 'center'],
-            ['label' => 'Progress'],
+
             ['label' => 'Tindakan'],
         ];
     }
@@ -65,6 +65,7 @@ class ProductionPattern extends TransactionList implements View
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'raw_html', 'data' => $data->transaction->customer->name." <br> <span class='text-sm'>".$data->transaction->customer->email.'</span>'],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->product->title],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $pic],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
 

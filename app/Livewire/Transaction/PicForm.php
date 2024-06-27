@@ -49,7 +49,6 @@ class PicForm extends Component
         $this->resetErrorBag();
 
         $transaction = TransactionList::find($this->dataId);
-
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
             $ts->update([

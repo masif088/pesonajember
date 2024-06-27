@@ -171,14 +171,16 @@ class TransactionForm extends Component
                     'uid' => quickRandom(10),
                 ]);
 
-                $ts = TransactionStatus::create([
-                    'transaction_status_type_id' => 3,
-                    'transaction_id' => $transaction->id,
-                    'transaction_list_id' => $tl->id,
-                ]);
-                TransactionList::find($tl->id)->update(
-                    ['transaction_status_id' => $ts->id]
-                );
+
+
+//                $ts = TransactionStatus::create([
+//                    'transaction_status_type_id' => 3,
+//                    'transaction_id' => $transaction->id,
+//                    'transaction_list_id' => $tl->id,
+//                ]);
+//                TransactionList::find($tl->id)->update(
+//                    ['transaction_status_id' => $ts->id]
+//                );
 
                 $total += ($tl['price'] * $tl['amount']);
             }
@@ -227,15 +229,16 @@ class TransactionForm extends Component
             ]);
 
             if ($newTL && $tl['product_id'] != null) {
-                $ts = TransactionStatus::create([
-                    'transaction_status_type_id' => 3,
-                    'transaction_id' => $transaction->id,
-                    'transaction_list_id' => $tl->id,
-                ]);
-                TransactionList::find($tl->id)->update(
-                    ['transaction_status_id' => $ts->id]
-                );
-
+                if ($transaction->transaction_status_type_id==14){
+                    $ts = TransactionStatus::create([
+                        'transaction_status_type_id' => 3,
+                        'transaction_id' => $transaction->id,
+                        'transaction_list_id' => $tl->id,
+                    ]);
+                    TransactionList::find($tl->id)->update(
+                        ['transaction_status_id' => $ts->id]
+                    );
+                }
             }
 
             if ($tl['transaction_detail_type_id'] == 1) {

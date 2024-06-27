@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12">
+<div class="grid grid-cols-12 gap-3">
     <h2 class="text-2xl col-span-12 mb-10">
         {{ $transaction->transactionStatus->transactionStatusType->title??'' }}
     </h2>
@@ -26,10 +26,16 @@
         </div>
         <button class="btn bg-wishka-600 col-span-3 float-right mt-4">Submit</button>
     </form>
-    <div class="col-span-12 lg:col-span-6 flex justify-center">
-        <img
-            src="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','photo mockup')->first()->value??'')) }}"
-            alt="">
+
+    <div class="col-span-12 lg:col-span-6">
+{{--        {{ dd($transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value) }}--}}
+
+        <object data="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}"
+                type="application/pdf" style="width: 100%; height: 80vh">
+            <a href="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}">test.pdf</a>
+        </object>
+
+
     </div>
 
 </div>

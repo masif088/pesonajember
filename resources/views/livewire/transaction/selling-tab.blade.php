@@ -28,12 +28,13 @@
         <div class="{{ $activeTab=="DP-diterima"?'block':'hidden' }}">
             <livewire:table.production name="TransactionDpAccept"/>
         </div>
+        <div class="{{ $activeTab=="Mockup"?'block':'hidden' }}">
+            <livewire:table.production name="ProductionMockup"/>
+        </div>
         <div class="{{ $activeTab=="Proses-Produksi"?'block':'hidden' }}">
             <livewire:table.production name="TransactionProduction"/>
         </div>
-{{--        <div class="{{ $activeTab=="Pelunasan"?'block':'hidden' }}">--}}
-{{--            <livewire:table.production name="TransactionRepayment"/>--}}
-{{--        </div>--}}
+
         <div class="{{ $activeTab=="Pengiriman"?'block':'hidden' }}">
             <livewire:table.production name="TransactionDelivery"/>
         </div>

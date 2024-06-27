@@ -37,11 +37,11 @@ class ProductionSample extends TransactionList implements View
 //            ['label' => 'Tindakan', 'text-align' => 'center'],
         return [
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
-            ['label' => 'Nama Customer', 'sort' => 'code'],
-            ['label' => 'Sample', 'sort' => 'code'],
-            ['label' => 'Status', 'sort' => 'code'],
-            ['label' => 'Proses', 'sort' => 'code'],
-            ['label' => 'Tindakan', 'sort' => 'code'],
+            ['label' => 'Nama Customer',],
+            ['label' => 'Sample',],
+            ['label' => 'Status', 'text-align' => 'center'],
+            ['label' => 'Proses',],
+            ['label' => 'Tindakan',],
         ];
     }
 
@@ -51,23 +51,19 @@ class ProductionSample extends TransactionList implements View
         $download = '';
 //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'no resi')->first();
         $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
-        $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'photo mockup')->first();
-        $process = 'Sample telah dikirim';
+        $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'no resi')->first();
+        $process = 'Sample telah diajukan';
         if ($d2 != null) {
-            $link3 = route('transaction.sample-site.image.download', $data->transactionStatus->id);
-
-            $process = 'Sample telah diajukan';
-            $download = "<a href='$link3' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
+            $process = 'Sample telah dikirim';
         }
         if ($d == null) {
             $tag = 'Belum Input';
             $link = route('transaction.shipper-edit', $data->id);
-            $link2 = route('transaction.sample-site.image', $data->id);
-            $process = "<div class='flex gap-3 flex-wrap'>
-<a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>
-<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Gambar</a>
-</div>
-";
+
+            $process = "<div class='flex gap-1 flex-wrap'>
+                            <a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>
+                            <a href='#' wire:click='submitApproval($data->id)' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Ajukan persetujuan gambar</a>
+                            </div>";
         } else {
             $tag = $d->value;
             $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
@@ -80,7 +76,7 @@ class ProductionSample extends TransactionList implements View
             $class .= " bg-red-200 text-red-600 ";
             $process = "<div class='flex gap-3 flex-wrap'>
 <a href='$link' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Resi</a>
-<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Input Gambar</a>
+<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Ajukan persetujuan gambar</a>
 </div>
 ";
         }
@@ -106,6 +102,10 @@ class ProductionSample extends TransactionList implements View
 
         $link4 = route('finance.transaction.payment.detail', $data->transaction->id);
 
+
+        $link6 = route('transaction.image-gallery', $data->id);
+        $link5 = route('transaction.image-edit', $data->id);
+
         return [
 //            ['type' => 'string', 'data' => $data->created_at->format('d/m/Y')],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid . '<br>' . $data->uid],
@@ -118,6 +118,10 @@ class ProductionSample extends TransactionList implements View
             <div class='text-xl flex gap-1'>
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>
             $download
+
+            <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
+            <a href='$link6' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-album'></i></a>
+
 
 
             </div>"],
