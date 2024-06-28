@@ -28,7 +28,7 @@ class CategoryForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::create($this->form);
-        $this->redirect(route('material.category'));
+        $this->redirect(route('production.category'));
 
     }
     public function update()
@@ -36,7 +36,7 @@ class CategoryForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('material.category'));
+        $this->redirect(route('production.category'));
     }
 
     public function render()

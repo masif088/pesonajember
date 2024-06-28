@@ -33,6 +33,7 @@ class ShipperForm extends Component
     {
         return [
             'form' => 'required|max:255',
+            'form2' => 'required|max:255',
         ];
     }
 

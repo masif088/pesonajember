@@ -46,27 +46,26 @@ class ProductionMockup extends Transaction implements View
 
 //        $p2 = '';
         $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
-//        $d2 = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'process')->first();
+        $production ="<a wire:click='changeTransaction($data->id,14)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>";
 
-//        dd($d);
-        $production='';
         $class = 'px-2 py-1 rounded-lg';
         $process = 'Telah di upload';
         $link = route('transaction.mockup-site-edit', $data->id);
         $link3 = route('finance.transaction.payment.detail', $data  ->id);
-        $edit = '';
+
+        $edit = "<a href='$link' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-edit'></i></a>";
+        $eye = "<a href='$link3' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>";
+
+
+
         $download = '';
-        $eye = '';
+
         $progress = '';
         if ($d != null) {
 //            $p2 = $d2->value;
             $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
             $link2 = route('transaction.mockup-site-download', $data->id);
             $download = "<a href='$link2' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
-            $edit = "<a href='$link' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-edit'></i></a>";
-            $eye = "<a href='$link3' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>";
-
-            $production ="<a wire:click='changeTransaction($data->id,14)' href='#' class='py-1 px-2 bg-success text-white rounded-lg'><i class='ti ti-check'></i></a>";
 
 
 

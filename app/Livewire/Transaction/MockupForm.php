@@ -44,6 +44,8 @@ class MockupForm extends Component
         $ts2 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'status')->first();
         $ts4 = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pdf mockup')->first();
 
+        $filename = pathinfo($this->mockupCustomer->getClientOriginalName(),PATHINFO_FILENAME);
+
         if ($ts2 != null) {
             $ts2->update([
                 'value' => 'Menunggu konfirmasi',

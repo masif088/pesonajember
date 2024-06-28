@@ -31,7 +31,7 @@ class FormCustomer extends Component
         $this->validate();
         $this->resetErrorBag();
         $now = Carbon::now();
-        $count = Customer::whereYear('register','=',$now->year)->get()->count();
+        $count = Customer::whereYear('register','=',$now->year)->withTrashed()->get()->count();
         $this->form['register'] = $now;
         $this->form['hash_id'] = quickRandom(32);
         $this->form['uid'] = 'WSHK' . $now->year.(str_pad(($count+1), 4, '0', STR_PAD_LEFT));

@@ -18,7 +18,7 @@
         </label>
         <input wire:model="form2" id="mockup"
                class="col-span-12 text-dark bg-gray-200 appearance-none border-1 border border-gray-100 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark dark:text-light focus:dark:border-white"
-               type="text" placeholder="Nomer Resi">
+               type="text" placeholder="Nomer Resi" required>
 
     </div>
 

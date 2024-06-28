@@ -28,14 +28,10 @@
     </form>
 
     <div class="col-span-12 lg:col-span-6">
-{{--        {{ dd($transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value) }}--}}
-
         <object data="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}"
                 type="application/pdf" style="width: 100%; height: 80vh">
             <a href="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}">test.pdf</a>
         </object>
-
-
     </div>
 
 </div>
