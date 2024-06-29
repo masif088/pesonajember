@@ -53,7 +53,7 @@ class ProductionPattern extends TransactionList implements View
 
         $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($pic==null){
-            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
         }else{
             $user = new $pic->type();
             $pic = $user->find($pic->value)->name;

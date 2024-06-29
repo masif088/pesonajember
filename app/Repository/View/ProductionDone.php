@@ -54,7 +54,7 @@ class ProductionDone extends TransactionList implements View
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
 
         $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
+        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center  text-nowrap'>Input PIC</a>";
         if ($status != null) {
             if ($status->type == 'string') {
                 $pic = $status->value;
