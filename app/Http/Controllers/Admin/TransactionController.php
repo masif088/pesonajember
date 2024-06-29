@@ -57,7 +57,7 @@ class TransactionController extends Controller
             'product' => $transaction,
         ];
 
-        $pdf = Pdf::loadView('pdf.test', $data);
+        $pdf = Pdf::loadView('pdf.worksheet', $data);
 
         return $pdf->download($transaction->uid.'-'.Carbon::now()->format('d-m-y').'.pdf');
     }

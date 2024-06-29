@@ -27,14 +27,15 @@ class Production extends Master
             'transaction_status_id' => $ts->id,
         ]);
 
-        $this->dispatch('reRender');
+        $this->redirect('#');
+//        $this->dispatch('reRender');
 
     }
+
     public function changeTransaction($id, $status)
     {
         $transaction = Transaction::find($id);
         $ts = $transaction->transactionStatuses->where('transaction_status_type_id', '=', $status)->first();
-
 
         if ($ts == null) {
             $ts = TransactionStatus::create([
@@ -48,20 +49,18 @@ class Production extends Master
             'transaction_status_id' => $ts->id,
         ]);
 
-        if ($status==14){
-            foreach ($transaction->transactionLists as $tl){
+        if ($status == 14) {
+            foreach ($transaction->transactionLists as $tl) {
                 $tsl = TransactionStatus::create([
                     'transaction_list_id' => $tl->id,
                     'transaction_id' => $transaction->id,
                     'transaction_status_type_id' => 4,
                 ]);
                 TransactionList::find($tl->id)->update([
-                    'transaction_status_id' => $tsl->id
+                    'transaction_status_id' => $tsl->id,
                 ]);
             }
         }
-
-
 
         $this->dispatch('reRender');
 

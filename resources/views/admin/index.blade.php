@@ -7,6 +7,9 @@
 
         <div class="grid grid-cols-12 gap-3" style="padding-bottom: 50px">
 
+            <div class="col-span-12">
+            <livewire:production.person-in-charge/>
+            </div>
             <br>
             <div class="col-span-12 ">
             <livewire:attendance.dashboard-attendance />

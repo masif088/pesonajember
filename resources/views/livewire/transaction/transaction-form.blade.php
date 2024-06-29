@@ -250,7 +250,7 @@
     <div class="vh-100 p-5 fixed" wire:click="overlay" style=" @if($shipperFormLayout or $productFormLayout) display: table @else display:none @endif ; overflow: hidden;position: fixed; top: 0; z-index: 3; height: 100%; width: 100%; right: 0; background: #c0c0c0c0"></div>
     <div class="m-5 p-5 bg-white rounded shadow-xl" style="width: 600px;
     @if(!$productFormLayout) display:none @else display:block  @endif ;
-        height: 450px;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;max-width: 90%;max-height: 100%;z-index: 10;overflow: auto;">
+        height: 450px;position: fixed;left: 0;right: 0;top: 0;bottom: 0;margin: auto;max-width: 90%;max-height: 100%;z-index: 10;overflow: auto;">
         <div class="absolute top-5 right-5" wire:click="overlay">
             <i class="ti ti-x text-2xl"></i>
         </div>
@@ -304,7 +304,7 @@
             Harga Satuan:
         </div>
         <div class="col-span-12 mb-2 ">
-            <input type="text" value="" wire:model.live="transactionList.price"
+            <input type="number" value="" wire:model.live="transactionList.price"
                    class="bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white">
         </div>
         <div class="col-span-12 mb-2 flex" style="align-items: center;">
@@ -328,7 +328,7 @@
 
     <div class="m-5 p-5 bg-white rounded shadow-xl" style="width: 600px;
     @if(!$shipperFormLayout) display:none @else display:block  @endif ;
-        height: 450px;position: absolute;
+        height: 450px;position: fixed;
         left: 0;right: 0;top: 0;bottom: 0;margin: auto;max-width: 90%;max-height: 100%;z-index: 10;overflow: auto;">
 
         <div class="absolute top-5 right-5" wire:click="overlay">

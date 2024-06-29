@@ -1,5 +1,5 @@
 @php use Illuminate\Database\Eloquent\Builder; @endphp
-<div class="grid grid-cols-8 gap-5 bg">
+<div class="grid grid-cols-8 gap-3 bg">
 
     @foreach($cardsTitle as $index=>$title)
 
