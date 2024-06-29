@@ -41,16 +41,18 @@
 
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-goals/>
-                    <div class="col-span-12">
-                        <livewire:production.person-in-charge/>
-                    </div>
+
+                </div>
+                <div class="col-span-12">
+                    <livewire:production.person-in-charge/>
                 </div>
             @else
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
-                    <div class="col-span-12">
-                        <livewire:production.person-in-charge/>
-                    </div>
+
+                </div>
+                <div class="col-span-12">
+                    <livewire:production.person-in-charge/>
                 </div>
             @endif
 
