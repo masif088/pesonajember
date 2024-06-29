@@ -7,9 +7,7 @@
 
         <div class="grid grid-cols-12 gap-3" style="padding-bottom: 50px">
 
-            <div class="col-span-12">
-            <livewire:production.person-in-charge/>
-            </div>
+
             <br>
             <div class="col-span-12 ">
             <livewire:attendance.dashboard-attendance />
@@ -27,6 +25,9 @@
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-goals/>
                 </div>
+                <div class="col-span-12">
+                    <livewire:production.person-in-charge/>
+                </div>
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-revenue/>
                 </div>
@@ -40,10 +41,16 @@
 
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-goals/>
+                    <div class="col-span-12">
+                        <livewire:production.person-in-charge/>
+                    </div>
                 </div>
             @else
                 <div class="lg:col-span-6 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
+                    <div class="col-span-12">
+                        <livewire:production.person-in-charge/>
+                    </div>
                 </div>
             @endif
 
