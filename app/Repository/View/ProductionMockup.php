@@ -91,7 +91,7 @@ class ProductionMockup extends Transaction implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $process],
 //            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $p2],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<div class='$class'>$tag</div>"],
-            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
+
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
             <div class='text-xl flex gap-1'>
