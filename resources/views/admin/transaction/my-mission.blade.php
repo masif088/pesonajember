@@ -8,7 +8,7 @@
             <div class="col-span-12">
 
                 <br>
-                <livewire:table.master name="ProductionPersonInCharge"/>
+                <livewire:table.master name="ProductionPersonInCharge" param1="{{ auth()->id() }}" />
 {{--                <livewire:selling-tab/>--}}
             </div>
         </div>

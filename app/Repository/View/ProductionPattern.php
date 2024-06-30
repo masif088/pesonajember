@@ -35,6 +35,7 @@ class ProductionPattern extends TransactionList implements View
             ['label' => 'Nama Customer'],
             ['label' => 'Produk', 'text-align' => 'center'],
             ['label' => 'PIC', 'text-align' => 'center'],
+            ['label' => 'Acuan kerja'],
             ['label' => 'Ubah Progress', 'text-align' => 'center'],
 
             ['label' => 'Tindakan'],
@@ -43,6 +44,19 @@ class ProductionPattern extends TransactionList implements View
 
     public static function tableData($data = null): array
     {
+        $mockupButton = 'Mockup tidak ditemukan';
+        $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
+        if ($mockup != null) {
+            $mockup = $mockup->transactionStatusAttachments->where('key', 'pdf mockup')->first();
+            if ($mockup != null) {
+                $link2 = route('customer.transaction-download-pdf', base64_encode($mockup->value));
+                $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Mockup</a>";
+            }
+        }
+
+        $link3 = route('transaction.mockup-site-download', $data->id);
+        $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
+
 
         $process = 'Telah terkirim';
 
@@ -77,6 +91,7 @@ class ProductionPattern extends TransactionList implements View
             ['type' => 'raw_html', 'data' => $data->transaction->customer->name." <br> <span class='text-sm'>".$data->transaction->customer->email.'</span>'],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->product->title],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $pic],
+            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
 
             ['type' => 'raw_html', 'data' => "

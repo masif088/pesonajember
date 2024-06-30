@@ -34,9 +34,9 @@ class ProductionPrint extends TransactionList implements View
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
-            ['label' => 'Mockup', 'sort' => 'code'],
             ['label' => 'Print Proses', 'sort' => 'code'],
             ['label' => 'PIC', 'sort' => 'code'],
+            ['label' => 'Acuan kerja'],
             ['label' => 'Progress'],
             ['label' => 'Tindakan'],
         ];
@@ -82,9 +82,13 @@ class ProductionPrint extends TransactionList implements View
         } else {
             $mockupButton = 'Mockup tidak ditemukan';
         }
+
+        $link3 = route('transaction.mockup-site-download', $data->id);
+        $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
+
         $progress = "
-<select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
-<option></option>
+<select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
+<option value='0'></option>
 <option value='3'>Mockup</option>
 <option value='4'>Pola</option>
 <option value='5'>Sampel</option>
@@ -103,10 +107,10 @@ class ProductionPrint extends TransactionList implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'start', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
-            ['type' => 'raw_html', 'data' => $mockupButton],
             ['type' => 'raw_html', 'data' => $p2],
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => $progress],
+            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
             <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>

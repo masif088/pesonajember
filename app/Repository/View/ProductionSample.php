@@ -42,7 +42,9 @@ class ProductionSample extends TransactionList implements View
             ['label' => 'Nama Customer',],
             ['label' => 'Sample',],
             ['label' => 'Status', 'text-align' => 'center'],
+            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['label' => 'Proses',],
+            ['label' => 'Acuan kerja',],
             ['label' => 'PIC',],
             ['label' => 'Tindakan',],
         ];
@@ -121,7 +123,17 @@ class ProductionSample extends TransactionList implements View
 <option value='12'>Menunggu Pembayaran</option>
 </select>";
         }
-
+        $mockupButton = 'Mockup tidak ditemukan';
+        $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
+        if ($mockup != null) {
+            $mockup = $mockup->transactionStatusAttachments->where('key', 'pdf mockup')->first();
+            if ($mockup != null) {
+                $link2 = route('customer.transaction-download-pdf', base64_encode($mockup->value));
+                $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Mockup</a>";
+            }
+        }
+        $link3 = route('transaction.mockup-site-download', $data->id);
+        $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
 
         $link4 = route('finance.transaction.payment.detail', $data->transaction->id);
 
@@ -137,6 +149,7 @@ class ProductionSample extends TransactionList implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<div class='$class'>$tag</div>"],
 
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
+            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $pic],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
             <div class='text-xl flex gap-1'>

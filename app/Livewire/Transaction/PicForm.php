@@ -3,7 +3,6 @@
 namespace App\Livewire\Transaction;
 
 //use App\Repository\Form\Bank as model;
-use App\Models\Transaction;
 use App\Models\TransactionList;
 use App\Models\TransactionStatusAttachment;
 use App\Models\User;
@@ -19,6 +18,8 @@ class PicForm extends Component
 
     public $dataId;
 
+    public $checkbox = false;
+
     public $optionUser;
 
     public function mount()
@@ -26,7 +27,6 @@ class PicForm extends Component
         $transaction = TransactionList::find($this->dataId);
         $this->optionUser = eloquent_to_options(User::orderBy('name')->get(), 'id', 'name');
 
-        //        dd($this->form);
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
             $this->form = $ts->value;
@@ -51,9 +51,18 @@ class PicForm extends Component
         $transaction = TransactionList::find($this->dataId);
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
         if ($ts != null) {
-            $ts->update([
-                'value' => $this->form,
-            ]);
+            if (! $this->checkbox) {
+                $ts->update([
+                    'value' => $this->form,
+                ]);
+            } else {
+                TransactionStatusAttachment::create([
+                    'transaction_status_id' => $transaction->transaction_status_id,
+                    'key' => 'pic',
+                    'value' => $this->form,
+                    'type' => 'App\Models\User',
+                ]);
+            }
         } else {
             TransactionStatusAttachment::create([
                 'transaction_status_id' => $transaction->transaction_status_id,

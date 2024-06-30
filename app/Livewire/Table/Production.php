@@ -10,8 +10,13 @@ use Carbon\Carbon;
 
 class Production extends Master
 {
+    public $cpLive;
+
     public function changeProduction($id, $status)
     {
+        if ($status == 0 || $status==null) {
+            return;
+        }
         $transaction = TransactionList::find($id);
         $ts = $transaction->transactionStatuses->where('transaction_status_type_id', '=', $status)->first();
 
@@ -26,9 +31,8 @@ class Production extends Master
         $transaction->update([
             'transaction_status_id' => $ts->id,
         ]);
-
-        $this->redirect('#');
-//        $this->dispatch('reRender');
+        $this->dispatch('reRender');
+        $this->cpLive = 0;
 
     }
 

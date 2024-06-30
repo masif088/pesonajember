@@ -35,6 +35,7 @@ class ProductionDone extends TransactionList implements View
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
             ['label' => 'Status', 'sort' => 'code'],
+            ['label' => 'Acuan kerja'],
             ['label' => 'Progress'],
             ['label' => 'Tindakan'],
         ];
@@ -60,11 +61,35 @@ class ProductionDone extends TransactionList implements View
         $link4 = route('transaction.image-gallery', $data->id);
         $link5 = route('transaction.image-edit', $data->id);
 
+
+        $mockupButton = 'Mockup tidak ditemukan';
+        $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
+        if ($mockup != null) {
+            $mockup = $mockup->transactionStatusAttachments->where('key', 'pdf mockup')->first();
+            if ($mockup != null) {
+                $link2 = route('customer.transaction-download-pdf', base64_encode($mockup->value));
+                $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Mockup</a>";
+            }
+        }
+        $mockupButton = 'Mockup tidak ditemukan';
+        $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
+        if ($mockup != null) {
+            $mockup = $mockup->transactionStatusAttachments->where('key', 'pdf mockup')->first();
+            if ($mockup != null) {
+                $link2 = route('customer.transaction-download-pdf', base64_encode($mockup->value));
+                $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Mockup</a>";
+            }
+        }
+
+        $link3 = route('transaction.mockup-site-download', $data->id);
+        $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
+
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'center', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
             ['type' => 'raw_html', 'data' => 'Menunggu pembayaran'],
+            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['type' => 'raw_html', 'data' => $progress],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>

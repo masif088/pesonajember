@@ -35,13 +35,19 @@ class ProductionPersonInCharge extends TransactionList implements View
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Proses', 'sort' => 'code'],
             ['label' => 'Acuan kerja', 'sort' => 'code'],
-            ['label' => 'Progress'],
+            ['label' => 'Pic', 'sort' => 'code'],
             ['label' => 'Tindakan'],
         ];
     }
 
     public static function tableData($data = null): array
     {
+
+        $pic = '';
+        foreach ($data->transactionStatus->transactionStatusAttachments->where('key', 'pic') as $d) {
+            $user = new $d->type();
+            $pic .= $user->find($d->value)->name.', ';
+        }
 
         $product = $data;
         $name = 'No Product (invalid transaction)';
@@ -53,33 +59,16 @@ class ProductionPersonInCharge extends TransactionList implements View
 
         $mockupButton = 'Mockup tidak ditemukan';
         $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
-
         if ($mockup != null) {
             $mockup = $mockup->transactionStatusAttachments->where('key', 'pdf mockup')->first();
             if ($mockup != null) {
                 $link2 = route('customer.transaction-download-pdf', base64_encode($mockup->value));
                 $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Mockup</a>";
             }
-
         }
 
         $link3 = route('transaction.mockup-site-download', $data->id);
         $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
-
-        $progress = "
-<select wire:change='changeProduction($data->id,event.target.value)'class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
-<option></option>
-<option value='3'>Mockup</option>
-<option value='4'>Pola</option>
-<option value='5'>Sampel</option>
-<option value='6'>Potong</option>
-<option value='7'>Print</option>
-<option value='8'>Pasang Label</option>
-<option value='9'>Jahit</option>
-<option value='10'>Quality Control</option>
-<option value='11'>Packing</option>
-<option value='12'>Menunggu Pembayaran</option>
-</select>";
 
         $link4 = route('transaction.image-gallery', $data->id);
         $link5 = route('transaction.image-edit', $data->id);
@@ -89,7 +78,7 @@ class ProductionPersonInCharge extends TransactionList implements View
             ['type' => 'raw_html', 'text-align' => 'start', 'data' => "$name <br>($amount pcs)"],
             ['type' => 'string', 'text-align' => 'start', 'data' => $data->transactionStatus->transactionStatusType->title],
             ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
-            ['type' => 'raw_html', 'data' => $progress],
+            ['type' => 'string', 'text-align' => 'start', 'data' => $pic],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
             <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
