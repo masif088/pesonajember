@@ -75,6 +75,12 @@ class TransactionController extends Controller
         return view('admin.transaction.pic-edit', compact('id'));
     }
 
+    public function picList($id)
+    {
+        return view('admin.transaction.pic-list', compact('id'));
+    }
+
+
     public function imageEdit($id)
     {
         return view('admin.transaction.image-edit', compact('id'));

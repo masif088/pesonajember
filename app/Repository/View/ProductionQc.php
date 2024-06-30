@@ -70,10 +70,6 @@ class ProductionQc extends TransactionList implements View
 
         $pic = '';
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
-            $link3 = route('transaction.pic-edit', $data->id);
-            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
-        }
 
 
         if ($status != null) {
@@ -86,6 +82,10 @@ class ProductionQc extends TransactionList implements View
             }
         }
 
+        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic .= "<br> <a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
 
 
 
@@ -137,6 +137,8 @@ class ProductionQc extends TransactionList implements View
 
         $link4 = route('transaction.image-gallery',$data->id);
         $link5 = route('transaction.image-edit',$data->id);
+        $linkPic = route('transaction.pic-list',$data->id);
+        $picList = "<a href='$linkPic' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-user-edit'></i></a>";
 
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
@@ -151,6 +153,7 @@ class ProductionQc extends TransactionList implements View
             <div class='text-xl flex gap-1'>
             <a href='$link5' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-photo-up'></i></a>
             <a href='$link4' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-album'></i></a>
+            $picList
             </div>
             "],
         ];

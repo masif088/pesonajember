@@ -174,6 +174,7 @@ Route::middleware([
         Route::get('mockup-site/{id}/download', [TransactionController::class, 'mockupSiteDownload'])->name('mockup-site-download');
 
         Route::get('pic/{id}', [TransactionController::class, 'picEdit'])->name('pic-edit');
+        Route::get('pic-list/{id}', [TransactionController::class, 'picList'])->name('pic-list');
         Route::get('image/{id}', [TransactionController::class, 'imageEdit'])->name('image-edit');
         Route::get('image-gallery/{id}', [TransactionController::class, 'imageGallery'])->name('image-gallery');
         Route::get('qc/{id}', [TransactionController::class, 'qcEdit'])->name('qc-edit');
