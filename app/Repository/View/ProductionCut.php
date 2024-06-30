@@ -34,7 +34,7 @@ class ProductionCut extends TransactionList implements View
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'text-align' => 'center', 'sort' => 'code'],
-            ['label' => 'Mockup', 'sort' => 'code'],
+
             ['label' => 'PIC', 'sort' => 'code'],
             ['label' => 'Acuan kerja', 'sort' => 'code'],
             ['label' => 'Progress'],
@@ -111,7 +111,7 @@ class ProductionCut extends TransactionList implements View
 
             ['type' => 'string', 'text-align' => 'start', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
-            ['type' => 'raw_html', 'data' => $mockupButton],
+
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['type' => 'raw_html', 'data' => $progress],
