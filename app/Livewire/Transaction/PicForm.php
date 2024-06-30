@@ -50,27 +50,14 @@ class PicForm extends Component
 
         $transaction = TransactionList::find($this->dataId);
         $ts = $transaction->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-        if ($ts != null) {
-            if (! $this->checkbox) {
-                $ts->update([
-                    'value' => $this->form,
-                ]);
-            } else {
+
                 TransactionStatusAttachment::create([
                     'transaction_status_id' => $transaction->transaction_status_id,
                     'key' => 'pic',
                     'value' => $this->form,
                     'type' => 'App\Models\User',
                 ]);
-            }
-        } else {
-            TransactionStatusAttachment::create([
-                'transaction_status_id' => $transaction->transaction_status_id,
-                'key' => 'pic',
-                'value' => $this->form,
-                'type' => 'App\Models\User',
-            ]);
-        }
+
 
         $tsId = $transaction->transactionStatus->transaction_status_type_id;
         redirect_production($tsId);
