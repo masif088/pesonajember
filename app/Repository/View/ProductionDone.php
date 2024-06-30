@@ -54,7 +54,7 @@ class ProductionDone extends TransactionList implements View
         }
 
         $progress = "
-<select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
+<select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>
 <option value='13'>Pengiriman</option>
 </select>";

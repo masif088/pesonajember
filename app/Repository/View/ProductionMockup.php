@@ -63,7 +63,8 @@ class ProductionMockup extends Transaction implements View
         $progress = '';
         if ($d != null) {
 //            $p2 = $d2->value;
-            $progress = "<select wire:change='changeMockupStatus($d->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'><option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
+            $progress = "<select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
+<option></option><option value='Disetujui'>Disetujui</option><option value='Revisi'>Revisi</option></select>";
             $link2 = route('transaction.mockup-site-download', $data->id);
             $download = "<a href='$link2' target='_blank' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-download'></i></a>";
 

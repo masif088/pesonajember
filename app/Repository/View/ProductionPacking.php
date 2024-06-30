@@ -61,7 +61,7 @@ class ProductionPacking extends TransactionList implements View
 
         if ($status != null) {
             $progress = "
-<select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
+<select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>
 <option value='12'>Produksi Selesai</option>
 </select>";
@@ -103,7 +103,7 @@ class ProductionPacking extends TransactionList implements View
         $link3 = route('transaction.mockup-site-download', $data->id);
         $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
         $linkPic = route('transaction.pic-list',$data->id);
-        $picList = "<a href='$linkPic' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-user-edit'></i></a>";
+        $picList = "<a href='$linkPic' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-user-cancel'></i></a>";
 
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],

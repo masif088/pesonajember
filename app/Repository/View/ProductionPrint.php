@@ -103,7 +103,7 @@ class ProductionPrint extends TransactionList implements View
         $link4 = route('transaction.image-gallery', $data->id);
         $link5 = route('transaction.image-edit', $data->id);
         $linkPic = route('transaction.pic-list',$data->id);
-        $picList = "<a href='$linkPic' class='py-1 px-2 bg-wishka-600 text-white rounded-lg'><i class='ti ti-user-edit'></i></a>";
+        $picList = "<a href='$linkPic' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-user-cancel'></i></a>";
 
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
