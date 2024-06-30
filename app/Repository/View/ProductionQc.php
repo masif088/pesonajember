@@ -35,7 +35,7 @@ class ProductionQc extends TransactionList implements View
             ['label' => 'No Pesanan', 'sort' => 'id', 'text-align' => 'center'],
             ['label' => 'Produk Pesanan', 'sort' => 'code'],
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
-            ['label' => 'Mockup', 'sort' => 'code'],
+
             ['label' => 'PIC', 'sort' => 'code'],
             ['label' => 'QC', 'sort' => 'code'],
             ['label' => 'Acuan kerja'],
@@ -144,7 +144,7 @@ class ProductionQc extends TransactionList implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'center', 'data' => $name],
             ['type' => 'string', 'text-align' => 'center', 'data' => $amount . 'pcs'],
-            ['type' => 'raw_html', 'data' => $mockupButton],
+
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => $qc],
             ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],

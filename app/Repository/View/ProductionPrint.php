@@ -36,8 +36,8 @@ class ProductionPrint extends TransactionList implements View
             ['label' => 'Jumlah Pesanan', 'sort' => 'code'],
             ['label' => 'Print Proses', 'sort' => 'code'],
             ['label' => 'PIC', 'sort' => 'code'],
-            ['label' => 'Acuan kerja'],
             ['label' => 'Progress'],
+            ['label' => 'Acuan kerja'],
             ['label' => 'Tindakan'],
         ];
     }
