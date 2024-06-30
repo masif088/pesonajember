@@ -42,7 +42,6 @@ class ProductionSample extends TransactionList implements View
             ['label' => 'Nama Customer',],
             ['label' => 'Sample',],
             ['label' => 'Status', 'text-align' => 'center'],
-            ['type' => 'raw_html', 'data' => "<div class='flex gap-1 flex-wrap'>$mockupButton $worksheetButton</div>"],
             ['label' => 'Proses',],
             ['label' => 'Acuan kerja',],
             ['label' => 'PIC',],
