@@ -13,11 +13,13 @@ class ProductionQc extends TransactionList implements View
 
     public static function tableSearch($params = null): Builder
     {
-        $query = $params['query'];
-
-        return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
+        return static::query()->whereHas('transactionStatus', function ($q) {
             $q->where('transaction_status_type_id', '=', 10);
-        }) : static::query();
+        })->whereHas('transaction', function (Builder $q) {
+            $q->whereHas('transactionStatus', function (Builder $q2) {
+                $q2->where('transaction_status_type_id', 14);
+            });
+        });
     }
 
     public static function tableView(): array
@@ -63,10 +65,15 @@ class ProductionQc extends TransactionList implements View
 
         }
 
-        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
 
-        $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        $pic = '';
+        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
+
+
         if ($status != null) {
             if ($status->type == 'string') {
                 $pic = $status->value;
@@ -75,7 +82,12 @@ class ProductionQc extends TransactionList implements View
                 $pic = new $status->type();
                 $pic = $pic->find($status->value)->name;
             }
+        }
 
+
+
+
+        if ($status != null) {
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>

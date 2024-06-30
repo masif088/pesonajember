@@ -26,6 +26,14 @@ class TransactionController extends Controller
     {
         return view('admin.transaction.edit', compact('id'));
     }
+    public function myMission()
+    {
+        return view('admin.transaction.my-mission');
+    }
+    public function transactionEdit()
+    {
+        return view('admin.transaction.transaction-edit');
+    }
 
     public function processProduction()
     {

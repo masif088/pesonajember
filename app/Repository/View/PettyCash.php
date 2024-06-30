@@ -38,17 +38,22 @@ class PettyCash extends \App\Models\PettyCash implements View
     public static function tableData($data = null): array
     {
         $link = route('finance.petty-cash.edit', $data->id);
-        $totalDebit = PettyCash::where('date_transaction','<=',Carbon::now());
+        $totalDebit = PettyCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
+        $totalCredit = BigCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
+
         return [
             ['type' => 'index'],
             ['type' => 'string', 'data' => $data->date_transaction],
             ['type' => 'string', 'data' => $data->title],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->debit)],
             ['type' => 'string', 'data' => 'Rp. '.thousand_format($data->credit)],
-            ['type' => 'string', 'data' => ''],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($totalDebit - $totalCredit)],
 
             ['type' => 'raw_html', 'data' => "
-            <a class='btn bg-wishka-400' href='$link'><i class='ti ti-pencil'></i></a>
+            <div class='text-xl flex gap-1'>
+                <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
+                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
+            </div>
             "],
         ];
     }

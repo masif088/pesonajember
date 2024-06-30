@@ -57,7 +57,7 @@ class BigCash extends \App\Models\BigCash implements View
             ['type' => 'string', 'data' => $data->title],
             ['type' => 'string', 'data' => 'Rp. ' . thousand_format($data->debit)],
             ['type' => 'string', 'data' => 'Rp. ' . thousand_format($data->credit)],
-            ['type' => 'string', 'data' => $totalDebit - $totalCredit],
+            ['type' => 'string', 'data' => 'Rp. ' . thousand_format($totalDebit - $totalCredit)],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>
                 <a href='$link' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>

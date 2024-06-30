@@ -7,11 +7,22 @@
     @foreach($transactionMockups as $mockup)
     <div class="col-span-8 text-white mb-3">
         <div class="bg-primary px-5 py-3 rounded-md lg:flex justify-between align-middle">
-            <div class="py-1">Hai kak {{ $customer->name }} ada mockup/sample yang perlu anda setujui (Invoice : {{$mockup->uid}}) </div>
-            <a href="{{ route('customer.customer-transaction-confirm',[$hash,$mockup->id]) }}" class="px-2 py-1 rounded-md bg-success text-nowrap">Klik disini</a>
+            <div class="py-1">Hai kak {{ $customer->name }} ada mockup yang perlu anda setujui (Invoice : {{$mockup->uid}}) </div>
+            <a href="{{ route('customer.customer-transaction-confirm',[$hash,$mockup->id,'transaction']) }}" class="px-2 py-1 rounded-md bg-success text-nowrap">Klik disini</a>
         </div>
     </div>
     @endforeach
+
+    @foreach($transactionSamples as $mockup)
+        <div class="col-span-8 text-white mb-3">
+            <div class="bg-primary px-5 py-3 rounded-md lg:flex justify-between align-middle">
+                <div class="py-1">Hai kak {{ $customer->name }} ada sample yang perlu anda setujui (Invoice : {{$mockup->transaction->uid}} - {{ $mockup->product->title }}) </div>
+                <a href="{{ route('customer.customer-transaction-confirm',[$hash,$mockup->id,'transactionList']) }}" class="px-2 py-1 rounded-md bg-success text-nowrap">Klik disini</a>
+            </div>
+        </div>
+    @endforeach
+
+
     <div class="col-span-12  lg:grid grid-cols-12 gap-3  ">
 
         <div class="col-span-3 mb-3">
@@ -98,7 +109,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($customer->transactions as $c)
+                @foreach($customer->transactions->sortByDesc('id') as $c)
                     @php
                         $total = 0;
                         foreach ($c->transactionLists as $tl) {

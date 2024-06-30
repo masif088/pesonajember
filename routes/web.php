@@ -34,7 +34,7 @@ Route::prefix('customer')->name('customer.')->group(function () {
     Route::get('/{hash_id}', [CustomerSiteController::class, 'customerDashboard'])->name('customer-dashboard');
 
     Route::get('/{hash_id}/transaction/{transaction_id}/production', [CustomerSiteController::class, 'customerTransactionProduction'])->name('customer-transaction-production');
-    Route::get('/{hash_id}/transaction/{transaction_id}/confirm', [CustomerSiteController::class, 'customerTransactionConfirm'])->name('customer-transaction-confirm');
+    Route::get('/{hash_id}/transaction/{transaction_id}/confirm/{transactionList}', [CustomerSiteController::class, 'customerTransactionConfirm'])->name('customer-transaction-confirm');
 
     Route::get('/{hash_id}/transaction/{transaction_id}/mockup/revision', [CustomerSiteController::class, 'customerTransactionMockupRevision'])->name('customer-transaction-mockup-revision');
     Route::get('/{hash_id}/transaction/{transaction_id}/sample/revision', [CustomerSiteController::class, 'customerTransactionSampleRevision'])->name('customer-transaction-sample-revision');
@@ -160,6 +160,7 @@ Route::middleware([
         Route::get('', function () {
             return redirect(\route('transaction.index', 'Penagihan'));
         });
+        Route::get('transaction-edit/', [TransactionController::class, 'transactionEdit'])->name('transaction-edit');
         Route::get('selling/{tab}', [TransactionController::class, 'index'])->name('index');
         Route::get('create', [TransactionController::class, 'create'])->name('create');
         Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
@@ -191,6 +192,7 @@ Route::middleware([
         })->name('production');
 
         Route::get('production/tab/{tab}', [TransactionController::class, 'productionTab'])->name('production.tab');
+        Route::get('production/my-mission', [TransactionController::class, 'myMission'])->name('production.my-mission');
 
         Route::get('download/{id}', [TransactionController::class, 'download'])->name('download');
         Route::get('download/{id}/new-order', [TransactionController::class, 'downloadNewOrder'])->name('download-new-order');

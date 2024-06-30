@@ -16,5 +16,5 @@
         </div>
     </div>
     <br><br>
-    <livewire:table.master name="BigCash" :param1="$month" :param2="$year"/>
+    <livewire:table.master name="PettyCash" :param1="$month" :param2="$year"/>
 </div>

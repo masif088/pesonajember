@@ -4,6 +4,7 @@ namespace App\Livewire\Finance;
 
 use App\Models\BigCash;
 use App\Repository\Form\PettyCash as model;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class BigCashFrom extends Component
@@ -30,6 +31,7 @@ class BigCashFrom extends Component
         $this->validate();
         $this->resetErrorBag();
 
+        $this->form['date_transaction'] = $this->form['date_transaction'] . ' '. Carbon::now()->format('H:i:s');
         BigCash::create($this->form);
 
         $this->redirect(route('finance.big-cash'));

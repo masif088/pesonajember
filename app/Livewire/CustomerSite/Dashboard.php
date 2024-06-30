@@ -11,6 +11,7 @@ class Dashboard extends Component
 
     public $customer;
     public $transactionMockups = [];
+    public $transactionSamples = [];
 
     public function mount()
     {
@@ -30,7 +31,18 @@ class Dashboard extends Component
                     }
                 }
             }
-
+            foreach ($transaction->transactionLists as $t) {
+                $tsa = $t->transactionStatus;
+                if ($tsa != null) {
+                    $tsa = $t->transactionStatus->transactionStatusAttachments;
+                    if ($tsa != null) {
+                        $tsa = $t->transactionStatus->transactionStatusAttachments->where('value', '=', 'Menunggu konfirmasi')->first() ?? null;
+                        if ($tsa != null) {
+                            $this->transactionSamples[] = $t;
+                        }
+                    }
+                }
+            }
         }
 
     }

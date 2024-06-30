@@ -12,11 +12,13 @@ class ProductionSample extends TransactionList implements View
 
     public static function tableSearch($params = null): Builder
     {
-        $query = $params['query'];
-
-        return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
+        return static::query()->whereHas('transactionStatus', function ($q) {
             $q->where('transaction_status_type_id', '=', 5);
-        }) : static::query();
+        })->whereHas('transaction', function (Builder $q) {
+            $q->whereHas('transactionStatus', function (Builder $q2) {
+                $q2->where('transaction_status_type_id', 14);
+            });
+        });
     }
 
     public static function tableView(): array
@@ -41,12 +43,33 @@ class ProductionSample extends TransactionList implements View
             ['label' => 'Sample',],
             ['label' => 'Status', 'text-align' => 'center'],
             ['label' => 'Proses',],
+            ['label' => 'PIC',],
             ['label' => 'Tindakan',],
         ];
     }
 
     public static function tableData($data = null): array
     {
+
+        $pic = '';
+        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
+
+
+        if ($status != null) {
+            if ($status->type == 'string') {
+                $pic = $status->value;
+            }
+            if ($status->type != 'string') {
+                $pic = new $status->type();
+                $pic = $pic->find($status->value)->name;
+            }
+        }
+
+
         $progress = '';
         $download = '';
 //        $d = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'no resi')->first();
@@ -114,6 +137,7 @@ class ProductionSample extends TransactionList implements View
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "<div class='$class'>$tag</div>"],
 
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $progress],
+            ['type' => 'raw_html', 'text-align' => 'center', 'data' => $pic],
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => "
             <div class='text-xl flex gap-1'>
             <a href='$link4' target='_blank' class='py-1 px-2 bg-primary text-white rounded-lg'><i class='ti ti-eye'></i></a>

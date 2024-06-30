@@ -7,9 +7,8 @@
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-12">
                 <br><br>
-                <a href="{{ route('bank.create') }}" class="btn bg-wishka-600">Tambah Bank</a>
+                <a href="{{ route('finance.petty-cash.create') }}" class="btn bg-wishka-600">Tambah transaksi</a>
                 <br><br>
-{{--                <livewire:table.master name="PettyCash"/>--}}
                 <livewire:finance.petty-cash/>
             </div>
         </div>

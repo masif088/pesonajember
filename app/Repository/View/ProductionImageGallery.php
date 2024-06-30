@@ -17,8 +17,9 @@ class ProductionImageGallery extends TransactionStatusAttachment implements View
         $param = $params['param1'];
 
         $tsId = TransactionList::find($param)->transactionStatus->id;
-//        dd($tsId);
-        return empty($query) ? static::query()->where('transaction_status_id', $tsId)->where('key','foto') : static::query();
+
+        //        dd($tsId);
+        return empty($query) ? static::query()->where('transaction_status_id', $tsId)->where('key', 'foto') : static::query();
     }
 
     public static function tableView(): array
@@ -40,9 +41,10 @@ class ProductionImageGallery extends TransactionStatusAttachment implements View
     public static function tableData($data = null): array
     {
 
-        $image= asset(str_replace('public','storage',$data->value));
+        $image = asset(str_replace('public', 'storage', $data->value));
+
         return [
-            ['type' => 'index', 'text-align' => 'center',],
+            ['type' => 'index', 'text-align' => 'center'],
             ['type' => 'raw_html', 'data' => "<img style='max-width: 300px; max-height: 200px' src='$image'>"],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xl flex gap-1'>

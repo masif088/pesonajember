@@ -9,10 +9,13 @@
 
 
             <br>
-            <div class="col-span-12 ">
+            <div class="col-span-12 mb-2">
             <livewire:attendance.dashboard-attendance />
             </div>
-            <br>
+
+
+
+
 {{--            <br>--}}
             @if(auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum'))
                 <div class="col-span-12 ">
@@ -35,7 +38,7 @@
                 <div class="col-span-12 ">
                     <livewire:dashboard.dashboard-card/>
                 </div>
-                <div class="lg:col-span-6 col-span-12">
+                <div class="lg:col-span-12 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
                 </div>
 
@@ -47,7 +50,7 @@
                     <livewire:production.person-in-charge/>
                 </div>
             @else
-                <div class="lg:col-span-6 col-span-12">
+                <div class="lg:col-span-12 col-span-12">
                     <livewire:dashboard.dashboard-attendance/>
 
                 </div>

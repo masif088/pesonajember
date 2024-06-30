@@ -14,11 +14,13 @@ class ProductionSew extends TransactionList implements View
 
     public static function tableSearch($params = null): Builder
     {
-        $query = $params['query'];
-
-        return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
+        return static::query()->whereHas('transactionStatus', function ($q) {
             $q->where('transaction_status_type_id', '=', 9);
-        }) : static::query();
+        })->whereHas('transaction', function (Builder $q) {
+            $q->whereHas('transactionStatus', function (Builder $q2) {
+                $q2->where('transaction_status_type_id', 14);
+            });
+        });
     }
 
     public static function tableView(): array

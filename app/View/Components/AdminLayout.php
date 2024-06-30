@@ -38,7 +38,10 @@ class AdminLayout extends Component
 
         ];
 
-        $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count FROM `transactions` JOIN transaction_statuses ON transaction_statuses.id = transactions.transaction_status_id where transactions.deleted_at is NULL group by transaction_statuses.transaction_status_type_id';
+        $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count
+FROM `transactions`
+    JOIN transaction_statuses ON transaction_statuses.id = transactions.transaction_status_id
+WHERE transactions.deleted_at is NULL group by transaction_statuses.transaction_status_type_id';
 
         $order = DB::select($query);
         $count = [];
@@ -47,7 +50,27 @@ class AdminLayout extends Component
         $count['repayment'] = 0;
         foreach ($order as $o) {
             $count[$o->transaction_status_type_id] = $o->count;
-            if ($o->transaction_status_type_id >= 3 && $o->transaction_status_type_id <= 11) {
+            if ($o->transaction_status_type_id >= 4 && $o->transaction_status_type_id <= 11) {
+                $count['production'] += $o->count;
+            }
+            if ($o->transaction_status_type_id >= 6 && $o->transaction_status_type_id <= 11) {
+                $count['product'] += $o->count;
+            }
+        }
+        $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count
+FROM `transaction_lists`
+    JOIN  transactions ON transactions.id = transaction_lists.transaction_id
+    JOIN transaction_statuses ON transaction_statuses.id = transaction_lists.transaction_status_id
+JOIN transaction_statuses as ts ON ts.id = transactions.transaction_status_id
+WHERE transactions.deleted_at is NULL AND ts.transaction_status_type_id=14
+group by transaction_statuses.transaction_status_type_id
+';
+
+        $order = DB::select($query);
+
+        foreach ($order as $o) {
+            $count[$o->transaction_status_type_id] = $o->count;
+            if ($o->transaction_status_type_id >= 4 && $o->transaction_status_type_id <= 11) {
                 $count['production'] += $o->count;
             }
             if ($o->transaction_status_type_id >= 6 && $o->transaction_status_type_id <= 11) {
@@ -199,6 +222,10 @@ class AdminLayout extends Component
             ],
         ];
 
+        if (auth()->user()->hasPermissionTo('tugas-saya', 'sanctum')) {
+            $this->sidebar[0]['lists'][] = ['title' => 'Tugas saya', 'type' => 'link',  'route' => route('transaction.production.my-mission'), 'icon' =>  '<i class="ti ti-list-check  text-2xl flex-shrink-0"></i>'];
+        }
+
         if (auth()->user()->hasPermissionTo('produks', 'sanctum')) {
             $this->sidebar[0]['lists'][] = [
                 'title' => 'Produk', 'type' => 'accordion',
@@ -222,6 +249,8 @@ class AdminLayout extends Component
             ];
         }
 
+
+
         if (auth()->user()->hasPermissionTo('lihat-hanya-produksi', 'sanctum')) {
             $this->sidebar[0]['lists'][] = ['title' => 'Status produksi', 'type' => 'link',  'route' => route('transaction.process-production'), 'icon' => ($count['production'] != 0) ? $this->setValue($count['production']) : '<i class="ti ti-progress-down  text-2xl flex-shrink-0"></i>'];
         }
@@ -232,13 +261,15 @@ class AdminLayout extends Component
                 'lists' => [
                     ['title' => 'Pesanan Baru', 'route' => route('transaction.index', 'Penagihan'), 'icon' => isset($count[1]) ? $this->setValue($count[1]) : ''],
                     ['title' => 'Dp Diterima', 'route' => route('transaction.index', 'DP-diterima'), 'icon' => isset($count[2]) ? $this->setValue($count[2]) : ''],
-                    ['title' => 'Produksi', 'route' => route('transaction.index', 'Proses-Produksi'), 'icon' => ($count['production'] != 0) ? $this->setValue($count['production']) : ''],
-                    ['title' => 'Pelunasan', 'route' => route('transaction.index', 'Pelunasan'), 'icon' => ($count['repayment'] != 0) ? $this->setValue($count['repayment']) : ''],
-                    ['title' => 'Pengiriman', 'route' => route('transaction.index', 'Pengiriman'), 'icon' => isset($count[14]) ? $this->setValue($count[14]) : ''],
+                    ['title' => 'Mockup', 'route' => route('transaction.index', 'Mockup'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
+                    ['title' => 'Proses Produksi', 'route' => route('transaction.index', 'Proses-Produksi'), 'icon' => ($count['production'] != 0) ? $this->setValue($count['production']) : ''],
+                    ['title' => 'Pengiriman', 'route' => route('transaction.index', 'Pengiriman'), 'icon' => isset($count[13]) ? $this->setValue($count[13]) : ''],
                     ['title' => 'Selesai', 'route' => route('transaction.index', 'Selesai'), 'icon' => isset($count[15]) ? $this->setValue($count[15]) : ''],
-                    ['title' => 'Perubahan Transaksi', 'route' => route('transaction.index', 'Perubahan-Transaksi'), 'icon' => ''],
                 ],
             ];
+        }
+        if (auth()->user()->hasPermissionTo('ubah-transaksi', 'sanctum')) {
+            $this->sidebar[0]['lists'][] = ['title' => 'Perubahan transaksi', 'type' => 'link',  'route' => route('transaction.transaction-edit'), 'icon' =>'<i class="ti ti-edit  text-2xl flex-shrink-0"></i>'];
         }
         if (auth()->user()->hasPermissionTo('lihat-produksi', 'sanctum')) {
             $this->sidebar[0]['lists'][] =

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Finance;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Repository\Form\PettyCash as model;
 
@@ -29,6 +30,7 @@ class PettyCashFrom extends Component
         $this->validate();
         $this->resetErrorBag();
 
+        $this->form['date_transaction'] = $this->form['date_transaction'] . ' '. Carbon::now()->format('H:i:s');
         model::create($this->form);
 
         $this->redirect(route('finance.big-cash'));
@@ -40,6 +42,7 @@ class PettyCashFrom extends Component
         $this->validate();
         $this->resetErrorBag();
 
+        $this->form['date_transaction'] = $this->form['date_transaction'] . ' '. Carbon::now()->format('H:i:s');
         model::find($this->dataId)->update($this->form);
         $this->redirect(route('finance.big-cash'));
     }

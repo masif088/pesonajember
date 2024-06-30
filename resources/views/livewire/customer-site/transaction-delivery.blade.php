@@ -71,7 +71,7 @@
 
                             {{ $ts->transactionStatusType->title }} <br>
                             @foreach($ts->transactionStatusAttachments as $tsa)
-                                <font class="capitalize">{{ $tsa->key!="pic"?$tsa->key:'' }}</font> :
+                                <font class="capitalize">{{ $tsa->key!="pic"?"$tsa->key :":'' }} </font>
                                 @if($tsa->type == 'string')
                                     {{ $tsa->value }}
                                 @elseif($tsa->type == 'image')
@@ -84,7 +84,7 @@
 
                                 @else
                                     @if(auth()->user()!=null)
-                                        <font class="capitalize">{{ $tsa->key!="pic"?$tsa->key:'' }}</font> : {{ $tsa->type::withTrashed()->find($tsa->value)->name??'' }}
+                                        <font class="capitalize">{{ $tsa->key }}</font> : {{ $tsa->type::withTrashed()->find($tsa->value)->name??'' }}
                                     @endif
                                 @endif
                                 <br>

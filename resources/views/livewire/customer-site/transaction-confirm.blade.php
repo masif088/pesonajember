@@ -1,6 +1,6 @@
 <div class="grid grid-cols-12 gap-3">
     <h2 class="text-2xl col-span-12 mb-10">
-        {{ $transaction->transactionStatus->transactionStatusType->title??'' }}
+        Persetujuan {{ $transactionList->transactionStatus->transactionStatusType->title??'' }}
     </h2>
 
     <form wire:submit="update" class="col-span-12 lg:col-span-6">
@@ -28,10 +28,23 @@
     </form>
 
     <div class="col-span-12 lg:col-span-6">
-        <object data="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}"
-                type="application/pdf" style="width: 100%; height: 80vh">
-            <a href="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}">test.pdf</a>
-        </object>
+
+        @if($transactionList)
+            @forelse($transactionList->transactionStatus->transactionStatusAttachments->where('key','foto') as $tsa)
+                <img src="{{ asset('storage'.str_replace('public','',$tsa->value??'')) }}" alt="" style="width: 100%">
+            @empty
+                <div class="text-center">
+                    Tidak ada foto yang diinput
+                </div>
+            @endforelse
+        @else
+            <object data="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}"
+                    type="application/pdf" style="width: 100%; height: 80vh">
+                <a href="{{ asset('storage'.str_replace('public','',$transaction->transactionStatus->transactionStatusAttachments->where('key','pdf mockup')->first()->value??'')) }}">test.pdf</a>
+            </object>
+        @endif
+
+
     </div>
 
 </div>

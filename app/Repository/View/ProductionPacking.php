@@ -2,7 +2,6 @@
 
 namespace App\Repository\View;
 
-use App\Models\Transaction;
 use App\Models\TransactionList;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,11 +12,13 @@ class ProductionPacking extends TransactionList implements View
 
     public static function tableSearch($params = null): Builder
     {
-        $query = $params['query'];
-
-        return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
+        return static::query()->whereHas('transactionStatus', function ($q) {
             $q->where('transaction_status_type_id', '=', 11);
-        }) : static::query();
+        })->whereHas('transaction', function (Builder $q) {
+            $q->whereHas('transactionStatus', function (Builder $q2) {
+                $q2->where('transaction_status_type_id', 14);
+            });
+        });
     }
 
     public static function tableView(): array
@@ -45,7 +46,7 @@ class ProductionPacking extends TransactionList implements View
         $progress = '';
 
         $shipperWeight = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'berat pengiriman')->first();
-//        $shipper = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
+        //        $shipper = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'ekpedisi pengiriman')->first();
 
         $linkQc = route('transaction.weight-edit', $data->id);
         $weight = "<a href='$linkQc' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input Berat</a>";
@@ -53,11 +54,14 @@ class ProductionPacking extends TransactionList implements View
             $weight = "$shipperWeight->value";
         }
 
+        $pic = '';
+        $status=null;
+        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
+            $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
 
-        $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-
-        $link3 = route('transaction.pic-edit', $data->id);
-        $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center  text-nowrap'>Input PIC</a>";
         if ($status != null) {
             $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
@@ -73,7 +77,6 @@ class ProductionPacking extends TransactionList implements View
             }
         }
 
-
         $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
@@ -82,12 +85,13 @@ class ProductionPacking extends TransactionList implements View
             $amount = $product->amount;
         }
 
-        $link4 = route('transaction.image-gallery',$data->id);
-        $link5 = route('transaction.image-edit',$data->id);
+        $link4 = route('transaction.image-gallery', $data->id);
+        $link5 = route('transaction.image-edit', $data->id);
+
         return [
             ['type' => 'raw_html', 'text-align' => 'center', 'data' => $data->transaction->uid.'<br>'.$data->uid],
             ['type' => 'string', 'text-align' => 'center', 'data' => $name],
-            ['type' => 'string', 'text-align' => 'center', 'data' => $amount . 'pcs'],
+            ['type' => 'string', 'text-align' => 'center', 'data' => $amount.'pcs'],
             ['type' => 'raw_html', 'data' => $pic],
             ['type' => 'raw_html', 'data' => $weight],
             ['type' => 'raw_html', 'data' => $progress],

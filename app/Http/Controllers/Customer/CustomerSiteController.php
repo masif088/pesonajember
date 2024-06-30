@@ -15,9 +15,9 @@ class CustomerSiteController extends Controller
     {
         return view('customer.customer-transaction-production', compact('hash', 'transaction'));
     }
-    public function customerTransactionConfirm($hash, $transaction)
+    public function customerTransactionConfirm($hash, $transaction,$transactionList)
     {
-        return view('customer.customer-transaction-confirm', compact('hash', 'transaction'));
+        return view('customer.customer-transaction-confirm', compact('hash', 'transaction','transactionList'));
     }
 
     public function customerTransactionMockupRevision($hash, $transaction)
