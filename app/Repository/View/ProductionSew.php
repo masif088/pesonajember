@@ -47,6 +47,7 @@ class ProductionSew extends TransactionList implements View
 
     public static function tableData($data = null): array
     {
+        $pic="";
         $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
 
         if ($status != null) {
