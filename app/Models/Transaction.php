@@ -45,7 +45,7 @@ class Transaction extends Model
 
     public function transactionLists(): HasMany
     {
-        return $this->hasMany(TransactionList::class, 'transaction_id');
+        return $this->hasMany(TransactionList::class, ['transaction_id','edit_count']);
     }
 
     public function transactionStatus(): BelongsTo

@@ -46,7 +46,7 @@ class TransactionNewOrder extends Transaction implements View
         }
         $total = 0;
 
-        foreach ($data->transactionLists as $tl) {
+        foreach ($data->transactionLists->where('edit_count',$data->edit_count) as $tl) {
             if ($tl->transaction_detail_type_id == 1) {
                 $total += $tl->price;
             } else {
