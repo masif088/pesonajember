@@ -78,7 +78,7 @@ class ProductionSew extends TransactionList implements View
 
         $p2 = '';
         if ($mockup != null) {
-            $p2= $mockup->transactionStatusAttachments->where('key','=','process')->first()->value;
+//            $p2= $mockup->transactionStatusAttachments->where('key','=','process')->first()->value;
 
             $link2 = route('transaction.mockup-site-download', $data->id);
             $mockupButton = "<a href='$link2' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Lihat Mockup</a>";
