@@ -24,13 +24,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class TransactionList extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     use HasFactory;
 
     protected $fillable = ['transaction_detail_type_id','transaction_status_id','uid', 'edit_count', 'product_id', 'shipper_id', 'shipper_category', 'amount', 'price', 'transaction_id', 'status_id'];
 
     public function transaction(): BelongsTo
     {
-        return $this->belongsTo(Transaction::class, 'transaction_id');
+        return $this->belongsTo(Transaction::class, ['transaction_id','edit_count'],['id','edit_count']);
     }
 
     public function transactionDetailType(): BelongsTo

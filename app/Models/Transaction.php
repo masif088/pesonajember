@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Transaction extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     use HasFactory;
     use SoftDeletes;
 
@@ -45,7 +47,7 @@ class Transaction extends Model
 
     public function transactionLists(): HasMany
     {
-        return $this->hasMany(TransactionList::class, 'transaction_id');
+        return $this->hasMany(TransactionList::class, ['transaction_id','edit_count'],['id','edit_count']);
     }
 
     public function transactionStatus(): BelongsTo
