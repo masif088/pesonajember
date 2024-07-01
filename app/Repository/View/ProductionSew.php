@@ -74,7 +74,7 @@ class ProductionSew extends TransactionList implements View
         }
 
 
-        $mockup = $data->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
+        $mockup = $data->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
 
         $p2 = '';
         if ($mockup != null) {

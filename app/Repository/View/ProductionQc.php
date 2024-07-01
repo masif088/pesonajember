@@ -115,6 +115,7 @@ class ProductionQc extends TransactionList implements View
         }
 
 
+
         $mockup = $data->transactionStatuses->where('transaction_status_type_id', '=', 3)->first();
         if ($mockup != null) {
             $link =  route('transaction.mockup-site-download',$data->id);
