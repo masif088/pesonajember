@@ -319,9 +319,24 @@ class TransactionForm extends Component
         $this->shipperFormLayout = false;
     }
 
-    public function removeList($index): void
+    protected $listeners = ['removeList'=>'removeList'];
+
+    public $indexDeleted;
+    public function delete($index)
     {
-        unset($this->transactionLists[$index]);
+        $this->indexDeleted=$index;
+        $this->dispatch('swal:confirm', data: [
+            'icon' => 'warning',
+            'title' => 'apakah anda yakin ingin menghapus data ini',
+            'confirmText' => 'Hapus',
+            'method' => 'removeList',
+        ]);
+    }
+
+    public function removeList(): void
+    {
+        unset($this->transactionLists[$this->indexDeleted]);
+        $this->indexDeleted = null;
     }
 
     public function render()

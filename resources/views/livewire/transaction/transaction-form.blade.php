@@ -156,8 +156,8 @@
 {{--                        <div class="flex-1 text-end px-2 py-1 bg-wishka-400 rounded-md">--}}
 {{--                            <i class="ti ti-pencil text-xl text-white"></i>--}}
 {{--                        </div>--}}
-                        <div class="flex-1 text-end px-2 py-1 bg-error rounded-md" wire:click="removeList({{$index}})">
-                            <i class="ti ti-trash text-xl text-white"></i>
+                        <div class="flex-1 text-end px-2 py-1 bg-error rounded-md" wire:click="delete({{$index}})">
+                            <i class="ti ti-trash text-xl text-white" ></i>
                         </div>
                     </td>
                 </tr>
