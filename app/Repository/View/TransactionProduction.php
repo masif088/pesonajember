@@ -45,7 +45,12 @@ class TransactionProduction extends Transaction implements View
         $list = '<br>';
         $listProcess = '<br>';
         foreach ($data->transactionLists->where('edit_count', $data->edit_count) as $tl) {
-            $listProcess .= "<b>$tl->uid</b>: ".$tl->transactionStatus ? $tl->transactionStatus->transactionStatusType->title : ''.'<br>';
+            try {
+                $listProcess .= "<b>$tl->uid</b>: ".$tl->transactionStatus ? $tl->transactionStatus->transactionStatusType->title : ''.'<br>';
+            }catch (\ErrorException $exception){
+                $listProcess .= "<b>$tl->uid</b>: ".'<br>';
+            }
+
         }
         $link4 = route('finance.transaction.payment.detail', $data->id);
 
