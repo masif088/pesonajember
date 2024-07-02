@@ -13,11 +13,11 @@ class TransactionProduction extends Transaction implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-//        dd("asd");
+        //        dd("asd");
 
-//        Transaction::whereHas('transactionStatus',)
+        //        Transaction::whereHas('transactionStatus',)
         return empty($query) ? static::query()->whereHas('transactionStatus', function ($q) {
-            $q->where('transaction_status_type_id','=',14);
+            $q->where('transaction_status_type_id', '=', 14);
         }) : static::query();
     }
 
@@ -41,11 +41,11 @@ class TransactionProduction extends Transaction implements View
     public static function tableData($data = null): array
     {
 
-        $process = "Status";
-        $list = "<br>";
-        $listProcess = "<br>";
-        foreach ($data->transactionLists->where('edit_count',$data->edit_count) as $tl ){
-            $listProcess.="<b>$tl->uid</b>: ".$tl->transactionStatus->transactionStatusType->title ."<br>";
+        $process = 'Status';
+        $list = '<br>';
+        $listProcess = '<br>';
+        foreach ($data->transactionLists->where('edit_count', $data->edit_count) as $tl) {
+            $listProcess .= "<b>$tl->uid</b>: ".$tl->transactionStatus ? $tl->transactionStatus->transactionStatusType->title : ''.'<br>';
         }
         $link4 = route('finance.transaction.payment.detail', $data->id);
 
