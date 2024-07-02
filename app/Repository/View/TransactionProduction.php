@@ -46,7 +46,7 @@ class TransactionProduction extends Transaction implements View
         $listProcess = '<br>';
         foreach ($data->transactionLists->where('edit_count', $data->edit_count) as $tl) {
             try {
-                $listProcess .= "<b>$tl->uid</b>: ".$tl->transactionStatus ? $tl->transactionStatus->transactionStatusType->title : ''.'<br>';
+                $listProcess .= "<b>$tl->uid</b>: ".$tl->transactionStatus->transactionStatusType->title.'<br>';
             }catch (\ErrorException $exception){
                 $listProcess .= "<b>$tl->uid</b>: ".'<br>';
             }
