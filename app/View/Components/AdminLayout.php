@@ -41,7 +41,8 @@ class AdminLayout extends Component
         $query = 'SELECT transaction_statuses.transaction_status_type_id as transaction_status_type_id , count(*) as count
 FROM `transactions`
     JOIN transaction_statuses ON transaction_statuses.id = transactions.transaction_status_id
-WHERE transactions.deleted_at is NULL group by transaction_statuses.transaction_status_type_id';
+WHERE transactions.edit_count = transaction_lists.edit_count AND transactions.deleted_at is NULL
+group by transaction_statuses.transaction_status_type_id';
 
         $order = DB::select($query);
         $count = [];
@@ -62,7 +63,8 @@ FROM `transaction_lists`
     JOIN  transactions ON transactions.id = transaction_lists.transaction_id
     JOIN transaction_statuses ON transaction_statuses.id = transaction_lists.transaction_status_id
 JOIN transaction_statuses as ts ON ts.id = transactions.transaction_status_id
-WHERE transactions.deleted_at is NULL AND ts.transaction_status_type_id=14
+WHERE transactions.edit_count = transaction_lists.edit_count AND
+    transactions.deleted_at is NULL AND ts.transaction_status_type_id=14
 group by transaction_statuses.transaction_status_type_id
 ';
 
