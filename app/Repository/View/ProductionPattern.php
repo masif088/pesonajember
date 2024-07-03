@@ -57,31 +57,23 @@ class ProductionPattern extends TransactionList implements View
         $link3 = route('transaction.mockup-site-download', $data->id);
         $worksheetButton = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-nowrap'>Worksheet</a>";
 
-
         $process = 'Telah terkirim';
 
         $edit = '';
         $download = '';
         $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
-<option></option><option value='3'>Mockup</option><option value='4'>Pola</option><option value='5'>Sampel</option><option value='6'>Potong</option><option value='7'>Print</option><option value='8'>Pasang Label</option><option value='9'>Jahit</option><option value='10'>Quality Control</option><option value='11'>Packing</option><option value='12'>Menunggu Pembayaran</option></select>";
+<option></option><option value='4'>Pola</option><option value='5'>Sampel</option><option value='6'>Potong</option><option value='7'>Print</option><option value='8'>Pasang Label</option><option value='9'>Jahit</option><option value='10'>Quality Control</option><option value='11'>Packing</option><option value='12'>Menunggu Pembayaran</option></select>";
         $link3 = route('transaction.pic-edit', $data->id);
 
-        $pic = '';
-
-            $status = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-
-
-
-        if ($status != null) {
-            if ($status->type == 'string') {
-                $pic = $status->value;
-            }
-            if ($status->type != 'string') {
-                $pic = new $status->type();
-                $pic = $pic->find($status->value)->name;
-            }
+        $pic = '<ul class="list-disc" style="text-align: left">';
+        $statuses = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic');
+        foreach ($statuses as $status) {
+            $pic0 = new $status->type();
+            $pic .= '<li style="display: list-item">'.$pic0->find($status->value)->name.'</li>';
         }
+        $pic .= '</ul>';
+
         if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
             $link3 = route('transaction.pic-edit', $data->id);
             $pic .= "<br> <a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
@@ -89,7 +81,7 @@ class ProductionPattern extends TransactionList implements View
 
         $link4 = route('transaction.image-gallery', $data->id);
         $link5 = route('transaction.image-edit', $data->id);
-        $linkPic = route('transaction.pic-list',$data->id);
+        $linkPic = route('transaction.pic-list', $data->id);
         $picList = "<a href='$linkPic' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-user-cancel'></i></a>";
 
         return [

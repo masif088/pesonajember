@@ -55,24 +55,20 @@ class ProductionPacking extends TransactionList implements View
             $weight = "$shipperWeight->value";
         }
 
-        $pic = '';
-        $status=null;
+        $pic = '<ul class="list-disc" style="text-align: left">';
+        $statuses = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic');
+        foreach ($statuses as $status) {
+            $pic0 = new $status->type();
+            $pic .= '<li style="display: list-item">'.$pic0->find($status->value)->name.'</li>';
+        }
+        $pic .= '</ul>';
 
-
-        if ($status != null) {
-            $progress = "
+        $progress = "
 <select wire:change='changeProduction($data->id,event.target.value)' wire:model.live='cpLive' class='bg-gray-200 appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark focus:dark:border-white'>
 <option></option>
 <option value='12'>Produksi Selesai</option>
 </select>";
-            if ($status->type == 'string') {
-                $pic = $status->value;
-            }
-            if ($status->type != 'string') {
-                $pic = new $status->type();
-                $pic = $pic->find($status->value)->name;
-            }
-        }
+
 
         if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
             $link3 = route('transaction.pic-edit', $data->id);

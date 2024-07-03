@@ -280,7 +280,7 @@ group by transaction_statuses.transaction_status_type_id
                     'icon' => '<i class="ti ti-settings  text-2xl flex-shrink-0"></i>',
                     'lists' => [
 
-                        ['title' => 'Mockup', 'route' => route('transaction.mockup-site'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
+//                        ['title' => 'Mockup', 'route' => route('transaction.mockup-site'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
                         ['title' => 'Pola', 'route' => route('transaction.pattern-site'), 'icon' => isset($count[4]) ? $this->setValue($count[4]) : ''],
                         ['title' => 'Sampel', 'route' => route('transaction.sample-site'), 'icon' => isset($count[5]) ? $this->setValue($count[5]) : ''],
                         ['title' => 'Proses Produksi', 'route' => route('transaction.production.tab', 'Potong'), 'icon' => ($count['product'] != 0) ? $this->setValue($count['product']) : ''],

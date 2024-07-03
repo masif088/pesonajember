@@ -89,14 +89,28 @@ $shipper ($weight) -  $shipperResi  <br>
 
 
 
-        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
-        if ($pic==null){
-            $link3 = route('transaction.pic-edit', $data->id);
-            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
-        }else{
-            $user = new $pic->type();
-            $pic = $user->find($pic->value)->name;
+//        $pic = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic')->first();
+//        if ($pic==null){
+//            $link3 = route('transaction.pic-edit', $data->id);
+//            $pic = "<a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center'>Input PIC</a>";
+//        }else{
+//            $user = new $pic->type();
+//            $pic = $user->find($pic->value)->name;
+//        }
+
+        $pic = '<ul class="list-disc" style="text-align: left">';
+        $statuses = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic');
+        foreach ($statuses as $status) {
+            $pic0 = new $status->type();
+            $pic .= '<li style="display: list-item">'.$pic0->find($status->value)->name.'</li>';
         }
+        $pic .= '</ul>';
+
+        if (auth()->user()->hasPermissionTo('tambah-pic', 'sanctum')) {
+            $link3 = route('transaction.pic-edit', $data->id);
+            $pic .= "<br> <a href='$link3' class='px-2 py-1 rounded-lg bg-wishka-200 text-wishka-400 text-center text-nowrap'>Input PIC</a>";
+        }
+
         $product = $data;
         $name = 'No Product (invalid transaction)';
         $amount = 0;
