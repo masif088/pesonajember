@@ -16,8 +16,8 @@ class ProductionPersonInCharge extends TransactionList implements View
 
         return static::query()
             ->whereHas('transaction', function (Builder $q) {
-                $q->whereHas('transactionStatus', function ($q2) {
-                    $q2->where('transaction_status_type_id', '=', 3);
+                $q->whereHas('transactionStatus', function (Builder $q2) {
+                    $q2->where('transaction_status_type_id', '=', 14);
                 });
             })
             ->whereHas('transactionStatus', function ($q) use ($user) {
