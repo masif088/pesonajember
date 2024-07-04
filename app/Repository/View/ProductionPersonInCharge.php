@@ -14,11 +14,18 @@ class ProductionPersonInCharge extends TransactionList implements View
     {
         $user = $params['param1'];
 
-        return static::query()->whereHas('transactionStatus', function ($q) use ($user) {
-            $q->whereHas('transactionStatusAttachments', function ($q2) use ($user) {
-                $q2->where('key', 'pic')->where('value', $user);
+        //        ->transaction->transactionStatuses->where('transaction_status_type_id', '=', 3)
+        return static::query()
+            ->whereHas('transaction', function (Builder $q) {
+                $q->whereHas('transactionStatus', function ($q) {
+                    $q->where('transaction_status_type_id', '=', 3);
+                });
+            })
+            ->whereHas('transactionStatus', function ($q) use ($user) {
+                $q->whereHas('transactionStatusAttachments', function ($q2) use ($user) {
+                    $q2->where('key', 'pic')->where('value', $user);
+                });
             });
-        });
     }
 
     public static function tableView(): array
