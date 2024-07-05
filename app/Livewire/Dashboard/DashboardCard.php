@@ -11,11 +11,10 @@ use Livewire\Component;
 
 class DashboardCard extends Component
 {
-
-
     public $cardsTitle = [];
 
     public $cardsValue = [];
+
     public $cardsIcon = [];
 
     public function mount()
@@ -32,7 +31,7 @@ class DashboardCard extends Component
                 }
             }
         }
-        if(auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum')){
+        if (auth()->user()->hasPermissionTo('dashboard-penjualan', 'sanctum')) {
             $this->cardsTitle = [
                 'Pendapatan Hari Ini',
                 'Pengeluaran Hari Ini',
@@ -46,14 +45,14 @@ class DashboardCard extends Component
                 'ti ti-progress-down',
             ];
             $this->cardsValue = [
-                'Rp. ' . thousand_format(TransactionPayment::whereDate('payment_at', '=', today())->sum('amount')),
-                'Rp. ' . thousand_format(PettyCash::whereDate('date_transaction', '=', today())->sum('credit')),
-                $totalProduction . 'pcs',
+                'Rp. '.thousand_format(TransactionPayment::whereDate('payment_at', '=', today())->sum('amount')),
+                'Rp. '.thousand_format(PettyCash::whereDate('date_transaction', '=', today())->sum('credit')),
+                $totalProduction.'pcs',
                 Transaction::whereHas('transactionStatus', function (Builder $q) {
                     $q->whereNotIn('transaction_status_type_id', [15, 17]);
-                })->count() . ' Transaksi',
+                })->count().' Transaksi',
             ];
-        }else{
+        } else {
             $this->cardsTitle = [
                 'Produksi Hari Ini',
                 'Transaksi Berjalan',
@@ -64,13 +63,12 @@ class DashboardCard extends Component
                 'ti ti-progress-down',
             ];
             $this->cardsValue = [
-                $totalProduction . 'pcs',
+                $totalProduction.'pcs',
                 Transaction::whereHas('transactionStatus', function (Builder $q) {
                     $q->whereNotIn('transaction_status_type_id', [15, 17]);
-                })->count() . ' Transaksi',
+                })->count().' Transaksi',
             ];
         }
-
 
     }
 

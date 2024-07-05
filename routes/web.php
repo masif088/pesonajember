@@ -20,14 +20,28 @@ use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Customer\CustomerSiteController;
 use App\Http\Controllers\FinanceController;
+use App\Mail\Transaction\NewOrderMail;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-//        $clientIP = request()->ip();
-//        dd($clientIP);
+
+//    return $output ;
+//        return $pdf->stream();
+Mail::to('mokhamadasif@gmail.com')->send(new NewOrderMail())
+    ;
 
 
-    return view('front.index');
+//    $pdf = PDF::loadView('emails.myTestMail', $data);
+//
+//    Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
+//        $message->to($data["email"], $data["email"])
+//            ->subject($data["title"])
+//            ->attachData($pdf->output(), "text.pdf");
+
+//    return view('front.index');
 })->name('frontpage');
 
 Route::prefix('customer')->name('customer.')->group(function () {

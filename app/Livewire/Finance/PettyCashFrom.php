@@ -33,7 +33,7 @@ class PettyCashFrom extends Component
         $this->form['date_transaction'] = $this->form['date_transaction'] . ' '. Carbon::now()->format('H:i:s');
         model::create($this->form);
 
-        $this->redirect(route('finance.big-cash'));
+        $this->redirect(route('finance.petty-cash'));
     }
 
     public function update()
@@ -44,7 +44,7 @@ class PettyCashFrom extends Component
 
         $this->form['date_transaction'] = $this->form['date_transaction'] . ' '. Carbon::now()->format('H:i:s');
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('finance.big-cash'));
+        $this->redirect(route('finance.petty-cash'));
     }
 
     public function render()

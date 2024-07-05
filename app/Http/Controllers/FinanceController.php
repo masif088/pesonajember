@@ -91,7 +91,7 @@ class FinanceController extends Controller
 
     public function bigCashEdit($id)
     {
-        return view('admin.big-cash.index', compact('id'));
+        return view('admin.big-cash.edit', compact('id'));
     }
 
     public function pettyCash()
@@ -106,7 +106,7 @@ class FinanceController extends Controller
 
     public function pettyCashEdit($id)
     {
-        return view('admin.petty-cash.index', compact('id'));
+        return view('admin.petty-cash.edit', compact('id'));
     }
 
     public function transaction()
