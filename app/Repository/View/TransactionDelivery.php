@@ -100,9 +100,9 @@ $shipper ($weight) -  $shipperResi  <br>
 
         $pic = '<ul class="list-disc" style="text-align: left">';
         $statuses = $data->transactionStatus->transactionStatusAttachments->where('key', '=', 'pic');
-        foreach ($statuses as $status) {
-            $pic0 = new $status->type();
-            $pic .= '<li style="display: list-item">'.$pic0->find($status->value)->name.'</li>';
+        foreach ($statuses as $s) {
+            $pic0 = new $s->type();
+            $pic .= '<li style="display: list-item">'.$pic0->find($s->value)->name.'</li>';
         }
         $pic .= '</ul>';
 
