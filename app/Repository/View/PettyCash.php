@@ -38,8 +38,8 @@ class PettyCash extends \App\Models\PettyCash implements View
     public static function tableData($data = null): array
     {
         $link = route('finance.petty-cash.edit', $data->id);
-        $totalDebit = PettyCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
-        $totalCredit = BigCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
+        $totalDebit = PettyCash::where('date_transaction', '<=', $data->date_transaction)->sum('debit');
+        $totalCredit = PettyCash::where('date_transaction', '<=', $data->date_transaction)->sum('credit');
 
         return [
             ['type' => 'index'],

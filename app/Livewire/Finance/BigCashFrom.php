@@ -18,6 +18,7 @@ class BigCashFrom extends Component
     public function mount()
     {
         $this->form = form_model(model::class,$this->dataId);
+        $this->form['date_transaction'] = Carbon::parse($this->form['date_transaction'])->format('Y-m-d');
     }
 
     public function getRules()
