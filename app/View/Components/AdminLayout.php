@@ -290,7 +290,7 @@ group by transaction_statuses.transaction_status_type_id
         if (auth()->user()->hasPermissionTo('akses-sampel', 'sanctum')) {
             $this->sidebar[0]['lists'][] =
                 [
-                    'title' => 'Produksi', 'type' => 'accordion',
+                    'title' => 'Pola & Sampel', 'type' => 'accordion',
                     'icon' => '<i class="ti ti-settings  text-2xl flex-shrink-0"></i>',
                     'lists' => [
 //                        ['title' => 'Mockup', 'route' => route('transaction.mockup-site'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
