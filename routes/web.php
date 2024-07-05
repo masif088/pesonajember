@@ -30,8 +30,7 @@ Route::get('/', function () {
 
 //    return $output ;
 //        return $pdf->stream();
-Mail::to('mokhamadasif@gmail.com')->send(new NewOrderMail())
-    ;
+//Mail::to('mokhamadasif@gmail.com')->send(new NewOrderMail());
 
 
 //    $pdf = PDF::loadView('emails.myTestMail', $data);
@@ -41,7 +40,7 @@ Mail::to('mokhamadasif@gmail.com')->send(new NewOrderMail())
 //            ->subject($data["title"])
 //            ->attachData($pdf->output(), "text.pdf");
 
-//    return view('front.index');
+    return view('front.index');
 })->name('frontpage');
 
 Route::prefix('customer')->name('customer.')->group(function () {
