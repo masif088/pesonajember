@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CooperativeController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\GeneralInfoController;
+use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\MutationStatusController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -214,6 +215,11 @@ Route::middleware([
         Route::get('', [GeneralInfoController::class, 'index'])->name('index');
         Route::get('create', [GeneralInfoController::class, 'create'])->name('create');
         Route::get('edit/{id}', [GeneralInfoController::class, 'edit'])->name('edit');
+    });
+
+    Route::prefix('mail')->name('mail.')->group(function () {
+        Route::get('', [MailController::class, 'index'])->name('index');
+        Route::get('create', [MailController::class, 'create'])->name('create');
     });
 
     Route::prefix('customer')->name('customer.')->group(function () {

@@ -1,293 +1,841 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png?2') }}"/>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    <title>Wishka</title>
+    <!--
 
-        #section1 {
-            height: 100vh;
-            background: url('front/background.png');
-            background-repeat: no-repeat;
-            background-size: cover
-        }
+    TemplateMo 558 Klassy Cafe
 
-        #section4 {
-            background: url('front/background-2.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    https://templatemo.com/tm-558-klassy-cafe
 
-        #section3 {
-            background: #f5f5f5;
-        }
+    -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/css/bootstrap.min.css')}}">
 
-        #footer {
-            background: url('front/background-footer.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/css/font-awesome.css')}}">
 
+    <link rel="stylesheet" href="{{ asset('front/css/templatemo-klassy-cafe.css')}}">
 
-    </style>
-    <link rel="stylesheet" href="{{asset('assets/icons-webfont/tabler-icons.min.css')}}">
-    {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-    <link rel="stylesheet" href="{{ asset('build/assets/app-BNv0_hJj.css') }}">
-    <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('front/css/owl-carousel.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('front/css/lightbox.css')}}">
+
 </head>
+
 <body>
-<section id="section1">
+
+<!-- ***** Preloader Start ***** -->
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- ***** Preloader End ***** -->
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
     <div class="container">
-        <div class="lg:grid grid-cols-12">
-            <div class="col-span-5">
-                <div class="text-center mt-3">
-                    <h1 style="font-size: 36px" class=" font-bold text-white text-center">Wishka Company</h1>
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="#" class="logo">
+                        <img src="{{ asset('front/images/logo-wishka.png')}}" align="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                        <li class="scroll-to-section"><a href="#about">About</a></li>
 
-                </div>
-                <div style="display: table; overflow: hidden;" class="lg:h-[90vh] p-5">
-                    <div style="display: table-cell; vertical-align: middle;" class="text-white">
-                        <div>
-                            <h2 style="line-height: 2.4em">
-                                <font style="font-size: 4em; font-weight: 900">Craft</font>
-                                <br>
-                                <font style="font-size: 3em; font-weight: 700">With Pride</font>
-                            </h2>
-                            <p style="line-height: 2em;" class="mt-5">
-                                <font style="font-size: 2em">BAG VENDOR CUSTOM</font> <br>
-                            </p>
-                            <p style="line-height: 1.5em">
-                                Pilihan terbaik untuk setiap kebutuhan tas dengan logo dan design mu sendiri. Dengan
-                                harga yang
-                                jauh lebih murah kamu bisa bangun brand kamu dan mendapatkan tas dengan kualitas
-                                terbaik.
-                            </p>
+                        <!--
+                            <li class="submenu">
+                                <a href="javascript:;">Drop Down</a>
+                                <ul>
+                                    <li><a href="#">Drop Down Page 1</a></li>
+                                    <li><a href="#">Drop Down Page 2</a></li>
+                                    <li><a href="#">Drop Down Page 3</a></li>
+                                </ul>
+                            </li>
+                        -->
+                        <li class="scroll-to-section"><a href="#menu">Portfolio</a></li>
+                        <li class="scroll-to-section"><a href="#chefs">Keunggulan</a></li>
+                        <!-- <li class="submenu">
+                            <a href="javascript:;">Features</a>
+                            <ul>
+                                <li><a href="#">Features Page 1</a></li>
+                                <li><a href="#">Features Page 2</a></li>
+                                <li><a href="#">Features Page 3</a></li>
+                                <li><a href="#">Features Page 4</a></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
+                        <li class="scroll-to-section"><a href="#reservation">Hubungi Kami</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('login') }}">Login</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
 
-                            <br><br>
-                            <div class="text-3xl text-white">
-                                Percayakan Brand <br>
-                                Tas mu Bersama Wishka!
-                            </div>
-                            <br><br>
-                            <button class="btn bg-wishka-200 text-wishka-500 text-3xl py-2 px-5 "
-                                    style="border-radius: 10px">Hubungi Kami
-                            </button>
+<!-- ***** Main Banner Area Start ***** -->
+<div id="top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="left-content">
+                    <div class="inner-content">
+                        <h3>CRAFT WITH PRIDE</h3>
+                        <h5>Bag Vendor Custom</h5>
+                        <p>Pilihan terbaik untuk setiap kebutuhan tas dengan logo dan design mu sendiri. Dengan harga yang jauh lebih murah kamu bisa bangun brand kamu dan mendapatkan tas dengan kualitas terbaik. </p>
+                        <div class="main-white-button scroll-to-section">
+                            <a href="#reservation">Hubungi Kami</a>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <div class="col-span-7 text-center" style=" text-align: center">
-
-                <div  class="font-bold text-white float-right mt-7" style="width: fit-content">
-                    <a class="btn bg-wishka-500 width px-5 py-2 rounded-md" href="{{ route('login') }}">
-                        Login
-                    </a>
+            <div class="col-lg-8">
+                <div class="main-banner header-text">
+                    <div class="Modern-Slider">
+                        <!-- Item -->
+                        <div class="item">
+                            <div class="img-fill">
+                                <img src="{{ asset('front/images/slider-1.jpg')}}" alt="">
+                            </div>
+                        </div>
+                        <!-- // Item -->
+                        <!-- Item -->
+                        <div class="item">
+                            <div class="img-fill">
+                                <img src="{{ asset('front/images/slider-2.jpg')}}" alt="">
+                            </div>
+                        </div>
+                        <!-- // Item -->
+                        <!-- Item -->
+                        <div class="item">
+                            <div class="img-fill">
+                                <img src="{{ asset('front/images/slider-3.jpg')}}" alt="">
+                            </div>
+                        </div>
+                        <!-- // Item -->
+                    </div>
                 </div>
-
-                <img src="{{ asset('front/bag-1.png') }}" alt=""
-                     class="text-center m-auto lg:absolute lg:top-1/4 lg:h-[500px] h-[300px]">
             </div>
         </div>
     </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
 
-</section>
-
-<section id="section2">
-    <div class="">
-        <div class="lg:grid grid-cols-12">
-            <div class="col-span-5">
-                <img src="{{ asset('front/image-20.png') }}" alt="" style="width: 100%"
-                     class="">
-            </div>
-            <div class="col-span-5 ml-12">
-                <div class="">
-                    <br><br><br>
-                    <h2 class="text-3xl text-wishka-500" style="font-weight: 700">
-                        DIPERCAYA OLEH <br>
-                        1000++ CUSTOMER
-                    </h2> <br>
-                    <p class="text-xl">
-                        Wishka mampu memproduksi tas sesuai dengan kebutuhan dan keinginan customer. Wishka selalu
-                        update dengan
-                        trend dan perkembangan kompetensi dalam pembuatan tas untuk menghasilkan tas yang terbaik.
-                    </p>
-                </div>
-            </div>
-            <div class="col-span-2 ml-12"></div>
-            <div class="col-span-12 bg-gray-200" style="height: 3px; "></div>
-            <div class="col-span-1 ml-12"></div>
-            <div class="col-span-5 ml-12">
-                <div>
-                    <br><br><br>
-                    <h2 class="text-3xl text-wishka-500" style="font-weight: 700">
-                        DIPERCAYA OLEH <br>
-                        1000++ CUSTOMER
-                    </h2> <br>
-                    <p class="text-xl">
-                        Wishka mampu memproduksi tas sesuai dengan kebutuhan dan keinginan customer. Wishka selalu
-                        update dengan
-                        trend dan perkembangan kompetensi dalam pembuatan tas untuk menghasilkan tas yang terbaik.
-                    </p>
-                    <br><br><br>
-                </div>
-            </div>
-            <div class="col-span-1 ml-12"></div>
-            <div class="col-span-5">
-                <img src="{{ asset('front/image-21.png') }}" alt="" style="width: 100%;">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="section3" style="padding: 30px 0 70px 0">
+<!-- ***** About Area Starts ***** -->
+<section class="section" id="about">
     <div class="container">
-        <br><br>
-        <div class="text-center">
-            Percayakan kebutuhan tas custom untuk Brand anda
-            <h2 class="text-3xl text-wishka-500 " style="font-weight: 600">BERSAMA WISHKA</h2>
-        </div>
-        <br>
-        <div class="">
-            <div class="lg:grid grid-cols-12">
-                <div class="col-span-2"></div>
-                <div class="lg:grid grid-cols-12 col-span-8 gap-10 text-center">
-                    <div class="col-span-6">
-                        <img src="{{ asset('front/image_14.png') }}" alt="" style="width: 100%;">
-                        <h3 class="text-left text-xl" style="font-weight: 600; margin-top: 10px; margin-bottom: 8px">
-                            MINIMAL ORDER CUSTOM RENDAH
-                        </h3>
-                        <p style="text-align: justify">
-                            Minimal order custom yakni 24 pcs yang rendah memudahkan usaha skala kecil untuk dapat
-                            mengembangkan brandnya melalui produk tas
-                        </p>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="left-text-content">
+                    <div class="section-heading">
+                        <h6>Tentang Kami</h6>
+                        <h2>SEJAK 2014 TELAH MENJADI DISTRIBUTOR TAS BRAND LOKAL</h2>
                     </div>
-                    <div class="col-span-6">
-                        <img src="{{ asset('front/image_15.png') }}" alt="" style="width: 100%;">
-                        <h3 class="text-left text-xl" style="font-weight: 600; margin-top: 10px; margin-bottom: 8px">
-                            DESIGN KREATIF
-                        </h3>
-                        <p style="text-align: justify">
-                            Kami terus mengikuti trend dan menciptakan desain yang menarik dan fungsionalitas sehingga
-                            bisa memenuhi kebutuhan serta menghasilkan desain yang ekslusif untuk kebutuhan anda.
-                        </p>
+                    <p>Sejak tahun 2014 wishka telah memproduksi tas custom untuk memenuhi kebutuhan brand di seluruh Indonesia. Tim Wishka selalu memprioritaskan kualitas dan kebutuhan customer. Kami mengupayakan layanan terbaik dengan produksi yang mampu menghasilkan output yang mirip dengan custom design anda.</p>
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{ asset('front/images/about-thum-1.png')}}" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img src="{{ asset('front/images/about-thum-2.png')}}" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img src="{{ asset('front/images/about-thum-3.png')}}" alt="">
+                        </div>
                     </div>
-                    <div class="col-span-6">
-                        <img src="{{ asset('front/image_16.png') }}" alt="" style="width: 100%;">
-                        <h3 class="text-left text-xl" style="font-weight: 600; margin-top: 10px; margin-bottom: 8px">
-                            MAMPU PRODUKSI SKALA BESAR
-                        </h3>
-                        <p style="text-align: justify">
-                            Mampu menyelesaikan kebutuhan skala besar sesuai kebutuhan brand dan kegiatanmu.
-                        </p>
-                    </div>
-                    <div class="col-span-6">
-                        <img src="{{ asset('front/image_17.png') }}" alt="" style="width: 100%;">
-                        <h3 class="text-left text-xl" style="font-weight: 600; margin-top: 10px; margin-bottom: 8px">
-                            HARGA KOMPETITIF
-                        </h3>
-                        <p style="text-align: justify">
-                            Kami merupaya untuk memberikan harga yang lebih rendah dibandingkan pasaran guna memberikan
-                            value pada brand dan saling menguntungkan.
-                        </p>
-                    </div>
-
                 </div>
-
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="right-content">
+                    <div class="thumb">
+                        <a rel="nofollow" href="https://www.instagram.com/reel/C8CMJfbSjpJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="><i class="fa fa-play"></i></a>
+                        <img src="{{ asset('front/images/about-video-bg.png')}}" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<section id="section4" style="padding: 60px 0 0 0;">
-    <div class="container " style="margin-bottom: 60px">
-        <h2 style="font-size: 36px" class=" font-bold text-white text-center">PORTOFOLIO WISHKA</h2>
-        <div class="my-5">
-            <livewire:portofolio-wishka/>
+<!-- ***** About Area Ends ***** -->
+
+<!-- ***** Menu Area Starts ***** -->
+<section class="section" id="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <h6>Portfolio</h6>
+                    <h2>Hasil Karya Kami untuk Brand Lokal Indonesia</h2>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="lg:grid grid-cols-12">
-        <div class="col-span-5">
-            <img src="{{ asset('front/workspace.png') }}" alt="" style="width: 100%"
-                 class="">
-        </div>
-        <div class="col-span-5 ml-12">
-            <div class="">
-                <br>
-                <h2 class="text-3xl text-wishka-400" style="font-weight: 700">
-                    DAPATKAN PENAWARAN TERBAIK
-                </h2> <br>
-                <p class="text-lg">
-                    Menghasilkan tas yang berkualitas dan mewujudkan dream bag anda adalah salah satu misi kami untuk
-                    menjadi salah satu vendor tas terbaik di Indonesia. Melalui Wishka anda bisa mendapatkan keuntungan
-                    seperti:
-                </p>
-                @php($check=['Free Sampel produk','Free Design Custom','Quality Control Setiap Tahap Produksi','Kemampuan Produksi dengan Kapasitas Besar','Garansi Produk'])
-                <ul class="mt-3">
-                    @foreach($check as $c)
-                        <li class="mb-2">
-                            <i class="ti ti-check bg-wishka-400 text-white p-0.5 rounded-2xl mr-2"></i>{{ $c }}
-                        </li>
-                    @endforeach
-
-                </ul>
+    <div class="menu-item-carousel">
+        <div class="col-lg-12">
+            <div class="owl-menu-item owl-carousel">
+                <div class="item">
+                    <div class='card card1'>
+                        <!-- <div class="price"><h6>Totebag</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>BLOOM TOTEBAG</h1>
+                            <p class='description'>Totebag Non Zipper Webbing Katun. Memiliki hasil yang simple dan elegan dengan ukuran 40x30x15 cm atau custom</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card2'>
+                        <!-- <div class="price"><h6>$22</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>INTERLUDEMOOD</h1>
+                            <p class='description'>Totebag dilengkapi dengan zipper dan berbahan kanvas, memiliki ciri khas tersendiri untuk produkmu </p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card3'>
+                        <!-- <div class="price"><h6>$18</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>PLEASURE CULTURE</h1>
+                            <p class='description'>Totebag dengan pouch kecil sebagai pemanis dibelakangnya menambah fungsionalitas totebag kamu</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card4'>
+                        <!-- <div class="price"><h6>$10</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>EMOTIONAL</h1>
+                            <p class='description'>Berbahan kanvas dengan totebag yang lebih kokoh dan muat banyak barang</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card5'>
+                        <!-- <div class="price"><h6>$8.50</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>CARRES</h1>
+                            <p class='description'>Terdiri dari totebag dan pouch yang bisa dengan dua tali yang menjadikan tas kamu semakin kekinian</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card6'>
+                        <!-- <div class="price"><h6>$7.25</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>TODAY NICE DAY</h1>
+                            <p class='description'>Berbahan Corduroy/kanvas dengan kualitas premium dan kuat sehingga bisa menjadi tas yang kamu bawa kemanapun</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card7'>
+                        <!-- <div class="price"><h6>$7.25</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>MINION X</h1>
+                            <p class='description'>Slingbag yang bisa kamu bawa kemana-mana untuk kamu yang suka simpel, praktis dan ekspresikan aktivitasmu/p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class='card card8'>
+                        <!-- <div class="price"><h6>$7.25</h6></div> -->
+                        <div class='info'>
+                            <h1 class='title'>TODAY NICE DAY</h1>
+                            <p class='description'>Berbahan Corduroy/kanvas dengan kualitas premium dan kuat sehingga bisa menjadi tas yang kamu bawa kemanapun</p>
+                            <div class="main-text-button">
+                                <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<!-- ***** Menu Area Ends ***** -->
 
+<!-- ***** Chefs Area Starts ***** -->
 
-<section id="footer">
-    <div class="container py-[60px] text-white">
-        <div class="lg:grid grid-cols-12 gap-10">
-            <div class="col-span-4">
-                <div class="text-3xl mb-5 font-bold">
-                    WISHKA COMPANY
-                </div>
-                <p style="text-align: justify">
-                    Merupakan vendor tas di Kota Malang yang mampu memberikan pelayanan tas custom dengan kualitas
-                    material dan hasil yang memuaskan. Telah bekerjasama dengan 1000++ klien brand lokal di Indonesia.
-                </p>
-                <br>
-                <div style="font-size: 24px;" class="flex gap-5">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-tiktok"></i>
-                    <i class="fa-brands fa-youtube"></i>
+<section class="section" id="chefs">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 offset-lg-12 text-center">
+                <div class="section-heading">
+                    <h6>Dipercaya Oleh 1000++ Konsumen Wishka</h6>
+                    <h4>Wishka mampu memproduksi tas sesuai dengan kebutuhan dan keinginan customer. Wishka selalu update dengan trend dan  perkembangan kompetensi dalam pembuatan tas untuk menghasilkan tas yang terbaik.</h4>
                 </div>
             </div>
-            <div class="col-span-1"></div>
-            <div class="col-span-3">
-                <div class="text-3xl mb-5 font-bold">
-                PRODUK KAMI
+            <div class="col-lg-3">
+                <div class="chef-item">
+                    <div class="thumb">
+                        <!-- <div class="overlay"></div>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul> -->
+                        <img src="{{ asset('front/images/benefit-1.png')}}" alt="Chef #1">
+                    </div>
+                    <div class="down-content">
+                        <h4>MINIMAL ORDER CUSTOM RENDAH</h4>
+                        <span>Minimal order custom yakni 24 pcs yang  rendah memudahkan usaha skala kecil untuk dapat mengembangkan brandnya melalui produk tas</span>
+                    </div>
                 </div>
-                @foreach(\App\Models\ProductCategory::get() as $category)
-                    <div style="line-height: 40px" class="text-lg">{{ $category->title }}</div>
-                @endforeach
             </div>
-            <div class="col-span-4">
-                <div class="text-3xl mb-5 font-bold">
-                    KONTAK KAMI
+            <div class="col-lg-3">
+                <div class="chef-item">
+                    <div class="thumb">
+                        <!-- <div class="overlay"></div>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul> -->
+                        <img src="{{ asset('front/images/benefit-2.png')}}" alt="Chef #2">
+                    </div>
+                    <div class="down-content">
+                        <h4>DESIGN KREATIF</h4>
+                        <span>Kami terus mengikuti trend dan menciptakan desain yang menarik dan fungsionalitas sehingga bisa memenuhi kebutuhan serta menghasilkan desain yang ekslusif untuk kebutuhan anda.</span>
+                    </div>
                 </div>
-                <p style="text-align: justify; line-height: 30px">
-                    <b>Workshop</b>: Jl Gempol No 02, RT.03, rw 03 Sukun, Kota Malang <br>
-                    <b>WhatsApp</b>: +62 812‑5268‑7268 <br>
-                    <b>Email</b>: official@wishkacompany.id
-                </p>
+            </div>
+            <div class="col-lg-3">
+                <div class="chef-item">
+                    <div class="thumb">
+                        <!-- <div class="overlay"></div>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        </ul> -->
+                        <img src="{{ asset('front/images/benefit-3.png')}}" alt="Chef #3">
+                    </div>
+                    <div class="down-content">
+                        <h4>MAMPU PRODUKSI SKALA BESAR</h4>
+                        <span>Mampu menyelesaikan kebutuhan skala besar sesuai kebutuhan brand dan kegiatanmu.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="chef-item">
+                    <div class="thumb">
+                        <!-- <div class="overlay"></div>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul> -->
+                        <img src="{{ asset('front/images/benefit-4.png')}}" alt="Chef #2">
+                    </div>
+                    <div class="down-content">
+                        <h4>HARGA KOMPETITIF</h4>
+                        <span>Kami merupaya untuk memberikan harga yang lebih rendah dibandingkan pasaran guna memberikan value pada brand dan saling menguntungkan.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<!-- ***** Chefs Area Ends ***** -->
 
+<!-- ***** Reservation Us Area Starts ***** -->
+<section class="section" id="reservation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <div class="left-text-content">
+                    <div class="section-heading">
+                        <h6>Hubungi Kami</h6>
+                        <h2>Dapatkan Penawaran Terbaik Bersama Wishka</h2>
+                    </div>
+                    <p style="margin: 0;"> Menghasilkan tas yang berkualitas dan mewujudkan dream bag anda adalah salah satu misi kami untuk menjadi salah satu vendor tas terbaik di Indonesia. Melalui Wishka anda bisa mendapatkan keuntungan seperti:
+                    <ul class="text-white" style="font-size: small;">
+                        <li>- Free Sampel Produk</li>
+                        <li>- Free Design Custom</li>
+                        <li>- Quality Control Setiap Tahap Produksi</li>
+                        <li>- Kemampuan Produksi Kapasitas Besar</li>
+                        <li>- Garansi Produk</li>
+                    </ul>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="phone">
+                                <i class="fa fa-phone"></i>
+                                <h4>Phone Number</h4>
+                                <span><a href="#">0812-5268-7268</a></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="message">
+                                <i class="fa fa-envelope"></i>
+                                <h4>Email</h4>
+                                <span><a href="#">official@wishka.id</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-form">
+                    <form id="contact" action="" method="post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Konsultasi Pemesanan</h4>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <fieldset>
+                                    <input name="name" type="text" id="name" placeholder="Nama Kamu*" required="">
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <fieldset>
+                                    <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Masukkan Email" required="">
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <fieldset>
+                                    <input name="phone" type="text" id="phone" placeholder="Nomer WhatsApp*" required="">
+                                </fieldset>
+                            </div>
+                            <!-- <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <select value="number-guests" name="number-guests" id="number-guests">
+                                    <option value="number-guests">Number Of Guests</option>
+                                    <option name="1" id="1">1</option>
+                                    <option name="2" id="2">2</option>
+                                    <option name="3" id="3">3</option>
+                                    <option name="4" id="4">4</option>
+                                    <option name="5" id="5">5</option>
+                                    <option name="6" id="6">6</option>
+                                    <option name="7" id="7">7</option>
+                                    <option name="8" id="8">8</option>
+                                    <option name="9" id="9">9</option>
+                                    <option name="10" id="10">10</option>
+                                    <option name="11" id="11">11</option>
+                                    <option name="12" id="12">12</option>
+                                </select>
+                              </fieldset>
+                            </div> -->
+                            <!-- <div class="col-lg-6">
+                                <div id="filterDate2">
+                                  <div class="input-group date" data-date-format="dd/mm/yyyy">
+                                    <input  name="date" id="date" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                    <div class="input-group-addon" >
+                                      <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-6 col-sm-12">
+                                <fieldset>
+                                    <input type="text" id="order" placeholder="Perkiraan Jumlah Order*" required="">
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <textarea name="message" rows="6" id="message" placeholder="Message" required=""></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="main-button-icon">Kirim Pesan</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Reservation Area Ends ***** -->
+
+<!-- ***** Menu Area Starts ***** -->
+<section class="section" id="offers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 text-center">
+                <div class="section-heading">
+                    <h6>Jenis Tas</h6>
+                    <h2>Kamu bisa memilih Sesuai Kebutuhanmu atau Custom</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row" id="tabs">
+                    <div class="col-lg-12">
+                        <div class="heading-tabs">
+                            <div class="row">
+                                <div class="col-lg-6 offset-lg-3">
+                                    <ul>
+                                        <li><a href='#tabs-1'><img src="{{ asset('front/images/totebag-logo.png')}}" alt="">Totebag</a></li>
+                                        <li><a href='#tabs-2'><img src="{{ asset('front/images/slingbag-logo.png')}}" alt="">Slingbag</a></li>
+                                        <li><a href='#tabs-3'><img src="{{ asset('front/images/waistbag-logo.png')}}" alt="">Waistbag</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <section class='tabs-content'>
+                            <article id='tabs-1'>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="left-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-1.png')}}" alt="">
+                                                        <h4>COMMONDAYS</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$10.50</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-4.png')}}" alt="">
+                                                        <h4>EMOTIONAL</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$8.50</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-5.png')}}" alt="">
+                                                        <h4>META</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$9.90</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-10.png')}}" alt="">
+                                                        <h4>CARRES SHOPING BAG</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Parasit/Peles, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$4.10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-11.png')}}" alt="">
+                                                        <h4>JURNAL ESENTIAL</h4>
+                                                        <p>Ukuran 50x30x20, Bahan Kanvas, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$4.10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="right-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-6.png')}}" alt="">
+                                                        <h4>SUCEAN</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon.</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$6.50</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-7.png')}}" alt="">
+                                                        <h4>EUROPHIA</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$5.00</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-8.png')}}" alt="">
+                                                        <h4>INTERLUDEMOOD</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Kanvas, Tanpa Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$4.10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-9.png')}}" alt="">
+                                                        <h4>CARRES PUFFY</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Scoot Puma, Furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$4.10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/totebag-12.png')}}" alt="">
+                                                        <h4>LEFT HAND</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Scoot Puma, Webbing KRB, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$4.10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article id='tabs-2'>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="left-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-2.png')}}" alt="">
+                                                        <h4>BREKLES</h4>
+                                                        <p>Ukuran 25x20x8, Bahan Corduroy/Kanvas, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$14</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-3.png')}}" alt="">
+                                                        <h4>CARRES</h4>
+                                                        <p>Ukuran 20x20, Bahan Kanvas, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$18</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-4.png')}}" alt="">
+                                                        <h4>MUSTACE</h4>
+                                                        <p>Ukuran 20x15x7, Bahan Cordura, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$22</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-5.png')}}" alt="">
+                                                        <h4>LUMAKU</h4>
+                                                        <p>Ukuran 35x25x10, Bahan Cordura, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$22</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="right-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-6.png')}}" alt="">
+                                                        <h4>MINION X</h4>
+                                                        <p>Ukuran 20x15x7, Bahan Cordura, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$10</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-7.png')}}" alt="">
+                                                        <h4>NELSON</h4>
+                                                        <p>Ukuran 20x15x7, Bahan Cordura, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$20</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/slingbag-8.png')}}" alt="">
+                                                        <h4>KAMBING GUNUNG</h4>
+                                                        <p>Ukuran 20x30x7, Bahan Cordura, furing, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$30</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article id='tabs-3'>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="left-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/waistbag-1.png')}}" alt="">
+                                                        <h4>TODAY NICE DAY</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Cordura/Corduroy/Canvas, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$14</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="right-list">
+                                                <div class="col-lg-12">
+                                                    <div class="tab-item">
+                                                        <img src="{{ asset('front/images/waistbag-2.png')}}" alt="">
+                                                        <h4>TODAY NOCE DAY</h4>
+                                                        <p>Ukuran 40x30x15, Bahan Cordura/Corduroy/Canvas, Bordir/Sablon</p>
+                                                        <!-- <div class="price">
+                                                            <h6>$8.50</h6>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Chefs Area Ends ***** -->
+
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-xs-12">
+                <div class="right-text-content">
+                    <ul class="social-icons">
+                        <li><a href="https://www.instagram.com/wishka_/"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="logo">
+                    <h1 style="color: aliceblue;">Wishka.co</h1>
+                    <!-- <a href="#"><img src="{{ asset('front/images/white-logo.png')}}" alt=""></a> -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-12">
+                <div class="left-text-content">
+                    <p>© Copyright Wishka.co<br>Develop: Rateup.id</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="{{ asset('front/js/jquery-2.1.0.min.js')}}"></script>
+
+<!-- Bootstrap -->
+<script src="{{ asset('front/js/popper.js')}}"></script>
+<script src="{{ asset('front/js/bootstrap.min.js')}}"></script>
+
+<!-- Plugins -->
+<script src="{{ asset('front/js/owl-carousel.js')}}"></script>
+<script src="{{ asset('front/js/accordions.js')}}"></script>
+<script src="{{ asset('front/js/datepicker.js')}}"></script>
+<script src="{{ asset('front/js/scrollreveal.min.js')}}"></script>
+<script src="{{ asset('front/js/waypoints.min.js')}}"></script>
+<script src="{{ asset('front/js/jquery.counterup.min.js')}}"></script>
+<script src="{{ asset('front/js/imgfix.min.js')}}"></script>
+<script src="{{ asset('front/js/slick.js')}}"></script>
+<script src="{{ asset('front/js/lightbox.js')}}"></script>
+<script src="{{ asset('front/js/isotope.js')}}"></script>
+
+<!-- Global Init -->
+<script src="{{ asset('front/js/custom.js')}}"></script>
+<script>
+
+    $(function() {
+        var selectedClass = "";
+        $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+                $("."+selectedClass).fadeIn();
+                $("#portfolio").fadeTo(50, 1);
+            }, 500);
+
+        });
+    });
+
+</script>
 </body>
 </html>

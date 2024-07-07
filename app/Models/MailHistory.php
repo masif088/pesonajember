@@ -20,9 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string mail
  * @property string title
  * @property string content
+ * @property string attachment
  */
 class MailHistory extends Model
 {
     use HasFactory;
-    protected $fillable=['type_mail', 'model_type', 'model_id', 'mail', 'title', 'content'];
+    protected $fillable=['type_mail', 'model_type', 'model_id', 'mail', 'title', 'content','attachment'];
 }
