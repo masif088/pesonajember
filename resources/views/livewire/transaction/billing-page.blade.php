@@ -43,13 +43,23 @@
 {{--                        document.getElementById('wa_button').innerHTML="asdasd";--}}
 {{--                    });--}}
 {{--                </script>--}}
-                <a target="_blank"
-                   id="wa_button"
-                    wire:click="sendMessage"
-                    href="https://wa.me/{{ $this->waNumber }}?text={{ $wac }}"
-                   class="btn bg-wishka-600">
-                    Lakukan Penagihan Melalui WhatsApp
-                </a>
+                <div class="flex gap-1">
+                    <a target="_blank"
+                       id="wa_button"
+                       wire:click="sendMessage"
+                       href="https://wa.me/{{ $this->waNumber }}?text={{ $wac }}"
+                       class="btn bg-success">
+                        Lakukan Penagihan Melalui WhatsApp
+                    </a>
+
+                    <a target="_blank"
+                       id="wa_button"
+                       wire:click="sendMessage"
+                       href="{{ route('email.new-order',$transaction->id) }}"
+                       class="btn bg-wishka-600">
+                        Lakukan Penagihan Melalui Email
+                    </a>
+                </div>
             </div>
 
 

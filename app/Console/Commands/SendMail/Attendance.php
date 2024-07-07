@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands\SendMail;
 
-use App\Mail\Transaction\NewOrderMail;
+use App\Mail\Attendance\AttendanceRemember;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -27,9 +29,12 @@ class Attendance extends Command
      */
     public function handle()
     {
-        for ($i = 0; $i < 2; $i++) {
-            Mail::to('mokhamadasif@gmail.com')->send(new NewOrderMail());
+        if (Carbon::now()->format('w') != 0) {
+            foreach (User::get() as $user) {
+                if ($user->nip != null) {
+                    Mail::to($user->email)->send(new AttendanceRemember($user->id));
+                }
+            }
         }
-
     }
 }

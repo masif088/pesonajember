@@ -53,6 +53,7 @@
             <div class="col-span-5">
                 <div class="text-center mt-3">
                     <h1 style="font-size: 36px" class=" font-bold text-white text-center">Wishka Company</h1>
+
                 </div>
                 <div style="display: table; overflow: hidden;" class="lg:h-[90vh] p-5">
                     <div style="display: table-cell; vertical-align: middle;" class="text-white">
@@ -88,6 +89,13 @@
 
             </div>
             <div class="col-span-7 text-center" style=" text-align: center">
+
+                <div  class="font-bold text-white float-right mt-7" style="width: fit-content">
+                    <a class="btn bg-wishka-500 width px-5 py-2 rounded-md" href="{{ route('login') }}">
+                        Login
+                    </a>
+                </div>
+
                 <img src="{{ asset('front/bag-1.png') }}" alt=""
                      class="text-center m-auto lg:absolute lg:top-1/4 lg:h-[500px] h-[300px]">
             </div>
