@@ -308,6 +308,10 @@ group by transaction_statuses.transaction_status_type_id
         if (auth()->user()->hasPermissionTo('infomasi-umum', 'sanctum')) {
             $this->sidebar[2]['lists'][] = ['title' => 'Informasi Umum', 'type' => 'link', 'route' => route('general-info.index'), 'icon' => '<i class="ti ti-settings  text-xl flex-shrink-0"></i> '];
         }
+
+        if (auth()->user()->hasPermissionTo('email-akses', 'sanctum')) {
+            $this->sidebar[2]['lists'][] = ['title' => 'Email terkirim', 'type' => 'link', 'route' => route('mail.index'), 'icon' => '<i class="ti ti-mail  text-xl flex-shrink-0"></i> '];
+        }
         if (auth()->user()->hasPermissionTo('ekspedisi-barang', 'sanctum')) {
             $this->sidebar[2]['lists'][] =
                 ['title' => 'Ekspedisi barang', 'type' => 'link', 'route' => route('shipper.index'), 'icon' => '<i class="ti ti-truck-delivery  text-xl flex-shrink-0"></i> '];
