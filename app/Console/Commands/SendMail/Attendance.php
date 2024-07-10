@@ -31,7 +31,7 @@ class Attendance extends Command
     {
         if (Carbon::now()->format('w') != 0) {
             foreach (User::get() as $user) {
-                if ($user->nip == null) {
+                if ($user->nip != null) {
                     Mail::to($user->email)->send(new AttendanceRemember($user->id));
                 }
             }
