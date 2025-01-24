@@ -1,14 +1,14 @@
 <x-admin-layout>
     <x-slot name="title">
-        Partner
+        {{ $property['title'] }} - {{ $data->name }}
     </x-slot>
-    <div class="">
-
-        <div class="grid grid-cols-12 gap-3">
-            <div class="col-span-12">
-                <br>
-                <livewire:partner.partner-form action="update" :data-id="$id"/>
-            </div>
+    <x-slot name="breadcrumb">
+        <a href="{{ $property['index'] }}">{{ $property['main-title'] }}</a>
+        <x-breadcrumbs-slash/><a href="#" class="font-bold">{{ $property['title'] }}</a>
+    </x-slot>
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12">
+            <livewire:partner.partner-form action="update" :data-id="$data->id" :index-path="$property['index']"/>
         </div>
     </div>
 </x-admin-layout>

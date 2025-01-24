@@ -12,6 +12,7 @@ class SupplierForm extends Component
     public $dataId;
 
     public $action;
+    public $indexPath;
 
     public function mount()
     {
@@ -30,7 +31,7 @@ class SupplierForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::create($this->form);
-        $this->redirect(route('supplier.index'));
+        $this->redirect(route($this->indexPath));
     }
 
     public function update()
@@ -38,7 +39,7 @@ class SupplierForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('supplier.index'));
+        $this->redirect(route($this->indexPath));
     }
 
     public function render()

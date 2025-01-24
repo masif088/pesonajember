@@ -9,16 +9,16 @@
             multiple=""
             @isset($repository['disabled']) disabled @endisset
             name="{{ $repository['model'] }}"
-            style="padding:0  100px" wire:model="{{'form.'.$repository['model']}}">
+            style="padding:0  100px;width: 100%" wire:model="{{'form.'.$repository['model']}}">
         @for($i=0;$i<count($repository['options']) ;$i++)
             <option value="{{$repository['options'][$i]['value']}}"
                     style="padding: 0 25px">
-                {{$repository['options'][$i]['title']}} . {{$repository['options'][$i]['value']}}
+                {{$repository['options'][$i]['title']}}
             </option>
         @endfor
     </select>
     <script>
-        document.addEventListener('livewire:load', function () {
+        document.addEventListener('livewire:init', () => {
             let data;
             $('#{{'data'.$repository['model']}}').select2();
             $('#{{'data'.$repository['model']}}').on('change', function (e) {

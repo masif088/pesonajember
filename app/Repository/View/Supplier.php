@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Supplier extends \App\Models\Supplier implements View
 {
-    protected $table='suppliers';
+    protected $table = 'suppliers';
+
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query() : static::query()->where('title', 'like', "%$query%")
-            ->orWhere('email', 'like', "%$query%")
-            ->orWhere('phone', 'like', "%$query%")
-            ->orWhere('note', 'like', "%$query%");
+        return empty($query) ? static::query() :
+            static::query()->where('name', 'like', "%$query%")
+                ->orWhere('email', 'like', "%$query%")
+                ->orWhere('pic', 'like', "%$query%")
+                ->orWhere('phone', 'like', "%$query%")
+                ->orWhere('address', 'like', "%$query%");
     }
 
     public static function tableView(): array
@@ -28,29 +31,50 @@ class Supplier extends \App\Models\Supplier implements View
     {
         return [
             ['label' => '#', 'sort' => 'id', 'width' => '7%'],
-            ['label' => 'Kategori', 'sort' => 'supplier_category_id'],
-            ['label' => 'Supplier', 'sort' => 'title'],
-            ['label' => 'No HP', 'sort' => 'phone'],
-            ['label' => 'Link', 'sort' => 'email'],
+            ['label' => 'Supplier', 'sort' => 'name'],
+            ['label' => 'Contact Person', 'sort' => 'name',],
+            ['label' => 'Informasi Bank', 'sort' => 'name',],
+            ['label' => 'Status','sort' => 'status',],
             ['label' => 'Tindakan'],
         ];
     }
 
     public static function tableData($data = null): array
     {
-        $linkEdit = route('supplier.edit', $data->id);
+        $bank = "";
+        foreach ($data->supplierAccounts as $account) {
+            $b = "<div class='bg-blue-200 p-2 mb-1 text-xs'><div class='float-right'><i class='ti ti-copy' onclick='navigator.clipboard.writeText(`$account->account_number`);alert(`Rekening berhasil di copy`)'></i></div><div>$account->bank_name <span class='font-bold'>$account->account_number</span></div><div>A/N<span class='font-bold'> $account->account_name</span></div></div>";
+            $bank .= $b;
+        }
+
+        $linkEdit = route('admin.supplier.edit', $data->id);
+        $imgEdit =asset('assets/icons/ic_edit.svg');
+        $buttonEdit = "<a href='$linkEdit' class='p-2 bg-yellow-100 hover:bg-yellow-200 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-yellow-900' data-icon='ic:baseline-edit'></span>
+                       </a>";
+        $linkShow = route('admin.supplier.show', $data->id);
+        $imgShow =asset('assets/icons/ic_show.svg');
+        $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
+                       </a>";
         return [
             ['type' => 'index'],
-            ['type' => 'string', 'data' => $data->supplierCategory->title],
-            ['type' => 'string', 'data' => $data->title],
-            ['type' => 'string', 'data' => $data->phone],
-            ['type' => 'string', 'data' => $data->email],
+            ['type' => 'raw_html', 'data' => "<div class='text-md font-bold'>$data->name</div><div class='text-xs'>$data->pic</div>"],
             ['type' => 'raw_html', 'data' => "
-            <div class='text-xl flex gap-1'>
-                <a href='$linkEdit' class='py-1 px-2 bg-secondary text-white rounded-lg'><i class='ti ti-pencil'></i></a>
-                <a href='#' wire:click='deleteItem($data->id)' class='py-1 px-2 bg-error text-white rounded-lg'><i class='ti ti-trash'></i></a>
-            </div>
+            <div class='text-xs'><b>No HP/WA</b> : $data->phone</div>
+            <div class='text-xs'><b>Email</b> : $data->email</div>
+            <div class='text-xs'><b>Alamat</b> : <br> $data->address</div>
             "],
+            ['type' => 'raw_html', 'data' => $bank],
+            ['type'=>'string','data'=>$data->status?'Aktif':'Tidak Aktif'],
+            ['type' => 'raw_html', 'data' =>
+                "<div class='text-xl flex gap-1'>
+<br>
+                    $buttonEdit
+                    $buttonShow
+                </div>"
+            ],
+
         ];
     }
 }

@@ -21,6 +21,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
+{{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
+{{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify.min.js"></script>
 {{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
     <style>
         .autocomplete {
@@ -89,18 +92,19 @@
                 <div class="container full-container">
                     <div class="mb-5 lg:p-5">
                         @isset($title)
-                            <div>
-                                <h1 class="text-3xl uppercase">{{ $title }}</h1>
+                            <div class="grid grid-cols-12">
+                                <div class="text-md  col-span-12 text-green-900 mb-5">
+                                    @isset($breadcrumb)
+                                        <a href="{{ route('admin.dashboard') }}">Home</a> <x-breadcrumbs-slash/>
+                                        {{ $breadcrumb }}
+                                    @endisset
+                                </div>
+                                <h1 class="text-3xl uppercase col-span-12">{{ $title }}</h1>
                             </div>
                         @endisset
-
-                        @isset($breadcrumb)
-                            <div>
-                                <h1 class="text-2xl">{{ $title }}</h1>
-                            </div>
-                        @endisset
-
-                        {{ $slot }}
+                        <div class="mt-5">
+                            {{ $slot }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,11 +204,6 @@
 
     document.querySelectorAll("#light-layout").forEach((element) => {
         element.addEventListener("click", () => {
-                // var ss = document.createElement('link');
-                // ss.rel = "stylesheet";
-                // ss.href = "//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css";
-                // ss.id="light-alert"
-                // document.head.appendChild(ss);
                 document.getElementById("dark-alert").remove();
             }
         );
@@ -218,7 +217,6 @@
             ss.href = "//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css";
         } else {
             ss.id="light-alert"
-            // ss.href = "//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css";
         }
         document.head.appendChild(ss);
 
@@ -245,10 +243,12 @@
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/theme/app.init.js') }}"></script>
 <script src="{{ asset('assets/js/theme/app.min.js') }}"></script>
+{{--<script src="{{ asset('mce') }}"></script>--}}
 <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/preline.js') }}"></script>
 <script src="{{ asset('assets/libs/@preline/input-number/index.js') }}"></script>
@@ -262,7 +262,10 @@
 <script src="{{ asset('assets/libs/preline/dist/components/hs-scrollspy/hs-scrollspy.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/components/hs-tabs/hs-tabs.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/components/hs-tooltip/hs-tooltip.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/iconify@1.4.0/src/browser/index.min.js"></script>
 
 @stack('custom-script')
 @livewireScripts

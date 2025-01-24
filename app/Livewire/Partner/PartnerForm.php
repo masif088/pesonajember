@@ -4,14 +4,17 @@ namespace App\Livewire\Partner;
 
 use App\Repository\Form\Partner as model;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class PartnerForm extends Component
 {
+    use WithFileUploads;
     public $form;
 
     public $dataId;
 
     public $action;
+    public $indexPath;
 
     public function mount()
     {
@@ -27,10 +30,15 @@ class PartnerForm extends Component
 
     public function create()
     {
+        $kop = $this->form['kop_image'];
+        unset($this->form['kop_image']);
+        $logo = $this->form['logo_image'];
+        unset($this->form['logo_image']);
+
         $this->validate();
         $this->resetErrorBag();
         model::create($this->form);
-        $this->redirect(route('partner.index'));
+        $this->redirect(route($this->indexPath));
     }
 
     public function update()
@@ -38,10 +46,8 @@ class PartnerForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('partner.index'));
+        $this->redirect(route($this->indexPath));
     }
-
-
     public function render()
     {
         return view('livewire.partner.partner-form');

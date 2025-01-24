@@ -3,6 +3,8 @@
     @isset($repository['title'])
         <label class="block text-sm text-black dark:text-white mb-1" for="data{{ $repository['model'] }}">
             {{ $repository['title'] }}
+
+            @isset($repository['required']) @if($repository['required']) <font class="text-green-900">*(Wajib Diisi)</font> @endif @endisset
         </label>
     @endisset
         <style>
@@ -33,7 +35,7 @@
             wire:model="{{'form.'.$repository['model']}}"
         @endisset
         name="{{ $repository['model'] }}"
-        class=" input bg-gray-200 pc appearance-none border-1 border border-gray-100 rounded w-full py-2 px-4  leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
+        class=" input bg-gray-200 pc border-1 border border-gray-100 rounded w-full py-2 px-4  leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
     >
     @if($repository['type']=="file")
         <div wire:loading wire:target="{{ 'form.'.$repository['model'] }}">

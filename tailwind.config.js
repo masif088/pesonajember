@@ -2,6 +2,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 
+const {addDynamicIconSelectors} = require("@iconify/tailwind");
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ['./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php', './vendor/laravel/jetstream/**/*.blade.php', './storage/framework/views/*.php', './resources/views/**/*.blade.php',],
@@ -9,20 +10,31 @@ export default {
     theme: {
 
         colors: {
-            wishka: {200:"#DBE5F8",300:"#61708B",400:"#597FC1",500:"#465E89",600:"#3C4F71",700:"#314057"},
+            green: {
+                100: '#E9F8F4',
+                200: '#d5fff1',
+                900: '#5DA38E',
+            },
             blue: {
                 200: "#EBF3FE", 300: "#539BFF", 400: "#4784d9", 500: "#ECF2FF", 600: "#5D87FF", 700: "#4f73d9",
             }, cyan: {
                 400: "#E8F7FF", 500: "#49BEFF", 600: "#3ea2d9",
             }, teal: {
-                400: "#E6FFFA", 500: "#13DEB9", 600: "#10bd9d",
+                400: "#E6FFFA", 500: "#9fffeb", 600: "#10bd9d",
             }, yellow: {
-                400: "#FEF5E5", 500: "#FFAE1F", 600: "#d9941a",
-            }, red: {
+                900: "#FDD700",
+                200: "#fdee84",
+                100: "#FFF4B9",
+            },
+            red: {
                 400: "#FDEDE8", 500: "#FA896B", 600: "#d5745b",
-            }, gray: {
-                100: "#ebf1f6", 200: "#D2D2D2", 400: "#e5eaef", 500: "#5A6A85", 600: "#2a3547", 700: "#202936",
-            }, transparent: "transparent", white: "#fff",black: "#c1c1c1",
+                100: '#FFF2F2',900:'#FD0000'
+
+            },
+            gray: {
+                50:'#FCFCFC',
+                100: "#ebf1f6", 200: "#f4f4f4", 400: "#e5eaef", 500: "#5A6A85", 600: "#2a3547", 700: "#929292",
+            }, transparent: "transparent", white: "#fff", black: "#c1c1c1",
         },
 
         fontFamily: {
@@ -42,7 +54,14 @@ export default {
     },
 
 
-    variants: {}, plugins: [forms, typography, require("@tailwindcss/forms")({
-        strategy: "base",
-    }), require("@tailwindcss/typography"), require("preline/plugin"),],
+    variants: {}, plugins: [
+        forms, typography,
+        require("@tailwindcss/forms")({
+                strategy: "base",
+            }
+        ),
+        addDynamicIconSelectors(),
+        require("@tailwindcss/typography"),
+        require("preline/plugin"),
+    ],
 };

@@ -1,16 +1,14 @@
 <x-admin-layout>
     <x-slot name="title">
-        Partner
+        {{ $property['main-title'] }}
     </x-slot>
-    <div class="">
-
-        <div class="grid grid-cols-12 gap-3">
-            <div class="col-span-12">
-                <br><br>
-                <a href="{{ route('partner.create') }}" class="btn bg-wishka-600">Tambah Partner</a>
-                <br><br>
-                <livewire:table.master name="Partner"/>
-            </div>
+    <x-slot name="breadcrumb">
+        <a href="{{ route($property['index']) }}">{{ $property['main-title'] }}</a>
+    </x-slot>
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12">
+            <x-button-custom title="Tambah Partner" href="{{ route('admin.partner.create') }}"/>
+            <livewire:table.master name="Partner"/>
         </div>
     </div>
 </x-admin-layout>

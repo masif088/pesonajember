@@ -1,14 +1,14 @@
 <x-admin-layout>
     <x-slot name="title">
-        Rekap Konsumen
+        {{ $property['title'] }}
     </x-slot>
-    <div class="">
-
-        <div class="grid grid-cols-12 gap-3">
-            <div class="col-span-12">
-                <br>
-                <livewire:customer.form-customer action="create" />
-            </div>
+    <x-slot name="breadcrumb">
+        <a href="{{ $property['index'] }}">{{ $property['main-title'] }}</a>
+        <x-breadcrumbs-slash/><a href="#" class="font-bold">{{ $property['title'] }}</a>
+    </x-slot>
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12">
+            <livewire:customer.customer-form action="create" :index-path="$property['index']"/>
         </div>
     </div>
 </x-admin-layout>

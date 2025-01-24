@@ -4,35 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property int $id
- * @property int $supplier_category_id
- * @property string $title
- * @property string $name
- * @property string $email
- * @property string $phone
- * @property string $created_at
- * @property string $updated_at
+ * @property integer id
+ * @property string name
+ * @property string address
+ * @property string pic
+ * @property string phone
+ * @property string email
+ * @property string note
+ * @property integer status
+ * @property string created_at
+ * @property string updated_at
+ * @property string deleted_at
  */
 class Supplier extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = ['supplier_category_id', 'title', 'name', 'email', 'phone'];
-
-    public function supplierCategory(): BelongsTo
+    protected $fillable = ['name', 'address', 'pic', 'phone', 'email','status','note'];
+    public function supplierAccounts(): HasMany
     {
-        return $this->belongsTo(SupplierCategory::class, 'supplier_category_id')->withTrashed();
-    }
-
-
-    public function materials(): HasMany
-    {
-        return $this->hasMany(Material::class, 'supplier_id')->withTrashed();
+        return $this->hasMany(SupplierAccount::class);
     }
 }

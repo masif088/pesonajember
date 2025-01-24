@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Supplier;
 
-use App\Repository\Form\SupplierCategory as model;
+use App\Repository\FormBackup\SupplierCategory as model;
 use Livewire\Component;
 
 class CategoryForm extends Component

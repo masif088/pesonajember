@@ -1,5 +1,5 @@
 <div>
-    <div class="gap-3 p-4 lg:grid lg:grid-cols-12">
+    <div class="gap-3 lg:grid lg:grid-cols-12 mt-10">
         <div class="col-span-12 lg:col-span-2 items-stretch">
             <span>
             Per Page: &nbsp;
@@ -9,7 +9,7 @@
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="25">25</option>
-                <option value="-1">all</option>
+                <option value="-1">All</option>
             </select>
             </span>
         </div>
@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                 @foreach ($datas as $index=>$data)
-                    <tr class=" dark:text-white text-black border-b border-gray-200 ">
+                    <tr class=" dark:text-white text-black border-b border-gray-200 align-text-top">
                         @foreach ($model::tableData($data) as $data)
                             @switch($data['type'])
                                 @case('index')
@@ -98,76 +98,7 @@
                                         @foreach($data['data'] as $action)
                                             <a @isset($action['link']) href='{{ $action['link'] }}' @else href='#'
                                                wire:click.prevent='{{$action['live']}}' @endisset
-                                               class="
-                                               @isset($action['bg'])
-                                               @switch($action['bg'])
-                                               @case('gray')
-                                               bg-gray-300 hover:bg-gray-200
-                                               @break
-                                               @case('zinc')
-                                               bg-zinc-300 hover:bg-zinc-200
-                                               @break
-                                               @case('neutral')
-                                               bg-neutral-300 hover:bg-neutral-200
-                                               @break
-                                               @case('red')
-                                               bg-red-300 hover:bg-red-200
-                                               @break
-                                               @case('orange')
-                                               bg-orange-300 hover:bg-orange-200
-                                               @break
-                                               @case('amber')
-                                               bg-amber-300 hover:bg-amber-200
-                                               @break
-                                               @case('yellow')
-                                               bg-yellow-300 hover:bg-yellow-200
-                                               @break
-                                               @case('lime')
-                                               bg-lime-300 hover:bg-lime-200
-                                               @break
-                                               @case('green')
-                                               bg-green-300 hover:bg-green-200
-                                               @break
-                                               @case('emerald')
-                                               bg-emerald-300 hover:bg-emerald-200
-                                               @break
-                                               @case('teal')
-                                               bg-teal-300 hover:bg-teal-200
-                                               @break
-                                               @case('cyan')
-                                               bg-cyan-300 hover:bg-cyan-200
-                                               @break
-                                               @case('sky')
-                                               bg-sky-300 hover:bg-sky-200
-                                               @break
-                                               @case('blue')
-                                               bg-blue-300 hover:bg-blue-200
-                                               @break
-                                               @case('indigo')
-                                               bg-indigo-300 hover:bg-indigo-200
-                                               @break
-                                               @case('violet')
-                                               bg-violet-300 hover:bg-violet-200
-                                               @break
-                                               @case('purple')
-                                               bg-purple-300 hover:bg-purple-200
-                                               @break
-                                               @case('fuchsia')
-                                               bg-fuchsia-300 hover:bg-fuchsia-200
-                                               @break
-                                               @case('rose')
-                                               bg-rose-300 hover:bg-rose-200
-                                               @break
-                                               @case('slate')
-                                               bg-slate-300 hover:bg-slate-200
-                                               @break
-                                               @default
-                                               bg-blue-300 hover:bg-blue-200
-                                               @endswitch
-                                               @else
-                                               bg-blue-300 hover:bg-blue-200
-                                               @endisset
-                                               py-1 px-3 rounded m-1">
+                                               class="{{$action['bg']??''}} py-1 px-3 rounded m-1">
                                                 @isset($action['icon'])
                                                     <i class="{{ $action['icon'] }}"></i>
                                                 @endisset
