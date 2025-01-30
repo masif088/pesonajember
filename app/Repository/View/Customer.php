@@ -39,7 +39,7 @@ class Customer extends \App\Models\Customer implements View
         ];
     }
 
-    public static function tableData($data = null): array
+    public static function tableData($data = null,$params=[]): array
     {
 
         $linkEdit = route('admin.customer.edit', $data->id);

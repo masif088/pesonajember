@@ -65,7 +65,7 @@
                 <tbody>
                 @foreach ($datas as $index=>$data)
                     <tr class=" dark:text-white text-black border-b border-gray-200 align-text-top">
-                        @foreach ($model::tableData($data) as $data)
+                        @foreach ($model::tableData($data,$params) as $data)
                             @switch($data['type'])
                                 @case('index')
                                     <td class="py-4 px-6 font-extralight"

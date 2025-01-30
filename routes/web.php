@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MarginController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\ProductOutController;
 use App\Http\Controllers\Admin\SupplierController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', function () {
@@ -11,7 +14,9 @@ Route::get('/register', function () {
 });
 
 Route::get('/', function () {
-    return redirect('https://pesonajember.id');
+//    $pdf = App::make('dompdf.wrapper');
+//    $pdf->loadView('pdf.waybill'    );
+//    return $pdf->stream();
 })->name('homepage');
 
 Route::get('/dashboard', function () {
@@ -44,14 +49,29 @@ Route::middleware([
 
     Route::prefix('order')->name('order.')->group(function () {
         route::get('/', [OrderController::class,'index'])->name('index');
-        route::get('/create-e-catalog', [OrderController::class,'createECatalog'])->name('create-e-catalog');
-        route::get('/create-e-catalog/order/{id}', [OrderController::class,'createECatalogOrder'])->name('create-e-catalog.order');
-        route::get('/create-e-catalog/preview/{id}', [OrderController::class,'createECatalogPreview'])->name('create-e-catalog.preview');
-        route::get('/create-by-order', [OrderController::class,'createByOrder'])->name('create-by-order');
-        route::get('/create-by-flag', [OrderController::class,'createByFlag'])->name('create-by-flag');
+        route::get('/create/{id}', [OrderController::class,'createECatalog'])->name('create');
+        route::get('/input-order/{id}', [OrderController::class,'createECatalogOrder'])->name('input-order');
+        route::get('/preview/{id}', [OrderController::class,'createECatalogPreview'])->name('preview');
         route::get('/edit/{id}', [OrderController::class,'edit'])->name('edit');
         route::get('/show/{id}', [OrderController::class,'show'])->name('show');
+        route::get('/hpp/{id}', [OrderController::class,'hpp'])->name('hpp');
+        route::get('/sharing/{id}', [OrderController::class,'sharing'])->name('sharing');
     });
+
+    Route::prefix('product-out')->name('product-out.')->group(function () {
+        route::get('/{id}', [ProductOutController::class,'index'])->name('index');
+        route::get('/{id}/detail/{orderId}', [ProductOutController::class,'show'])->name('show');
+        route::get('/{id}/detail/{orderId}/create', [ProductOutController::class,'create'])->name('create');
+        route::get('/{id}/detail/{orderId}/edit/{outId}', [ProductOutController::class,'edit'])->name('edit');
+        route::get('/{id}/detail/{orderId}/upload/{outId}', [ProductOutController::class,'upload'])->name('upload');
+        route::get('/{id}/detail/{orderId}/upload/{outId}/download-product-out', [ProductOutController::class,'downloadProductOut'])->name('download-product-out');
+        route::get('/{id}/detail/{orderId}/upload/{outId}/download-waybill', [ProductOutController::class,'downloadWaybill'])->name('download-waybill');
+    });
+
+    Route::prefix('margin')->name('margin.')->group(function () {
+        route::get('/{id}', [MarginController::class,'index'])->name('index');
+    });
+
 
     Route::prefix('customer')->name('customer.')->group(function () {
         route::get('/', [CustomerController::class,'index'])->name('index');

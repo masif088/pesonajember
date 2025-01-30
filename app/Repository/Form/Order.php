@@ -24,7 +24,8 @@ class Order implements Form
         $now  = Carbon::now();
         $month = numberToRomanRepresentation($now->month);
         $order = \App\Models\Order::whereYear('created_at', $now->year)->count()+1;
-        return "$now->year/{$month}.{$now->day}/$order";
+        $order_format = str_pad($order, 3, '0', STR_PAD_LEFT);
+        return "$now->year/{$month}.{$now->day}/$order_format";
     }
 
     public static function formField($params = null): array
@@ -46,7 +47,6 @@ class Order implements Form
                 'options' => $users,
                 'class' => 'col-span-12',
             ],
-
         ];
     }
 }

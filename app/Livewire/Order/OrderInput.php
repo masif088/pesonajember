@@ -11,7 +11,7 @@ use Livewire\Component;
 class OrderInput extends Component
 {
 
-    public $partners;
+    public $partners=[];
     public $formItem;
     public $orderId;
 

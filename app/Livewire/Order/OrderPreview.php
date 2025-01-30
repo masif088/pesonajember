@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class OrderPreview extends Component
 {
-    public $partners;
+    public $partners=[];
     public $formItem;
     public $orderId;
     public $order;
@@ -47,6 +47,19 @@ class OrderPreview extends Component
     }
 
 
+    public function confirmOrder(){
+        $this->order->update([
+            'status'=> 1
+        ]);
+        $this->dispatch('swal:alert', data: [
+            'icon' => 'success',
+            'title'=>'Order diaktifkan',
+        ]);
+        $this->dispatch('redirect', data: [
+            'link' => route('admin.order.index'),
+            'timeout'=>2000,
+        ]);
+    }
 
     public function openAndClose($p)
     {

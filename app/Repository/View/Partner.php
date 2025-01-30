@@ -38,7 +38,7 @@ class Partner extends \App\Models\Partner implements View
         ];
     }
 
-    public static function tableData($data = null): array
+    public static function tableData($data = null,$params=[]): array
     {
         $bank = "";
         foreach ($data->partnerAccounts as $account) {

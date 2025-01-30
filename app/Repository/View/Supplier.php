@@ -39,7 +39,7 @@ class Supplier extends \App\Models\Supplier implements View
         ];
     }
 
-    public static function tableData($data = null): array
+    public static function tableData($data = null,$params=[]): array
     {
         $bank = "";
         foreach ($data->supplierAccounts as $account) {

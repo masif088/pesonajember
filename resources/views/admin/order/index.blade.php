@@ -20,7 +20,7 @@
                                 {{ month_name(\Carbon\Carbon::now()->month) }} {{ \Carbon\Carbon::now()->year }} <br>
                                 <h6>Transaksi E Catalog</h6>
                                 <h4 class="text-green-900 mb-3">{{ \App\Models\Order::where('transaction_type_id',2)->count() }} Pesananan</h4>
-                                <a href="{{ route('admin.order.create-e-catalog') }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
+                                <a href="{{ route('admin.order.create',2) }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             {{ month_name(\Carbon\Carbon::now()->month) }} {{ \Carbon\Carbon::now()->year }} <br>
                             <h6>Transaksi E Catalog</h6>
                             <h4 class="text-green-900 mb-3">{{ \App\Models\Order::where('transaction_type_id',1)->count() }} Pesananan</h4>
-                            <a href="{{ route('admin.order.create-by-order') }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
+                            <a href="{{ route('admin.order.create',1) }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             {{ month_name(\Carbon\Carbon::now()->month) }} {{ \Carbon\Carbon::now()->year }} <br>
                             <h6>Transaksi Pinjam Bendera</h6>
                             <h4 class="text-green-900 mb-3">{{ \App\Models\Order::where('transaction_type_id',3)->count() }} Pesananan</h4>
-                            <a href="{{ route('admin.order.create-by-flag') }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
+                            <a href="{{ route('admin.order.create',3) }}" class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                         </div>
                     </div>
                 </div>

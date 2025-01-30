@@ -9,10 +9,11 @@
             multiple=""
             @isset($repository['disabled']) disabled @endisset
             name="{{ $repository['model'] }}"
-            style="padding:0  100px;width: 100%" wire:model="{{'form.'.$repository['model']}}">
+            style="padding:0  100px;width: 100%"
+            wire:model="{{ 'form.'.$repository['model'] }}">
         @for($i=0;$i<count($repository['options']) ;$i++)
             <option value="{{$repository['options'][$i]['value']}}"
-                    style="padding: 0 25px">
+                    style="padding: 0 25px" wire:key="{{$repository['options'][$i]['title']}}">
                 {{$repository['options'][$i]['title']}}
             </option>
         @endfor

@@ -28,11 +28,22 @@ export default {
             },
             red: {
                 400: "#FDEDE8", 500: "#FA896B", 600: "#d5745b",
-                100: '#FFF2F2',900:'#FD0000'
+                100: '#FFF2F2', 900: '#FD0000'
 
             },
+            pink: {
+                100: '#FFEDFB',
+                200: '#fbc6ef',
+                900: '#FF00C4'
+            },
+            brown:{
+                100: '#e3dacc',
+                200: '#e6d9b8',
+                900: '#784b0c',
+
+},
             gray: {
-                50:'#FCFCFC',
+                50: '#FCFCFC',
                 100: "#ebf1f6", 200: "#f4f4f4", 400: "#e5eaef", 500: "#5A6A85", 600: "#2a3547", 700: "#929292",
             }, transparent: "transparent", white: "#fff", black: "#c1c1c1",
         },

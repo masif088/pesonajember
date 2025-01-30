@@ -12,5 +12,5 @@ interface  View {
 
     public static function tableField(): array;
 
-    public static function tableData($data): array;
+    public static function tableData($data,$params=[]): array;
 }

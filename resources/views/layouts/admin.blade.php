@@ -15,16 +15,11 @@
 
     <!-- Core Css -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-{{--        <link rel="stylesheet" href="{{ asset('build/assets/app-D2jpX1vH.js') }}">--}}
-{{--        <script src="{{ asset('build/assets/app-D2jpX1vH.js') }}"></script>--}}
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
-{{--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />--}}
-{{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify.min.js"></script>
-{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--}}
     <style>
         .autocomplete {
             width: 100%;
@@ -220,6 +215,13 @@
         }
         document.head.appendChild(ss);
 
+        window.addEventListener('redirect', function (d){
+            const data = d.__livewire.params.data;
+            setTimeout(function(){
+                window.location.href = data.link;
+            }, data.timeout);
+        })
+
 
         window.addEventListener('swal:modal', function (d){
             const data = d.__livewire.params.data;
@@ -238,7 +240,6 @@
         })
     })
 
-
 </script>
 
 
@@ -248,7 +249,6 @@
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/theme/app.init.js') }}"></script>
 <script src="{{ asset('assets/js/theme/app.min.js') }}"></script>
-{{--<script src="{{ asset('mce') }}"></script>--}}
 <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/libs/preline/dist/preline.js') }}"></script>
 <script src="{{ asset('assets/libs/@preline/input-number/index.js') }}"></script>

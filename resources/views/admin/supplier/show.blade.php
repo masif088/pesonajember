@@ -13,7 +13,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Data Supplier</h5>
                     <br>
-                    {{--                    'name', 'address', 'pic', 'phone', 'email','status','note'--}}
                     <table class="font-light">
                         <tr>
                             <td>Alamat</td>

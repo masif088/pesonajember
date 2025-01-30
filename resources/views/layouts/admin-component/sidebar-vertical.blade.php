@@ -58,10 +58,10 @@
                                     @if($menu['type']=="accordion")
                                         <li class="hs-accordion sidebar-item">
                                             <a
-                                                class="hs-accordion-toggle sidebar-link dropdown-menu-link  ">
+                                                class="hs-accordion-toggle sidebar-link dropdown-menu-link ">
                                                 {!! $menu['icon'] !!}
                                                 <span
-                                                    class="hide-menu">{{ $menu['title'] }}</span>
+                                                    class="hide-menu">{!! $menu['title'] !!}</span>
                                                 <span class="hide-menu ms-auto">
               <i
                   class="ti ti-chevron-down text-lg ms-auto  hs-accordion-active:hidden "></i>

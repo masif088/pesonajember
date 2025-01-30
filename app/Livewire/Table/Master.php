@@ -129,6 +129,7 @@ class Master extends Component
 
         $return = $this->model::tableView();
         $return['datas'] = $data;
+        $return['params'] = ['query' => $this->search, 'param1' => $this->param1, 'param2' => $this->param2, 'param3' => $this->param3];
 
         return $return;
     }

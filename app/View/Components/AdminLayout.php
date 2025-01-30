@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Partner;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -14,6 +14,15 @@ class AdminLayout extends Component
 
     public function __construct()
     {
+        $productOut =[];
+
+        foreach (Partner::where('status',1)->get() as $partner){
+            $productOut[]= [
+                'title' => $partner->name,
+                'route' => route('admin.product-out.index',$partner->id),
+                'icon' => '<span style="width: 10px"></span>  '
+            ];
+        }
 
 
 
@@ -32,7 +41,6 @@ class AdminLayout extends Component
             ],
 
             [
-
                 'title' => 'General Info',
                 'lists' => [
                     [
@@ -62,38 +70,29 @@ class AdminLayout extends Component
                         'route' => route('admin.partner.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:partnership"></span>'
                     ],
-
-
                     [
                         'title' => 'Supplier',
                         'type' => 'link',
                         'route' => route('admin.supplier.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="iconamoon:box-fill"></span>'
                     ],
+                    [
+                        'title' => 'Laba Rugi', 'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:margin"></span>',
+                        'lists' => [
+                            ['title' => 'E-Katalog', 'route' => route('admin.margin.index',2), 'icon' => '<span style="width: 10px"></span>  '],
+                            ['title' => 'By Order', 'route' => route('admin.margin.index',1), 'icon' => '<span style="width: 10px"></span>  '],
+                            ['title' => 'Pinjam Bendera', 'route' => route('admin.margin.index',3), 'icon' => '<span style="width: 10px"></span>  '],
+                        ],
+                    ],[
+                        'title' => 'Barang keluar <br> & Surat Jalan', 'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="solar:inbox-out-bold"></span>',
+                        'lists' => $productOut,
+                    ],
                 ],
+
             ],
-//            [
-//                'title' => 'General info',
-//                'lists' => [],
-//            [
-//                'title' => 'Pola & Sampel', 'type' => 'accordion',
-//                'icon' => '<i class="ti ti-settings  text-2xl flex-shrink-0"></i>',
-//                'lists' => [
-////                        ['title' => 'Mockup', 'route' => route('transaction.mockup-site'), 'icon' => isset($count[3]) ? $this->setValue($count[3]) : ''],
-//                    ['title' => 'Pola', 'route' => route('transaction.pattern-site'), 'icon' => isset($count[4]) ? $this->setValue($count[4]) : ''],
-//                    ['title' => 'Sampel', 'route' => route('transaction.sample-site'), 'icon' => isset($count[5]) ? $this->setValue($count[5]) : ''],
-//                    //                            ['title' => 'Stock Bahan', 'route' => '#', 'icon' => '<span class="rounded-2xl border bg-error text-white border-none flex-shrink-0" style="margin:0;padding: 0;font-size: 10px; width: 20px; height: 20px; text-align: center" >2</span>'],
-//                ],
-//            ];
-//            ],
-//            [
-//                'title' => 'Karyawan Info',
-//                'lists' => [],
-//            ],
         ];
-
-
-
     }
 
     public function setValue($count)
