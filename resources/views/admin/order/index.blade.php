@@ -8,7 +8,7 @@
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12 grid grid-cols-12 gap-3">
 {{--            @for($i=0;$i<3;$i++)--}}
-                <div class="col-span-4">
+                <div class="lg:col-span-4 col-span-12">
                     <div class="card shadow-none">
                         <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                             <div class="bg-green-200 rounded-full my-auto"
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-            <div class="col-span-4">
+            <div class="lg:col-span-4 col-span-12">
                 <div class="card shadow-none">
                     <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                         <div class="bg-green-200 rounded-full my-auto"
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-4">
+            <div class="lg:col-span-4 col-span-12">
                 <div class="card shadow-none">
                     <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                         <div class="bg-green-200 rounded-full my-auto"

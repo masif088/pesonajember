@@ -58,7 +58,6 @@ class Partner extends \App\Models\Partner implements View
             ['type' => 'raw_html', 'data' => "<div class='text-md font-bold'>$data->name</div><div class='text-xs'>$data->pic</div>"],
             ['type' => 'raw_html', 'data' => "
             <div class='text-xs'><b>No HP/WA</b> : $data->phone</div>
-            <div class='text-xs'><b>Email</b> : $data->email</div>
             <div class='text-xs'><b>Alamat</b> : <br> $data->address</div>
             "],
             ['type' => 'raw_html', 'data' => $bank],

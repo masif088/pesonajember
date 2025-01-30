@@ -11,23 +11,23 @@
                                 <div class="brand-logo flex  items-center ">
                                     <a href="#"
                                        class="text-nowrap logo-img">
-                                        <img
+                                        <img style="height: 40px;"
                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden block rtl:hidden"
                                             alt="Logo-Dark"
                                         />
-                                        <img
+                                        <img style="height: 40px;"
                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                             alt="Logo-light"
                                         />
 
-                                        <img
+                                        <img style="height: 40px;"
                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                             alt="Logo-Dark"
                                         />
-                                        <img
+                                        <img style="height: 40px;"
                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                             class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                             alt="Logo-light"
@@ -81,23 +81,23 @@
                                         <div class="brand-logo flex  items-center ">
                                             <a href="#"
                                                class="text-nowrap logo-img">
-                                                <img
+                                                <img style="height: 32px;"
                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden block rtl:hidden"
                                                     alt="Logo-Dark"
                                                 />
-                                                <img
+                                                <img style="height: 32px;"
                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:block hidden rtl:hidden rtl:dark:hidden"
                                                     alt="Logo-light"
                                                 />
 
-                                                <img
+                                                <img style="height: 32px;"
                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:block rtl:dark:hidden"
                                                     alt="Logo-Dark"
                                                 />
-                                                <img
+                                                <img style="height: 32px;"
                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
                                                     class="dark:hidden hidden rtl:hidden rtl:dark:block"
                                                     alt="Logo-light"

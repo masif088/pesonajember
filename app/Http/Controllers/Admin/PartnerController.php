@@ -20,18 +20,18 @@ class PartnerController extends Controller
     }
     public function create()
     {
-        $this->property['title'] = 'Tambah data partnet/cv';
+        $this->property['title'] = 'Tambah data partner/cv';
         return view($this->name.'create',['property' => $this->property]);
     }
 
     public function edit(Partner $id)
     {
-        $this->property['title'] = 'Ubah data partnet/cv';
+        $this->property['title'] = 'Ubah data partner/cv';
         return view($this->name.'edit',['property' => $this->property,'data'=>$id]);
     }
     public function show(Partner $id)
     {
-        $this->property['title'] = 'Detail data partnet/cv';
+        $this->property['title'] = 'Detail data partner/cv';
         return view($this->name.'show',['property' => $this->property,'data'=>$id]);
     }
 }

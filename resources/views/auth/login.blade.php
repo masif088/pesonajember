@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />asd
+            <img src="{{ asset('assets/images/logos/dark-logo.png') }}" alt="" style="width: 500px">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -39,7 +39,7 @@
                     </a>
                 @endif
 
-                <x-button class="ms-4 bg-wishka-600 hover:bg-wishka-400">
+                <x-button class="ms-4 bg-green-900 hover:bg-green-200">
                     {{ __('Log in') }}
                 </x-button>
             </div>
