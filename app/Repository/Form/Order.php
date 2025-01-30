@@ -32,7 +32,7 @@ class Order implements Form
     {
         $partner= [];
         foreach (\App\Models\Partner::get() as $param) {
-            $partner[]=['value'=>$param->id,'text'=>$param->company_name." ".$param->name];
+            $partner[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
         }
         $users = eloquent_to_options(User::get(),'id','name');
         return [
