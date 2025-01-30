@@ -27,7 +27,13 @@ class CustomerChoice implements Form
 
     public static function formField($params = null): array
     {
-        $customer  = eloquent_to_options(Customer::get(), 'id','name');
+//        $customer  = eloquent_to_options(Customer::get(), 'id','name');
+
+        $customer= [];
+        foreach (\App\Models\Customer::get() as $param) {
+            $customer[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
+        }
+
         return [
             [
                 'title' => 'Nama konsumen/perusahaan',
