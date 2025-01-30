@@ -30,7 +30,10 @@ class Order implements Form
 
     public static function formField($params = null): array
     {
-        $partner = eloquent_to_options(\App\Models\Partner::get(),'id','name');
+        $partner= [];
+        foreach (\App\Models\Partner::get() as $param) {
+            $partner[]=['value'=>$param->id,'text'=>$param->company_name." ".$param->name];
+        }
         $users = eloquent_to_options(User::get(),'id','name');
         return [
             [

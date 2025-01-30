@@ -12,8 +12,8 @@ class Customer extends \App\Models\Customer implements Form
     public static function formRules(): array
     {
         return [
-            'form.name' => 'required|max:255',
-            'form.company_name' => 'nullable|max:255',
+            'form.company_name' => 'required|max:255',
+            'form.name' => 'nullable|max:255',
             'form.phone' => 'nullable|max:255',
             'form.email' => 'nullable',
             'form.note' => 'nullable',

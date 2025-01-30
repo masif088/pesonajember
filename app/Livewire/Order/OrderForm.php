@@ -41,12 +41,8 @@ class OrderForm extends Component
 
     public function create()
     {
-        dd($this->form);
-//        dd($this->form);
 
-//        $this->validate();
-        $this->resetErrorBag();/**/
-//        dd($this->form);
+        $this->resetErrorBag();
 
         if ($this->customerType == 2) {
             $customer = $this->form['customer'];
