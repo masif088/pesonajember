@@ -2,6 +2,8 @@
 
 namespace App\Repository\View;
 
+use App\Models\OrderProduct;
+use App\Models\OrderSharingDetail;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -77,13 +79,23 @@ class OrderMargin extends \App\Models\Order implements View
         $ppn =  11;
         $pph = 1.5;
         $dpp =$allContractValue*100/(100+$ppn);
-        $ppnProduct = $allContractValue - $dpp;
         $pphProduct = $pph*$dpp/100;
         $afterTax = $dpp - $pphProduct;
 
-        $ppnProduct = thousand_format($ppnProduct);
-        $pphProduct = thousand_format($pphProduct);
-        $dpp = thousand_format($dpp);
+
+        foreach ($data->orderProducts as $item2){
+            foreach ($data->orderSharings as $s){
+                $osd = OrderSharingDetail::where('order_sharing_id', $s->id)->where('order_product_id', $item2->id)->first();
+                if ($osd != null) {
+                    $allSharing += $osd->percentage*getTax(($item2->price * $item2->quantity),$ppn,$pph)/100;
+                }
+            }
+        }
+
+//        foreach ($data->orderSharings as $os){
+//
+//        }
+
 
         $margin = $afterTax-$allHppValue-$allSharing;
         //belum kelar
@@ -113,15 +125,7 @@ class OrderMargin extends \App\Models\Order implements View
                 <div class='text-xs text-nowrap'><b>Nama</b> : {$data->customer->name}</div>
 
             "],
-            ['type' => 'raw_html','data'=>'Rp. '.number_format($allContractValue,2,',','.'). " ({$data->orderProducts->count()} item) "],
-//            ['type'=>'string','data'=>$data->status?'Aktif':'Draft'],
-//            ['type' => 'raw_html', 'data' =>
-//                "<div class='text-sm'>
-//                    <div class='text-nowrap'>DPP: Rp. $dpp</div>
-//                    <div class='text-nowrap'>PPN($ppn%): Rp. $ppnProduct</div>
-//                    <div class='text-nowrap'>PPH($pph%): Rp. $pphProduct</div>
-//                </div>"
-//            ],
+            ['type' => 'raw_html','data'=>'<div class="text-nowrap">Rp. '.number_format($allContractValue,2,',','.'). " <br> ({$data->orderProducts->count()} item) </div>"],
             ['type' => 'string','data'=>'Rp.'.thousand_format($afterTax)],
             ['type' => 'raw_html','data'=>$hpp],
             ['type' => 'raw_html','data'=>$sharing],

@@ -43,4 +43,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderPartner::class , 'order_id');
     }
+
+    public function orderSharings(): HasMany
+    {
+        return $this->hasMany(OrderSharing::class,'order_id');
+    }
 }

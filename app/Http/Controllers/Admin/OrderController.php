@@ -53,4 +53,10 @@ class OrderController extends Controller
         $this->property['title'] = "Input HPP {$order->transactionType->title} - {$order->order_number}" ; ;
         return view($this->name.'hpp',['property' => $this->property,'id'=>$id]);
     }
+    public function sharing($id)
+    {
+        $order = Order::find($id);
+        $this->property['title'] = "Sharing {$order->transactionType->title} - {$order->order_number}" ; ;
+        return view($this->name.'sharing',['property' => $this->property,'id'=>$id]);
+    }
 }

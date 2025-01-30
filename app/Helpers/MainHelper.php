@@ -168,6 +168,16 @@ if (!function_exists('thousand_format')) {
     }
 }
 
+if (!function_exists('getTax')) {
+    function getTax($total,$ppn,$pph)
+    {
+
+        $dpp =$total*100/(100+$ppn);
+        $pphProduct = $pph*$dpp/100;
+        return $dpp - $pphProduct;
+    }
+}
+
 if (!function_exists('increase_check')) {
     function increase_check($integer)
     {

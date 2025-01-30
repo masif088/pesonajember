@@ -8,6 +8,6 @@
         <x-breadcrumbs-slash/><a href="#" class="font-bold">{{ $property['title'] }}</a>
     </x-slot>
     <div>
-        <livewire:order.order-hpp :order-id="$id"/>
+        <livewire:order.order-sharing :order-id="$id"/>
     </div>
 </x-admin-layout>
