@@ -84,14 +84,14 @@
                 <div class="card-body">
                     <h5 class="card-title">Kop Surat Partner/CV</h5>
                     <br>
-                    <img src="{{ asset('storage/'.$data->kop) }}" alt="Kop surat masih belum di upload">
+                    <img src="{{ asset('storage/'.$data->kop) }}" alt="Kop surat masih belum di upload" class="w-full">
                 </div>
             </div>
             <div class="card col-span-12 shadow-none border">
                 <div class="card-body">
                     <h5 class="card-title">Logo Partner/CV</h5>
                     <br>
-                    <img src="{{ asset('storage/'.$data->logo) }}" alt="Kop surat masih belum di upload">
+                    <img src="{{ asset('storage/'.$data->logo) }}" alt="Logo masih belum di upload" class="w-full">
                 </div>
             </div>
         </div>
