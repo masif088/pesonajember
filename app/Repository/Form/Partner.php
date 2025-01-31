@@ -25,7 +25,7 @@ class Partner extends \App\Models\Partner implements Form
             'form.phone' => 'nullable|max:255',
             'form.address' => 'nullable',
             'form.note' => 'nullable',
-            'form.status' => 'nullable|numeric|between:0,1',
+            'form.status' => 'nullable|numeric',
             'form.kop_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'form.logo_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
@@ -100,7 +100,7 @@ class Partner extends \App\Models\Partner implements Form
             [
                 'title' => 'Status',
                 'type' => 'select',
-                'model' => 'status_id',
+                'model' => 'status',
                 'options' => $status,
                 'class' => 'col-span-6',
             ],
