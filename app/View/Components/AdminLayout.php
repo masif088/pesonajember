@@ -24,19 +24,37 @@ class AdminLayout extends Component
             ];
         }
 
-
-
         $this->sidebar = [
             [
                 'title' => 'Home',
                 'lists' => [
-                    ['title' => 'Dashboard', 'type' => 'link', 'route' => route('admin.dashboard'), 'icon' => '<i class="ti ti-brand-chrome  text-2xl flex-shrink-0"></i> '],
+                    ['title' => 'Dashboard', 'type' => 'link', 'route' => route('admin.dashboard'), 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="material-symbols:dashboard-rounded"></span>'],
                     [
                         'title' => 'Input Order Baru',
                         'type' => 'link',
                         'route' => route('admin.order.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="solar:wallet-money-bold"></span>'
+
                     ],
+                    [
+                        'title' => 'Barang keluar <br> & Surat Jalan', 'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="solar:inbox-out-bold"></span>',
+                        'lists' => $productOut,
+                    ],
+                    [
+                        'title' => 'Laba Rugi', 'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:margin"></span>',
+                        'lists' => [
+                            ['title' => 'E-Katalog', 'route' => route('admin.margin.index',2), 'icon' => '<span style="width: 10px"></span>  '],
+                            ['title' => 'By Order', 'route' => route('admin.margin.index',1), 'icon' => '<span style="width: 10px"></span>  '],
+                            ['title' => 'Pinjam Bendera', 'route' => route('admin.margin.index',3), 'icon' => '<span style="width: 10px"></span>  '],
+                        ],
+                    ],
+
+                    ['title' => 'Rekap Transaksi', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="icon-park-solid:transaction-order"></span>'],
+                    ['title' => 'Perubahan Transaksi', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="basil:edit-solid"></span>'],
+                    ['title' => 'Order Selesai', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ion:checkmark-done-circle"></span>'],
+                    ['title' => 'Order Cancel', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ic:round-cancel"></span>'],
                 ],
             ],
 
@@ -76,19 +94,7 @@ class AdminLayout extends Component
                         'route' => route('admin.supplier.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="iconamoon:box-fill"></span>'
                     ],
-                    [
-                        'title' => 'Laba Rugi', 'type' => 'accordion',
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:margin"></span>',
-                        'lists' => [
-                            ['title' => 'E-Katalog', 'route' => route('admin.margin.index',2), 'icon' => '<span style="width: 10px"></span>  '],
-                            ['title' => 'By Order', 'route' => route('admin.margin.index',1), 'icon' => '<span style="width: 10px"></span>  '],
-                            ['title' => 'Pinjam Bendera', 'route' => route('admin.margin.index',3), 'icon' => '<span style="width: 10px"></span>  '],
-                        ],
-                    ],[
-                        'title' => 'Barang keluar <br> & Surat Jalan', 'type' => 'accordion',
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="solar:inbox-out-bold"></span>',
-                        'lists' => $productOut,
-                    ],
+
                 ],
 
             ],
