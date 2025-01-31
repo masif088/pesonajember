@@ -31,7 +31,7 @@ class CustomerChoice implements Form
 
         $customer= [];
         foreach (\App\Models\Customer::get() as $param) {
-            $customer[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
+            $customer[]=['value'=>$param->id,'title'=>$param->company_name." - ".$param->name];
         }
 
         return [

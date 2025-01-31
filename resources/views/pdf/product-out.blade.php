@@ -29,7 +29,7 @@
     $partner = \App\Models\Partner::find($id);
     $count = 10 - $order->orderProductOutDetails->count();
 @endphp
-<img src="{{ $partner->kop!=null?public_path($partner->kop):'' }}" alt="" style="width: 100%">
+<img src="{{ $partner->kop!=null?public_path('storage/'.$partner->kop):'' }}" alt="" style="width: 100%">
 <hr style="height: 5px; background: #1e1e1e; width: 90%">
 <h1 style="text-align: center">BUKTI PENGELUARAN BARANG</h1>
 <div style="padding: 10px 50px">

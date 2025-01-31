@@ -18,7 +18,7 @@
         </tr>
     </table>
     <br><br>
-    <div class="flex gap-3 overflow-auto" style="height: 30vh; flex-direction: column">
+    <div class="flex gap-3 overflow-auto" style="flex-direction: column">
         @foreach($partners as $key=>$p)
             <div class="col-span-12 mb-2" style="height: 20px">
                 <div class="flex">

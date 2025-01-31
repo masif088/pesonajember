@@ -14,9 +14,7 @@ Route::get('/register', function () {
 });
 
 Route::get('/', function () {
-//    $pdf = App::make('dompdf.wrapper');
-//    $pdf->loadView('pdf.waybill'    );
-//    return $pdf->stream();
+    return redirect(route('dashboard'));
 })->name('homepage');
 
 Route::get('/dashboard', function () {
