@@ -61,14 +61,14 @@ class PartnerForm extends Component
     {
         if ($this->form['kop_image'] != null) {
             $kop = $this->form['kop_image'];
-            $filename = Str::slug($this->form['name'] . '.' . $kop->getClientOriginalExtension());
+            $filename = Str::slug($this->form['name']) . '.' . $kop->getClientOriginalExtension();
             $kop->storeAs('public/kop-image', $filename);
             $this->form['kop'] = 'kop-image/' . $filename;
             unset($this->form['kop_image']);
         }
         if ($this->form['logo_image'] != null) {
             $logo = $this->form['logo_image'];
-            $filename = Str::slug($this->form['name'] . '.' . $logo->getClientOriginalExtension());
+            $filename = Str::slug($this->form['name']) . '.' . $logo->getClientOriginalExtension();
             $logo->storeAs('public/logo', $filename);
             $this->form['logo'] = 'logo/' . $filename;
             unset($this->form['logo_image']);
