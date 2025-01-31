@@ -33,19 +33,18 @@ class PartnerForm extends Component
 
     public function create()
     {
+        $this->imageCheck();
         $this->validate();
         $this->resetErrorBag();
-        $this->imageCheck();
         model::create($this->form);
         $this->redirect(route($this->indexPath));
     }
 
     public function update()
     {
-
+        $this->imageCheck();
         $this->validate();
         $this->resetErrorBag();
-        $this->imageCheck();
         model::find($this->dataId)->update($this->form);
         $this->redirect(route($this->indexPath));
     }
