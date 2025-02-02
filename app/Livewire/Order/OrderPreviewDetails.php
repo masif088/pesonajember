@@ -13,13 +13,14 @@ class OrderPreviewDetails extends Component
     public $formItem;
     public $orderId;
     public $order;
-    public $pph = 1.5;
+//    public $pph = 1.5;
     public $ppn = 11;
 
 
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
 
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $this->partners[$item->partner_id] = [

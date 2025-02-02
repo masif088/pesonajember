@@ -57,15 +57,14 @@ class Order extends \App\Models\Order implements View
         $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                        </a>";
+
         $orderLast = \App\Models\Order::orderByDesc('id')->first();
         $buttonDelete='';
         if ($orderLast->id==$data->id && $data->status==0){
-            $buttonDelete = "<a href='$linkShow' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
+            $buttonDelete = "<a href='#' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
                        </a>";
         }
-
-
 
         return [
             ['type' => 'string','data'=>$data->order_number],

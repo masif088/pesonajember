@@ -14,11 +14,11 @@ Route::get('/register', function () {
 });
 
 Route::get('/', function () {
-    return redirect(route('dashboard'));
+    return redirect(route('admin.dashboard'));
 })->name('homepage');
 
 Route::get('/dashboard', function () {
-    return redirect(route('dashboard'));
+    return redirect(route('admin.dashboard'));
 })->name('dashboard');
 
 Route::middleware([
@@ -54,6 +54,7 @@ Route::middleware([
         route::get('/show/{id}', [OrderController::class,'show'])->name('show');
         route::get('/hpp/{id}', [OrderController::class,'hpp'])->name('hpp');
         route::get('/sharing/{id}', [OrderController::class,'sharing'])->name('sharing');
+        route::get('/tax-edit/{id}', [OrderController::class,'taxEdit'])->name('tax-edit');
     });
 
     Route::prefix('product-out')->name('product-out.')->group(function () {

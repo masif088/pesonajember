@@ -59,4 +59,10 @@ class OrderController extends Controller
         $this->property['title'] = "Sharing {$order->transactionType->title} - {$order->order_number}" ; ;
         return view($this->name.'sharing',['property' => $this->property,'id'=>$id]);
     }
+    public function taxEdit($id)
+    {
+        $order = Order::find($id);
+        $this->property['title'] = "Tax Edit {$order->transactionType->title} - {$order->order_number}" ; ;
+        return view($this->name.'tax-edit',['property' => $this->property,'id'=>$id]);
+    }
 }

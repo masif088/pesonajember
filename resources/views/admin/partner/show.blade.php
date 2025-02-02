@@ -8,7 +8,7 @@
         <a href="#" class="font-bold">{{ $property['title'] }}</a>
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-6 grid grid-cols-12 gap-3">
+        <div class="col-span-8 grid grid-cols-12 gap-3">
             <div class="card col-span-12 shadow-none border">
                 <div class="card-body">
                     <h5 class="card-title">Data Partner/CV</h5>
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-6 grid grid-cols-12 gap-3">
+        <div class="col-span-4 grid grid-cols-12 gap-3">
             <div class="card col-span-12 shadow-none border">
                 <div class="card-body">
                     <h5 class="card-title">Kop Surat Partner/CV</h5>

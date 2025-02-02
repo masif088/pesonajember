@@ -1,3 +1,4 @@
+@php use App\Models\OrderSharingDetail; @endphp
 <x-admin-layout>
     <x-slot name="title">
         {{ $property['title'] }}
@@ -12,13 +13,30 @@
             <div class="card col-span-12 shadow-none border">
                 <div class="card-body">
                     @php
-                        $ppn = 11;
+                        $ppn = $data->ppn;
                         $pph = 1.5;
+
+                        $afterTax = 0;
+
+
+        $allSharing= 0;
+        foreach ($data->orderProducts as $item2){
+            $afterTax += getTax($item2->value,$ppn,$item2->pph);;
+            foreach ($data->orderSharings as $s){
+                $osd = OrderSharingDetail::where('order_sharing_id', $s->id)->where('order_product_id', $item2->id)->first();
+                if ($osd != null) {
+                    $allSharing += $osd->percentage*getTax(($item2->price * $item2->quantity),$ppn,$item2->pph)/100;
+                }
+            }
+        }
+
+
                         $total = $data->orderProducts->sum('value');
-                            $dpp =$total*100/(100+$ppn);
-                            $ppnProduct = $total - $dpp;
-                            $pphProduct = $pph*$dpp/100;
-                            $afterTax = $dpp - $pphProduct;
+                        $totalHpp = $data->orderProducts->sum('hpp_value');
+//                            $dpp =$total*100/(100+$ppn);
+//                            $ppnProduct = $total - $dpp;
+//                            $pphProduct = $pph*$dpp/100;
+//                            $afterTax = $afterTax;
                             $statuses = ['Draft','Aktif','Cancel','Selesai'];
 
                                 $recaps = [
@@ -27,7 +45,9 @@
                                   ['title'=>'Nama Perusahaan','value'=>$data->customer->company_name],
                                   ['title'=>'Nominal Keseluruhan Kontrak','value'=>'Rp. '.thousand_format($total)],
                                   ['title'=>'Nominal Keseluruhan Setelah Pajak','value'=>'Rp. '. thousand_format($afterTax)],
-                                  ['title'=>'Margin profit','value'=>'Rp. '],
+                                  ['title'=>'Nominal Keseluruhan HPP','value'=>'Rp. '.thousand_format($totalHpp)],
+                                  ['title'=>'Nominal Sharing','value'=>'Rp. '. thousand_format($allSharing)],
+                                  ['title'=>'Nominal Margin Profit','value'=>'Rp. '. thousand_format(($afterTax-$allSharing-$totalHpp)).' ('.number_format(($afterTax-$allSharing-$totalHpp)/$afterTax*100,2,',','.')."%)"],
                                   ['title'=>'Status Transaksi','value'=>"<b class='font-bold'>{$statuses[$data->status]}</b>"],
                                 ];
                     @endphp

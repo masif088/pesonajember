@@ -66,6 +66,12 @@ class OrderMargin extends \App\Models\Order implements View
         $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                        </a>";
+
+        $linkTax = route('admin.order.tax-edit', $data->id);
+        $buttonTax = "<a href='$linkTax' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-green-900' data-icon='vaadin:book-dollar'></span>
+                       </a>";
+
         $orderLast = \App\Models\Order::orderByDesc('id')->first();
         $buttonDelete='';
         if ($orderLast->id==$data->id && $data->status==0){
@@ -73,32 +79,23 @@ class OrderMargin extends \App\Models\Order implements View
                             <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
                        </a>";
         }
-        $allContractValue = $data->orderProducts->sum('value');
         $allHppValue = $data->orderProducts->sum('hpp_value');
+        $allContractValue = $data->orderProducts->sum('value');
+        $afterTax = 0;
+        $ppn =  $data->ppn;
+
         $allSharing= 0;
-        $ppn =  11;
-        $pph = 1.5;
-        $dpp =$allContractValue*100/(100+$ppn);
-        $pphProduct = $pph*$dpp/100;
-        $afterTax = $dpp - $pphProduct;
-
-
         foreach ($data->orderProducts as $item2){
+            $afterTax += getTax($item2->value,$ppn,$item2->pph);;
             foreach ($data->orderSharings as $s){
                 $osd = OrderSharingDetail::where('order_sharing_id', $s->id)->where('order_product_id', $item2->id)->first();
                 if ($osd != null) {
-                    $allSharing += $osd->percentage*getTax(($item2->price * $item2->quantity),$ppn,$pph)/100;
+                    $allSharing += $osd->percentage*getTax(($item2->price * $item2->quantity),$ppn,$item2->pph)/100;
                 }
             }
         }
 
-//        foreach ($data->orderSharings as $os){
-//
-//        }
-
-
         $margin = $afterTax-$allHppValue-$allSharing;
-        //belum kelar
 
         $marginPresentation = number_format($margin/$allContractValue*100,2,',','.');
         $margin = thousand_format($margin);
@@ -116,7 +113,6 @@ class OrderMargin extends \App\Models\Order implements View
         }else{
             $sharing= 'Rp.'.thousand_format($allSharing);
         }
-
 
         return [
             ['type' => 'string','data'=>$data->order_number],
@@ -138,6 +134,7 @@ class OrderMargin extends \App\Models\Order implements View
                     $buttonPreview
                     $buttonShow
                     $buttonDelete
+                    $buttonTax
                 </div>"
             ],
 

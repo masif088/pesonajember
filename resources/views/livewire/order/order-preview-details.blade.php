@@ -17,18 +17,19 @@
                 </div>
             </div>
             @if($p['status'])
-            <div class="col-span-12 mb-2 ">
+            <div class="col-span-12 mb-2 overflow-x-auto">
                 <table class="table w-full overflow-x-auto">
                     <tr class="font-bold border-b" style="height: 40px">
-                        <td>Nama Barang</td>
-                        <td>Qty</td>
-                        <td class="text-center">Harga Barang</td>
-                        <td class="text-center">Nilai Kontrak</td>
-                        <td class="text-center">DPP/TNP PPN</td>
-                        <td class="text-center">PPN({{$ppn}}%)</td>
-                        <td class="text-center">PPH({{$pph}}%)</td>
-                        <td class="text-center">Harga <br> Setelah Pajak</td>
-                        <td class="text-center">Total Harga <br>Setelah Pajak</td>
+                        <td style="min-width: 150px">Nama Barang</td>
+                        <td style="min-width: 60px">Qty</td>
+                        <td style="min-width: 60px" class="text-center">%PPH</td>
+                        <td style="min-width: 150px" class="text-center">Harga Barang</td>
+                        <td style="min-width: 150px" class="text-center">Nilai Kontrak</td>
+                        <td style="min-width: 150px" class="text-center">DPP/TNP PPN</td>
+                        <td style="min-width: 150px" class="text-center">PPN({{$ppn}}%)</td>
+                        <td style="min-width: 150px" class="text-center">PPH</td>
+                        <td style="min-width: 150px" class="text-center">Harga <br> Setelah Pajak</td>
+                        <td style="min-width: 150px" class="text-center">Total Harga <br>Setelah Pajak</td>
                     </tr>
                     @php
                         $dppCount =0;
@@ -47,9 +48,11 @@
                                 $dppCount+=$dpp;
                                 $ppnProduct = $item['price'] - $dpp;
                                 $ppnProductCount+=$ppnProduct;
-                                $pphProduct = $pph*$dpp/100;
+                                $pphProduct = $item['pph']*$dpp/100;
                                 $pphProductCount+=$pphProduct;
                                 $afterTax = $dpp -$pphProduct;
+
+
                                 $afterTaxCount+=$afterTax;
                                 $valueAfterTaxCount+=$afterTax*$item['quantity'];
 
@@ -58,6 +61,7 @@
                         <tr style="height: 40px">
                             <td>{{ $item['name'] }}</td>
                             <td>{{ thousand_format($item['quantity']) }}pcs</td>
+                            <td class="text-center">{{ $item['pph'] }}%</td>
                             @foreach($values as $value)
                                 <td>
                                     <div class="flex justify-between py-2 px-4">
@@ -74,13 +78,14 @@
                     <tr class="border-t font-bold">
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td class="py-2 pr-2">
                             <div class="bg-gray-200 rounded p-2 text-center">
                                 Jumlah Nilai
                             </div>
                         </td>
                         @foreach($values as $value)
-                            <td class="py-2 pr-2">
+                            <td class="py-2 pr-2" >
                                 <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
                                     <span>
                                     Rp.
