@@ -15,9 +15,27 @@ class AdminLayout extends Component
     public function __construct()
     {
         $productOut =[];
+        $invoice =[];
+        $proofOfCash =[];
+        $margin =[];
 
         foreach (Partner::where('status',1)->get() as $partner){
             $productOut[]= [
+                'title' => $partner->name,
+                'route' => route('admin.product-out.index',$partner->id),
+                'icon' => '<span style="width: 10px"></span>  '
+            ];
+            $invoice[]= [
+                'title' => $partner->name,
+                'route' => route('admin.product-out.index',$partner->id),
+                'icon' => '<span style="width: 10px"></span>  '
+            ];
+            $proofOfCash[]= [
+                'title' => $partner->name,
+                'route' => route('admin.proof-of-cash.index',$partner->id),
+                'icon' => '<span style="width: 10px"></span>  '
+            ];
+            $margin[]= [
                 'title' => $partner->name,
                 'route' => route('admin.product-out.index',$partner->id),
                 'icon' => '<span style="width: 10px"></span>  '
@@ -57,7 +75,40 @@ class AdminLayout extends Component
                     ['title' => 'Order Cancel', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ic:round-cancel"></span>'],
                 ],
             ],
+            [
+                'title' => 'Finance',
+                'lists' => [
+                    [
+                        'title' => 'Dompet Kas',
+                        'type' => 'link',
+                        'route' => route('admin.customer.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:wallet"></span>'
+                    ],
 
+                    [
+                        'title' => 'Invoice',
+                        'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fa6-solid:file-invoice-dollar"></span>',
+                        'lists'=>$invoice
+                    ],
+
+                    [
+                        'title' => 'Kwitansi',
+                        'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fa6-solid:file-invoice-dollar"></span>',
+                        'lists'=>$proofOfCash
+                    ],
+
+                    [
+                        'title' => 'Laba rugi',
+                        'type' => 'accordion',
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="vaadin:book-dollar"></span>',
+                        'lists'=>$margin
+                    ],
+
+                ],
+
+            ],
             [
                 'title' => 'General Info',
                 'lists' => [
@@ -69,19 +120,11 @@ class AdminLayout extends Component
                     ],
 
                     [
-                        'title' => 'List Bank',
-                        'type' => 'link',
-                        'route' => route('admin.supplier.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:folder-information"></span>'
-                    ],
-
-                    [
                         'title' => 'Ekspedisi Barang',
                         'type' => 'link',
                         'route' => route('admin.supplier.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="material-symbols:local-shipping-rounded"></span>'
                     ],
-
                     [
                         'title' => 'Partner / CV',
                         'type' => 'link',
@@ -95,6 +138,31 @@ class AdminLayout extends Component
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="iconamoon:box-fill"></span>'
                     ],
 
+                ],
+
+            ],
+            [
+                'title' => 'Human Resource',
+                'lists' => [
+                    [
+                        'title' => 'List Karyawan',
+                        'type' => 'link',
+                        'route' => route('admin.customer.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="f7:doc-person-fill"></span>'
+                    ],
+
+                    [
+                        'title' => 'Gaji Karyawan',
+                        'type' => 'link',
+                        'route' => route('admin.supplier.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:payment-32-filled"></span>'
+                    ],
+                    [
+                        'title' => 'Role & Izin Akun',
+                        'type' => 'link',
+                        'route' => route('admin.partner.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="eos-icons:role-binding"></span>'
+                    ],
                 ],
 
             ],

@@ -33,6 +33,7 @@
 
                         $total = $data->orderProducts->sum('value');
                         $totalHpp = $data->orderProducts->sum('hpp_value');
+                        $totalNominal = $data->orderProofOfCashes->sum('nominal');
 //                            $dpp =$total*100/(100+$ppn);
 //                            $ppnProduct = $total - $dpp;
 //                            $pphProduct = $pph*$dpp/100;
@@ -48,6 +49,7 @@
                                   ['title'=>'Nominal Keseluruhan HPP','value'=>'Rp. '.thousand_format($totalHpp)],
                                   ['title'=>'Nominal Sharing','value'=>'Rp. '. thousand_format($allSharing)],
                                   ['title'=>'Nominal Margin Profit','value'=>'Rp. '. thousand_format(($afterTax-$allSharing-$totalHpp)).' ('.number_format(($afterTax-$allSharing-$totalHpp)/$afterTax*100,2,',','.')."%)"],
+                                  ['title'=>'Telah terbayar','value'=>'Rp. '. thousand_format(($totalNominal))],
                                   ['title'=>'Status Transaksi','value'=>"<b class='font-bold'>{$statuses[$data->status]}</b>"],
                                 ];
                     @endphp
@@ -65,6 +67,17 @@
                             </tr>
                         @endforeach
 
+                            <tr style="height: 50px">
+                                <td style="width: 25% !important;">Kwitansi / Pembayaran</td>
+                                <td class="px-5 p-2">:</td>
+                                <td class="">
+                                    <a href="{{ route('admin.order.proof-of-cash.create',$data->id) }}"
+                                        class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"
+                                        style="width: 100px">
+                                        Tambah Kwitansi / Pembayaran Baru
+                                    </a>
+                                </td>
+                            </tr>
                         <tr style="height: 50px">
                             <td style="width: 25% !important;">Surat Jalan</td>
                             <td class="px-5 p-2">:</td>
@@ -102,10 +115,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 grid grid-cols-12 gap-3">
+
             <livewire:order.order-show-detail-transaction :order-id="$data->id"/>
 
 
-        </div>
+
     </div>
 </x-admin-layout>

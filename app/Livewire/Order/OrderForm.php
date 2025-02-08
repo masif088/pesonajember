@@ -24,11 +24,8 @@ class OrderForm extends Component
         $this->form = form_model(model::class);
         if ($this->dataId) {
             $order = Order::find($this->dataId);
-//            $this->form['customer_id'] = $order->customer_id;
             $this->form['partners'] = ['1'];
             $this->form['user_id'] = $order->user_id;
-//            dd($this->form);
-
             $this->customerType=1;
 
         }
@@ -55,7 +52,7 @@ class OrderForm extends Component
         $order = Order::create([
             'transaction_type_id' => $this->form['transaction_type_id'],
             'customer_id' => $this->form['customer_id'],
-            'order_number' =>model::getOderNumber(),
+            'order_number' =>model::getOrderNumber(),
             'user_id' => $this->form['user_id'],
         ]);
         foreach ($this->form['partners'] as $partner) {

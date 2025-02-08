@@ -2,16 +2,21 @@
 
 namespace App\Repository\Form;
 
-use App\Models\TransactionType;
-use App\Models\User;
 use App\Repository\Form;
 use Carbon\Carbon;
 
-class Order implements Form
+class ProofOfCash extends \App\Models\OrderProofOfCash implements Form
 {
+
+    protected $table = 'order_proof_of_cashes';
+
     public static function formRules(): array
     {
-        return [];
+        return [
+            'form.note' => 'nullable',
+            'form.nominal' => 'nullable|numeric',
+            'form.pic' => 'nullable|max:255',
+        ];
     }
 
     public static function formMessages(): array
@@ -19,8 +24,9 @@ class Order implements Form
         return [];
     }
 
-    public static function getOrderNumber() :string
+    public static function getNumber($id) :string
     {
+        $partner = 
         $now  = Carbon::now();
         $month = numberToRomanRepresentation($now->month);
         $order = \App\Models\Order::whereYear('created_at', $now->year)->count()+1;
@@ -30,26 +36,27 @@ class Order implements Form
 
     public static function formField($params = null): array
     {
-        $partner= [];
-        foreach (\App\Models\Partner::get() as $param) {
-            $partner[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
-        }
-        $users = eloquent_to_options(User::get(),'id','name');
         return [
+
             [
-                'title' => 'CV/UD Transaksi',
-                'type' => 'select2',
-                'model' => 'partners',
-                'options' => $partner,
+                'title' => 'Untuk pembayaran',
+                'type' => 'textarea',
+                'model' => 'note',
                 'class' => 'col-span-12',
             ],
             [
-                'title' => 'PIC',
-                'type' => 'select',
-                'model' => 'user_id',
-                'options' => $users,
+                'title' => 'Nominal',
+                'type' => 'number',
+                'model' => 'nominal',
                 'class' => 'col-span-12',
             ],
+            [
+                'title' => 'Pemesan',
+                'type' => 'text',
+                'model' => 'pic',
+                'class' => 'col-span-12',
+            ],
+
         ];
     }
 }

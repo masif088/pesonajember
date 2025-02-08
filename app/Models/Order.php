@@ -48,4 +48,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderSharing::class,'order_id');
     }
+
+    public function orderProofOfCashes(): HasMany
+    {
+        return $this->hasMany(OrderProofOfCash::class,'order_id');
+    }
 }

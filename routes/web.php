@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\MarginController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProductOutController;
+use App\Http\Controllers\Admin\ProofOfCashController;
 use App\Http\Controllers\Admin\SupplierController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,13 @@ Route::middleware([
         route::get('/show/{id}', [PartnerController::class,'show'])->name('show');
     });
 
+    Route::prefix('proof-of-cash')->name('proof-of-cash.')->group(function () {
+        route::get('/{id}', [ProofOfCashController::class,'index'])->name('index');
+        route::get('/{id}/show/{orderId}', [ProofOfCashController::class,'show'])->name('show');
+        route::get('/{id}/create/{orderId}', [ProofOfCashController::class,'create'])->name('create');
+        route::get('/{id}/edit/{orderId}/poc/{poc}', [ProofOfCashController::class,'edit'])->name('edit');
+    });
+
     Route::prefix('order')->name('order.')->group(function () {
         route::get('/', [OrderController::class,'index'])->name('index');
         route::get('/create/{id}', [OrderController::class,'createECatalog'])->name('create');
@@ -55,7 +63,19 @@ Route::middleware([
         route::get('/hpp/{id}', [OrderController::class,'hpp'])->name('hpp');
         route::get('/sharing/{id}', [OrderController::class,'sharing'])->name('sharing');
         route::get('/tax-edit/{id}', [OrderController::class,'taxEdit'])->name('tax-edit');
+        route::get('/show/{id}/proof-of-cash/create/', [OrderController::class,'proofOfCashCreate'])->name('proof-of-cash.create');
+        route::get('/show/{id}/proof-of-cash/edit/{poc}', [OrderController::class,'proofOfCashEdit'])->name('proof-of-cash.edit');
+        route::get('/show/{id}/proof-of-cash/download/{poc}', [OrderController::class,'downloadProofOfCash'])->name('download.proof-of-cash');
     });
+
+    Route::prefix('proof-of-cash')->name('proof-of-cash.')->group(function () {
+        route::get('/{id}', [ProofOfCashController::class,'index'])->name('index');
+        route::get('/{id}/create/', [OrderController::class,'create'])->name('create');
+        route::get('/{id}/edit/{poc}', [OrderController::class,'edit'])->name('edit');
+        route::get('/{id}/download/{poc}', [OrderController::class,'download'])->name('download');
+    });
+
+
 
     Route::prefix('product-out')->name('product-out.')->group(function () {
         route::get('/{id}', [ProductOutController::class,'index'])->name('index');
