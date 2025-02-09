@@ -77,7 +77,13 @@ class OrderSharing extends Component
                     'percentage'=>$this->sharing[$sId][$pId],
                 ]);
             }
+
+            $this->dispatch('swal:alert', data: [
+                'icon' => 'success',
+                'title'=>'Berhasil mengubah sharing',
+            ]);
         }
+
 
     }
     public function deleteItem($id)

@@ -25,7 +25,7 @@
             <td>
                 <div class="flex gap-3">
                 <span>
-                    <input type="text"
+                    <input type="text" required
                            class="input bg-gray-200 pc border-1 border border-gray-100 rounded py-2 px-4  leading-tight focus:outline-none dark:border-primary-light focus:bg-gray-100 dark:bg-dark  focus:dark:border-white"
                            wire:model.live="title">
                 </span>
