@@ -67,11 +67,13 @@ class OrderTax extends Component
     }
     public function saveSharing($pId)
     {
-        $op = OrderProduct::find($pId)->first();
-//        if ($op!=null){
+        if (is_numeric($this->taxPph[$pId])){
+            $op = OrderProduct::find($pId);
             $op->update([
                 'pph'=>$this->taxPph[$pId],
             ]);
+        }
+
 //        }else{
 //            OrderSharingDetail::create([
 //                'order_sharing_id' => $sId,

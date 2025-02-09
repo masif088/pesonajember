@@ -43,12 +43,9 @@ class ProofOfCashForm extends Component
 
     public function create()
     {
-
-//        dd($this->form);
         $this->validate();
         $this->resetErrorBag();
         $this->form['proof_of_cash_number']=model::getNumber($this->form['partner_id']);
-//        dd($this->form);
         model::create($this->form);
         if ($this->partnerId!=null){
             $this->redirect(route('admin.proof-of-cash.show',[$this->partnerId,$this->orderId]));

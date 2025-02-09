@@ -64,18 +64,21 @@ class OrderSharing extends Component
     }
     public function saveSharing($sId,$pId)
     {
-        $osd = OrderSharingDetail::where('order_sharing_id',$sId)->where('order_product_id',$pId)->first();
-        if ($osd!=null){
-            $osd->update([
-                 'percentage'=>$this->sharing[$sId][$pId],
-            ]);
-        }else{
-            OrderSharingDetail::create([
-                'order_sharing_id' => $sId,
-                'order_product_id' => $pId,
-                'percentage'=>$this->sharing[$sId][$pId],
-            ]);
+        if (is_numeric($this->sharing[$sId][$pId])){
+            $osd = OrderSharingDetail::where('order_sharing_id',$sId)->where('order_product_id',$pId)->first();
+            if ($osd!=null){
+                $osd->update([
+                    'percentage'=>$this->sharing[$sId][$pId],
+                ]);
+            }else{
+                OrderSharingDetail::create([
+                    'order_sharing_id' => $sId,
+                    'order_product_id' => $pId,
+                    'percentage'=>$this->sharing[$sId][$pId],
+                ]);
+            }
         }
+
     }
     public function deleteItem($id)
     {
