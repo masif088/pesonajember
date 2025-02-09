@@ -27,15 +27,15 @@ class OrderTax extends Component
     {
         $this->order = Order::find($this->orderId);
         $this->sharingTitle = $this->order->orderSharings;
+$this->updateData();
+    }
+    public function updateData(){
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $orders = [];
             foreach (OrderProduct::where('order_id',$this->orderId)->where('partner_id',$item->partner_id)->get() as $item2){
                 $orders[$item2->id] = $item2;
                 $this->hpp[$item2->id] = $item2->hpp;
                 $this->taxPph[$item2->id] = $item2->pph;
-//                foreach ($this->order->orderSharings as $s){
-//                    $this->extracted($s, $item2);
-//                }
             }
             $this->partners[$item->partner_id] = [
                 'title' => $item->partner->name,
@@ -73,14 +73,13 @@ class OrderTax extends Component
                 'pph'=>$this->taxPph[$pId],
             ]);
         }
+        $this->updateData();
+        $this->dispatch('swal:alert', data: [
+            'icon' => 'success',
+            'title'=>'Berhasil mengubah pph',
+        ]);
 
-//        }else{
-//            OrderSharingDetail::create([
-//                'order_sharing_id' => $sId,
-//                'order_product_id' => $pId,
-//                'percentage'=>$this->sharing[$sId][$pId],
-//            ]);
-//        }
+
     }
     public function deleteItem($id)
     {
