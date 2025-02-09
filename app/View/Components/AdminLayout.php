@@ -99,12 +99,12 @@ class AdminLayout extends Component
                         'lists'=>$proofOfCash
                     ],
 
-                    [
-                        'title' => 'Laba rugi',
-                        'type' => 'accordion',
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="vaadin:book-dollar"></span>',
-                        'lists'=>$margin
-                    ],
+//                    [
+//                        'title' => 'Laba rugi',
+//                        'type' => 'accordion',
+//                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="vaadin:book-dollar"></span>',
+//                        'lists'=>$margin
+//                    ],
 
                 ],
 

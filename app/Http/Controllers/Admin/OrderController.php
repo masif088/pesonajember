@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderMockup;
 use App\Models\OrderProductOut;
 use App\Models\Partner;
 use App\Models\TransactionType;
@@ -107,5 +108,14 @@ class OrderController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.kwitansi',compact('poc','id'));
         return $pdf->stream();
+    }
+    public function createMockup($id){
+        $this->property['title'] = 'Tambah Mockup' ;
+        return view($this->name.'mockup',['property' => $this->property,'id'=>$id]);
+    }
+    public function downloadMockup($id,$mockup){
+
+        $m =OrderMockup::find($mockup);
+        return response()->download('storage/'.$m->mockup_file);
     }
 }

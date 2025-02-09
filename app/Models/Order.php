@@ -57,4 +57,8 @@ class Order extends Model
     {
         return $this->hasMany(OrderInvoice::class,'order_id');
     }
+    public function orderMockups(): HasMany
+    {
+        return $this->hasMany(OrderMockup::class,'order_id');
+    }
 }

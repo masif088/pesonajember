@@ -52,16 +52,25 @@ class Order extends \App\Models\Order implements View
         $buttonPreview = "<a href='$linkPreview' class='p-2 bg-blue-200 hover:bg-blue-100 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-blue-700' data-icon='icon-park-solid:transaction-order'></span>
                         </a>";
-
-        $linkShow = route('admin.order.show', $data->id);
-        $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
+        $buttonShow='';
+        $buttonMockup='';
+        foreach ($data->orderProducts as $op){
+            $linkShow = route('admin.order.show', $data->id);
+            $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                        </a>";
+            $linkMockup = route('admin.order.create-mockup', $data->id);
+            $buttonMockup = "<a href='$linkMockup' class='p-2 bg-pink-100 hover:bg-pink-200 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-pink-900' data-icon='material-symbols:broken-image-outline'></span>
+                       </a>";
+        }
+
+
 
         $orderLast = \App\Models\Order::orderByDesc('id')->first();
         $buttonDelete='';
         if ($orderLast->id==$data->id && $data->status==0){
-            $buttonDelete = "<a href='#' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
+            $buttonDelete = "<a href='#' wire:click='deleteItem($data->id)' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
                        </a>";
         }
@@ -82,6 +91,7 @@ class Order extends \App\Models\Order implements View
                     $buttonPreview
                     $buttonShow
                     $buttonDelete
+                    $buttonMockup
                 </div>"
             ],
 
