@@ -21,6 +21,7 @@ class OrderSharing extends Component
     public $sharingTitle;
     public $title;
     public $sharing;
+    public $buttonDisable=false;
 
     public function mount()
     {
@@ -64,6 +65,7 @@ class OrderSharing extends Component
     }
     public function saveSharing($sId,$pId)
     {
+        $this->buttonDisable=true;
         if (is_numeric($this->sharing[$sId][$pId])){
             $osd = OrderSharingDetail::where('order_sharing_id',$sId)->where('order_product_id',$pId)->first();
             if ($osd!=null){
@@ -82,7 +84,9 @@ class OrderSharing extends Component
                 'icon' => 'success',
                 'title'=>'Berhasil mengubah sharing',
             ]);
+            $this->buttonDisable=false;
         }
+
 
 
     }

@@ -133,7 +133,7 @@
         @endforeach
     </div>
     <br><br>
-    <a href="{{ route('admin.margin.index',$order->transaction_type_id) }}"
+    <a href="{{ route('admin.margin.index',$order->transaction_type_id) }}" @if($buttonDisable) disabled @endif
        class="rounded bg-green-900 text-white px-10 py-2 float-right">
         Selesai
     </a>

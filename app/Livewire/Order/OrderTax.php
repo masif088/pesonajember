@@ -22,6 +22,7 @@ class OrderTax extends Component
     public $title;
     public $sharing;
     public $taxPph;
+    public $buttonDisable;
 
     public function mount()
     {
@@ -67,6 +68,7 @@ $this->updateData();
     }
     public function saveSharing($pId)
     {
+        $this->buttonDisable=true;
         if (is_numeric($this->taxPph[$pId])){
             $op = OrderProduct::find($pId);
             $op->update([
@@ -78,6 +80,7 @@ $this->updateData();
             'icon' => 'success',
             'title'=>'Berhasil mengubah pph',
         ]);
+        $this->buttonDisable=false;
 
 
     }
