@@ -93,9 +93,9 @@ class OrderController extends Controller
         return $pdf->stream();
     }
 
-    public function proofOfCashCreate($id,$order){
-        $order = Order::find($order);
-        $partner = Partner::find($id);
+    public function proofOfCashCreate($id){
+        $order = Order::find($id);
+//        $partner = Partner::find($id);
         $this->property['title'] = 'Tambah kwitansi - ' . $order->order_number;
         return view('admin.order.proof-of-cash.create',['property' => $this->property,'id'=>$id]);
     }
