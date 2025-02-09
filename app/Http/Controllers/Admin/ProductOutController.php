@@ -34,18 +34,24 @@ class ProductOutController extends Controller
 
     public function create($id, $orderId)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         $this->property['title'] = "Tambah Barang Keluar & Surat Jalan";
         return view($this->name . 'create', ['property' => $this->property, 'id' => $id, 'orderId' => $orderId]);
     }
 
     public function edit($id, $orderId, $outId)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         $this->property['title'] = "Ubah Bukti Barang Keluar & Surat Jalan";
         return view($this->name . 'edit', ['property' => $this->property, 'id' => $id, 'orderId' => $orderId, 'outId' => $outId]);
     }
 
     public function upload($id, $orderId, $outId)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         $this->property['title'] = "Upload Bukti Barang Keluar & Surat Jalan";
         return view($this->name . 'upload', ['property' => $this->property, 'id' => $id, 'orderId' => $orderId, 'outId' => $outId]);
     }

@@ -22,17 +22,23 @@ class InvoiceController extends Controller
 
     public function index($id)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         return view($this->name . "index", ['property' => $this->property, 'id' => $id]);
     }
 
     public function create($id, $orderId)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         $this->property['title'] = 'Tambah Invoice';
         return view($this->name . 'create', ['property' => $this->property, 'id' => $id, 'orderId' => $orderId]);
     }
 
     public function edit($id, $orderId, $poc)
     {
+        $partner = Partner::find($id);
+        $this->property['main-title'] .= " $partner->name";
         $this->property['title'] = 'Ubah data Invoice';
         return view($this->name . 'edit', ['property' => $this->property, 'data' => $id, 'id' => $id, 'orderId' => $orderId, 'poc' => $poc]);
     }
