@@ -42,11 +42,6 @@
         </div>
         <br>
         <div class="col-span-12">
-{{--            <a href="{{ route('admin.order.proof-of-cash.create',$orderId) }}"--}}
-{{--               class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"--}}
-{{--               style="width: 100px">--}}
-{{--                Tambah Kwitansi / Pembayaran Baru--}}
-{{--            </a>--}}
             <br><br>
             <table class="table w-full">
                 <thead>
@@ -63,8 +58,6 @@
                 <tbody>
                 @foreach($order->orderProofOfCashes as $poc)
                     @if($poc->partner_id ==$id)
-
-
                     <tr style="height: 50px">
                         <td>{{ Carbon\Carbon::parse($poc->created_at)->format('d/m/y H:i') }}</td>
                         <td>{{ $poc->partner->name??'' }}</td>
@@ -86,7 +79,6 @@
                                     <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                                 </a>
                             </div>
-
                         </td>
                     </tr>
                     @endif
