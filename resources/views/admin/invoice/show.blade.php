@@ -31,7 +31,8 @@
         </div>
         <div class="col-span-12">
             <a class="bg-green-900 text-white rounded px-4 py-2"
-               href="{{ route('admin.proof-of-cash.create',[$id,$order->id]) }}">
+               href="{{ route('admin.order.proof-of-cash.create',[$id,$order->id]) }}">
+
                 Tambah Kwitansi / Pembayaran Baru
             </a>
         </div>

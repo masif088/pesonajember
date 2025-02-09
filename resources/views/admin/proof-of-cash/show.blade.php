@@ -22,9 +22,14 @@
                     <td>{{ $order->customer->company_name }}</td>
                 </tr>
                 <tr style="height: 40px">
+                    <td>Total Kontrak</td>
+                    <td style="width: 100px"></td>
+                    <td>Rp. {{ thousand_format($order->orderProducts->where('partner_id',$id)->sum('value')) }}</td>
+                </tr>
+                <tr style="height: 40px">
                     <td>Total Pembayaran sekarang</td>
                     <td style="width: 100px"></td>
-                    <td>Rp. {{ thousand_format($order->orderProofOfCashes->sum('nominal')) }}</td>
+                    <td>Rp. {{ thousand_format($order->orderProofOfCashes->where('partner_id',$id)->sum('nominal')) }}</td>
                 </tr>
             </table>
             <br><br>
@@ -57,6 +62,9 @@
                 </thead>
                 <tbody>
                 @foreach($order->orderProofOfCashes as $poc)
+                    @if($poc->partner_id ==$id)
+
+
                     <tr style="height: 50px">
                         <td>{{ Carbon\Carbon::parse($poc->created_at)->format('d/m/y H:i') }}</td>
                         <td>{{ $poc->partner->name??'' }}</td>
@@ -81,6 +89,7 @@
 
                         </td>
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

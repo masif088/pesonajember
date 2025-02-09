@@ -83,12 +83,12 @@ Route::middleware([
 
     });
 
-    Route::prefix('proof-of-cash')->name('proof-of-cash.')->group(function () {
-        route::get('/{id}', [ProofOfCashController::class,'index'])->name('index');
-        route::get('/{id}/create/', [OrderController::class,'create'])->name('create');
-        route::get('/{id}/edit/{poc}', [OrderController::class,'edit'])->name('edit');
-        route::get('/{id}/download/{poc}', [OrderController::class,'download'])->name('download');
-    });
+//    Route::prefix('proof-of-cash')->name('proof-of-cash.')->group(function () {
+//        route::get('/{id}', [ProofOfCashController::class,'index'])->name('index');
+//        route::get('/{id}/create/', [OrderController::class,'create'])->name('create');
+//        route::get('/{id}/edit/{poc}', [OrderController::class,'edit'])->name('edit');
+//        route::get('/{id}/download/{poc}', [OrderController::class,'download'])->name('download');
+//    });
 
 
 
