@@ -203,7 +203,7 @@
     <br><br>
     {!! $partner->invoice_note !!}
 
-    <table style="width: 100%">
+    <table style="width: 80%; margin-left: 10%">
         <tr>
             <td style="text-align: center">
                 &nbsp; <br>
@@ -215,7 +215,7 @@
                 <br><br><br><br><br><br><br><br><br>
                 (................................................)
             </td>
-            <td style="width: 50%"></td>
+            <td style="width: 30%"></td>
             <td style="text-align: center">
                 Jember,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>

@@ -58,6 +58,7 @@
                         <td class="align-top py-2">
                             <div class="flex">
                                 <a href="{{ route('admin.product-out.download-product-out',[$id,$order->id,$opo->id]) }}"
+                                   target="_blank"
                                    class="bg-pink-100 hover:bg-pink-200 rounded px-4 py-2 text-nowrap flex text-pink-900 mb-1">
                                     <span class="iconify text-pink-900 text-2xl"
                                           data-icon="material-symbols:download"></span>
@@ -66,6 +67,7 @@
                             </div>
                             <div class="flex">
                                 <a href="{{ route('admin.product-out.download-waybill',[$id,$order->id,$opo->id]) }}"
+                                   target="_blank"
                                    class="bg-pink-100 hover:bg-pink-200 rounded px-4 py-2 text-nowrap flex text-pink-900">
                                     <span class="iconify text-2xl" data-icon="material-symbols:download"></span>
                                     <span>Download Surat Jalan</span>
