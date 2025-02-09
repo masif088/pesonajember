@@ -100,18 +100,18 @@ class OrderMargin extends \App\Models\Order implements View
         $marginPresentation = number_format($margin/$allContractValue*100,2,',','.');
         $margin = thousand_format($margin);
 
+        $l =  route('admin.order.hpp',$data->id);
         if ($allHppValue==0){
-            $l =  route('admin.order.hpp',$data->id);
             $hpp = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input HPP</a>";
         }else{
-            $hpp= 'Rp.'.thousand_format($allHppValue);
+            $hpp= 'Rp.'.thousand_format($allHppValue)." <br><a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Edit</a>";
         }
 
+        $l =  route('admin.order.sharing',$data->id);
         if ($allSharing==0){
-            $l =  route('admin.order.sharing',$data->id);
             $sharing = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input Sharing</a>";
         }else{
-            $sharing= 'Rp.'.thousand_format($allSharing);
+            $sharing= 'Rp.'.thousand_format($allSharing)."<br><a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Edit</a>";
         }
 
         return [
