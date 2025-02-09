@@ -22,7 +22,7 @@ class OrderTax extends Component
     public $title;
     public $sharing;
     public $taxPph;
-    public $buttonDisable;
+    public $buttonDisable=false;
 
     public function mount()
     {
