@@ -224,7 +224,7 @@
                 Hormat kami <br>
                 {{ $partner->name }} <br>
                 {{ $partner->sign_position }} <br>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
                 ({{ $partner->sign_name }})
 
             </td>
