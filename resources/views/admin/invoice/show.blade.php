@@ -48,7 +48,7 @@
                 <tr class="border-b" style="height: 50px">
                     <td>Tanggal</td>
                     <td>Partner/CV <br>yang Mengeluarkan</td>
-                    <td>Kwitansi Number</td>
+                    <td>Invoice Number</td>
                     <td>Note</td>
                     <td>Pemesan</td>
                     <td>Nominal</td>
@@ -56,7 +56,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($order->orderProofOfCashes as $poc)
+                @foreach($order->orderInvoices as $poc)
+                    @if($poc->partner_id == $id)
                     <tr style="height: 50px">
                         <td>{{ Carbon\Carbon::parse($poc->created_at)->format('d/m/y H:i') }}</td>
                         <td>{{ $poc->partner->name??'' }}</td>
@@ -81,6 +82,7 @@
 
                         </td>
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

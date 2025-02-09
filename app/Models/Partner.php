@@ -22,12 +22,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string sign_name
  * @property string sign_position
  * @property string note
+ * @property string invoice_note
  */
 class Partner extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable=['name', 'status', 'kop', 'logo', 'address', 'phone', 'format_number_invoice', 'format_number_driver', 'format_number_proof_of_cash', 'format_number_outcome', 'format_number_income', 'sign_name', 'sign_position', 'note'];
+    protected $fillable=['name', 'status', 'kop', 'logo', 'address', 'phone', 'format_number_invoice', 'format_number_driver', 'format_number_proof_of_cash', 'format_number_outcome', 'format_number_income', 'sign_name', 'sign_position', 'note','invoice_note'];
 
     public function partnerAccounts(): HasMany
     {

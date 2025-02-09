@@ -25,10 +25,10 @@ class ProofOfCashController extends Controller
         return view($this->name.'create',['property' => $this->property,'id' => $id,'orderId' => $orderId]);
     }
 
-    public function edit(OrderProofOfCash $id)
+    public function edit($id, $orderId,$poc)
     {
         $this->property['title'] = 'Ubah data kwitansi';
-        return view($this->name.'edit',['property' => $this->property,'data'=>$id,'id' => $id]);
+        return view($this->name.'edit',['property' => $this->property,'data'=>$id,'id' => $id,'orderId' => $orderId,'poc' => $poc]);
     }
 
 

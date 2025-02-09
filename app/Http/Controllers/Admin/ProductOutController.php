@@ -62,7 +62,7 @@ class ProductOutController extends Controller
                     ->where('proof_of_waybill', '<>', null)
                     ->where('date_waybill', $now->format('Y-m-d'))
                     ->count() + 1;
-            $numberFormat = $this->getNumberFormat($count, $numberFormat, $now);
+            $numberFormat = getNumberFormat($count, $numberFormat, $now);
             $orderOut->update([
                 'reference_waybill' => $numberFormat,
                 'date_waybill' => $now->format('Y-m-d'),
@@ -85,7 +85,7 @@ class ProductOutController extends Controller
                     ->where('proof_of_product_out', '<>', null)
                     ->where('date_product_out', $now->format('Y-m-d'))
                     ->count() + 1;
-            $numberFormat = $this->getNumberFormat($count, $numberFormat, $now);
+            $numberFormat = getNumberFormat($count, $numberFormat, $now);
             $orderOut->update([
                 'reference_product_out' => $numberFormat,
                 'date_product_out' => $now->format('Y-m-d'),
@@ -97,23 +97,4 @@ class ProductOutController extends Controller
     }
 
 
-
-    /**
-     * @param int $count
-     * @param $numberFormat
-     * @param Carbon $now
-     * @return array|string|string[]
-     */
-    public function getNumberFormat(int $count, $numberFormat, Carbon $now): string|array
-    {
-        $count = str_pad($count, 3, '0', STR_PAD_LEFT);
-        $numberFormat = str_replace('[NUMBER]', $count, $numberFormat);
-        $numberFormat = str_replace('[MONTHROMAN]', numberToRomanRepresentation($now->month), $numberFormat);
-        $numberFormat = str_replace('[MONTH]', $now->month, $numberFormat);
-        $numberFormat = str_replace('[YEARROMAN]', numberToRomanRepresentation($now->year), $numberFormat);
-        $numberFormat = str_replace('[YEAR]', $now->year, $numberFormat);
-        $numberFormat = str_replace('[DATEROMAN]', numberToRomanRepresentation($now->day), $numberFormat);
-        $numberFormat = str_replace('[DATE]', $now->format('d'), $numberFormat);
-        return $numberFormat;
-    }
 }

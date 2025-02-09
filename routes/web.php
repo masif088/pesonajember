@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\MarginController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -53,6 +54,15 @@ Route::middleware([
         route::get('/{id}/edit/{orderId}/poc/{poc}', [ProofOfCashController::class,'edit'])->name('edit');
     });
 
+    Route::prefix('invoice')->name('invoice.')->group(function () {
+        route::get('/{id}', [InvoiceController::class,'index'])->name('index');
+        route::get('/{id}/show/{orderId}', [InvoiceController::class,'show'])->name('show');
+        route::get('/{id}/create/{orderId}', [InvoiceController::class,'create'])->name('create');
+        route::get('/{id}/edit/{orderId}/poc/{poc}', [InvoiceController::class,'edit'])->name('edit');
+
+        route::get('/{id}/download/{invoiceId}', [InvoiceController::class,'download'])->name('download');
+    });
+
     Route::prefix('order')->name('order.')->group(function () {
         route::get('/', [OrderController::class,'index'])->name('index');
         route::get('/create/{id}', [OrderController::class,'createECatalog'])->name('create');
@@ -63,6 +73,7 @@ Route::middleware([
         route::get('/hpp/{id}', [OrderController::class,'hpp'])->name('hpp');
         route::get('/sharing/{id}', [OrderController::class,'sharing'])->name('sharing');
         route::get('/tax-edit/{id}', [OrderController::class,'taxEdit'])->name('tax-edit');
+
         route::get('/show/{id}/proof-of-cash/create/', [OrderController::class,'proofOfCashCreate'])->name('proof-of-cash.create');
         route::get('/show/{id}/proof-of-cash/edit/{poc}', [OrderController::class,'proofOfCashEdit'])->name('proof-of-cash.edit');
         route::get('/show/{id}/proof-of-cash/download/{poc}', [OrderController::class,'downloadProofOfCash'])->name('download.proof-of-cash');

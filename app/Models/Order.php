@@ -53,4 +53,8 @@ class Order extends Model
     {
         return $this->hasMany(OrderProofOfCash::class,'order_id');
     }
+    public function orderInvoices(): HasMany
+    {
+        return $this->hasMany(OrderInvoice::class,'order_id');
+    }
 }

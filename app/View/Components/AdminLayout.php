@@ -27,7 +27,7 @@ class AdminLayout extends Component
             ];
             $invoice[]= [
                 'title' => $partner->name,
-                'route' => route('admin.product-out.index',$partner->id),
+                'route' => route('admin.invoice.index',$partner->id),
                 'icon' => '<span style="width: 10px"></span>  '
             ];
             $proofOfCash[]= [

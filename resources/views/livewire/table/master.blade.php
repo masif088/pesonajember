@@ -45,9 +45,9 @@
     <div class="grid grid-cols-1 gap-3 p-4 lg:grid-cols-1 xl:grid-cols-1">
         <div class="overflow-x-auto relative ">
             <table
-                class="border-collapse border-wishka-400 w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded table-auto">
+                class="border-collapse border-gray-100 w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded table-auto">
                 <thead class=" text-md text-uppercase text-gray-700 uppercase dark:bg-dark dark:text-white text-bold">
-                <tr class="border-b-[3px] border-wishka-400 border-collapse">
+                <tr class="border-b-[3px] border-gray-100 border-collapse" style="vertical-align: top">
                     @foreach($model::tableField() as $field)
                         <th class="py-4 px-6" style="{{ isset($field['width'])?'width:'.$field['width']:'' }}
                         {{ isset($field['text-align'])?'text-align:'.$field['text-align']:'' }}
@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                 @foreach ($datas as $index=>$data)
-                    <tr class=" dark:text-white text-black border-b border-gray-200 align-text-top">
+                    <tr class=" dark:text-white text-black border-b border-gray-200 align-top">
                         @foreach ($model::tableData($data,$params) as $data)
                             @switch($data['type'])
                                 @case('index')

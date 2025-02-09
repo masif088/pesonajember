@@ -220,3 +220,19 @@ if (!function_exists('increase_check')) {
 }
 
 
+if (!function_exists('getNumberFormat')) {
+    function getNumberFormat(int $count, $numberFormat, Carbon $now): string|array
+    {
+        $count = str_pad($count, 3, '0', STR_PAD_LEFT);
+        $numberFormat = str_replace('[NUMBER]', $count, $numberFormat);
+        $numberFormat = str_replace('[MONTHROMAN]', numberToRomanRepresentation($now->month), $numberFormat);
+        $numberFormat = str_replace('[MONTH]', $now->month, $numberFormat);
+        $numberFormat = str_replace('[YEARROMAN]', numberToRomanRepresentation($now->year), $numberFormat);
+        $numberFormat = str_replace('[YEAR]', $now->year, $numberFormat);
+        $numberFormat = str_replace('[DATEROMAN]', numberToRomanRepresentation($now->day), $numberFormat);
+        $numberFormat = str_replace('[DATE]', $now->format('d'), $numberFormat);
+        return $numberFormat;
+    }
+}
+
+

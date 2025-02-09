@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white text-sm text-wishka-500 bg-black font-black text-xs bg-wishka-300 bg-wishka-200 overflow-hidden shadow-xl sm:rounded-lg text-wishka-500 w-[400px] pr-3 pl-3 pr-5 pl-5 text-error">
+            <div class="bg-white text-sm bg-blue-100 hover:bg-blue-200 text-blue-900 text-wishka-500 bg-black font-black text-xs bg-wishka-300 bg-wishka-200 overflow-hidden shadow-xl sm:rounded-lg text-wishka-500 w-[400px] pr-3 pl-3 pr-5 pl-5 text-error">
                 <x-welcome />
             </div>
         </div>

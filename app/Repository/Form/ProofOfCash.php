@@ -2,10 +2,11 @@
 
 namespace App\Repository\Form;
 
+use App\Models\OrderProofOfCash;
 use App\Repository\Form;
 use Carbon\Carbon;
 
-class ProofOfCash extends \App\Models\OrderProofOfCash implements Form
+class ProofOfCash extends OrderProofOfCash implements Form
 {
 
     protected $table = 'order_proof_of_cashes';
@@ -26,12 +27,11 @@ class ProofOfCash extends \App\Models\OrderProofOfCash implements Form
 
     public static function getNumber($id) :string
     {
-        $partner = 
+        $partner = \App\Models\Partner::find($id);
         $now  = Carbon::now();
-        $month = numberToRomanRepresentation($now->month);
-        $order = \App\Models\Order::whereYear('created_at', $now->year)->count()+1;
-        $order_format = str_pad($order, 3, '0', STR_PAD_LEFT);
-        return "$now->year/{$month}.{$now->day}/$order_format";
+        $count = OrderProofOfCash::where('partner_id', $partner->id)
+                ->whereDate('created_at', $now)->count()+1;
+        return getNumberFormat($count,$partner->format_number_proof_of_cash,$now);
     }
 
     public static function formField($params = null): array

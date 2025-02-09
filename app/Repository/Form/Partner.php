@@ -133,6 +133,13 @@ class Partner extends \App\Models\Partner implements Form
                 'class' => 'col-span-12',
             ],
 
+            [
+                'title' => 'Catatan invoice',
+                'type' => 'editor',
+                'model' => 'invoice_note',
+                'class' => 'col-span-12',
+            ],
+
         ];
     }
 }

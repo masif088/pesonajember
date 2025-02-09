@@ -8,7 +8,8 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12">
-            <livewire:proof-of-cash.proof-of-cash-form action="update" :partner-id="$id" :order-id="$orderId" :data-id="$poc" />
+{{--            <livewire:proof-of-cash.proof-of-cash-form action="update" :partner-id="$id" :order-id="$orderId" :data-id="$poc" />--}}
+            <livewire:invoice.invoice-form action="update" :partner-id="$id" :order-id="$orderId" :data-id="$poc" />
         </div>
     </div>
 </x-admin-layout>
