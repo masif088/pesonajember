@@ -104,14 +104,14 @@ class OrderMargin extends \App\Models\Order implements View
         if ($allHppValue==0){
             $hpp = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input HPP</a>";
         }else{
-            $hpp= '<div class="mb-1">Rp.'.thousand_format($allHppValue)."</div> <a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
+            $hpp= '<div class="mb-2">Rp.'.thousand_format($allHppValue)."</div> <a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
         }
 
         $l =  route('admin.order.sharing',$data->id);
         if ($allSharing==0){
             $sharing = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input Sharing</a>";
         }else{
-            $sharing= '<div class="mb-1">Rp.'.thousand_format($allSharing)."</div><a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
+            $sharing= '<div class="mb-2">Rp.'.thousand_format($allSharing)."</div><a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
         }
 
         return [
