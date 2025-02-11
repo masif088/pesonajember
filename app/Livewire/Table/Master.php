@@ -69,7 +69,6 @@ class Master extends Component
             $this->dispatch('deleteResult', ['status' => false, 'message' => 'Gagal menghapus data '.$this->name]);
             return;
         }
-        //        $this->dispatch('swal:alert',['title'=>'asd']);
         $this->dispatch('swal:confirm', data: [
             'icon' => 'warning',
             'title' => 'apakah anda yakin ingin menghapus data ini',

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProductOutController;
 use App\Http\Controllers\Admin\ProofOfCashController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\WalletController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -112,6 +113,14 @@ Route::middleware([
         route::get('/create', [CustomerController::class,'create'])->name('create');
         route::get('/edit/{id}', [CustomerController::class,'edit'])->name('edit');
         route::get('/show/{id}', [CustomerController::class,'show'])->name('show');
+    });
+    Route::prefix('wallet')->name('wallet.')->group(function () {
+        route::get('/', [WalletController::class,'index'])->name('index');
+        route::get('/create', [WalletController::class,'create'])->name('create');
+        route::get('/edit/{id}', [WalletController::class,'edit'])->name('edit');
+        route::get('/show/{id}/transaction', [WalletController::class,'show'])->name('show');
+        route::get('/show/{id}/transaction/create', [WalletController::class,'createTransaction'])->name('create-transaction');
+        route::get('/show/{id}/transaction/edit/{transaction}', [WalletController::class,'editTransaction'])->name('edit-transaction');
     });
 
 
