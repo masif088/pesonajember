@@ -81,7 +81,7 @@ class AdminLayout extends Component
                     [
                         'title' => 'Dompet Kas',
                         'type' => 'link',
-                        'route' => route('admin.customer.index'),
+                        'route' => route('admin.wallet.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:wallet"></span>'
                     ],
 
@@ -119,12 +119,12 @@ class AdminLayout extends Component
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:text-bullet-list-square-person-32-filled"></span>'
                     ],
 
-                    [
-                        'title' => 'Ekspedisi Barang',
-                        'type' => 'link',
-                        'route' => route('admin.supplier.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="material-symbols:local-shipping-rounded"></span>'
-                    ],
+//                    [
+//                        'title' => 'Ekspedisi Barang',
+//                        'type' => 'link',
+//                        'route' => route('admin.supplier.index'),
+//                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="material-symbols:local-shipping-rounded"></span>'
+//                    ],
                     [
                         'title' => 'Partner / CV',
                         'type' => 'link',
