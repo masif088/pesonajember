@@ -66,6 +66,10 @@ Route::middleware([
 
     Route::prefix('order')->name('order.')->group(function () {
         route::get('/', [OrderController::class,'index'])->name('index');
+        route::get('/order/recapitulation', [OrderController::class,'orderRecapitulation'])->name('order-recapitulation');
+        route::get('/order/done', [OrderController::class,'orderDone'])->name('order-done');
+        route::get('/order/cancel', [OrderController::class,'orderCancel'])->name('order.cancel');
+
         route::get('/create/{id}', [OrderController::class,'createECatalog'])->name('create');
         route::get('/input-order/{id}', [OrderController::class,'createECatalogOrder'])->name('input-order');
         route::get('/preview/{id}', [OrderController::class,'createECatalogPreview'])->name('preview');

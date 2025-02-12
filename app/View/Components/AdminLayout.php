@@ -69,10 +69,10 @@ class AdminLayout extends Component
                         ],
                     ],
 
-                    ['title' => 'Rekap Transaksi', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="icon-park-solid:transaction-order"></span>'],
-                    ['title' => 'Perubahan Transaksi', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="basil:edit-solid"></span>'],
-                    ['title' => 'Order Selesai', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ion:checkmark-done-circle"></span>'],
-                    ['title' => 'Order Cancel', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ic:round-cancel"></span>'],
+                    ['title' => 'Rekap Transaksi', 'type' => 'link', 'route' => route('admin.order.order-recapitulation'), 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="icon-park-solid:transaction-order"></span>'],
+//                    ['title' => 'Perubahan Transaksi', 'type' => 'link', 'route' => '#', 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="basil:edit-solid"></span>'],
+                    ['title' => 'Order Selesai', 'type' => 'link', 'route' => route('admin.order.order-done'), 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ion:checkmark-done-circle"></span>'],
+                    ['title' => 'Order Cancel', 'type' => 'link', 'route' => route('admin.order.order.cancel'), 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ic:round-cancel"></span>'],
                 ],
             ],
             [

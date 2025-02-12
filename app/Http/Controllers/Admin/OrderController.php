@@ -22,6 +22,23 @@ class OrderController extends Controller
     {
         return view($this->name.'index',['property' => $this->property]);
     }
+    public function orderRecapitulation()
+    {
+        $this->property['title'] = "Rekap Order" ; ;
+        return view($this->name.'order-recapitulation',['property' => $this->property]);
+    }
+    public function orderCancel()
+    {
+        $this->property['title'] = "Rekap Order Cancel" ; ;
+        return view($this->name.'order-cancel',['property' => $this->property]);
+    }
+    public function orderDone()
+    {
+        $this->property['title'] = "Rekap Order Selesai" ; ;
+        return view($this->name.'order-done',['property' => $this->property]);
+    }
+
+
     public function createECatalog($id)
     {
         $type = TransactionType::find($id);

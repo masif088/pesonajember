@@ -10,10 +10,10 @@
             @isset($repository['disabled']) disabled @endisset
             name="{{ $repository['model'] }}"
             style="padding:0  100px;width: 100%"
-            wire:model="{{ 'form.'.$repository['model'] }}">
+            wire:model.live="{{ 'form.'.$repository['model'] }}">
         @for($i=0;$i<count($repository['options']) ;$i++)
             <option value="{{$repository['options'][$i]['value']}}"
-                    style="padding: 0 25px" wire:key="{{$repository['options'][$i]['title']}}">
+                    style="padding: 0 25px" wire:key="{{$repository['options'][$i]['title']}}" >
                 {{$repository['options'][$i]['title']}}
             </option>
         @endfor
@@ -22,9 +22,12 @@
         document.addEventListener('livewire:init', () => {
             let data;
             $('#{{'data'.$repository['model']}}').select2();
+
             $('#{{'data'.$repository['model']}}').on('change', function (e) {
                 data = $('#{{'data'.$repository['model']}}').select2("val");
                 @this.set('{{'form.'.$repository['model']}}', data);
+                console.log(window.livewire)
+
             })
         });
     </script>

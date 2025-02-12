@@ -5,15 +5,15 @@ namespace App\Repository\View;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class Order extends \App\Models\Order implements View
+class OrderCancel extends \App\Models\Order implements View
 {
     protected $table = 'orders';
 
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query()->whereIn('status',[0,1]) :
-            static::query()->whereIn('status',[0,1])->where(function($q) use ($query){
+        return empty($query) ? static::query()->whereIn('status',[2]) :
+            static::query()->whereIn('status',[2])->where(function($q) use ($query){
                 $q->where('order_number', 'like', "%$query%")
                     ->orWhereHas('transactionType',function (Builder $q) use ($query) {
                         $q->where('title', 'like', "%$query%");
@@ -39,7 +39,7 @@ class Order extends \App\Models\Order implements View
             ['label' => 'Jenis Transaksi', 'sort' => 'transaction_type_id'],
             ['label' => 'Nama Perusahaan', 'sort' => 'customer.name',],
             ['label' => 'Nominal Kontrak',],
-            ['label' => 'Status','sort' => 'status',],
+//            ['label' => 'Status','sort' => 'status',],
             ['label' => 'Tindakan'],
         ];
     }
@@ -85,7 +85,7 @@ class Order extends \App\Models\Order implements View
                 <div class='text-xs'><b>Nama</b> : {$data->customer->name}</div>
             "],
             ['type' => 'string','data'=>'Rp. '.number_format($data->orderProducts->sum('value'),2,',','.'). " ({$data->orderProducts->count()} item) "],
-            ['type'=>'string','data'=>$data->status?'Aktif':'Draft'],
+//            ['type'=>'string','data'=>$data->status?'Aktif':'Draft'],
             ['type' => 'raw_html', 'data' =>
                 "<div class='text-xl flex gap-1'>
                     <br>

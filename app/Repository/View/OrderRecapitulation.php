@@ -5,15 +5,15 @@ namespace App\Repository\View;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class Order extends \App\Models\Order implements View
+class OrderRecapitulation extends \App\Models\Order implements View
 {
     protected $table = 'orders';
 
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query()->whereIn('status',[0,1]) :
-            static::query()->whereIn('status',[0,1])->where(function($q) use ($query){
+        return empty($query) ? static::query() :
+            static::query()->where(function($q) use ($query){
                 $q->where('order_number', 'like', "%$query%")
                     ->orWhereHas('transactionType',function (Builder $q) use ($query) {
                         $q->where('title', 'like', "%$query%");
@@ -76,6 +76,21 @@ class Order extends \App\Models\Order implements View
                             <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
                        </a>";
         }
+        $status ='';
+        switch ($data->status){
+            case 0:
+                $status = 'Draft';
+                break;
+                case 1:
+                    $status = 'Aktif';
+                    break;
+                    case 2:
+                        $status = 'Cancel';
+                        break;
+            case 3:
+                $status = 'Selesai';
+                break;
+        }
 
         return [
             ['type' => 'string','data'=>$data->order_number],
@@ -85,7 +100,7 @@ class Order extends \App\Models\Order implements View
                 <div class='text-xs'><b>Nama</b> : {$data->customer->name}</div>
             "],
             ['type' => 'string','data'=>'Rp. '.number_format($data->orderProducts->sum('value'),2,',','.'). " ({$data->orderProducts->count()} item) "],
-            ['type'=>'string','data'=>$data->status?'Aktif':'Draft'],
+            ['type'=>'string','data'=>$status],
             ['type' => 'raw_html', 'data' =>
                 "<div class='text-xl flex gap-1'>
                     <br>

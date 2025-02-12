@@ -36,13 +36,13 @@ class Order implements Form
         }
         $users = eloquent_to_options(User::get(),'id','name');
         return [
-            [
-                'title' => 'CV/UD Transaksi',
-                'type' => 'select2',
-                'model' => 'partners',
-                'options' => $partner,
-                'class' => 'col-span-12',
-            ],
+//            [
+//                'title' => 'CV/UD Transaksi',
+//                'type' => 'select2',
+//                'model' => 'partners',
+//                'options' => $partner,
+//                'class' => 'col-span-12',
+//            ],
             [
                 'title' => 'PIC',
                 'type' => 'select',

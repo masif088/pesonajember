@@ -19,12 +19,27 @@ class OrderForm extends Component
     public $transaction_type_id;
     public $customerType;
 
+    public $partners;
+    public $status;
     public function mount()
     {
         $this->form = form_model(model::class);
+
+        $this->form['partners'] = [];
+        $partner= [];
+        foreach (\App\Models\Partner::get() as $param) {
+            $partner[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
+        }
+        $this->partners=$partner;
+
         if ($this->dataId) {
+
+
+
             $order = Order::find($this->dataId);
-            $this->form['partners'] = ['1'];
+            $this->status=$order->status;
+
+            $this->form['partners'] = $order->orderPartners->pluck('partner_id')->toArray();
             $this->form['user_id'] = $order->user_id;
             $this->customerType=1;
 
@@ -75,10 +90,21 @@ class OrderForm extends Component
 
     public function update()
     {
-        dd($this->form);
 //        $this->validate();
         $this->resetErrorBag();
-        model::find($this->dataId)->update($this->form);
+        $o = Order::find($this->dataId);
+        $o->update([
+            'user_id' => $this->form['user_id'],
+            'status' => $this->status,
+        ]);
+        OrderPartner::where('order_id',$o->id)->delete();
+        foreach ($this->form['partners'] as $partner) {
+            OrderPartner::create([
+                'order_id' => $this->dataId,
+                'partner_id' => $partner,
+            ]);
+        }
+
         $this->redirect(route($this->indexPath));
     }
 
