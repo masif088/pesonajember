@@ -23,7 +23,7 @@ class ProductOutForm extends Component
     {
         $this->order = Order::find($this->orderId);
         $this->partner = Partner::find($this->partnerId);
-        foreach($this->order->orderProducts as $index=>$op){
+        foreach($this->order->orderProducts->where('partner_id',$this->partnerId) as $index=>$op){
             $this->form['orderProduct'][$op->id] = 0;
         }
         $this->form['note']='';
