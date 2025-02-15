@@ -180,8 +180,7 @@
                                          aria-hidden="true">
                                 </a>
 
-                                <div
-                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
+                                <div class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
                                     aria-labelledby="hs-dropdown-hover-event-notification">
                                     <div class="flex items-center py-4 px-7 justify-between">
                                         <h3 class="mb-0 card-title">
@@ -192,14 +191,14 @@
                                         <div class="px-7 py-2">
                                             <div class="flex items-center ">
                                                 <img src="{{ auth()->user()->profile_photo_url }}"
-                                                     class="rounded-full object-cover"
+                                                     class="rounded" style="width: 48px; height: 48px"
                                                      alt="profile">
                                                 <div class="ml-4 rtl:mr-4 rtl:ml-auto">
                                                     <h5 class="text-base">
                                                         {{ auth()->user()->name }}
                                                     </h5>
-                                                    <p class="text-xs font-normal text-link dark:text-darklink ">
-                                                        {{ auth()->user()->position }}</p>
+{{--                                                    <p class="text-xs font-normal text-link dark:text-darklink ">--}}
+{{--                                                        {{ auth()->user()->position }}</p>--}}
                                                     <span
                                                         class="text-sm font-normal flex items-center text-link dark:text-darklink">
                                                             <i class="ti ti-mail mr-2"></i>
@@ -207,7 +206,7 @@
                                                 </div>
                                             </div>
 
-                                            <ul class="">
+                                            <ul class="mt-2">
                                                 <li class="mb-2">
                                                     <a href="{{ route('profile.show') }}"
                                                        class="flex gap-3 items-center group">
