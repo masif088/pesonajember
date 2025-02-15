@@ -31,7 +31,7 @@ class Order implements Form
     public static function formField($params = null): array
     {
         $partner= [];
-        foreach (\App\Models\Partner::get() as $param) {
+        foreach (\App\Models\Partner::where('status',1)->get() as $param) {
             $partner[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
         }
         $users = eloquent_to_options(User::get(),'id','name');

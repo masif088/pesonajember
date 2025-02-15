@@ -28,7 +28,8 @@ class OrderPreviewDetails extends Component
         $this->sharingTitle = $this->order->orderSharings;
 
 
-        if ($this->sharing){
+
+//        if ($this->sharing){
             foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
                 $orders = [];
                 foreach (OrderProduct::where('order_id',$this->orderId)->where('partner_id',$item->partner_id)->get() as $item2){
@@ -44,7 +45,7 @@ class OrderPreviewDetails extends Component
                     'items'=>$orders,
                 ];
             }
-        }
+//        }
     }
 
 

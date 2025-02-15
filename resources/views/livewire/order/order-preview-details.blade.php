@@ -88,6 +88,7 @@
                                     </div>
                                 </td>
                             @endforeach
+                            @if($sharing)
                             <td>
                                 <div class="flex justify-between py-2 px-4">
                                     <span>Rp.</span> <span>{{ thousand_format($item['hpp_value']) }}</span>
@@ -122,6 +123,7 @@
                                 </div>
 
                             </td>
+                                @endif
                         </tr>
                     @endforeach
 
@@ -137,6 +139,7 @@
                                 Jumlah Nilai
                             </div>
                         </td>
+
                         @foreach($values as $value)
                             <td class="py-2 pr-2" >
                                 <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
@@ -149,11 +152,15 @@
                                 </div>
                             </td>
                         @endforeach
+                        @if($sharing)
                         <td>
                             <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
                                 <span>Rp.</span> <span>{{ thousand_format($totalHpp) }}</span>
                             </div>
                         </td>
+
+
+
                         @foreach($sharingTitle as $index=>$st)
                             <td></td>
                             <td>
@@ -167,6 +174,7 @@
                                 <span>Rp.</span> <span>{{ thousand_format($margin) }}</span>
                             </div>
                         </td>
+                        @endif
                     </tr>
                 </table>
             </div>
