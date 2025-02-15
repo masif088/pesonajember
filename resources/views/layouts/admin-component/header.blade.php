@@ -136,7 +136,8 @@
                                         class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-primary p-[5px] rounded-full -top-[-5px] -right-[0px]">
                                     </div>
                                 </a>
-                                <div class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
+                                <div
+                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
                                     aria-labelledby="hs-dropdown-hover-event-notification">
                                     <div class="flex items-center py-4 px-7 justify-between">
                                         <h3 class="mb-0 card-title">
@@ -170,7 +171,7 @@
                             </div>
                             <!-- Profile DD -->
                             <div
-                                class="hs-dropdown [--strategy:absolute] [--adaptive:none] [--placement:top-left] sm:[--trigger:hover] sm:relative group/menu">
+                                class="hs-dropdown [--strategy:absolute] [--adaptive:none] sm:[--trigger:hover] sm:relative group/menu">
                                 <a id="hs-dropdown-hover-event-profile"
                                    class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full group-hover/menu:bg-lightprimary group-hover/menu:text-primary">
                                     <img class="object-cover w-9 h-9 rounded-full"
@@ -178,36 +179,38 @@
                                          alt=""
                                          aria-hidden="true">
                                 </a>
+
                                 <div
-                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max top-auto right-0 rtl:right-auto rtl:left-0 w-full sm:w-[360px] hidden z-[2]"
-                                    aria-labelledby="hs-dropdown-hover-event-profile">
-                                    <div class="card-body">
-                                        <div class="flex items-center pb-4 justify-between">
-                                            <h3 class="mb-0 card-title">User
-                                                Profile</h3>
-                                        </div>
-                                        <div class="message-body max-h-[450px]" data-simplebar="">
-                                            <div class="">
-                                                <div class="flex items-center">
-                                                    <img src="{{ auth()->user()->profile_photo_url }}"
-                                                        class="h-20 w-20 rounded-full object-cover"
-                                                        alt="profile">
-                                                    <div class="ml-4 rtl:mr-4 rtl:ml-auto">
-                                                        <h5 class="text-base">
-                                                            {{ auth()->user()->name }}
-                                                        </h5>
-                                                        <p class="text-xs font-normal text-link dark:text-darklink ">
-                                                            {{ auth()->user()->position }}</p>
-                                                        <span class="text-sm font-normal flex items-center text-link dark:text-darklink">
+                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
+                                    aria-labelledby="hs-dropdown-hover-event-notification">
+                                    <div class="flex items-center py-4 px-7 justify-between">
+                                        <h3 class="mb-0 card-title">
+                                            User Profile
+                                        </h3>
+                                    </div>
+                                    <div class="message-body overflow-y-hidden" data-simplebar="">
+                                        <div class="px-7 py-2">
+                                            <div class="flex items-center ">
+                                                <img src="{{ auth()->user()->profile_photo_url }}"
+                                                     class="rounded-full object-cover"
+                                                     alt="profile">
+                                                <div class="ml-4 rtl:mr-4 rtl:ml-auto">
+                                                    <h5 class="text-base">
+                                                        {{ auth()->user()->name }}
+                                                    </h5>
+                                                    <p class="text-xs font-normal text-link dark:text-darklink ">
+                                                        {{ auth()->user()->position }}</p>
+                                                    <span
+                                                        class="text-sm font-normal flex items-center text-link dark:text-darklink">
                                                             <i class="ti ti-mail mr-2"></i>
                                                             <span>{{ auth()->user()->email }}</span></span>
-                                                    </div>
                                                 </div>
+                                            </div>
 
-                                                <ul class="mt-10">
-                                                    <li class="mb-5">
-                                                        <a href="{{ route('profile.show') }}"
-                                                           class="flex gap-3 items-center group">
+                                            <ul class="">
+                                                <li class="mb-2">
+                                                    <a href="{{ route('profile.show') }}"
+                                                       class="flex gap-3 items-center group">
                                 <span
                                     class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">
                                     <img
@@ -215,58 +218,16 @@
                                         class="h-6 w-6">
                                 </span>
 
-                                                            <div class="">
-                                                                <h6 class="text-sm mb-1  group-hover:text-primary">
-                                                                    My Profile
-                                                                </h6>
-                                                                <p class="text-xs text-link dark:text-darklink font-normal">
-                                                                    Account settings</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    {{--                                                    <li class="mb-5">--}}
-                                                    {{--                                                        <a href="#"--}}
-                                                    {{--                                                           class="flex gap-3 items-center  group">--}}
-                                                    {{--                                <span--}}
-                                                    {{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
-                                                    {{--                                    <img--}}
-                                                    {{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-inbox.svg"--}}
-                                                    {{--                                        class="h-6 w-6">--}}
-                                                    {{--                                </span>--}}
-                                                    {{--                                                            <div class="">--}}
-                                                    {{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
-                                                    {{--                                                                    My Inbox--}}
-                                                    {{--                                                                </h6>--}}
-                                                    {{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
-                                                    {{--                                                                    Messages &amp;--}}
-                                                    {{--                                                                    Emails</p>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    </li>--}}
-                                                    {{--                                                    <li class="mb-5">--}}
-                                                    {{--                                                        <a href="#"--}}
-                                                    {{--                                                           class="flex gap-3 items-center group ">--}}
-                                                    {{--                                <span--}}
-                                                    {{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
-                                                    {{--                                    <img--}}
-                                                    {{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-tasks.svg"--}}
-                                                    {{--                                        class="h-6 w-6">--}}
-                                                    {{--                                </span>--}}
-                                                    {{--                                                            <div class="">--}}
-                                                    {{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
-                                                    {{--                                                                    My Tasks--}}
-                                                    {{--                                                                </h6>--}}
-                                                    {{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
-                                                    {{--                                                                    To-do and Daily--}}
-                                                    {{--                                                                    tasks</p>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    </li>--}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5">
-
+                                                        <div class="">
+                                                            <h6 class="text-sm mb-1  group-hover:text-primary">
+                                                                My Profile
+                                                            </h6>
+                                                            <p class="text-xs text-link dark:text-darklink font-normal">
+                                                                Account settings</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                             <form method="POST" action="{{ route('logout') }}" x-data>
                                                 @csrf
 
@@ -280,9 +241,21 @@
 
 
                                             </form>
-
+                                            <div style="height: 50px"></div>
 
                                         </div>
+                                    </div>
+
+                                </div>
+                                <div
+                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max top-auto right-0 rtl:right-auto rtl:left-0 w-full sm:w-[360px] hidden z-[2]"
+                                    aria-labelledby="hs-dropdown-hover-event-profile">
+                                    <div class="card-body">
+                                        <div class="flex items-center pb-4 justify-between">
+
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
