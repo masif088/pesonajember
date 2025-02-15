@@ -27,7 +27,7 @@ class OrderForm extends Component
 
         $this->form['partners'] = [];
         $partner= [];
-        foreach (\App\Models\Partner::get() as $param) {
+        foreach (\App\Models\Partner::where('status',1)->get() as $param) {
             $partner[]=['value'=>$param->id,'title'=>$param->company_name." ".$param->name];
         }
         $this->partners=$partner;
