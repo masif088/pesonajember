@@ -96,7 +96,7 @@ class Invoice extends \App\Models\Order implements View
             ['type' => 'raw_html', 'data' => "$status"],
 
 
-            ['type' => 'string', 'data' => "Rp. ".thousand_format($data->orderProducts->sum('value'))],
+            ['type' => 'string', 'data' => "Rp. ".thousand_format($data->orderProducts->where('partner_id',$params['param1'])->sum('value'))],
             ['type' => 'string', 'data' => $data->user->name],
             ['type' => 'raw_html', 'data' =>
                 "<div class='text-xl flex gap-1'>
