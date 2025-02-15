@@ -83,7 +83,8 @@ class ProductOutController extends Controller
     public function downloadProductOut($id, $orderId, $outId)
     {
         $orderOut = OrderProductOut::find($outId);
-        if ($orderOut->reference_waybill == null) {
+        if ($orderOut->reference_product_out == null) {
+//            dd("hehe");
             $partner = Partner::find($id);
             $numberFormat = $partner->format_number_driver;
             $now = Carbon::now();
@@ -97,11 +98,14 @@ class ProductOutController extends Controller
                 'reference_product_out' => $numberFormat,
                 'date_product_out' => $now->format('Y-m-d'),
             ]);
+
         }
+//        dd($orderOut);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.product-out', compact('id', 'orderId', 'outId'));
         return $pdf->stream();
     }
+
 
 
 }

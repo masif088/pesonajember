@@ -126,7 +126,7 @@ class OrderMargin extends \App\Models\Order implements View
             ['type' => 'raw_html','data'=>$hpp],
             ['type' => 'raw_html','data'=>$sharing],
             ['type' => 'raw_html','data'=>"<div class='text-nowrap'>Rp. $margin <br> Profit Margin: $marginPresentation%</div>"],
-            ['type' => 'string','data'=>'Rp.'.thousand_format($allHppValue)],
+            ['type' => 'string','data'=>$data->user->name],
             ['type' => 'raw_html', 'data' =>
                 "<div class='text-xl flex gap-1'>
                     <br>

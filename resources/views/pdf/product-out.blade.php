@@ -38,7 +38,7 @@
                 <div>
                     SURAT JALAN/SERAH TERIMA
                 </div>
-                <div>{{ $order->reference_waybill??'-' }}</div>
+                <div>{{ $order->reference_product_out??'-' }}</div>
             </td>
             <td style="width: 40%"></td>
             <td>

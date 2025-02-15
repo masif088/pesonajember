@@ -47,13 +47,31 @@
                 @foreach($order->orderProductOuts as $opo)
                     <tr style="height: 100px;" class="border-b-2">
                         <td class="align-top py-2">
-                            Nomer Barang Keluar: <br><b>{{ $opo->reference_number??'2025123kjansd/j' }}</b> <br>
-                            Nomer Surat Jalan: <br><b>{{ $opo->reference_number??'2025123kjansd/j' }}</b>
+                            Nomer Barang Keluar: <br><b>{{ $opo->reference_product_out??'-' }}</b> <br>
+                            Nomer Surat Jalan: <br><b>{{ $opo->reference_waybill??'-' }}</b>
                         </td>
                         <td class="align-top py-2">
                             {{ $opo->note }} <br>
-                            Bukti Surat Jalan: <b>{{ $opo->proof_of_waybill!=null ?' SUDAH TERUPLOAD':'BELUM TERUPLOAD' }}</b><br>
-                            Bukti Barang Keluar: <b>{{ $opo->proof_of_product_out!=null ?' SUDAH TERUPLOAD':'BELUM TERUPLOAD' }}</b><br>
+                            Bukti Surat Jalan:
+                            @if($opo->proof_of_waybill)
+                                <a href="{{ route('admin.download-file',base64_encode($opo->proof_of_waybill)) }}" class="text-green-900">
+                                    <b>SUDAH TERUPLOAD</b>
+                                </a>
+                            @else
+                                BELUM TERUPLOAD
+                            @endif
+
+                            <br>
+                            Bukti Barang Keluar:
+                            @if($opo->proof_of_product_out)
+                                <a href="{{ route('admin.download-file',base64_encode($opo->proof_of_product_out)) }}" class="text-green-900">
+                                    <b>SUDAH TERUPLOAD</b>
+                                </a>
+                            @else
+                                BELUM TERUPLOAD
+                            @endif
+
+                            <br>
                         </td>
                         <td class="align-top py-2">
                             <div class="flex">

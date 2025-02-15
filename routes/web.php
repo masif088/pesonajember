@@ -107,7 +107,16 @@ Route::middleware([
         route::get('/{id}/detail/{orderId}/upload/{outId}', [ProductOutController::class,'upload'])->name('upload');
         route::get('/{id}/detail/{orderId}/upload/{outId}/download-product-out', [ProductOutController::class,'downloadProductOut'])->name('download-product-out');
         route::get('/{id}/detail/{orderId}/upload/{outId}/download-waybill', [ProductOutController::class,'downloadWaybill'])->name('download-waybill');
+
+//        route::get('/{id}/detail/{orderId}/upload/{outId}/download-proof-product-out', [ProductOutController::class,'downloadProofProductOut'])->name('download-proof-product-out');
+//        route::get('/{id}/detail/{orderId}/upload/{outId}/download-proof-waybill', [ProductOutController::class,'downloadProofWaybill'])->name('download-proof-waybill');
     });
+
+    route::get('/download/file/{file}',function($file){
+        $b= base64_decode($file);
+//        dd(storage_path('/app/'. $b));
+        return response()->download(storage_path('/app/public/'. $b));
+    })->name('download-file');
 
     Route::prefix('margin')->name('margin.')->group(function () {
         route::get('/{id}', [MarginController::class,'index'])->name('index');

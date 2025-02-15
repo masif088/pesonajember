@@ -1,5 +1,5 @@
 <div class="grid grid-cols-12 gap-3">
-    <div class="col-span-12">
+    <form wire:submit="uploadFile" class="col-span-12">
         <table >
             <tr style="height: 50px">
                 <td>Bukti Barang Keluar</td>
@@ -17,7 +17,7 @@
             </tr>
         </table>
         <button class="bg-green-900 hover:bg-green-200 text-white px-6 py-2 rounded flex-nowrap text-nowrap float-right mt-5" >Selesai dan Simpan</button>
-    </div>
+    </form>
 
     <div class="col-span-6">
         @if($poProduct)
