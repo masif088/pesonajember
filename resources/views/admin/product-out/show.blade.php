@@ -112,15 +112,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($order->orderProducts as $index=>$op)
-                    @if($op->partner_id==$partner->id)
+                @php($count)
+                @foreach($order->orderProducts->where('partner_id',$partner->id) as $index=>$op)
+
                     <tr style="height: 50px;" class="border-b-2">
                         <td class="align-top py-2">{{ $index+1 }}</td>
                         <td class="align-top py-2">{{ $op->name }}</td>
                         <td class="align-top py-2 text-center">{{ thousand_format($op->quantity) }}</td>
                         <td class="align-top py-2 text-center">{{ thousand_format($op->orderProductOutDetails->sum('quantity')) }}</td>
                     </tr>
-                    @endif
+
                 @endforeach
                 </tbody>
             </table>
