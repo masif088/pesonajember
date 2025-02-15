@@ -30,6 +30,7 @@
                         <td style="min-width: 150px" class="text-center">PPH</td>
                         <td style="min-width: 150px" class="text-center">Harga <br> Setelah Pajak</td>
                         <td style="min-width: 150px" class="text-center">Total Harga <br>Setelah Pajak</td>
+                        @if($sharing)
                         <td style="min-width: 150px" class="text-center">Total HPP</td>
 
                         @foreach($sharingTitle as $index=>$st)
@@ -39,6 +40,7 @@
                         <td style="min-width: 200px">
                             Keuntungan bersih
                         </td>
+                        @endif
 
                     </tr>
                     @php
