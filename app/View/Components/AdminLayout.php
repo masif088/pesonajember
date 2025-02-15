@@ -126,19 +126,7 @@ class AdminLayout extends Component
                         'route' => route('admin.customer.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:text-bullet-list-square-person-32-filled"></span>'
                     ],
-                    [
-                        'title' => 'Data Karyawan',
-                        'type' => 'link',
-                        'route' => route('admin.employee.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:text-bullet-list-square-person-32-filled"></span>'
-                    ],
 
-//                    [
-//                        'title' => 'Ekspedisi Barang',
-//                        'type' => 'link',
-//                        'route' => route('admin.supplier.index'),
-//                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="material-symbols:local-shipping-rounded"></span>'
-//                    ],
                     [
                         'title' => 'Partner / CV',
                         'type' => 'link',
@@ -170,12 +158,6 @@ class AdminLayout extends Component
                         'type' => 'link',
                         'route' => route('admin.supplier.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:payment-32-filled"></span>'
-                    ],
-                    [
-                        'title' => 'Role & Izin Akun',
-                        'type' => 'link',
-                        'route' => route('admin.partner.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="eos-icons:role-binding"></span>'
                     ],
                 ],
 

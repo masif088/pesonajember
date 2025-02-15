@@ -12,25 +12,25 @@
                                     <a href="#"
                                        class="text-nowrap logo-img">
                                         <img style="height: 40px;"
-                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                            class="dark:hidden block rtl:hidden"
-                                            alt="Logo-Dark"
+                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                             class="dark:hidden block rtl:hidden"
+                                             alt="Logo-Dark"
                                         />
                                         <img style="height: 40px;"
-                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                            class="dark:block hidden rtl:hidden rtl:dark:hidden"
-                                            alt="Logo-light"
+                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                             class="dark:block hidden rtl:hidden rtl:dark:hidden"
+                                             alt="Logo-light"
                                         />
 
                                         <img style="height: 40px;"
-                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                            class="dark:hidden hidden rtl:block rtl:dark:hidden"
-                                            alt="Logo-Dark"
+                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                             class="dark:hidden hidden rtl:block rtl:dark:hidden"
+                                             alt="Logo-Dark"
                                         />
                                         <img style="height: 40px;"
-                                            src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                            class="dark:hidden hidden rtl:hidden rtl:dark:block"
-                                            alt="Logo-light"
+                                             src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                             class="dark:hidden hidden rtl:hidden rtl:dark:block"
+                                             alt="Logo-light"
                                         />
                                     </a>
                                 </div>
@@ -82,25 +82,25 @@
                                             <a href="#"
                                                class="text-nowrap logo-img">
                                                 <img style="height: 32px;"
-                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                                    class="dark:hidden block rtl:hidden"
-                                                    alt="Logo-Dark"
+                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                                     class="dark:hidden block rtl:hidden"
+                                                     alt="Logo-Dark"
                                                 />
                                                 <img style="height: 32px;"
-                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                                    class="dark:block hidden rtl:hidden rtl:dark:hidden"
-                                                    alt="Logo-light"
+                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                                     class="dark:block hidden rtl:hidden rtl:dark:hidden"
+                                                     alt="Logo-light"
                                                 />
 
                                                 <img style="height: 32px;"
-                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                                    class="dark:hidden hidden rtl:block rtl:dark:hidden"
-                                                    alt="Logo-Dark"
+                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                                     class="dark:hidden hidden rtl:block rtl:dark:hidden"
+                                                     alt="Logo-Dark"
                                                 />
                                                 <img style="height: 32px;"
-                                                    src="{{ asset('assets/images/logos/dark-logo.png') }}"
-                                                    class="dark:hidden hidden rtl:hidden rtl:dark:block"
-                                                    alt="Logo-light"
+                                                     src="{{ asset('assets/images/logos/dark-logo.png') }}"
+                                                     class="dark:hidden hidden rtl:hidden rtl:dark:block"
+                                                     alt="Logo-light"
                                                 />
                                             </a>
                                         </div>
@@ -136,8 +136,7 @@
                                         class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-primary p-[5px] rounded-full -top-[-5px] -right-[0px]">
                                     </div>
                                 </a>
-                                <div
-                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
+                                <div class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
                                     aria-labelledby="hs-dropdown-hover-event-notification">
                                     <div class="flex items-center py-4 px-7 justify-between">
                                         <h3 class="mb-0 card-title">
@@ -190,9 +189,7 @@
                                         <div class="message-body max-h-[450px]" data-simplebar="">
                                             <div class="">
                                                 <div class="flex items-center">
-                                                    <img
-
-                                                        src="{{ auth()->user()->profile_photo_url }}"
+                                                    <img src="{{ auth()->user()->profile_photo_url }}"
                                                         class="h-20 w-20 rounded-full object-cover"
                                                         alt="profile">
                                                     <div class="ml-4 rtl:mr-4 rtl:ml-auto">
@@ -201,11 +198,9 @@
                                                         </h5>
                                                         <p class="text-xs font-normal text-link dark:text-darklink ">
                                                             {{ auth()->user()->position }}</p>
-                                                        <span
-                                                            class="text-sm font-normal flex items-center text-link dark:text-darklink">
-                                <i class="ti ti-mail mr-2"></i>
-                                <span>{{ auth()->user()->email }}</span>
-                            </span>
+                                                        <span class="text-sm font-normal flex items-center text-link dark:text-darklink">
+                                                            <i class="ti ti-mail mr-2"></i>
+                                                            <span>{{ auth()->user()->email }}</span></span>
                                                     </div>
                                                 </div>
 
@@ -229,44 +224,44 @@
                                                             </div>
                                                         </a>
                                                     </li>
-{{--                                                    <li class="mb-5">--}}
-{{--                                                        <a href="#"--}}
-{{--                                                           class="flex gap-3 items-center  group">--}}
-{{--                                <span--}}
-{{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
-{{--                                    <img--}}
-{{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-inbox.svg"--}}
-{{--                                        class="h-6 w-6">--}}
-{{--                                </span>--}}
-{{--                                                            <div class="">--}}
-{{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
-{{--                                                                    My Inbox--}}
-{{--                                                                </h6>--}}
-{{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
-{{--                                                                    Messages &amp;--}}
-{{--                                                                    Emails</p>--}}
-{{--                                                            </div>--}}
-{{--                                                        </a>--}}
-{{--                                                    </li>--}}
-{{--                                                    <li class="mb-5">--}}
-{{--                                                        <a href="#"--}}
-{{--                                                           class="flex gap-3 items-center group ">--}}
-{{--                                <span--}}
-{{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
-{{--                                    <img--}}
-{{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-tasks.svg"--}}
-{{--                                        class="h-6 w-6">--}}
-{{--                                </span>--}}
-{{--                                                            <div class="">--}}
-{{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
-{{--                                                                    My Tasks--}}
-{{--                                                                </h6>--}}
-{{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
-{{--                                                                    To-do and Daily--}}
-{{--                                                                    tasks</p>--}}
-{{--                                                            </div>--}}
-{{--                                                        </a>--}}
-{{--                                                    </li>--}}
+                                                    {{--                                                    <li class="mb-5">--}}
+                                                    {{--                                                        <a href="#"--}}
+                                                    {{--                                                           class="flex gap-3 items-center  group">--}}
+                                                    {{--                                <span--}}
+                                                    {{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
+                                                    {{--                                    <img--}}
+                                                    {{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-inbox.svg"--}}
+                                                    {{--                                        class="h-6 w-6">--}}
+                                                    {{--                                </span>--}}
+                                                    {{--                                                            <div class="">--}}
+                                                    {{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
+                                                    {{--                                                                    My Inbox--}}
+                                                    {{--                                                                </h6>--}}
+                                                    {{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
+                                                    {{--                                                                    Messages &amp;--}}
+                                                    {{--                                                                    Emails</p>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </a>--}}
+                                                    {{--                                                    </li>--}}
+                                                    {{--                                                    <li class="mb-5">--}}
+                                                    {{--                                                        <a href="#"--}}
+                                                    {{--                                                           class="flex gap-3 items-center group ">--}}
+                                                    {{--                                <span--}}
+                                                    {{--                                    class="bg-lightgray dark:bg-darkgray    h-12 w-12 flex justify-center items-center rounded-md">--}}
+                                                    {{--                                    <img--}}
+                                                    {{--                                        src="https://bootstrapdemos.adminmart.com/modernize-tailwind-pro/dist/assets/images/svgs/icon-tasks.svg"--}}
+                                                    {{--                                        class="h-6 w-6">--}}
+                                                    {{--                                </span>--}}
+                                                    {{--                                                            <div class="">--}}
+                                                    {{--                                                                <h6 class="fext-sm mb-1  group-hover:text-primary ">--}}
+                                                    {{--                                                                    My Tasks--}}
+                                                    {{--                                                                </h6>--}}
+                                                    {{--                                                                <p class="text-xs text-link dark:text-darklink font-normal">--}}
+                                                    {{--                                                                    To-do and Daily--}}
+                                                    {{--                                                                    tasks</p>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </a>--}}
+                                                    {{--                                                    </li>--}}
                                                 </ul>
                                             </div>
                                         </div>

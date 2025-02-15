@@ -27,6 +27,7 @@ class ProductOutController extends Controller
     public function show($id, $orderId)
     {
         $partner = Partner::find($id);
+//        dd($partner);
         $this->property['main-title'] .= " $partner->name";
         $order = Order::find($orderId);
         return view($this->name . 'show', ['property' => $this->property, 'id' => $id, 'partner' => $partner, 'order' => $order]);
