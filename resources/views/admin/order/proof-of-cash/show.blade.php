@@ -9,7 +9,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12 grid grid-cols-12 gap-3">
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Data Partner/CV</h5>
                     <br>
@@ -72,7 +72,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Data Akun Bank Partner/CV</h5>
 
@@ -80,14 +80,14 @@
             </div>
         </div>
         <div class="col-span-12 grid grid-cols-12 gap-3">
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Kop Surat Partner/CV</h5>
                     <br>
                     <img src="{{ asset('storage/'.$data->kop) }}" alt="Kop surat masih belum di upload" class="w-full">
                 </div>
             </div>
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Logo Partner/CV</h5>
                     <br>

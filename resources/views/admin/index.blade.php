@@ -12,7 +12,7 @@
     <div class="grid grid-cols-12 gap-3">
 
         <div class="lg:col-span-4 col-span-12">
-            <div class="card shadow-none">
+            <div class="card">
                 <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                     <div class="bg-green-200 rounded-full my-auto"
                          style="width: 64px !important;height: 64px !important;; padding: 20px 0">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="lg:col-span-4 col-span-12">
-            <div class="card shadow-none">
+            <div class="card">
                 <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                     <div class="bg-green-200 rounded-full my-auto"
                          style="width: 64px !important;height: 64px !important;; padding: 20px 0">
@@ -114,7 +114,7 @@
         </div>
 
         <div class="lg:col-span-4 col-span-12">
-            <div class="card shadow-none">
+            <div class="card">
                 <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                     <div class="bg-green-200 rounded-full my-auto"
                          style="width: 64px !important;height: 64px !important;; padding: 20px 0">

@@ -9,7 +9,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-6 grid grid-cols-12 gap-3">
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Data Supplier</h5>
                     <br>
@@ -58,7 +58,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     <h5 class="card-title">Daftar transaksi</h5>
                 </div>

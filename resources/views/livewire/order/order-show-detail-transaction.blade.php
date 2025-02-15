@@ -1,5 +1,5 @@
 <div class="col-span-12 grid grid-cols-12 gap-3">
-    <div class="card col-span-12 shadow-none border">
+    <div class="card col-span-12 border">
         <div class="card-body">
             <div class="card-title flex justify-between">
                 <span>
@@ -24,7 +24,7 @@
             @endif
         </div>
     </div>
-    <div class="card col-span-12 shadow-none border">
+    <div class="card col-span-12 border">
         <div class="card-body">
             <div class="card-title flex justify-between">
                 <span>
@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    <div class="card col-span-12 shadow-none border">
+    <div class="card col-span-12 border">
         <div class="card-body">
 
             <div class="card-title flex justify-between">

@@ -9,7 +9,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12 grid grid-cols-12 gap-3">
-            <div class="card col-span-8 shadow-none border">
+            <div class="card col-span-8  border">
                 <div class="card-body">
                     <h5 class="card-title">Data Konsumen</h5>
                     <br>
@@ -37,7 +37,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-span-4 shadow-none border">
+            <div class="card col-span-4  border">
                 <div class="card-body">
                     <h5 class="card-title">Data Akun Bank Konsumen</h5>
 

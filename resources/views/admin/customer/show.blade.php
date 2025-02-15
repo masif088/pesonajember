@@ -9,7 +9,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12 grid grid-cols-12 gap-3">
-            <div class="card col-span-8 shadow-none border">
+            <div class="card col-span-8  border">
                 <div class="card-body">
                     <h5 class="card-title">
                         Data Konsumen
@@ -42,7 +42,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-span-4 shadow-none border">
+            <div class="card col-span-4  border">
                 <div class="card-body">
                     <h5 class="card-title">
                         Akun Bank
@@ -74,6 +74,7 @@
                         <tr>
                             <td>#</td>
                             <td>Nomer Transaksi</td>
+                            <td>Total Transaksi</td>
                             <td>Tanggal Transaksi</td>
                             <td>Aksi</td>
                         </tr>
@@ -81,6 +82,9 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $order->order_number }}</td>
+                            <td>
+                                Rp. {{ thousand_format($order->orderProducts->sum('value')) }}
+                            </td>
                             <td>{{ $order->created_at->format('d/m/Y') }}</td>
                             <td class="flex">
                                 <a href='{{ route('admin.order.show',$order->id) }}' class='p-2 bg-blue-200 hover:bg-blue-100 text-white rounded-sm transition-[opacity,margin]'>

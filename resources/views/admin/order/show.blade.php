@@ -10,7 +10,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12 grid grid-cols-12 gap-3">
-            <div class="card col-span-12 shadow-none border">
+            <div class="card col-span-12 border">
                 <div class="card-body">
                     @php
                         $ppn = $data->ppn;
