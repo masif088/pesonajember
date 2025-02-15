@@ -85,13 +85,6 @@ class AdminLayout extends Component
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:wallet"></span>'
                     ],
 
-                    [
-                        'title' => 'Gaji Karyawan',
-                        'type' => 'link',
-                        'route' => route('admin.salary.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:wallet"></span>'
-                    ],
-
 
                     [
                         'title' => 'Invoice',
@@ -156,7 +149,7 @@ class AdminLayout extends Component
                     [
                         'title' => 'Gaji Karyawan',
                         'type' => 'link',
-                        'route' => route('admin.supplier.index'),
+                        'route' => route('admin.salary.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:payment-32-filled"></span>'
                     ],
                 ],
