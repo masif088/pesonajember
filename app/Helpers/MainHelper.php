@@ -210,11 +210,11 @@ if (!function_exists('increase_check')) {
     function increase_check($integer)
     {
         if ($integer < 0) {
-            return 'text-red-500 bg-red-100';
+            return 'text-red-500';
         } elseif ($integer > 0) {
-            return 'text-green-500 bg-green-100';
+            return 'text-green-500';
         } else {
-            return 'text-gray-500 bg-gray-100';
+            return 'text-gray-500';
         }
     }
 }

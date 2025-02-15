@@ -86,6 +86,14 @@ class AdminLayout extends Component
                     ],
 
                     [
+                        'title' => 'Gaji Karyawan',
+                        'type' => 'link',
+                        'route' => route('admin.salary.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="mdi:wallet"></span>'
+                    ],
+
+
+                    [
                         'title' => 'Invoice',
                         'type' => 'accordion',
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fa6-solid:file-invoice-dollar"></span>',
@@ -118,6 +126,12 @@ class AdminLayout extends Component
                         'route' => route('admin.customer.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:text-bullet-list-square-person-32-filled"></span>'
                     ],
+                    [
+                        'title' => 'Data Karyawan',
+                        'type' => 'link',
+                        'route' => route('admin.employee.index'),
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:text-bullet-list-square-person-32-filled"></span>'
+                    ],
 
 //                    [
 //                        'title' => 'Ekspedisi Barang',
@@ -147,7 +161,7 @@ class AdminLayout extends Component
                     [
                         'title' => 'List Karyawan',
                         'type' => 'link',
-                        'route' => route('admin.customer.index'),
+                        'route' => route('admin.employee.index'),
                         'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="f7:doc-person-fill"></span>'
                     ],
 

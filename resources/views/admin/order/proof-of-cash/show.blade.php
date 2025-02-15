@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Data Partner/CV</h5>
                     <br>
-                    <table class="font-light">
+                    <table class="">
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>

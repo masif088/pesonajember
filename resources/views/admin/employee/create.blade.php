@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="title">
-        {{ $property['title'] }} - {{ $data->name }}
+        {{ $property['title'] }}
     </x-slot>
     <x-slot name="breadcrumb">
         <a href="{{ $property['index'] }}">{{ $property['main-title'] }}</a>
@@ -8,7 +8,7 @@
     </x-slot>
     <div class="grid grid-cols-12 gap-3">
         <div class="col-span-12">
-            <livewire:customer.customer-form action="update" :data-id="$data->id" :index-path="$property['index']"/>
+            <livewire:employee.employee-form action="create" :index-path="$property['index']"/>
         </div>
     </div>
 </x-admin-layout>

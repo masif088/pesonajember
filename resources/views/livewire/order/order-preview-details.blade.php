@@ -30,33 +30,52 @@
                         <td style="min-width: 150px" class="text-center">PPH</td>
                         <td style="min-width: 150px" class="text-center">Harga <br> Setelah Pajak</td>
                         <td style="min-width: 150px" class="text-center">Total Harga <br>Setelah Pajak</td>
+                        <td style="min-width: 150px" class="text-center">Total HPP</td>
+
+                        @foreach($sharingTitle as $index=>$st)
+                            <td style="min-width: 100px">% Share <br>  {{ $st->title }}</td>
+                            <td style="min-width: 200px">Jumlah Share <br>  {{ $st->title }}</td>
+                        @endforeach
+                        <td style="min-width: 200px">
+                            Keuntungan bersih
+                        </td>
+
                     </tr>
                     @php
                         $dppCount =0;
-                                $ppnProductCount = 0;
-                                $pphProductCount = 0;
-                                $afterTaxCount = 0;
-                                $valueCount= 0;
-                                $valueAfterTaxCount= 0;
+                        $ppnProductCount = 0;
+                        $pphProductCount = 0;
+                        $afterTaxCount = 0;
+                        $valueCount= 0;
+                        $valueAfterTaxCount= 0;
+                        $margin =0;
+                        $totalHpp =0;
+
+
+                            $total = 0;
+                            $stotal= [];
+                            foreach($sharingTitle as $index=>$st){
+                                $stotal[$st->id]=0;
+                            }
+
                     @endphp
 
                     @foreach($p['items'] as $item)
                         @php
-
                             $valueCount+=$item['price']*$item['quantity'];
-                                $dpp =$item['price']*100/(100+$ppn);
-                                $dppCount+=$dpp;
-                                $ppnProduct = $item['price'] - $dpp;
-                                $ppnProductCount+=$ppnProduct;
-                                $pphProduct = $item['pph']*$dpp/100;
-                                $pphProductCount+=$pphProduct;
-                                $afterTax = $dpp -$pphProduct;
+                            $dpp =$item['price']*100/(100+$ppn);
+                            $dppCount+=$dpp;
+                            $ppnProduct = $item['price'] - $dpp;
+                            $ppnProductCount+=$ppnProduct;
+                            $pphProduct = $item['pph']*$dpp/100;
+                            $pphProductCount+=$pphProduct;
+                            $afterTax = $dpp -$pphProduct;
+                            $totalHpp += $item['hpp_value'];
 
+                            $afterTaxCount+=$afterTax;
+                            $valueAfterTaxCount+=$afterTax*$item['quantity'];
 
-                                $afterTaxCount+=$afterTax;
-                                $valueAfterTaxCount+=$afterTax*$item['quantity'];
-
-                                $values = [$item['price'],$item['value'],$dpp,$ppnProduct,$pphProduct,$afterTax,($afterTax*$item['quantity'])]
+                            $values = [$item['price'],$item['value'],$dpp,$ppnProduct,$pphProduct,$afterTax,($afterTax*$item['quantity'])]
                         @endphp
                         <tr style="height: 40px">
                             <td>{{ $item['name'] }}</td>
@@ -69,6 +88,40 @@
                                     </div>
                                 </td>
                             @endforeach
+                            <td>
+                                <div class="flex justify-between py-2 px-4">
+                                    <span>Rp.</span> <span>{{ thousand_format($item['hpp_value']) }}</span>
+                                </div>
+                            </td>
+                            @php
+                            $totalSharingProduct = 0;
+                            @endphp
+                            @foreach($sharingTitle as $index=>$st)
+                                <td class="text-center">
+                                    {{ $sharings[$st->id][$item['id']] }}%
+                                </td>
+                                <td>
+                                    <div class="p-2 justify-between flex">
+                                        @php
+                                            $ttl= $sharings[$st->id][$item['id']]*$afterTax/100*$item['quantity'];
+                                            $stotal [$st->id]+=$ttl;
+                                            $totalSharingProduct+=$ttl;
+                                        @endphp
+                                        <span>Rp. </span>
+                                        <span>{{ thousand_format($ttl) }}</span>
+                                    </div>
+                                </td>
+                            @endforeach
+                            <td>
+                                @php
+                                    $margin+= ($afterTax*$item['quantity'])-$totalSharingProduct-$item['hpp_value'];
+                                @endphp
+                                <div class="p-2 justify-between flex">
+                                    <span>Rp. </span>
+                                    <span>{{ thousand_format(($afterTax*$item['quantity'])-$totalSharingProduct-$item['hpp_value']) }}</span>
+                                </div>
+
+                            </td>
                         </tr>
                     @endforeach
 
@@ -96,6 +149,24 @@
                                 </div>
                             </td>
                         @endforeach
+                        <td>
+                            <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
+                                <span>Rp.</span> <span>{{ thousand_format($totalHpp) }}</span>
+                            </div>
+                        </td>
+                        @foreach($sharingTitle as $index=>$st)
+                            <td></td>
+                            <td>
+                                <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
+                                    <span>Rp.</span> <span>{{ thousand_format($stotal[$st->id]) }}</span>
+                                </div>
+                            </td>
+                        @endforeach
+                        <td>
+                            <div class="bg-green-100 rounded text-green-900 p-2 justify-between flex">
+                                <span>Rp.</span> <span>{{ thousand_format($margin) }}</span>
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>

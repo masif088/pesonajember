@@ -13,8 +13,8 @@ class OrderShowDetailTransaction extends Component
     public function mount(){
         //0 detail transaction
         //0 kwitansi
-        $this->open[0]=false;
-        $this->open[1]=false;
+        $this->open[0]=true;
+        $this->open[1]=true;
         $this->open[2]=true;
         $this->order=Order::find($this->orderId);
     }

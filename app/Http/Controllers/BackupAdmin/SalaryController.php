@@ -18,9 +18,10 @@ class SalaryController extends Controller
         return view('admin.salary.create');
     }
 
-    public function edit($id)
+    public function edit(Salary $id)
     {
-        return view('admin.salary.edit', compact('id'));
+        dd($id);
+        return view('admin.salary.edit', ['data' => $id]);
     }
 
     public function download($id)

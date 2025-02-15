@@ -2,21 +2,21 @@
 
 namespace App\Livewire\Customer;
 
-use App\Repository\Form\Customer as model;
+use App\Repository\Form\CustomerAccount as model;
 use Livewire\Component;
 
-class CustomerForm extends Component
+class CustomerAccountForm extends Component
 {
     public $form;
-
     public $dataId;
-
     public $action;
     public $indexPath;
+    public $customerId;
 
     public function mount()
     {
         $this->form = form_model(model::class);
+        $this->form['customer_id'] = $this->customerId;
         if ($this->dataId) {
             $this->form = form_model(model::class, $this->dataId);
         }
@@ -31,7 +31,7 @@ class CustomerForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::create($this->form);
-        $this->redirect(route($this->indexPath));
+        $this->redirect(route('admin.customer.show', $this->form['customer_id']));
     }
 
     public function update()
@@ -39,10 +39,10 @@ class CustomerForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('admin.customer.show', $this->dataId));
+        $this->redirect(route('admin.customer.show', $this->form['customer_id']));
     }
     public function render()
     {
-        return view('livewire.customer.customer-form');
+        return view('livewire.customer.customer-account-form');
     }
 }

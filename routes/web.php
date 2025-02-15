@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\MarginController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProductOutController;
 use App\Http\Controllers\Admin\ProofOfCashController;
+use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\WalletController;
 use Illuminate\Support\Facades\App;
@@ -111,12 +113,27 @@ Route::middleware([
         route::get('/{id}', [MarginController::class,'index'])->name('index');
     });
 
+    Route::prefix('employee')->name('employee.')->group(function () {
+        route::get('/', [EmployeeController::class,'index'])->name('index');
+        route::get('/create', [EmployeeController::class,'create'])->name('create');
+        route::get('/edit/{id}', [EmployeeController::class,'edit'])->name('edit');
+        route::get('/show/{id}', [EmployeeController::class,'show'])->name('show');
+    });
+
+    Route::prefix('salary')->name('salary.')->group(function () {
+        route::get('/', [SalaryController::class,'index'])->name('index');
+        route::get('/create', [SalaryController::class,'create'])->name('create');
+        route::get('/edit/{id}', [SalaryController::class,'edit'])->name('edit');
+        route::get('/show/{id}', [SalaryController::class,'show'])->name('show');
+    });
 
     Route::prefix('customer')->name('customer.')->group(function () {
         route::get('/', [CustomerController::class,'index'])->name('index');
         route::get('/create', [CustomerController::class,'create'])->name('create');
         route::get('/edit/{id}', [CustomerController::class,'edit'])->name('edit');
         route::get('/show/{id}', [CustomerController::class,'show'])->name('show');
+        route::get('/account/{id}/create', [CustomerController::class,'createAccount'])->name('account.create');
+        route::get('/account/{id}/edit/{account}', [CustomerController::class,'editAccount'])->name('account.edit');
     });
     Route::prefix('wallet')->name('wallet.')->group(function () {
         route::get('/', [WalletController::class,'index'])->name('index');

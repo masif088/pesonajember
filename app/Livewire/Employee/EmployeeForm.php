@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Livewire\Customer;
+namespace App\Livewire\Employee;
 
-use App\Repository\Form\Customer as model;
+use App\Repository\Form\User as model;
 use Livewire\Component;
 
-class CustomerForm extends Component
+class EmployeeForm extends Component
 {
     public $form;
 
-    public $dataId;
-
     public $action;
-    public $indexPath;
+
+    public $dataId;
 
     public function mount()
     {
-        $this->form = form_model(model::class);
-        if ($this->dataId) {
-            $this->form = form_model(model::class, $this->dataId);
-        }
+//        dd("asd");
+        $this->form = form_model(model::class, $this->dataId);
     }
+
     public function getRules()
     {
         return model::formRules();
@@ -28,21 +26,29 @@ class CustomerForm extends Component
 
     public function create()
     {
+//        dd($this->form);
+
         $this->validate();
         $this->resetErrorBag();
+
+        $this->form['password'] = bcrypt($this->form['password']);
         model::create($this->form);
-        $this->redirect(route($this->indexPath));
+
+        $this->redirect(route('admin.employee.index'));
     }
 
     public function update()
     {
+
         $this->validate();
         $this->resetErrorBag();
+
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('admin.customer.show', $this->dataId));
+        $this->redirect(route('admin.employee.index'));
     }
+
     public function render()
     {
-        return view('livewire.customer.customer-form');
+        return view('livewire.employee.employee-form');
     }
 }

@@ -17,14 +17,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify.min.js"></script>
-{{--    <script--}}
-{{--        src="https://cdn.tiny.cloud/1/cdy7uy0kp3sps4cksg5twt8j1dbz75v48yog5k9ype8x9oo3/tinymce/7/tinymce.min.js"--}}
-{{--        referrerpolicy="origin"--}}
-{{--    ></script>--}}
-{{--    <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>--}}
+
     <script src="https://cdn.tiny.cloud/1/cdy7uy0kp3sps4cksg5twt8j1dbz75v48yog5k9ype8x9oo3/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 

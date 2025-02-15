@@ -54,7 +54,7 @@
                                 ];
                     @endphp
 
-                    <table class="font-light w-full">
+                    <table class=" w-full">
                         @foreach($recaps as $recap)
                             <tr style="height: 50px">
                                 <td style="width: 25% !important;">{{ $recap['title'] }}</td>

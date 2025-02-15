@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Livewire\Customer;
+namespace App\Livewire\Salary;
 
-use App\Repository\Form\Customer as model;
+use App\Repository\Form\Salary as model;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
-class CustomerForm extends Component
+class SalaryForm extends Component
 {
+    use WithFileUploads;
+
     public $form;
 
     public $dataId;
@@ -21,6 +24,7 @@ class CustomerForm extends Component
             $this->form = form_model(model::class, $this->dataId);
         }
     }
+
     public function getRules()
     {
         return model::formRules();
@@ -39,10 +43,10 @@ class CustomerForm extends Component
         $this->validate();
         $this->resetErrorBag();
         model::find($this->dataId)->update($this->form);
-        $this->redirect(route('admin.customer.show', $this->dataId));
+        $this->redirect(route($this->indexPath));
     }
     public function render()
     {
-        return view('livewire.customer.customer-form');
+        return view('livewire.salary.salary-form');
     }
 }
