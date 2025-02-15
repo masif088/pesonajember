@@ -8148,7 +8148,7 @@ button.button-primary:hover {
     height: 100vh;
 }
 .card.full-card .card-body {
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .page-body-wrapper .card .sub-title {
@@ -25848,7 +25848,7 @@ select.crypto-select.primary {
     width: 50px;
     margin-right: -78px;
     margin-top: -50px;
-    animation: wave-speaker 2s ease infinite;
+    /*animation: wave-speaker 2s ease infinite;*/
 }
 @media (max-width: 1693px) and (min-width: 768px) {
     .mobile-app-card .card-body .wavy {
