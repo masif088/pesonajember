@@ -136,39 +136,39 @@
                                         class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-primary p-[5px] rounded-full -top-[-5px] -right-[0px]">
                                     </div>
                                 </a>
-                                <div
-                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"
-                                    aria-labelledby="hs-dropdown-hover-event-notification">
-                                    <div class="flex items-center py-4 px-7 justify-between">
-                                        <h3 class="mb-0 card-title">
-                                            Notifications</h3>
-                                        <span class="text-xs badge-md bg-primary text-white">5
-                new</span>
-                                    </div>
-                                    <div class="message-body max-h-[350px]" data-simplebar="">
-                                        <a href="javascript:void(0)"
-                                           class="px-7 py-3 flex items-center light-dark-hoverbg">
-                <span
-                    class="flex-shrink-0 h-12 w-12 rounded-full bg-lightprimary dark:bg-darkprimary flex justify-center items-center">
-                <i class="ti ti-dashboard text-primary text-xl"></i>
-                </span>
-                                            <div class="ps-4">
-                                                <h5 class="text-sm">
-                                                    Launch Admin
-                                                </h5>
-                                                <span>Just see the my new
-                        admin!</span>
-                                            </div>
-                                        </a>
+{{--                                <div--}}
+{{--                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"--}}
+{{--                                    aria-labelledby="hs-dropdown-hover-event-notification">--}}
+{{--                                    <div class="flex items-center py-4 px-7 justify-between">--}}
+{{--                                        <h3 class="mb-0 card-title">--}}
+{{--                                            Notifications</h3>--}}
+{{--                                        <span class="text-xs badge-md bg-primary text-white">5--}}
+{{--                new</span>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="message-body max-h-[350px]" data-simplebar="">--}}
+{{--                                        <a href="javascript:void(0)"--}}
+{{--                                           class="px-7 py-3 flex items-center light-dark-hoverbg">--}}
+{{--                <span--}}
+{{--                    class="flex-shrink-0 h-12 w-12 rounded-full bg-lightprimary dark:bg-darkprimary flex justify-center items-center">--}}
+{{--                <i class="ti ti-dashboard text-primary text-xl"></i>--}}
+{{--                </span>--}}
+{{--                                            <div class="ps-4">--}}
+{{--                                                <h5 class="text-sm">--}}
+{{--                                                    Launch Admin--}}
+{{--                                                </h5>--}}
+{{--                                                <span>Just see the my new--}}
+{{--                        admin!</span>--}}
+{{--                                            </div>--}}
+{{--                                        </a>--}}
 
-                                    </div>
-                                    <div class="pt-3 pb-6 px-7">
-                                        <a href="#" class="btn btn-outline-primary block w-full">
-                                            See All Notifications
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    </div>--}}
+{{--                                    <div class="pt-3 pb-6 px-7">--}}
+{{--                                        <a href="#" class="btn btn-outline-primary block w-full">--}}
+{{--                                            See All Notifications--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <!-- Profile DD -->
                             <div
                                 class="hs-dropdown [--strategy:absolute] [--adaptive:none] sm:[--trigger:hover] sm:relative group/menu">
