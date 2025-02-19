@@ -112,30 +112,30 @@
                         </div>
 
 
-                        <div class="icon-nav items-center gap-3 lg:gap-4 flex">
+                        <div class="icon-nav items-center gap-3 lg:gap-4 flex mt-2">
                             <!-- Theme Toggle  -->
-                            <button type="button"
-                                    class="hs-dark-mode-active:hidden icon-hover block hs-dark-mode group items-center font-medium hover:text-primary text-link dark:text-darklink h-10 w-10 light-dark-hoverbg  justify-center rounded-full"
-                                    data-hs-theme-click-value="dark" id="dark-layout">
-                                <i class="ti ti-moon text-xl  text-link dark:text-darklink relative  hover:text-primary"></i>
-                            </button>
-                            <button type="button"
-                                    class="hs-dark-mode-active:block icon-hover hidden hs-dark-mode group  items-center  font-medium hover:text-primary text-link dark:text-darklink h-10 w-10 light-dark-hoverbg  justify-center rounded-full"
-                                    data-hs-theme-click-value="light" id="light-layout">
-                                <i class="ti ti-sun text-xl  text-link dark:text-darklink relative  hover:text-primary"></i>
-                            </button>
+{{--                            <button type="button"--}}
+{{--                                    class="hs-dark-mode-active:hidden icon-hover block hs-dark-mode group items-center font-medium hover:text-primary text-link dark:text-darklink h-10 w-10 light-dark-hoverbg  justify-center rounded-full"--}}
+{{--                                    data-hs-theme-click-value="dark" id="dark-layout">--}}
+{{--                                <i class="ti ti-moon text-xl  text-link dark:text-darklink relative  hover:text-primary"></i>--}}
+{{--                            </button>--}}
+{{--                            <button type="button"--}}
+{{--                                    class="hs-dark-mode-active:block icon-hover hidden hs-dark-mode group  items-center  font-medium hover:text-primary text-link dark:text-darklink h-10 w-10 light-dark-hoverbg  justify-center rounded-full"--}}
+{{--                                    data-hs-theme-click-value="light" id="light-layout">--}}
+{{--                                <i class="ti ti-sun text-xl  text-link dark:text-darklink relative  hover:text-primary"></i>--}}
+{{--                            </button>--}}
 
                             <!-- Notifications DD -->
 
                             <div
                                 class="hs-dropdown [--strategy:absolute] [--adaptive:none] sm:[--trigger:hover] sm:relative group/menu">
-                                <a id="hs-dropdown-hover-event-notification"
-                                   class="relative hs-dropdown-toggle h-10 w-10 text-link dark:text-darklink cursor-pointer hover:bg-lightprimary  hover:text-primary dark:hover:bg-darkprimary flex justify-center items-center rounded-full group-hover/menu:bg-lightprimary group-hover/menu:text-primary">
-                                    <i class="ti ti-bell-ringing text-xl relative z-[1]"></i>
-                                    <div
-                                        class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-primary p-[5px] rounded-full -top-[-5px] -right-[0px]">
-                                    </div>
-                                </a>
+{{--                                <a id="hs-dropdown-hover-event-notification"--}}
+{{--                                   class="relative hs-dropdown-toggle h-10 w-10 text-link dark:text-darklink cursor-pointer hover:bg-lightprimary  hover:text-primary dark:hover:bg-darkprimary flex justify-center items-center rounded-full group-hover/menu:bg-lightprimary group-hover/menu:text-primary">--}}
+{{--                                    <i class="ti ti-bell-ringing text-xl relative z-[1]"></i>--}}
+{{--                                    <div--}}
+{{--                                        class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-primary p-[5px] rounded-full -top-[-5px] -right-[0px]">--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
 {{--                                <div--}}
 {{--                                    class="card hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 right-0 rtl:right-auto rtl:left-0 mt-2 min-w-max top-auto w-full sm:w-[360px] hidden z-[2]"--}}
 {{--                                    aria-labelledby="hs-dropdown-hover-event-notification">--}}
