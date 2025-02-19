@@ -59,7 +59,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($order->orderProducts as $index=>$opd)
+        @foreach($order->orderProducts->where('partner_id',$id) as $index=>$opd)
             @if($opd->partner_id==$id)
                 @php
                 $count-=1;

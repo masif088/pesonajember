@@ -37,7 +37,7 @@
             </thead>
             <tbody>
             @php $total=0; @endphp
-            @foreach($order->orderProducts as $op)
+            @foreach($order->orderProducts->where('partner_id',$this->partnerId) as $op)
                 @php
                     $total+=($op->price*$op->quantity);
                 @endphp
