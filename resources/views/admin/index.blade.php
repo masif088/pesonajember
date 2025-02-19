@@ -1,5 +1,5 @@
 @php
-    use Carbon\Carbon;
+    use App\Models\Customer;use App\Models\Order;use App\Models\OrderProofOfCash;use Carbon\Carbon;
 
 @endphp
 <x-admin-layout>
@@ -29,9 +29,9 @@
                                     <h4 class="text-green-900 flex justify-between text-lg">
                                         @php
                                             $now = Carbon::now();
-                                            $totalIncome = \App\Models\OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
+                                            $totalIncome = OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
                                             $prevMonth = $now->subMonth();
-                                            $totalIncomePrev = \App\Models\OrderProofOfCash::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->sum('nominal');
+                                            $totalIncomePrev = OrderProofOfCash::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->sum('nominal');
                                             $increase = 0;
                                             $icon = '-';
                                             if ($totalIncome==0 || $totalIncomePrev==0 || $totalIncome==$totalIncomePrev){
@@ -82,9 +82,9 @@
                                     <h4 class="text-green-900 flex justify-between text-lg">
                                         @php
                                             $now = Carbon::now();
-                                                $totalTransaction = \App\Models\Order::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->count();
+                                                $totalTransaction = Order::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->count();
                                                 $prevMonth = $now->subMonth();
-                                                $totalTransactionPrev = \App\Models\Order::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->count();
+                                                $totalTransactionPrev = Order::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->count();
                                                 $increase = 0;
                                                 $icon = '-';
                                                 if ($totalTransaction==0 || $totalTransactionPrev==0 || $totalTransaction==$totalTransactionPrev){
@@ -92,13 +92,13 @@
                                                 }else{
                                                     $increase = number_format(($totalTransactionPrev-$totalTransaction)/$totalTransactionPrev*100,2,',','.');
                                                 }
-                                                 if ($increase < 0) {
-                                                     $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
-                                                 } elseif ($increase > 0) {
-                                                     $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
-                                                 } else {
-                                                     $icon = "<i class='text-green-500 '> </i> -";
-                                                 }
+                                     if ($increase < 0) {
+                                                 $icon = "<span class='iconify text-red-900' data-icon='mingcute:arrow-down-fill'></span>";
+                                             } elseif ($increase > 0) {
+                                                 $icon = "<span class='iconify text-green-900' data-icon='mingcute:arrow-up-fill'></span>";
+                                             } else {
+                                                 $icon = "<i class='text-green-500 '> </i> -";
+                                             }
 
 
                                         @endphp
@@ -133,9 +133,9 @@
                                     <h6 class="font-medium mb-2">Order Selesai Bulan ini</h6>
                                     <h4 class="text-green-900 flex justify-between text-lg">
                                         @php
-                                            $total = \App\Models\Order::whereMonth('updated_at',$now->month)->whereYear('updated_at',$now->year)->where('status',3)->count();
+                                            $total = Order::whereMonth('updated_at',$now->month)->whereYear('updated_at',$now->year)->where('status',3)->count();
                                             $prevMonth = $now->subMonth();
-                                            $totalPrev = \App\Models\Order::whereMonth('updated_at',$prevMonth->month)->whereYear('updated_at',$prevMonth->year)->where('status',3)->count();
+                                            $totalPrev = Order::whereMonth('updated_at',$prevMonth->month)->whereYear('updated_at',$prevMonth->year)->where('status',3)->count();
                                             $increase = 0;
                                             $icon = '-';
                                             if ($total==0 || $totalPrev==0){
@@ -143,15 +143,13 @@
                                             }else{
                                                 $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
                                             }
-                                             if ($increase < 0) {
-                                                 $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
-                                             } elseif ($increase > 0) {
-                                                 $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
-                                             } else {
+                                            if ($increase < 0) {
+                                                 $icon = "<span class='iconify text-red-900' data-icon='mingcute:arrow-down-fill'></span>";
+                                            } elseif ($increase > 0) {
+                                                 $icon = "<span class='iconify text-green-900' data-icon='mingcute:arrow-up-fill'></span>";
+                                            } else {
                                                  $icon = "<i class='text-green-500 '> </i> -";
-                                             }
-
-
+                                            }
                                         @endphp
                                         {{ thousand_format($total) }} Transaksi
                                         <font class="{{ increase_check($increase) }} text-sm">
@@ -174,10 +172,10 @@
                     <div class="header-top">
                         <h5>Order Overview</h5>
                         <div class="card-header-right-icon">
-{{--                            <div class="dropdown icon-dropdown">--}}
-{{--                                <button class="btn dropdown-toggle" id="orderOverview" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-more-alt"></i></button>--}}
-{{--                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orderOverview"><a class="dropdown-item" href="#!">This Month</a><a class="dropdown-item" href="#!">Previous Month</a><a class="dropdown-item" href="#!">Last 3 Months</a><a class="dropdown-item" href="#!">Last 6 Months</a></div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="dropdown icon-dropdown">--}}
+                            {{--                                <button class="btn dropdown-toggle" id="orderOverview" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-more-alt"></i></button>--}}
+                            {{--                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orderOverview"><a class="dropdown-item" href="#!">This Month</a><a class="dropdown-item" href="#!">Previous Month</a><a class="dropdown-item" href="#!">Last 3 Months</a><a class="dropdown-item" href="#!">Last 6 Months</a></div>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -189,8 +187,10 @@
                                     <div class="col-xl-12">
                                         <div class="card-body p-0">
                                             <ul class="balance-data">
-                                                <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Order Masuk</span></li>
-                                                <li><span class="circle bg-success"> </span><span class="f-light ms-1">Total Pembayaran</span></li>
+                                                <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Order Masuk</span>
+                                                </li>
+                                                <li><span class="circle bg-success"> </span><span class="f-light ms-1">Total Pembayaran</span>
+                                                </li>
                                             </ul>
                                             <div class="current-sale-container order-container">
                                                 <div class="overview-wrapper" id="orderoverview"></div>
@@ -215,8 +215,8 @@
                                                 <use href="../assets/svg/icon-sprite.svg#orders"></use>
                                             </svg>
                                         </div>
-                                        <div> <span class="f-light">Order Masuk</span>
-                                            <h6 class="mt-1 mb-0 counter" >
+                                        <div><span class="f-light">Order Masuk</span>
+                                            <h6 class="mt-1 mb-0 counter">
                                                 {{ thousand_format($totalTransactionPrev) }} Transaksi
                                             </h6>
                                         </div>
@@ -229,8 +229,10 @@
                                                 <use href="{{ asset('assets/svg/icon-sprite.svg#expense')}}"></use>
                                             </svg>
                                         </div>
-                                        <div> <span class="f-light">Uang Masuk</span>
-                                            <h6 class="mt-1 mb-0">Rp. <span class="counter" data-target="12678">{{ thousand_format($totalIncomePrev) }}</span></h6>
+                                        <div><span class="f-light">Uang Masuk</span>
+                                            <h6 class="mt-1 mb-0">Rp. <span class="counter"
+                                                                            data-target="12678">{{ thousand_format($totalIncomePrev) }}</span>
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
@@ -242,248 +244,248 @@
             </div>
             <script>
                 document.addEventListener('livewire:init', function () {
-                var optionsoverview = {
-                    series: [
-                        {
-                            name: "Order",
-                            type: "area",
-                            data: [44, 55, 35, 50, 67, 50, 55, 45, 32, 38, 45],
+                    var optionsoverview = {
+                        series: [
+                            {
+                                name: "Order",
+                                type: "area",
+                                data: [44, 55, 35, 50, 67, 50, 55, 45, 32, 38, 45],
+                            },
+                            {
+                                name: "Total Pembayaran",
+                                type: "area",
+                                data: [35, 30, 23, 40, 50, 35, 40, 52, 67, 50, 55],
+                            },
+                            // {
+                            //     name: "Refunds",
+                            //     type: "area",
+                            //     data: [25, 20, 15, 25, 32, 20, 30, 35, 23, 30, 20],
+                            // },
+                        ],
+                        chart: {
+                            height: 340,
+                            type: "line",
+                            stacked: false,
+                            toolbar: {
+                                show: false,
+                            },
+                            dropShadow: {
+                                enabled: true,
+                                top: 2,
+                                left: 0,
+                                blur: 4,
+                                color: "#000",
+                                opacity: 0.08,
+                            },
                         },
-                        {
-                            name: "Total Pembayaran",
-                            type: "area",
-                            data: [35, 30, 23, 40, 50, 35, 40, 52, 67, 50, 55],
+                        stroke: {
+                            width: [2, 2, 2],
+                            curve: "smooth",
                         },
-                        // {
-                        //     name: "Refunds",
-                        //     type: "area",
-                        //     data: [25, 20, 15, 25, 32, 20, 30, 35, 23, 30, 20],
-                        // },
-                    ],
-                    chart: {
-                        height: 340,
-                        type: "line",
-                        stacked: false,
-                        toolbar: {
+                        grid: {
+                            show: true,
+                            borderColor: "var(--chart-border)",
+                            strokeDashArray: 0,
+                            position: "back",
+                            xaxis: {
+                                lines: {
+                                    show: true,
+                                },
+                            },
+                            padding: {
+                                top: 0,
+                                right: 0,
+                                bottom: 0,
+                                left: 0,
+                            },
+                        },
+                        plotOptions: {
+                            bar: {
+                                columnWidth: "50%",
+                            },
+                        },
+                        colors: ["#7064F5", "#54BA4A", "#FF3364"],
+                        fill: {
+                            type: "gradient",
+                            gradient: {
+                                shade: "light",
+                                type: "vertical",
+                                opacityFrom: 0.4,
+                                opacityTo: 0,
+                                stops: [0, 100],
+                            },
+                        },
+                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
+                        markers: {
+                            discrete: [
+                                {
+                                    seriesIndex: 0,
+                                    dataPointIndex: 2,
+                                    fillColor: "#7064F5",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                    sizeOffset: 3,
+                                },
+                                {
+                                    seriesIndex: 1,
+                                    dataPointIndex: 2,
+                                    fillColor: "#54BA4A",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                                {
+                                    seriesIndex: 2,
+                                    dataPointIndex: 2,
+                                    fillColor: "#FF3364",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                                {
+                                    seriesIndex: 0,
+                                    dataPointIndex: 5,
+                                    fillColor: "#7064F5",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                    sizeOffset: 3,
+                                },
+                                {
+                                    seriesIndex: 1,
+                                    dataPointIndex: 5,
+                                    fillColor: "#54BA4A",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                                {
+                                    seriesIndex: 2,
+                                    dataPointIndex: 5,
+                                    fillColor: "#FF3364",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                                {
+                                    seriesIndex: 0,
+                                    dataPointIndex: 9,
+                                    fillColor: "#7064F5",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                    sizeOffset: 3,
+                                },
+                                {
+                                    seriesIndex: 1,
+                                    dataPointIndex: 9,
+                                    fillColor: "#54BA4A",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                                {
+                                    seriesIndex: 2,
+                                    dataPointIndex: 9,
+                                    fillColor: "#FF3364",
+                                    strokeColor: "var(--white)",
+                                    size: 5,
+                                },
+                            ],
+                            hover: {
+                                size: 5,
+                                sizeOffset: 0,
+                            },
+                        },
+                        xaxis: {
+                            type: "category",
+                            tickAmount: 11,
+                            tickPlacement: "on",
+                            tooltip: {
+                                enabled: false,
+                            },
+                            axisBorder: {
+                                color: "var(--chart-border)",
+                            },
+                            axisTicks: {
+                                show: false,
+                            },
+                        },
+                        legend: {
                             show: false,
                         },
-                        dropShadow: {
-                            enabled: true,
-                            top: 2,
-                            left: 0,
-                            blur: 4,
-                            color: "#000",
-                            opacity: 0.08,
+                        yaxis: {
+                            min: 0,
+                            max: 67,
+                            tickAmount: 6,
+                            tickPlacement: "between",
                         },
-                    },
-                    stroke: {
-                        width: [2, 2, 2],
-                        curve: "smooth",
-                    },
-                    grid: {
-                        show: true,
-                        borderColor: "var(--chart-border)",
-                        strokeDashArray: 0,
-                        position: "back",
-                        xaxis: {
-                            lines: {
-                                show: true,
-                            },
+                        tooltip: {
+                            shared: false,
+                            intersect: false,
                         },
-                        padding: {
-                            top: 0,
-                            right: 0,
-                            bottom: 0,
-                            left: 0,
-                        },
-                    },
-                    plotOptions: {
-                        bar: {
-                            columnWidth: "50%",
-                        },
-                    },
-                    colors: ["#7064F5", "#54BA4A", "#FF3364"],
-                    fill: {
-                        type: "gradient",
-                        gradient: {
-                            shade: "light",
-                            type: "vertical",
-                            opacityFrom: 0.4,
-                            opacityTo: 0,
-                            stops: [0, 100],
-                        },
-                    },
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
-                    markers: {
-                        discrete: [
+                        responsive: [
                             {
-                                seriesIndex: 0,
-                                dataPointIndex: 2,
-                                fillColor: "#7064F5",
-                                strokeColor: "var(--white)",
-                                size: 5,
-                                sizeOffset: 3,
+                                breakpoint: 1400,
+                                options: {
+                                    chart: {
+                                        height: 325,
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 1,
-                                dataPointIndex: 2,
-                                fillColor: "#54BA4A",
-                                strokeColor: "var(--white)",
-                                size: 5,
+                                breakpoint: 1317,
+                                options: {
+                                    chart: {
+                                        height: 295,
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 2,
-                                dataPointIndex: 2,
-                                fillColor: "#FF3364",
-                                strokeColor: "var(--white)",
-                                size: 5,
+                                breakpoint: 1200,
+                                options: {
+                                    chart: {
+                                        height: 280,
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 0,
-                                dataPointIndex: 5,
-                                fillColor: "#7064F5",
-                                strokeColor: "var(--white)",
-                                size: 5,
-                                sizeOffset: 3,
+                                breakpoint: 1142,
+                                options: {
+                                    chart: {
+                                        height: 260,
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 1,
-                                dataPointIndex: 5,
-                                fillColor: "#54BA4A",
-                                strokeColor: "var(--white)",
-                                size: 5,
+                                breakpoint: 992,
+                                options: {
+                                    chart: {
+                                        height: 292,
+                                    },
+                                    xaxis: {
+                                        type: "category",
+                                        tickAmount: 5,
+                                        tickPlacement: "on",
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 2,
-                                dataPointIndex: 5,
-                                fillColor: "#FF3364",
-                                strokeColor: "var(--white)",
-                                size: 5,
+                                breakpoint: 851,
+                                options: {
+                                    chart: {
+                                        height: 260,
+                                    },
+                                },
                             },
                             {
-                                seriesIndex: 0,
-                                dataPointIndex: 9,
-                                fillColor: "#7064F5",
-                                strokeColor: "var(--white)",
-                                size: 5,
-                                sizeOffset: 3,
-                            },
-                            {
-                                seriesIndex: 1,
-                                dataPointIndex: 9,
-                                fillColor: "#54BA4A",
-                                strokeColor: "var(--white)",
-                                size: 5,
-                            },
-                            {
-                                seriesIndex: 2,
-                                dataPointIndex: 9,
-                                fillColor: "#FF3364",
-                                strokeColor: "var(--white)",
-                                size: 5,
+                                breakpoint: 343,
+                                options: {
+                                    xaxis: {
+                                        type: "category",
+                                        tickAmount: 3,
+                                        tickPlacement: "on",
+                                    },
+                                },
                             },
                         ],
-                        hover: {
-                            size: 5,
-                            sizeOffset: 0,
-                        },
-                    },
-                    xaxis: {
-                        type: "category",
-                        tickAmount: 11,
-                        tickPlacement: "on",
-                        tooltip: {
-                            enabled: false,
-                        },
-                        axisBorder: {
-                            color: "var(--chart-border)",
-                        },
-                        axisTicks: {
-                            show: false,
-                        },
-                    },
-                    legend: {
-                        show: false,
-                    },
-                    yaxis: {
-                        min: 0,
-                        max: 67,
-                        tickAmount: 6,
-                        tickPlacement: "between",
-                    },
-                    tooltip: {
-                        shared: false,
-                        intersect: false,
-                    },
-                    responsive: [
-                        {
-                            breakpoint: 1400,
-                            options: {
-                                chart: {
-                                    height: 325,
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 1317,
-                            options: {
-                                chart: {
-                                    height: 295,
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 1200,
-                            options: {
-                                chart: {
-                                    height: 280,
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 1142,
-                            options: {
-                                chart: {
-                                    height: 260,
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 992,
-                            options: {
-                                chart: {
-                                    height: 292,
-                                },
-                                xaxis: {
-                                    type: "category",
-                                    tickAmount: 5,
-                                    tickPlacement: "on",
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 851,
-                            options: {
-                                chart: {
-                                    height: 260,
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 343,
-                            options: {
-                                xaxis: {
-                                    type: "category",
-                                    tickAmount: 3,
-                                    tickPlacement: "on",
-                                },
-                            },
-                        },
-                    ],
-                };
+                    };
 
-                var chartoverview = new ApexCharts(document.querySelector("#orderoverview"), optionsoverview);
-                chartoverview.render();
+                    var chartoverview = new ApexCharts(document.querySelector("#orderoverview"), optionsoverview);
+                    chartoverview.render();
                 });
             </script>
         </div>
@@ -493,34 +495,34 @@
             <div class="card p-5">
                 <div class="card-header card-no-border">
 
-                        <h5 class=" text-xl">Monthly Profits</h5>
-                        @php
-                            $total = \App\Models\OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
-                            $prevMonth = $now->subMonth();
-                            $totalPrev = \App\Models\OrderProofOfCash::whereMonth('created_at',$prevMonth->month-1)->whereYear('created_at',$prevMonth->year)->sum('nominal');
+                    <h5 class=" text-xl">Monthly Profits</h5>
+                    @php
+                        $total = OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
+                        $prevMonth = $now->subMonth();
+                        $totalPrev = OrderProofOfCash::whereMonth('created_at',$prevMonth->month-1)->whereYear('created_at',$prevMonth->year)->sum('nominal');
+                        $increase = 0;
+                        $icon = '-';
+                        if ($total==0 || $totalPrev==0){
                             $increase = 0;
-                            $icon = '-';
-                            if ($total==0 || $totalPrev==0){
-                                $increase = 0;
-                            }else{
-                                $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
-                            }
-                             if ($increase < 0) {
-                                 $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
-                             } elseif ($increase > 0) {
-                                 $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
-                             } else {
-                                 $icon = "<i class='text-green-500 '> </i> -";
-                             }
+                        }else{
+                            $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
+                        }
+                         if ($increase < 0) {
+                             $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
+                         } elseif ($increase > 0) {
+                             $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
+                         } else {
+                             $icon = "<i class='text-green-500 '> </i> -";
+                         }
 
 
-                        @endphp
+                    @endphp
 
-                        <h5 class=" text-md text-gray-500">Total Peningkatan
-                            <font class="{{ increase_check($increase) }} text-sm">
-                                {!! $icon !!} {{ $increase }}%
-                            </font>
-                        </h5>
+                    <h5 class=" text-md text-gray-500">Total Peningkatan
+                        <font class="{{ increase_check($increase) }} text-sm">
+                            {!! $icon !!} {{ $increase }}%
+                        </font>
+                    </h5>
 
                 </div>
                 <div class="card-body pt-0">
@@ -603,7 +605,7 @@
                                 },
                             },
                         },
-                        colors: ["#54BA4A","#7a6eff", "#FFA941"],
+                        colors: ["#54BA4A", "#7a6eff", "#FFA941"],
                         responsive: [
                             {
                                 breakpoint: 1425,
@@ -657,14 +659,15 @@
                             <tbody>
                             @php
 
-                            @endphp
+                                @endphp
 
-                            @foreach(\App\Models\Customer::get() as $index=>$customer)
-                            <tr>
-                                <td style="width: 10px!important;">{{ $index+1 }}</td>
-                                <td>{{ $customer->name }}</td>
-                                <td>Rp. {{ thousand_format(\App\Models\OrderProofOfCash::whereHas('order',function ($q) use ($customer){$q->where('customer_id',$customer->id);})->sum('nominal')) }}</td>
-                            </tr>
+                            @foreach(Customer::get() as $index=>$customer)
+                                <tr>
+                                    <td style="width: 10px!important;">{{ $index+1 }}</td>
+                                    <td>{{ $customer->name }}</td>
+                                    <td>
+                                        Rp. {{ thousand_format(OrderProofOfCash::whereHas('order',function ($q) use ($customer){$q->where('customer_id',$customer->id);})->sum('nominal')) }}</td>
+                                </tr>
                             @endforeach
 
                             </tbody>
