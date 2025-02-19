@@ -60,17 +60,17 @@
         </thead>
         <tbody>
         @php
-        $loop =0;
+        $l =0;
         @endphp
         @foreach($order->orderProducts->where('partner_id',$id) as $index=>$opd)
             @if($opd->partner_id==$id)
                 @php
                 $count-=1;
-                $loop+=1;
+                $l+=1;
                 $total+=($opd->quantity*$opd->price);
                 @endphp
             <tr style="height: 10px !important;">
-                <td style="text-align: center">{{ $loop }}</td>
+                <td style="text-align: center">{{ $l }}</td>
                 <td style="text-align: center">{{ thousand_format($opd->quantity) }}</td>
                 <td>{{ $opd->name }}</td>
                 <td class="" style="padding: 0; margin: 0">
