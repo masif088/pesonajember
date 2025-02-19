@@ -103,8 +103,9 @@
 
                                         @endphp
                                         {{ thousand_format($totalTransaction) }} Transaksi
-                                        <font class="{{ increase_check($increase) }} text-sm">
-                                            {!! $icon !!} {{ $increase }}%
+                                        <font class="{{ increase_check($increase) }} text-xs flex text-nowrap">
+                                            {!! $icon !!}
+                                            <span>{{ $increase }}%</span>
                                         </font>
 
                                     </h4>
@@ -152,9 +153,11 @@
                                             }
                                         @endphp
                                         {{ thousand_format($total) }} Transaksi
-                                        <font class="{{ increase_check($increase) }} text-sm">
-                                            {!! $icon !!} {{ $increase }}%
+                                        <font class="{{ increase_check($increase) }} text-xs flex text-nowrap">
+                                            {!! $icon !!}
+                                            <span>{{ $increase }}%</span>
                                         </font>
+
 
                                     </h4>
                                 </td>
