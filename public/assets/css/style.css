@@ -8036,9 +8036,13 @@ button.button-primary:hover {
     letter-spacing: 0.5px;
     border-radius: 15px;
     /*box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);*/
-    box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;
-    -webkit-box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;
-    -moz-box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;
+    /*box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;*/
+    /*-webkit-box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;*/
+    /*-moz-box-shadow: 2px 1px 17px 1px rgba(0,0,0,0.31) !important;*/
+
+    box-shadow: -1px 2px 30px -7px rgba(0,0,0,0.1);
+    -webkit-box-shadow: -1px 2px 30px -7px rgba(0,0,0,0.1);
+    -moz-box-shadow: -1px 2px 30px -7px rgba(0,0,0,0.1);
 }
 .card:hover {
     /*box-shadow: 0 0 40px rgba(8, 21, 66, 0.05);*/
@@ -22787,44 +22791,10 @@ p.data-attributes svg {
     }
 }
 .overview-card .balance-data {
-    right: -158px;
-    top: -43px;
+    top: -10px;
+    right: 40px;
 }
-@media (max-width: 1808px) and (min-width: 1759px) {
-    .overview-card .balance-data {
-        right: -150px;
-    }
-}
-@media (max-width: 1758px) and (min-width: 1400px) {
-    .overview-card .balance-data {
-        right: -142px;
-    }
-}
-@media (max-width: 1399px) and (min-width: 1346px) {
-    .overview-card .balance-data {
-        right: -175px;
-    }
-}
-@media (max-width: 1345px) and (min-width: 1291px) {
-    .overview-card .balance-data {
-        right: -162px;
-    }
-}
-@media (max-width: 1290px) and (min-width: 1236px) {
-    .overview-card .balance-data {
-        right: -150px;
-    }
-}
-@media (max-width: 1235px) and (min-width: 1050px) {
-    .overview-card .balance-data {
-        right: -135px;
-    }
-}
-@media (max-width: 1049px) and (min-width: 991px) {
-    .overview-card .balance-data {
-        right: -124px;
-    }
-}
+
 @media (max-width: 990px) {
     .overview-card .balance-data {
         display: none;

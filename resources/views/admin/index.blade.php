@@ -1,6 +1,6 @@
 @php
     use Carbon\Carbon;
-    $now = Carbon::now();
+
 @endphp
 <x-admin-layout>
     <x-slot name="title">
@@ -25,81 +25,84 @@
                         <table style="height: 100%; width: 100%">
                             <tr>
                                 <td class="align-middle">
-                                    <h6>Pendapatan Bulan ini</h6>
-                                    <h4 class="text-green-900 flex justify-between text-xl">
+                                    <h6 class="font-medium mb-2">Pendapatan Bulan ini</h6>
+                                    <h4 class="text-green-900 flex justify-between text-lg">
                                         @php
-                                        $total = \App\Models\OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
-                                        $prevMonth = $now->subMonth();
-                                        $totalPrev = \App\Models\OrderProofOfCash::whereMonth('created_at',$prevMonth->month-1)->whereYear('created_at',$prevMonth->year)->sum('nominal');
-                                        $increase = 0;
-                                        $icon = '-';
-                                        if ($total==0 || $totalPrev==0){
-                                            $increase = 0;
-                                        }else{
-                                            $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
-                                        }
-                                         if ($increase < 0) {
-                                             $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
-                                         } elseif ($increase > 0) {
-                                             $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
-                                         } else {
-                                             $icon = "<i class='text-green-500 '> </i> -";
-                                         }
-
-
-                                        @endphp
-                                        Rp. {{ thousand_format($total) }}
-                                        <font class="{{ increase_check($increase) }} text-sm">
-                                            {!! $icon !!} {{ $increase }}%
-                                        </font>
-
-                                    </h4>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:col-span-4 col-span-12">
-            <div class="card">
-                <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
-                    <div class="bg-green-200 rounded-full my-auto"
-                         style="width: 64px !important;height: 64px !important;; padding: 20px 0">
-                                <span class="iconify text-green-900 text-2xl mx-auto"
-                                      data-icon="icon-park-solid:wallet"></span>
-                    </div>
-
-                    <div class="w-8/12">
-
-                        <table style="height: 100%; width: 100%">
-                            <tr>
-                                <td class="align-middle">
-                                    <h6>Transaksi Bulan ini</h6>
-                                    <h4 class="text-green-900 flex justify-between text-xl">
-                                        @php
-                                            $total = \App\Models\Order::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->count();
+                                            $now = Carbon::now();
+                                            $totalIncome = \App\Models\OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
                                             $prevMonth = $now->subMonth();
-                                            $totalPrev = \App\Models\Order::whereMonth('created_at',$prevMonth->month-1)->whereYear('created_at',$prevMonth->year)->count();
+                                            $totalIncomePrev = \App\Models\OrderProofOfCash::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->sum('nominal');
                                             $increase = 0;
                                             $icon = '-';
-                                            if ($total==0 || $totalPrev==0){
+                                            if ($totalIncome==0 || $totalIncomePrev==0 || $totalIncome==$totalIncomePrev){
                                                 $increase = 0;
                                             }else{
-                                                $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
+                                                $increase = number_format(($totalIncome-$totalIncomePrev)/$totalIncomePrev*100,2,',','.');
                                             }
                                              if ($increase < 0) {
-                                                 $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
+                                                 $icon = "<span class='iconify text-red-900' data-icon='mingcute:arrow-down-fill'></span>";
                                              } elseif ($increase > 0) {
-                                                 $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
+                                                 $icon = "<span class='iconify text-green-900' data-icon='mingcute:arrow-up-fill'></span>";
                                              } else {
                                                  $icon = "<i class='text-green-500 '> </i> -";
                                              }
 
 
                                         @endphp
-                                        {{ thousand_format($total) }} Transaksi
+                                        Rp. {{ thousand_format($totalIncome) }}
+                                        <font class="{{ increase_check($increase) }} text-xs flex text-nowrap">
+                                            {!! $icon !!}
+                                            <span>{{ $increase }}%</span>
+                                        </font>
+
+                                    </h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-4 col-span-12">
+            <div class="card">
+                <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
+                    <div class="bg-green-200 rounded-full my-auto"
+                         style="width: 64px !important;height: 64px !important;; padding: 20px 0">
+                                <span class="iconify text-green-900 text-2xl mx-auto"
+                                      data-icon="icon-park-solid:wallet"></span>
+                    </div>
+
+                    <div class="w-8/12">
+
+                        <table style="height: 100%; width: 100%">
+                            <tr>
+                                <td class="align-middle">
+                                    <h6 class="font-medium mb-2">Transaksi Bulan ini</h6>
+                                    <h4 class="text-green-900 flex justify-between text-lg">
+                                        @php
+                                            $now = Carbon::now();
+                                                $totalTransaction = \App\Models\Order::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->count();
+                                                $prevMonth = $now->subMonth();
+                                                $totalTransactionPrev = \App\Models\Order::whereMonth('created_at',$prevMonth->month)->whereYear('created_at',$prevMonth->year)->count();
+                                                $increase = 0;
+                                                $icon = '-';
+                                                if ($totalTransaction==0 || $totalTransactionPrev==0 || $totalTransaction==$totalTransactionPrev){
+                                                    $increase = 0;
+                                                }else{
+                                                    $increase = number_format(($totalTransactionPrev-$totalTransaction)/$totalTransactionPrev*100,2,',','.');
+                                                }
+                                                 if ($increase < 0) {
+                                                     $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
+                                                 } elseif ($increase > 0) {
+                                                     $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
+                                                 } else {
+                                                     $icon = "<i class='text-green-500 '> </i> -";
+                                                 }
+
+
+                                        @endphp
+                                        {{ thousand_format($totalTransaction) }} Transaksi
                                         <font class="{{ increase_check($increase) }} text-sm">
                                             {!! $icon !!} {{ $increase }}%
                                         </font>
@@ -127,12 +130,12 @@
                         <table style="height: 100%; width: 100%">
                             <tr>
                                 <td class="align-middle">
-                                    <h6>Order Selesai Bulan ini</h6>
-                                    <h4 class="text-green-900 flex justify-between text-xl">
+                                    <h6 class="font-medium mb-2">Order Selesai Bulan ini</h6>
+                                    <h4 class="text-green-900 flex justify-between text-lg">
                                         @php
                                             $total = \App\Models\Order::whereMonth('updated_at',$now->month)->whereYear('updated_at',$now->year)->where('status',3)->count();
                                             $prevMonth = $now->subMonth();
-                                            $totalPrev = \App\Models\Order::whereMonth('updated_at',$prevMonth->month-1)->whereYear('updated_at',$prevMonth->year)->where('status',3)->count();
+                                            $totalPrev = \App\Models\Order::whereMonth('updated_at',$prevMonth->month)->whereYear('updated_at',$prevMonth->year)->where('status',3)->count();
                                             $increase = 0;
                                             $icon = '-';
                                             if ($total==0 || $totalPrev==0){
@@ -186,9 +189,8 @@
                                     <div class="col-xl-12">
                                         <div class="card-body p-0">
                                             <ul class="balance-data">
-                                                <li><span class="circle bg-secondary"></span><span class="f-light ms-1">Refunds</span></li>
-                                                <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Earning</span></li>
-                                                <li><span class="circle bg-success"> </span><span class="f-light ms-1">Order</span></li>
+                                                <li><span class="circle bg-primary"> </span><span class="f-light ms-1">Order Masuk</span></li>
+                                                <li><span class="circle bg-success"> </span><span class="f-light ms-1">Total Pembayaran</span></li>
                                             </ul>
                                             <div class="current-sale-container order-container">
                                                 <div class="overview-wrapper" id="orderoverview"></div>
@@ -203,6 +205,9 @@
                         </div>
                         <div class="col-span-3 md:col-span-4  p-0 box-col-4e ds-md-none gap-3">
                             <div class="row g-sm-3 g-2 gap-3 grid grid-cols-12">
+                                <div class="col-span-12 mb-4">
+                                    <h2>Progress Bulan kemarin</h2>
+                                </div>
                                 <div class="col-span-12">
                                     <div class="light-card balance-card widget-hover">
                                         <div class="svg-box">
@@ -210,8 +215,10 @@
                                                 <use href="../assets/svg/icon-sprite.svg#orders"></use>
                                             </svg>
                                         </div>
-                                        <div> <span class="f-light">Orders</span>
-                                            <h6 class="mt-1 mb-0 counter" data-target="10098">0</h6>
+                                        <div> <span class="f-light">Order Masuk</span>
+                                            <h6 class="mt-1 mb-0 counter" >
+                                                {{ thousand_format($totalTransactionPrev) }} Transaksi
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
@@ -219,26 +226,15 @@
                                     <div class="light-card balance-card widget-hover">
                                         <div class="svg-box">
                                             <svg class="svg-fill">
-                                                <use href="../assets/svg/icon-sprite.svg#expense"></use>
+                                                <use href="{{ asset('assets/svg/icon-sprite.svg#expense')}}"></use>
                                             </svg>
                                         </div>
-                                        <div> <span class="f-light">Earning</span>
-                                            <h6 class="mt-1 mb-0">$<span class="counter" data-target="12678">0</span></h6>
+                                        <div> <span class="f-light">Uang Masuk</span>
+                                            <h6 class="mt-1 mb-0">Rp. <span class="counter" data-target="12678">{{ thousand_format($totalIncomePrev) }}</span></h6>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-span-12">
-                                    <div class="light-card balance-card widget-hover">
-                                        <div class="svg-box">
-                                            <svg class="svg-fill">
-                                                <use href="../assets/svg/icon-sprite.svg#doller-return"></use>
-                                            </svg>
-                                        </div>
-                                        <div> <span class="f-light">Refunds</span>
-                                            <h6 class="mt-1 mb-0 counter" data-target="3001">0  </h6>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -249,20 +245,20 @@
                 var optionsoverview = {
                     series: [
                         {
-                            name: "Earning",
+                            name: "Order",
                             type: "area",
                             data: [44, 55, 35, 50, 67, 50, 55, 45, 32, 38, 45],
                         },
                         {
-                            name: "Order",
+                            name: "Total Pembayaran",
                             type: "area",
                             data: [35, 30, 23, 40, 50, 35, 40, 52, 67, 50, 55],
                         },
-                        {
-                            name: "Refunds",
-                            type: "area",
-                            data: [25, 20, 15, 25, 32, 20, 30, 35, 23, 30, 20],
-                        },
+                        // {
+                        //     name: "Refunds",
+                        //     type: "area",
+                        //     data: [25, 20, 15, 25, 32, 20, 30, 35, 23, 30, 20],
+                        // },
                     ],
                     chart: {
                         height: 340,
@@ -659,6 +655,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php
+
+                            @endphp
+
                             @foreach(\App\Models\Customer::get() as $index=>$customer)
                             <tr>
                                 <td style="width: 10px!important;">{{ $index+1 }}</td>
