@@ -90,7 +90,7 @@
                                                 if ($totalTransaction==0 || $totalTransactionPrev==0 || $totalTransaction==$totalTransactionPrev){
                                                     $increase = 0;
                                                 }else{
-                                                    $increase = number_format(($totalTransactionPrev-$totalTransaction)/$totalTransactionPrev*100,2,',','.');
+                                                    $increase = number_format(($totalTransaction-$totalTransactionPrev)/$totalTransactionPrev*100,2,',','.');
                                                 }
                                      if ($increase < 0) {
                                                  $icon = "<span class='iconify text-red-900' data-icon='mingcute:arrow-down-fill'></span>";
@@ -142,7 +142,7 @@
                                             if ($total==0 || $totalPrev==0){
                                                 $increase = 0;
                                             }else{
-                                                $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
+                                                $increase = number_format(($total-$totalPrev)/$totalPrev*100,2,',','.');
                                             }
                                             if ($increase < 0) {
                                                  $icon = "<span class='iconify text-red-900' data-icon='mingcute:arrow-down-fill'></span>";
