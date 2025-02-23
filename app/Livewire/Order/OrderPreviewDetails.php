@@ -20,10 +20,12 @@ class OrderPreviewDetails extends Component
     public $hpp=[];
     public $sharings;
     public $sharingTitle;
+    public $type;
 
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->type = $this->order->transaction_type_id;
         $this->ppn = $this->order->ppn;
         $this->sharingTitle = $this->order->orderSharings;
 

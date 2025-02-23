@@ -80,6 +80,12 @@ class OrderController extends Controller
         $this->property['title'] = "Sharing {$order->transactionType->title} - {$order->order_number}" ; ;
         return view($this->name.'sharing',['property' => $this->property,'id'=>$id]);
     }
+    public function sharingPercentage($id)
+    {
+        $order = Order::find($id);
+        $this->property['title'] = "Sharing Percentage {$order->transactionType->title} - {$order->order_number}" ; ;
+        return view($this->name.'sharing-percentage',['property' => $this->property,'id'=>$id]);
+    }
     public function taxEdit($id)
     {
         $order = Order::find($id);

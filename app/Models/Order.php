@@ -15,11 +15,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string order_number
  * @property double pph
  * @property double ppn
+ * @property double percentage
+ * @property double value
  */
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['transaction_type_id', 'customer_id', 'user_id', 'order_number','status','pph', 'ppn'];
+    protected $fillable = ['transaction_type_id', 'customer_id', 'user_id', 'order_number','status','pph', 'ppn','percentage', 'value'];
 
     public function transactionType(){
         return $this->belongsTo(TransactionType::class);

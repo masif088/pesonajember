@@ -12,12 +12,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string phone
  * @property string email
  * @property string note
+ * @property string customer_own
  */
 
 class Customer extends Model
 {
     use HasFactory;
-    protected $fillable=['company_name', 'name', 'phone', 'email', 'note'];
+    protected $fillable=['company_name', 'name', 'phone', 'email', 'note','customer_own'];
 
     public function customerAccounts(): HasMany
     {
@@ -26,5 +27,10 @@ class Customer extends Model
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class,'customer_id');
+    }
+
+    public function customerOwns(): HasMany
+    {
+        return $this->hasMany(Customer::class,'customer_own');
     }
 }

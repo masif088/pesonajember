@@ -22,14 +22,19 @@
                     <tr class="font-bold border-b" style="height: 40px">
                         <td style="min-width: 150px">Nama Barang</td>
                         <td style="min-width: 60px">Qty</td>
+                        @if($type!=3)
                         <td style="min-width: 60px" class="text-center">%PPH</td>
+                        @endif
                         <td style="min-width: 150px" class="text-center">Harga Barang</td>
                         <td style="min-width: 150px" class="text-center">Nilai Kontrak</td>
+                        @if($type!=3)
                         <td style="min-width: 150px" class="text-center">DPP/TNP PPN</td>
                         <td style="min-width: 150px" class="text-center">PPN({{$ppn}}%)</td>
                         <td style="min-width: 150px" class="text-center">PPH</td>
+
                         <td style="min-width: 150px" class="text-center">Harga <br> Setelah Pajak</td>
                         <td style="min-width: 150px" class="text-center">Total Harga <br>Setelah Pajak</td>
+                        @endif
                         @if($sharing)
                         <td style="min-width: 150px" class="text-center">Total HPP</td>
 
@@ -76,13 +81,19 @@
 
                             $afterTaxCount+=$afterTax;
                             $valueAfterTaxCount+=$afterTax*$item['quantity'];
+if($type!=3){
+    $values = [$item['price'],$item['value'],$dpp,$ppnProduct,$pphProduct,$afterTax,($afterTax*$item['quantity'])];
+}else{
+    $values = [$item['price'],$item['value'],];
+}
 
-                            $values = [$item['price'],$item['value'],$dpp,$ppnProduct,$pphProduct,$afterTax,($afterTax*$item['quantity'])]
                         @endphp
                         <tr style="height: 40px">
                             <td>{{ $item['name'] }}</td>
                             <td>{{ thousand_format($item['quantity']) }}pcs</td>
+                            @if($type!=3)
                             <td class="text-center">{{ $item['pph'] }}%</td>
+                            @endif
                             @foreach($values as $value)
                                 <td>
                                     <div class="flex justify-between py-2 px-4">
@@ -130,10 +141,17 @@
                     @endforeach
 
                     @php
-                        $values = [$valueCount,$dppCount,$ppnProductCount,$pphProductCount,$afterTaxCount,$valueAfterTaxCount]
+                       if ($type!=3){
+                            $values = [$valueCount,$dppCount,$ppnProductCount,$pphProductCount,$afterTaxCount,$valueAfterTaxCount];
+                       }else{
+                            $values = [$valueCount];
+                       }
+
                     @endphp
                     <tr class="border-t font-bold">
+                        @if($type!=3)
                         <td></td>
+                        @endif
                         <td></td>
                         <td></td>
                         <td class="py-2 pr-2">

@@ -15,11 +15,13 @@ class OrderPreview extends Component
     public $order;
     public $pph = 1.5;
     public $ppn = 11;
+    public $type;
 
 
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->type = $this->order->transaction_type_id;
 
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $this->partners[$item->partner_id] = [

@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property integer order_id
  * @property string title
+
  */
 
 class OrderSharing extends Model
 {
     use HasFactory;
-    protected $fillable=['order_id', 'title'];
+    protected $fillable=['order_id', 'title',];
 
     public function order(): BelongsTo
     {

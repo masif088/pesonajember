@@ -2,12 +2,11 @@
 
 namespace App\Repository\View;
 
-use App\Models\OrderProduct;
 use App\Models\OrderSharingDetail;
 use App\Repository\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class OrderMargin extends \App\Models\Order implements View
+class OrderMarginFlag extends \App\Models\Order implements View
 {
     protected $table = 'orders';
 
@@ -42,17 +41,14 @@ class OrderMargin extends \App\Models\Order implements View
             ['label' => 'Nomer Transaksi', 'sort' => 'order_number', 'width' => '10%'],
             ['label' => 'Nama Perusahaan', 'sort' => 'customer.name',],
             ['label' => 'Nominal Kontrak',],
-            ['label' => 'Harga Setelah Pajak','width'=>'30%'],
-            ['label' => 'Jumlah HPP',],
-            ['label' => 'Sharing',],
-            ['label' => 'Laba/Rugi',],
-            ['label' => 'PIC',],
+
+            ['label' => 'Sharing Pendapatan',],
+
             ['label' => 'Tindakan'],
         ];
     }
     public static function tableData($data = null,$params=[]): array
     {
-//        dd($data->transaction_type_id);
         $linkEdit = route('admin.order.edit', $data->id);
         $buttonEdit = "<a href='$linkEdit' class='p-2 bg-yellow-100 hover:bg-yellow-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-yellow-900' data-icon='ic:baseline-edit'></span>
@@ -68,10 +64,6 @@ class OrderMargin extends \App\Models\Order implements View
                             <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                        </a>";
 
-        $linkTax = route('admin.order.tax-edit', $data->id);
-        $buttonTax = "<a href='$linkTax' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
-                            <span class='iconify text-green-900' data-icon='vaadin:book-dollar'></span>
-                       </a>";
 
         $orderLast = \App\Models\Order::orderByDesc('id')->first();
         $buttonDelete='';
@@ -80,39 +72,25 @@ class OrderMargin extends \App\Models\Order implements View
                             <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
                        </a>";
         }
-        $allHppValue = $data->orderProducts->sum('hpp_value');
+
         $allContractValue = $data->orderProducts->sum('value');
-        $afterTax = 0;
+
         $ppn =  $data->ppn;
 
-        $allSharing= 0;
-        foreach ($data->orderProducts as $item2){
-            $afterTax += getTax($item2->value,$ppn,$item2->pph);;
-            foreach ($data->orderSharings as $s){
-                $osd = OrderSharingDetail::where('order_sharing_id', $s->id)->where('order_product_id', $item2->id)->first();
-                if ($osd != null) {
-                    $allSharing += $osd->percentage*getTax(($item2->price * $item2->quantity),$ppn,$item2->pph)/100;
-                }
-            }
-        }
+        $allSharing= $data->value*$data->percentage/100;
 
-        $margin = $afterTax-$allHppValue-$allSharing;
 
-        $marginPresentation = number_format($margin/$allContractValue*100,2,',','.');
-        $margin = thousand_format($margin);
 
-        $l =  route('admin.order.hpp',$data->id);
-        if ($allHppValue==0){
-            $hpp = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input HPP</a>";
-        }else{
-            $hpp= '<div class="mb-2">Rp.'.thousand_format($allHppValue)."</div> <a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
-        }
 
-        $l =  route('admin.order.sharing',$data->id);
+        $l =  route('admin.order.sharing-percentage',$data->id);
         if ($allSharing==0){
             $sharing = "<a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1'>Input Sharing</a>";
         }else{
-            $sharing= '<div class="mb-2">Rp.'.thousand_format($allSharing)."</div><a href='$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
+            $sharing= '
+<div class="mb-2">Nominal Pencarian : Rp.'.thousand_format($data->value).'</div>
+<div class="mb-2">Persentase Sharing : '.$data->percentage.'%</div>
+<div class="mb-2">Total Sharing : Rp.'.thousand_format($allSharing).'</div>'
+                ."<a href='.$l' class='bg-green-100 hover:bg-green-200 text-green-900 text-nowrap rounded px-5 py-1 mt-1'>Edit</a>";
         }
 
 
@@ -124,11 +102,7 @@ class OrderMargin extends \App\Models\Order implements View
 
             "],
             ['type' => 'raw_html','data'=>'<div class="text-nowrap">Rp. '.number_format($allContractValue,2,',','.'). " <br> ({$data->orderProducts->count()} item) </div>"],
-            ['type' => 'string','data'=>'Rp.'.thousand_format($afterTax)],
-            ['type' => 'raw_html','data'=>$hpp],
             ['type' => 'raw_html','data'=>$sharing],
-            ['type' => 'raw_html','data'=>"<div class='text-nowrap'>Rp. $margin <br> Profit Margin: $marginPresentation%</div>"],
-            ['type' => 'string','data'=>$data->user->name],
             ['type' => 'raw_html', 'data' =>
                 "<div class='text-xl flex gap-1'>
                     <br>
@@ -136,7 +110,6 @@ class OrderMargin extends \App\Models\Order implements View
                     $buttonPreview
                     $buttonShow
                     $buttonDelete
-                    $buttonTax
                 </div>"
             ],
 
