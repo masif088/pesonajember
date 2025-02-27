@@ -54,11 +54,11 @@
                 <td>Rp. {{ thousand_format($order->orderProducts->sum('value')) }}</td>
             </tr>
 
-            <tr>
-                <td>Total profit</td>
-                <td class="pr-5 pl-5">:</td>
-                <td>Rp. {{ thousand_format($getAll) }}</td>
-            </tr>
+{{--            <tr>--}}
+{{--                <td>Total profit</td>--}}
+{{--                <td class="pr-5 pl-5">:</td>--}}
+{{--                <td>Rp. {{ thousand_format($getAll) }}</td>--}}
+{{--            </tr>--}}
 
         @endif
 

@@ -16,12 +16,13 @@ class CompleteTransaction extends Component
 $this->getAll();
     }
 
-    public function getAll(){
-        foreach ($this->order->orderProducts as $orderProduct){
-            dd($orderProduct);
-
-        }
-    }
+//    public function getAll(){
+//        foreach ($this->order->orderProducts as $orderProduct){
+//            if ($this->order->transaction_type_id!=3){
+//                $orderProduct->value-$orderProduct->-getTax($orderProduct->value,$this->order->ppn,$orderProduct->pph);
+//            }
+//        }
+//    }
 
     public function endTransaction()
     {
