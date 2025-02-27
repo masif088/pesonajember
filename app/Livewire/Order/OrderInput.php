@@ -14,9 +14,10 @@ class OrderInput extends Component
     public $partners=[];
     public $formItem;
     public $orderId;
-
+public  $order;
     public function mount()
     {
+        $this->order= Order::find($this->orderId);
 
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $this->partners[$item->partner_id] = [
@@ -31,7 +32,7 @@ class OrderInput extends Component
     public function setNullForm()
     {
 
-        $this->formItem = ['partner_id' => null, 'name' => null, 'price' => null, 'quantity' => null, 'value' => null,];
+        $this->formItem = ['partner_id' => null, 'name' => null, 'price' => null, 'quantity' => null, 'value' => null,'pph'=>$this->order->pph];
     }
     public function getRules()
     {

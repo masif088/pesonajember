@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Repository\Form;
 use Carbon\Carbon;
 
-class Order implements Form
+class Order extends \App\Models\Order implements Form
 {
     public static function formRules(): array
     {
@@ -49,6 +49,18 @@ class Order implements Form
                 'model' => 'user_id',
                 'options' => $users,
                 'class' => 'col-span-12',
+            ],
+            [
+                'title' => 'PPN',
+                'type' => 'number',
+                'model' => 'ppn',
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'PPh (bawaan untuk seluruh produk)',
+                'type' => 'number',
+                'model' => 'pph',
+                'class' => 'col-span-6',
             ],
         ];
     }

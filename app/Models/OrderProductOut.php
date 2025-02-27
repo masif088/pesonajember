@@ -25,6 +25,10 @@ class OrderProductOut extends Model
     {
         return $this->belongsTo(Order::class,'order_id');
     }
+    public function partner(): BelongsTo
+    {
+        return $this->belongsTo(Partner::class,'partner_id');
+    }
 
     public function orderProductOutDetails(): HasMany
     {

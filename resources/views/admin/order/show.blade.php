@@ -78,39 +78,39 @@
                                     </a>
                                 </td>
                             </tr>
-                        <tr style="height: 50px">
-                            <td style="width: 25% !important;">Surat Jalan</td>
-                            <td class="px-5 p-2">:</td>
-                            <td class="">
-                                <div
-                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"
-                                    style="width: 100px">
-                                    Lihat
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td style="width: 25% !important;">Bukti Barang Keluar</td>
-                            <td class="px-5 p-2">:</td>
-                            <td class="">
-                                <div
-                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"
-                                    style="width: 100px">
-                                    Lihat
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td style="width: 25% !important;">Rekap Pembayaran</td>
-                            <td class="px-5 p-2">:</td>
-                            <td class="">
-                                <div
-                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"
-                                    style="width: 100px">
-                                    Lihat
-                                </div>
-                            </td>
-                        </tr>
+{{--                        <tr style="height: 50px">--}}
+{{--                            <td style="width: 25% !important;">Surat Jalan</td>--}}
+{{--                            <td class="px-5 p-2">:</td>--}}
+{{--                            <td class="">--}}
+{{--                                <a href="{{ route('prod') }}"--}}
+{{--                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"--}}
+{{--                                    style="width: 100px">--}}
+{{--                                    Lihat--}}
+{{--                                </a>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr style="height: 50px">--}}
+{{--                            <td style="width: 25% !important;">Bukti Barang Keluar</td>--}}
+{{--                            <td class="px-5 p-2">:</td>--}}
+{{--                            <td class="">--}}
+{{--                                <div--}}
+{{--                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"--}}
+{{--                                    style="width: 100px">--}}
+{{--                                    Lihat--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr style="height: 50px">--}}
+{{--                            <td style="width: 25% !important;">Rekap Pembayaran</td>--}}
+{{--                            <td class="px-5 p-2">:</td>--}}
+{{--                            <td class="">--}}
+{{--                                <div--}}
+{{--                                    class="bg-green-100 hover:bg-green-200 text-green-900 px-5 py-2 rounded text-center"--}}
+{{--                                    style="width: 100px">--}}
+{{--                                    Lihat--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
                     </table>
                 </div>
             </div>

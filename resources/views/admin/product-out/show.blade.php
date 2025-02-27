@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
 
-                @foreach($order->orderProductOuts as $opo)
+                @foreach($order->orderProductOuts->where('partner_id',$id) as $opo)
                     <tr style="height: 100px;" class="border-b-2">
                         <td class="align-top py-2">
                             Nomer Barang Keluar: <br><b>{{ $opo->reference_product_out??'-' }}</b> <br>

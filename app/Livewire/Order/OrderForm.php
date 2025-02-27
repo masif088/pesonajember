@@ -25,7 +25,7 @@ class OrderForm extends Component
     public $companyChild;
     public function mount()
     {
-        $this->form = form_model(model::class);
+        $this->form = form_model(model::class,$this->dataId);
 
         $this->form['partners'] = [];
         $partner= [];
@@ -75,6 +75,8 @@ class OrderForm extends Component
             'customer_id' => $this->form['customer_id'],
             'order_number' =>model::getOrderNumber(),
             'user_id' => $this->form['user_id'],
+            'pph' => $this->form['pph'],
+            'ppn' => $this->form['ppn'],
         ]);
         foreach ($this->form['partners'] as $partner) {
             OrderPartner::create([
@@ -102,12 +104,15 @@ class OrderForm extends Component
         $o->update([
             'user_id' => $this->form['user_id'],
             'status' => $this->status,
+            'pph' => $this->form['pph'],
+            'ppn' => $this->form['ppn'],
         ]);
         OrderPartner::where('order_id',$o->id)->delete();
         foreach ($this->form['partners'] as $partner) {
             OrderPartner::create([
                 'order_id' => $this->dataId,
                 'partner_id' => $partner,
+
             ]);
         }
 

@@ -53,6 +53,7 @@ class ProofOfCash extends \App\Models\Order implements View
 
 
         return [
+            ['type' => 'string', 'data' => $data->created_at],
             ['type' => 'string', 'data' => $data->order_number],
             ['type' => 'string', 'data' => $data->transactionType->title],
             ['type' => 'raw_html', 'data' => "
