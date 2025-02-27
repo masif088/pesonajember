@@ -46343,7 +46343,7 @@ form header {
     font-size: 14px !important;
     padding: 6px 28px;
     font-weight: 400;
-    color: var(--theme-default);
+
     margin: 0;
 }
 .swal2-container button.swal2-close {

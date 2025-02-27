@@ -45,7 +45,7 @@ class User extends \App\Models\User implements View
                        </a>";
         }
 
-        $linkEdit = route('admin.supplier.edit', $data->id);
+        $linkEdit = route('admin.employee.edit', $data->id);
         $imgEdit =asset('assets/icons/ic_edit.svg');
         $buttonEdit = "<a href='$linkEdit' class='p-2 bg-yellow-100 hover:bg-yellow-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-yellow-900' data-icon='ic:baseline-edit'></span>

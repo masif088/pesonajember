@@ -41,9 +41,7 @@ class OrderMarginFlag extends \App\Models\Order implements View
             ['label' => 'Nomer Transaksi', 'sort' => 'order_number', 'width' => '10%'],
             ['label' => 'Nama Perusahaan', 'sort' => 'customer.name',],
             ['label' => 'Nominal Kontrak',],
-
             ['label' => 'Sharing Pendapatan',],
-
             ['label' => 'Tindakan'],
         ];
     }
@@ -74,8 +72,6 @@ class OrderMarginFlag extends \App\Models\Order implements View
         }
 
         $allContractValue = $data->orderProducts->sum('value');
-
-        $ppn =  $data->ppn;
 
         $allSharing= $data->value*$data->percentage/100;
 

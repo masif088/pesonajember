@@ -1,5 +1,5 @@
 @php
-    use App\Models\Customer;use App\Models\Order;use App\Models\OrderProofOfCash;use Carbon\Carbon;
+    use App\Models\Customer;use App\Models\Order;use App\Models\OrderProofOfCash;use App\Models\OrderSharingDetail;use Carbon\Carbon;
 
 @endphp
 <x-admin-layout>
@@ -16,8 +16,8 @@
                 <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
                     <div class="bg-green-200 rounded-full my-auto"
                          style="width: 64px !important;height: 64px !important;; padding: 20px 0">
-                                <span class="iconify text-green-900 text-2xl mx-auto"
-                                      data-icon="icon-park-solid:wallet"></span>
+                        <span class="iconify text-green-900 text-2xl mx-auto"
+                              data-icon="icon-park-solid:wallet"></span>
                     </div>
 
                     <div class="w-8/12">
@@ -495,152 +495,10 @@
 
         <div class="lg:col-span-4 col-span-12">
 
-            <div class="card p-5">
-                <div class="card-header card-no-border">
 
-                    <h5 class=" text-xl">Monthly Profits</h5>
-                    @php
-                        $total = OrderProofOfCash::whereMonth('created_at',$now->month)->whereYear('created_at',$now->year)->sum('nominal');
-                        $prevMonth = $now->subMonth();
-                        $totalPrev = OrderProofOfCash::whereMonth('created_at',$prevMonth->month-1)->whereYear('created_at',$prevMonth->year)->sum('nominal');
-                        $increase = 0;
-                        $icon = '-';
-                        if ($total==0 || $totalPrev==0){
-                            $increase = 0;
-                        }else{
-                            $increase = number_format(($totalPrev-$total)/$totalPrev*100,2,',','.');
-                        }
-                         if ($increase < 0) {
-                             $icon = "<i class='text-red-500  ti to-arrow-down'> </i>";
-                         } elseif ($increase > 0) {
-                             $icon = "<i class='text-green-500  ti to-arrow-up'> </i>";
-                         } else {
-                             $icon = "<i class='text-green-500 '> </i> -";
-                         }
+            <livewire:dashboard.monthly-profit/>
 
 
-                    @endphp
-
-                    <h5 class=" text-md text-gray-500">Total Peningkatan
-                        <font class="{{ increase_check($increase) }} text-sm">
-                            {!! $icon !!} {{ $increase }}%
-                        </font>
-                    </h5>
-
-                </div>
-                <div class="card-body pt-0">
-                    <div class="monthly-profit">
-                        <div id="profitmonthly"></div>
-                    </div>
-                </div>
-            </div>
-
-            <script>
-                document.addEventListener('livewire:init', function () {
-                    var optionsprofit = {
-                        labels: ["By Order", "E-Catalog", "Pinjam Bendera"],
-                        series: [300, 550, 30],
-                        chart: {
-                            type: "donut",
-                            height: 275,
-                        },
-                        dataLabels: {
-                            enabled: false,
-                        },
-                        legend: {
-                            position: "bottom",
-                            fontSize: "14px",
-                            fontFamily: "Rubik, sans-serif",
-                            fontWeight: 500,
-                            labels: {
-                                colors: "var(--chart-text-color)",
-                            },
-                            markers: {
-                                width: 6,
-                                height: 6,
-                            },
-                            itemMargin: {
-                                horizontal: 7,
-                                vertical: 0,
-                            },
-                        },
-                        stroke: {
-                            width: 10,
-                            colors: ["var(--light2)"],
-                        },
-                        plotOptions: {
-                            pie: {
-                                expandOnClick: false,
-                                donut: {
-                                    size: "83%",
-                                    labels: {
-                                        show: true,
-                                        name: {
-                                            offsetY: 4,
-                                        },
-                                        total: {
-                                            show: true,
-                                            fontSize: "20px",
-                                            fontFamily: "Rubik, sans-serif",
-                                            fontWeight: 500,
-                                            label: "Rp. 34,098",
-                                            formatter: () => "Total Profit",
-                                        },
-                                    },
-                                },
-                            },
-                        },
-                        states: {
-                            normal: {
-                                filter: {
-                                    type: "none",
-                                },
-                            },
-                            hover: {
-                                filter: {
-                                    type: "none",
-                                },
-                            },
-                            active: {
-                                allowMultipleDataPointsSelection: false,
-                                filter: {
-                                    type: "none",
-                                },
-                            },
-                        },
-                        colors: ["#54BA4A", "#7a6eff", "#FFA941"],
-                        responsive: [
-                            {
-                                breakpoint: 1425,
-                                options: {
-                                    chart: {
-                                        height: 270,
-                                    },
-                                },
-                            },
-                            {
-                                breakpoint: 1400,
-                                options: {
-                                    chart: {
-                                        height: 320,
-                                    },
-                                },
-                            },
-                            {
-                                breakpoint: 480,
-                                options: {
-                                    chart: {
-                                        height: 250,
-                                    },
-                                },
-                            },
-                        ],
-                    };
-
-                    var chartprofit = new ApexCharts(document.querySelector("#profitmonthly"), optionsprofit);
-                    chartprofit.render();
-                });
-            </script>
         </div>
         <div class="lg:col-span-4 col-span-12">
             <div class="card">
@@ -660,10 +518,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php
-
-                                @endphp
-
                             @foreach(Customer::get() as $index=>$customer)
                                 <tr>
                                     <td style="width: 10px!important;">{{ $index+1 }}</td>

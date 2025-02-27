@@ -92,6 +92,12 @@ class OrderController extends Controller
         $this->property['title'] = "Tax Edit {$order->transactionType->title} - {$order->order_number}" ; ;
         return view($this->name.'tax-edit',['property' => $this->property,'id'=>$id]);
     }
+    public function orderStatus($id)
+    {
+        $order = Order::find($id);
+        $this->property['title'] = "Selesaikan transaksi {$order->transactionType->title} - {$order->order_number}" ; ;
+        return view($this->name.'complete-transaction',['property' => $this->property,'id'=>$id]);
+    }
 
     public function downloadWaybill($id, $orderId, $outId)
     {

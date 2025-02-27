@@ -55,6 +55,7 @@ class OrderRecapitulation extends \App\Models\Order implements View
                             <span class='iconify text-blue-700' data-icon='icon-park-solid:transaction-order'></span>
                         </a>";
         $buttonShow='';
+        $buttonDone='';
         $buttonMockup='';
         foreach ($data->orderProducts as $op){
             $linkShow = route('admin.order.show', $data->id);
@@ -66,8 +67,12 @@ class OrderRecapitulation extends \App\Models\Order implements View
                             <span class='iconify text-pink-900' data-icon='material-symbols:broken-image-outline'></span>
                        </a>";
         }
-
-
+        if ($data->status==1){
+            $linkDone = route('admin.order.order-status', $data->id);
+            $buttonDone = "<a href='$linkDone' class='p-2 bg-green-900 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-white' data-icon='material-symbols:done-rounded'></span>
+                       </a>";
+        }
 
         $orderLast = \App\Models\Order::orderByDesc('id')->first();
         $buttonDelete='';
@@ -109,7 +114,9 @@ class OrderRecapitulation extends \App\Models\Order implements View
                     $buttonShow
                     $buttonDelete
                     $buttonMockup
+                    $buttonDone
                 </div>"
+
             ],
 
         ];

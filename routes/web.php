@@ -82,6 +82,8 @@ Route::middleware([
         route::get('/sharing-percentage/{id}', [OrderController::class,'sharingPercentage'])->name('sharing-percentage');
         route::get('/tax-edit/{id}', [OrderController::class,'taxEdit'])->name('tax-edit');
 
+        route::get('/order-status/{id}', [OrderController::class,'orderStatus'])->name('order-status');
+
         route::get('/show/{id}/proof-of-cash/create/', [OrderController::class,'proofOfCashCreate'])->name('proof-of-cash.create');
         route::get('/show/{id}/proof-of-cash/edit/{poc}', [OrderController::class,'proofOfCashEdit'])->name('proof-of-cash.edit');
         route::get('/show/{id}/proof-of-cash/download/{poc}', [OrderController::class,'downloadProofOfCash'])->name('download.proof-of-cash');
