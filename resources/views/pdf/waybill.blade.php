@@ -88,7 +88,7 @@
                 &nbsp; <br>
                 &nbsp; <br>
                 Yang Menerima
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 (................................................)
             </td>
             <td style="width: 50%"></td>
@@ -99,7 +99,7 @@
                 &nbsp; <br>
                 Hormat kami <br>
                 Yang Menyerahkan
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 (................................................)
             </td>
         </tr>

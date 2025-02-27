@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 
 class EmployeeController extends Controller
 {
@@ -25,7 +26,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $this->property['title'] = 'Ubah data karyawan';
-        return view($this->name.'edit',['property' => $this->property,'data'=>$id]);
+        $data = User::findOrFail($id);
+        return view($this->name.'edit',['property' => $this->property,'data'=>$data]);
     }
     public function show(Order $id)
     {

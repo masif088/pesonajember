@@ -42,7 +42,9 @@ class EmployeeForm extends Component
 
         $this->validate();
         $this->resetErrorBag();
-
+        if ($this->form['password']==null) {
+            unset($this->form['password']);
+        }
         model::find($this->dataId)->update($this->form);
         $this->redirect(route('admin.employee.index'));
     }

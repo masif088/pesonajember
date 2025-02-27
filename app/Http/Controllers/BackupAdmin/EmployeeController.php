@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BackupAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -17,6 +18,7 @@ class EmployeeController extends Controller
     }
     public function edit($id)
     {
+
         return view('admin.employee.edit',compact('id'));
     }
 }
