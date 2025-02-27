@@ -21,6 +21,7 @@ class OrderPreview extends Component
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
         $this->type = $this->order->transaction_type_id;
 
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
@@ -61,6 +62,10 @@ class OrderPreview extends Component
             'link' => route('admin.order.index'),
             'timeout'=>2000,
         ]);
+    }
+
+    public function getTax(){
+
     }
 
     public function openAndClose($p)

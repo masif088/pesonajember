@@ -28,25 +28,30 @@
         <table class="lg:w-full">
             @php
                 $allContractValue=$order->orderProducts->sum('value');
-                                $dpp =$allContractValue*100/(100+$ppn);
-                                $ppnProduct = $allContractValue - $dpp;
-                                $pphProduct = $pph*$dpp/100;
-                                $afterTax = $dpp - $pphProduct;
+                $afterTax=0;
+                foreach ($order->orderProducts as $op){
+                    $dpp =$op->value*100/(100+$ppn);
+                    $ppnProduct = $op->value - $dpp;
+                    $pphProduct = $op->pph*$dpp/100;
+                    $afterTax += ($dpp - $pphProduct);
+                }
 
-                                if ($type!=3){
-                                    $recaps = [
-                                    ['title'=>'Nominal Keseluruhan Nilai Kontrak','value'=>$allContractValue],
-                                    ['title'=>'TOTAL DPP/TNP PPN','value'=>$dpp],
-                                    ['title'=>"TOTAL PPN ($ppn%)",'value'=>$ppnProduct],
-                                    ['title'=>"TOTAL PPH ($pph%)",'value'=>$pphProduct],
-                                    ['title'=>"TOTAL NOMINAL SETELAH PAJAK",'value'=>$afterTax],
-                                    ];
-                                }else{
-                                    $recaps = [
-                                    ['title'=>'Nominal Keseluruhan Nilai Kontrak','value'=>$allContractValue],
 
-                                    ];
-                                }
+
+                                    if ($type!=3){
+                                        $recaps = [
+                                        ['title'=>'Nominal Keseluruhan Nilai Kontrak','value'=>$allContractValue],
+                                        ['title'=>'TOTAL DPP/TNP PPN','value'=>$dpp],
+                                        ['title'=>"TOTAL PPN ($ppn%)",'value'=>$ppnProduct],
+                                        ['title'=>"TOTAL PPH ($pph%)",'value'=>$pphProduct],
+                                        ['title'=>"TOTAL NOMINAL SETELAH PAJAK",'value'=>$afterTax],
+                                        ];
+                                    }else{
+                                        $recaps = [
+                                        ['title'=>'Nominal Keseluruhan Nilai Kontrak','value'=>$allContractValue],
+
+                                        ];
+                                    }
 
             @endphp
 
