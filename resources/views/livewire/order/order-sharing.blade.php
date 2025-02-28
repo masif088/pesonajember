@@ -154,8 +154,12 @@
                                     <td>
                                         <div class="p-2 justify-between flex">
                                             @php
-                                            $ttl= $sharing[$st->id][$item['id']]*$afterTax/100*$item['quantity'];
-                                            $stotal [$st->id]+=$ttl;
+                                            $ttl=0;
+                                                if(is_numeric($sharing[$st->id][$item['id']])){
+                                                $ttl= $sharing[$st->id][$item['id']]*$afterTax/100*$item['quantity'];
+                                                $stotal [$st->id]+=$ttl;
+                                                }
+
                                             @endphp
                                             <span>Rp. </span>
                                             <span>{{ thousand_format($ttl) }}</span>
