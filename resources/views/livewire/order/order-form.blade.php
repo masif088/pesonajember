@@ -136,7 +136,10 @@
 
 
         <div class="@if($customerType!=0) lg:grid @else hidden @endif grid-cols-12 gap-3 mt-3 col-span-12">
-            <x-argon.form-generator repositories="Order"/>
+
+            @if($transaction_type_id!=3 and $customerType!=0)
+                <x-argon.form-generator repositories="OrderTax"/>
+            @endif
 
     </div>
     <div class="col-span-9"></div>

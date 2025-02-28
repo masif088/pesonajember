@@ -2,12 +2,11 @@
 
 namespace App\Repository\Form;
 
-use App\Models\TransactionType;
 use App\Models\User;
 use App\Repository\Form;
 use Carbon\Carbon;
 
-class Order extends \App\Models\Order implements Form
+class OrderTax extends \App\Models\Order implements Form
 {
     public static function formRules(): array
     {
@@ -43,14 +42,19 @@ class Order extends \App\Models\Order implements Form
 //                'options' => $partner,
 //                'class' => 'col-span-12',
 //            ],
-            [
-                'title' => 'PIC',
-                'type' => 'select',
-                'model' => 'user_id',
-                'options' => $users,
-                'class' => 'col-span-12',
-            ],
 
+            [
+                'title' => 'PPN',
+                'type' => 'number',
+                'model' => 'ppn',
+                'class' => 'col-span-6',
+            ],
+            [
+                'title' => 'PPh (bawaan untuk seluruh produk)',
+                'type' => 'number',
+                'model' => 'pph',
+                'class' => 'col-span-6',
+            ],
         ];
     }
 }
