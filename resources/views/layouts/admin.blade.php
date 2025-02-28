@@ -36,7 +36,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}?v=2">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}?v=3">
 
     <link rel="stylesheet" href="{{ asset('vendor/carousel/carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.css') }}">
