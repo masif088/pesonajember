@@ -33,11 +33,16 @@ class User extends \App\Models\User implements View
         ];
     }
 
-    public static function tableData($data = null,$params=[]): array
+    public static function tableData($data = null, $params = []): array
     {
         $delete = "";
         if ($data->role == 1) {
             $role = 'Super Admin';
+        } else if ($data->role == 2) {
+            $role = 'Admin';
+            $delete = "<a href='#' wire:click='deleteItem($data->id)' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
+                            <span class='iconify text-red-900' data-icon='mingcute:delete-fill'></span>
+                       </a>";
         } else {
             $role = 'Pegawai';
             $delete = "<a href='#' wire:click='deleteItem($data->id)' class='p-2 bg-red-200 hover:bg-red-100 text-white rounded-sm transition-[opacity,margin]'>
@@ -46,7 +51,7 @@ class User extends \App\Models\User implements View
         }
 
         $linkEdit = route('admin.employee.edit', $data->id);
-        $imgEdit =asset('assets/icons/ic_edit.svg');
+        $imgEdit = asset('assets/icons/ic_edit.svg');
         $buttonEdit = "<a href='$linkEdit' class='p-2 bg-yellow-100 hover:bg-yellow-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-yellow-900' data-icon='ic:baseline-edit'></span>
                        </a>";
