@@ -52,7 +52,7 @@
                 <td>Nominal Pendapatan Sharing</td>
                 <td class="pr-5 pl-5">:</td>
                 <td>
-                    @if(is_numeric($value) and is_numeric($percentage))
+                    @if( is_numeric($value) and is_numeric($percentage))
                         Rp. {{ thousand_format($value*$percentage/100) }}
                     @endif
                 </td>

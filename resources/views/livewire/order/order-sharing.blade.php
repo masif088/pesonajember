@@ -144,7 +144,11 @@
                                     <td>
                                         <div class="p-2 justify-between flex">
                                             <span>Rp. </span>
-                                            <span>{{ thousand_format($sharing[$st->id][$item['id']]*$afterTax/100) }}</span>
+                                            <span>
+                                                @if(is_numeric($sharing[$st->id][$item['id']]))
+                                                    {{ thousand_format($sharing[$st->id][$item['id']]*$afterTax/100) }}
+                                                @endif
+                                            </span>
                                         </div>
                                     </td>
                                     <td>
