@@ -1,7 +1,7 @@
 @php use Carbon\Carbon; @endphp
 @php use App\Models\Order; @endphp
 <div class="grid grid-cols-12 gap-3">
-    @foreach(\App\Models\Wallet::get() as $wallet)
+    @foreach($wallets as $wallet)
         <div class="col-span-4 md:col-span-4 sm:col-span-12">
             <div class="card">
                 <div class="card-body bg-gray-50 rounded flex gap-3 align-middle p-3">
