@@ -34,7 +34,7 @@ class User extends \App\Models\User implements Form
     public static function formField($params = null): array
     {
         $role = [
-            ['value' => 1, 'title' => 'Super Admin/Owner0'],
+            ['value' => 1, 'title' => 'Super Admin/Owner'],
             ['value' => 2, 'title' => 'Admin'],
             ['value' => 3, 'title' => 'Pegawai'],
         ];

@@ -13,17 +13,31 @@ class ProductOut extends \App\Models\Order implements View
     {
         $query = $params['query'];
         $partnerId = $params['param1'];
-        return empty($query) ? static::query()->where('status', 1)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
-            $query->where('partner_id', $partnerId);
-        }) : static::query()->where('status', 2)->where('status', 2)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
-            $query->where('partner_id', $partnerId);
-        })->where(function (Builder $q) use ($query) {
-            $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
-                $q->where('title', 'like', "%$query%");
-            })->orWhereHas('customer', function (Builder $q) use ($query) {
-                $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
-            });
-        });
+       if (auth()->user()->role==3){
+           return empty($query) ? static::query()->where('user_id',auth()->user()->id)->where('status', 1)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+               $query->where('partner_id', $partnerId);
+           }) : static::query()->where('status', 2)->where('status', 2)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+               $query->where('partner_id', $partnerId);
+           })->where(function (Builder $q) use ($query) {
+               $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
+                   $q->where('title', 'like', "%$query%");
+               })->orWhereHas('customer', function (Builder $q) use ($query) {
+                   $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
+               });
+           });
+       }else{
+           return empty($query) ? static::query()->where('status', 1)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+               $query->where('partner_id', $partnerId);
+           }) : static::query()->where('status', 2)->where('status', 2)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+               $query->where('partner_id', $partnerId);
+           })->where(function (Builder $q) use ($query) {
+               $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
+                   $q->where('title', 'like', "%$query%");
+               })->orWhereHas('customer', function (Builder $q) use ($query) {
+                   $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
+               });
+           });
+       }
     }
 
     public static function tableView(): array

@@ -12,17 +12,29 @@ class OrderDone extends \App\Models\Order implements View
     public static function tableSearch($params = null): Builder
     {
         $query = $params['query'];
-        return empty($query) ? static::query()->whereIn('status',[3]) :
-            static::query()->whereIn('status',[3])->where(function($q) use ($query){
-                $q->where('order_number', 'like', "%$query%")
-                    ->orWhereHas('transactionType',function (Builder $q) use ($query) {
-                        $q->where('title', 'like', "%$query%");
-                    })->orWhereHas('customer',function (Builder $q) use ($query) {
-                        $q->where('company_name', 'like', "%$query%")
-                            ->orWhere('name', 'like', "%$query%");
-                    });
-            });
-
+        if (auth()->user()->role==3){
+            return empty($query) ? static::query()->whereIn('status',[3])->where('user_id',auth()->user()->id) :
+                static::query()->whereIn('status',[0,1])->where('user_id',auth()->user()->id)->where(function($q) use ($query){
+                    $q->where('order_number', 'like', "%$query%")
+                        ->orWhereHas('transactionType',function (Builder $q) use ($query) {
+                            $q->where('title', 'like', "%$query%");
+                        })->orWhereHas('customer',function (Builder $q) use ($query) {
+                            $q->where('company_name', 'like', "%$query%")
+                                ->orWhere('name', 'like', "%$query%");
+                        });
+                });
+        }else{
+            return empty($query) ? static::query()->whereIn('status',[3]) :
+                static::query()->whereIn('status',[0,1])->where(function($q) use ($query){
+                    $q->where('order_number', 'like', "%$query%")
+                        ->orWhereHas('transactionType',function (Builder $q) use ($query) {
+                            $q->where('title', 'like', "%$query%");
+                        })->orWhereHas('customer',function (Builder $q) use ($query) {
+                            $q->where('company_name', 'like', "%$query%")
+                                ->orWhere('name', 'like', "%$query%");
+                        });
+                });
+        }
     }
 
     public static function tableView(): array

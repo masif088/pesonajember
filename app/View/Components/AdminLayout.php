@@ -42,6 +42,7 @@ class AdminLayout extends Component
             ];
         }
 
+
         $this->sidebar = [
             [
                 'title' => 'Home',
@@ -75,6 +76,7 @@ class AdminLayout extends Component
                     ['title' => 'Order Cancel', 'type' => 'link', 'route' => route('admin.order.order.cancel'), 'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="ic:round-cancel"></span>'],
                 ],
             ],
+
             [
                 'title' => 'Finance',
                 'lists' => [
@@ -136,26 +138,29 @@ class AdminLayout extends Component
                 ],
 
             ],
-            [
+
+        ];
+        if (auth()->user()->role==1){
+            $this->sidebar []= [
                 'title' => 'Human Resource',
                 'lists' => [
                     [
                         'title' => 'List Karyawan',
                         'type' => 'link',
                         'route' => route('admin.employee.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="f7:doc-person-fill"></span>'
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="f7:doc-person-fill"></span>',
                     ],
 
                     [
                         'title' => 'Gaji Karyawan',
                         'type' => 'link',
                         'route' => route('admin.salary.index'),
-                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:payment-32-filled"></span>'
+                        'icon' => '<span class="iconify text-gray-600 text-2xl" data-icon="fluent:payment-32-filled"></span>',
                     ],
                 ],
 
-            ],
-        ];
+            ];
+        }
     }
 
     public function setValue($count)

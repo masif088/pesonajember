@@ -16,16 +16,34 @@ class OrderMargin extends \App\Models\Order implements View
         $query = $params['query'];
         $transactionTypeId = $params['param1'];
 //        dd($transactionTypeId);
-        return empty($query) ? static::query()->where('status',1)->where('transaction_type_id',$transactionTypeId) :
-            static::query()->where('status',1)->where('transaction_type_id',$transactionTypeId) ->where(function (Builder $q) use ($query) {
-                $q->where('order_number', 'like', "%$query%")
-                    ->orWhereHas('transactionType',function (Builder $q) use ($query) {
-                        $q->where('title', 'like', "%$query%");
-                    })->orWhereHas('customer',function (Builder $q) use ($query) {
-                        $q->where('company_name', 'like', "%$query%")
-                            ->orWhere('name', 'like', "%$query%");
-                    });
-            });
+        if (auth()->user()->role==3){
+            return empty($query) ? static::query()->where('status',1)
+                ->where('user_id',auth()->user()->id)
+                ->where('transaction_type_id',$transactionTypeId) :
+                static::query()->where('status',1)
+                    ->where('user_id',auth()->user()->id)
+                    ->where('transaction_type_id',$transactionTypeId) ->where(function (Builder $q) use ($query) {
+                    $q->where('order_number', 'like', "%$query%")
+                        ->orWhereHas('transactionType',function (Builder $q) use ($query) {
+                            $q->where('title', 'like', "%$query%");
+                        })->orWhereHas('customer',function (Builder $q) use ($query) {
+                            $q->where('company_name', 'like', "%$query%")
+                                ->orWhere('name', 'like', "%$query%");
+                        });
+                });
+        }else{
+            return empty($query) ? static::query()->where('status',1)->where('transaction_type_id',$transactionTypeId) :
+                static::query()->where('status',1)->where('transaction_type_id',$transactionTypeId) ->where(function (Builder $q) use ($query) {
+                    $q->where('order_number', 'like', "%$query%")
+                        ->orWhereHas('transactionType',function (Builder $q) use ($query) {
+                            $q->where('title', 'like', "%$query%");
+                        })->orWhereHas('customer',function (Builder $q) use ($query) {
+                            $q->where('company_name', 'like', "%$query%")
+                                ->orWhere('name', 'like', "%$query%");
+                        });
+                });
+        }
+
 
     }
 

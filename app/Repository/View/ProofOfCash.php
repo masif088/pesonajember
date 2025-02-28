@@ -13,17 +13,38 @@ class ProofOfCash extends \App\Models\Order implements View
     {
         $query = $params['query'];
         $partnerId = $params['param1'];
-        return empty($query) ? static::query()->where('status', 1)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
-            $query->where('partner_id', $partnerId);
-        }) : static::query()->where('status', 2)->where('status', 2)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
-            $query->where('partner_id', $partnerId);
-        })->where(function (Builder $q) use ($query) {
-            $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
-                $q->where('title', 'like', "%$query%");
-            })->orWhereHas('customer', function (Builder $q) use ($query) {
-                $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
+
+        if (auth()->user()->role == 3) {
+            return empty($query) ? static::query()
+                ->where('status', 1)
+                ->where('user_id', auth()->user()->id)
+                ->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+                    $query->where('partner_id', $partnerId);
+                }) : static::query()->where('status', 2)
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 2)
+                ->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+                    $query->where('partner_id', $partnerId);
+                })->where(function (Builder $q) use ($query) {
+                    $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
+                        $q->where('title', 'like', "%$query%");
+                    })->orWhereHas('customer', function (Builder $q) use ($query) {
+                        $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
+                    });
+                });
+        } else {
+            return empty($query) ? static::query()->where('status', 1)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+                $query->where('partner_id', $partnerId);
+            }) : static::query()->where('status', 2)->where('status', 2)->whereHas('orderPartners', function (Builder $query) use ($partnerId) {
+                $query->where('partner_id', $partnerId);
+            })->where(function (Builder $q) use ($query) {
+                $q->where('order_number', 'like', "%$query%")->orWhereHas('transactionType', function (Builder $q) use ($query) {
+                    $q->where('title', 'like', "%$query%");
+                })->orWhereHas('customer', function (Builder $q) use ($query) {
+                    $q->where('company_name', 'like', "%$query%")->orWhere('name', 'like', "%$query%");
+                });
             });
-        });
+        }
     }
 
     public static function tableView(): array
@@ -42,14 +63,13 @@ class ProofOfCash extends \App\Models\Order implements View
         ];
     }
 
-    public static function tableData($data = null,$params=[]): array
+    public static function tableData($data = null, $params = []): array
     {
 
-        $linkShow = route('admin.proof-of-cash.show', [$params['param1'],$data->id]);
+        $linkShow = route('admin.proof-of-cash.show', [$params['param1'], $data->id]);
         $buttonShow = "<a href='$linkShow' class='p-2 bg-green-100 hover:bg-green-200 text-white rounded-sm transition-[opacity,margin]'>
                             <span class='iconify text-green-900' data-icon='lsicon:view-filled'></span>
                        </a>";
-
 
 
         return [
@@ -66,7 +86,7 @@ class ProofOfCash extends \App\Models\Order implements View
                 "<div class='text-xl flex gap-1'>
                     <br>
                     $buttonShow
-                </div>"
+                </div>",
             ],
         ];
     }
