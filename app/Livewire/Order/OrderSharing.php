@@ -26,6 +26,7 @@ class OrderSharing extends Component
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
         $this->sharingTitle = $this->order->orderSharings;
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $orders = [];

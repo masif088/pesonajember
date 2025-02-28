@@ -19,6 +19,7 @@ class OrderHpp extends Component
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {
             $orders = [];
             foreach (OrderProduct::where('order_id',$this->orderId)->where('partner_id',$item->partner_id)->get() as $item2){

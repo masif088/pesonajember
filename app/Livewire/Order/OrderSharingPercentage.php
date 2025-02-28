@@ -31,6 +31,7 @@ class OrderSharingPercentage extends Component
     {
         $this->contractValue = 0;
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
         $this->percentage =$this->order->percentage??0;
         $this->value = $this->order->value??0;
         $this->sharingTitle = $this->order->orderSharings;

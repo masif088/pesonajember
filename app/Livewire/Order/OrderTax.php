@@ -27,6 +27,7 @@ class OrderTax extends Component
     public function mount()
     {
         $this->order = Order::find($this->orderId);
+        $this->ppn = $this->order->ppn;
         $this->sharingTitle = $this->order->orderSharings;
 $this->updateData();
     }
