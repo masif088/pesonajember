@@ -104,8 +104,8 @@ class OrderForm extends Component
         $o->update([
             'user_id' => $this->form['user_id'],
             'status' => $this->status,
-            'pph' => $this->form['pph'],
-            'ppn' => $this->form['ppn'],
+            'pph' => $this->form['pph']??0,
+            'ppn' => $this->form['ppn']??0,
         ]);
         OrderPartner::where('order_id',$o->id)->delete();
         foreach ($this->form['partners'] as $partner) {
