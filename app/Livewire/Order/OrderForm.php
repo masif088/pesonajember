@@ -75,8 +75,8 @@ class OrderForm extends Component
             'customer_id' => $this->form['customer_id'],
             'order_number' =>model::getOrderNumber(),
             'user_id' => $this->form['user_id'],
-            'pph' => $this->form['pph'],
-            'ppn' => $this->form['ppn'],
+            'pph' => $this->form['pph']??0,
+            'ppn' => $this->form['ppn']??0,
         ]);
         foreach ($this->form['partners'] as $partner) {
             OrderPartner::create([
