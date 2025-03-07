@@ -22,7 +22,7 @@
                             {{ month_name(Carbon::now()->month) }} {{ Carbon::now()->year }} <br>
                             <h6>Transaksi E Catalog</h6>
                             <h4 class="text-green-900 mb-3">{{ Order::where('transaction_type_id',2)->count() }}
-                                Pesananan</h4>
+                                Pesanan</h4>
                             <a href="{{ route('admin.order.create',2) }}"
                                class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                         </div>
@@ -42,7 +42,7 @@
                             {{ month_name(Carbon::now()->month) }} {{ Carbon::now()->year }} <br>
                             <h6>Transaksi By Order</h6>
                             <h4 class="text-green-900 mb-3">{{ Order::where('transaction_type_id',1)->count() }}
-                                Pesananan</h4>
+                                Pesanan</h4>
                             <a href="{{ route('admin.order.create',1) }}"
                                class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                         </div>
@@ -61,7 +61,7 @@
                             {{ month_name(Carbon::now()->month) }} {{ Carbon::now()->year }} <br>
                             <h6>Transaksi Pinjam Bendera</h6>
                             <h4 class="text-green-900 mb-3">{{ Order::where('transaction_type_id',3)->count() }}
-                                Pesananan</h4>
+                                Pesanan</h4>
                             <a href="{{ route('admin.order.create',3) }}"
                                class="bg-green-900 text-white px-2 py-1 rounded-lg mt-1">Input Pesanan</a>
                         </div>
