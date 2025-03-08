@@ -25,12 +25,14 @@ class CompleteTransaction extends Component
         if ($this->order->transaction_type_id != 3) {
 
             $afterTax = 0;
-            foreach ($this->order->orderProducts as $op) {
-                $dpp = $op->value * 100 / (100 + $this->order->ppn);
-                $ppnProduct = $op->value - $dpp;
-                $pphProduct = $op->pph * $dpp / 100;
-                $afterTax += ($dpp - $pphProduct);
-            }
+//            foreach ($this->order->orderProducts as $op) {
+//                $dpp = $op->value * 100 / (100 + $this->order->ppn);
+//                $ppnProduct = $op->value - $dpp;
+//                $pphProduct = $op->pph * $dpp / 100;
+//                $afterTax += ($dpp - $pphProduct);
+////                dd($dpp- $pphProduct);
+//            }
+//            dd($afterTax);
 
             $allSharing = 0;
             foreach ($this->order->orderProducts as $item2) {
@@ -44,6 +46,7 @@ class CompleteTransaction extends Component
             }
             $allHppValue = $this->order->orderProducts->sum('hpp_value');
             $margin = $afterTax - $allHppValue - $allSharing;
+//            dd($afterTax , $allHppValue , $allSharing);
 
             return $margin;
         } else {
