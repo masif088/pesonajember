@@ -115,8 +115,12 @@ class OrderMargin extends \App\Models\Order implements View
         }
 
         $margin = $afterTax-$allHppValue-$allSharing;
+if ($allContractValue!=0){
 
-        $marginPresentation = number_format($margin/$allContractValue*100,2,',','.');
+    $marginPresentation = number_format($margin/$allContractValue*100,2,',','.');
+}else{
+    $marginPresentation = 0;
+}
         $margin = thousand_format($margin);
 
         $l =  route('admin.order.hpp',$data->id);
