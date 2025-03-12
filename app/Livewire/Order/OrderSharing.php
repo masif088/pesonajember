@@ -49,7 +49,7 @@ class OrderSharing extends Component
         $this->resetErrorBag();
         \App\Models\OrderSharing::create([
             'order_id' => $this->orderId,
-            'title' => $this->title,
+            'title' => $this->title??'Tanpa Judul',
         ]);
         $this->sharingTitle = $this->order->orderSharings;
         foreach (OrderPartner::where('order_id',$this->orderId)->get() as $item) {

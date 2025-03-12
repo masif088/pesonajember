@@ -54,10 +54,21 @@ class CompleteTransaction extends Component
             return $this->order->value * $this->order->percentage / 100;
         }
     }
+    public $listeners = ['changeStatusDone'=>'changeStatusDone'];
+    public function changeStatusDone()
+    {
+$this->order->update([
+    'status'=>3
+]);
+    }
 
     public function endTransaction()
     {
-        $this->dispatch('swal:confirm', data: ['icon' => 'warning', 'title' => 'apakah anda yakin ingin menyelesaikan transaksi ini, setelah anda menyelesaikan anda tidak bisa melakukan perubahan lagi', 'confirmText' => 'Selesaikan', 'method' => 'delete',]);
+        $this->dispatch('swal:confirm', data: [
+            'icon' => 'warning',
+            'title' => 'apakah anda yakin ingin menyelesaikan transaksi ini, setelah anda menyelesaikan anda tidak bisa melakukan perubahan lagi',
+            'confirmText' => 'Selesaikan',
+            'method' => 'changeStatusDone',]);
 
     }
 
