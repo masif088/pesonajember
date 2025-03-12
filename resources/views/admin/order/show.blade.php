@@ -48,7 +48,7 @@
                                   ['title'=>'Nominal Keseluruhan Setelah Pajak','value'=>'Rp. '. thousand_format($afterTax)],
                                   ['title'=>'Nominal Keseluruhan HPP','value'=>'Rp. '.thousand_format($totalHpp)],
                                   ['title'=>'Nominal Sharing','value'=>'Rp. '. thousand_format($allSharing)],
-                                  ['title'=>'Nominal Margin Profit','value'=>'Rp. '. thousand_format(($afterTax-$allSharing-$totalHpp)).' ('.(($aftertax!=0)?number_format(($afterTax-$allSharing-$totalHpp)/$afterTax*100,2,',','.'):0)."%)"],
+//                                  ['title'=>'Nominal Margin Profit','value'=>'Rp. '. thousand_format(($afterTax-$allSharing-$totalHpp)).' ('.(($aftertax!=0)?number_format(($afterTax-$allSharing-$totalHpp)/$afterTax*100,2,',','.'):0)."%)"],
                                   ['title'=>'Telah terbayar','value'=>'Rp. '. thousand_format(($totalNominal))],
                                   ['title'=>'Status Transaksi','value'=>"<b class='font-bold'>{$statuses[$data->status]}</b>"],
                                 ];
