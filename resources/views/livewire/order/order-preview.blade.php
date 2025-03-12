@@ -30,6 +30,8 @@
                 $allContractValue=$order->orderProducts->sum('value');
                 $afterTax=0;
                 $dpp=0;
+                $ppnProduct=0;
+                $pphProduct=0;
                 foreach ($order->orderProducts as $op){
                     $dpp =$op->value*100/(100+$ppn);
                     $ppnProduct = $op->value - $dpp;
