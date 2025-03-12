@@ -60,6 +60,15 @@ class CompleteTransaction extends Component
 $this->order->update([
     'status'=>3
 ]);
+        $this->dispatch('swal:alert', data: [
+            'icon' => 'success',
+            'title'=>'Order telah selesai',
+        ]);
+
+        $this->dispatch('redirect', data: [
+            'link' => route('admin.order.order-done'),
+            'timeout'=>2000,
+        ]);
     }
 
     public function endTransaction()
